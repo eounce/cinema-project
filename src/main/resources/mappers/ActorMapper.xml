@@ -12,13 +12,13 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Actor">
-        insert into actor(name, image)
-        values (#{name}, #{image})
+        insert into actor(name, store_filename, upload_filename, path)
+        values (#{name}, #{storeFilename}, #{uploadFilename}, #{path})
     </insert>
 
     <update id="update" parameterType="Actor">
         update actor
-        set name=#{name}, image=#{image}
+        set name=#{name}, store_filename=#{storeFilename}, upload_filename=#{uploadFilename}, path=#{path}
         where id=#{id}
     </update>
 
