@@ -1,5 +1,6 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.domain.Actor;
 import com.induk.cinema.domain.City;
 import com.induk.cinema.service.CityService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +29,9 @@ public class AdminCityController {
     }
 
     @GetMapping("/add")
-    public String addForm() {
+    public String addForm(Model model) {
+        //비어있는 객체를 넘겨야 오류가 발생하지 않음
+        model.addAttribute("city", new City());
         return "admin/city/addForm";
     }
 

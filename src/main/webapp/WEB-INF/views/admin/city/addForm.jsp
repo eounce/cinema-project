@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +41,7 @@
             <form method="post" action="/admin/citys/add">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> City</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="history.back();"><i class="fas fa-undo"></i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/citys'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -49,10 +50,16 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="name" placeholder="도시명을 입력해주세요">
-                            </td>
+                            <!-- path:city객체의 name속성을 검사 -->
+                            <!-- spring 태그를 사용하기 위해서는 상단에 관련 taglib를 추가해줘야 합니다.-->
+                            <spring:bind path="city.name">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" class="form-control" placeholder="도시명을 입력해주세요">
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                    ${status.errorMessage }
+                                </td>
+                            </spring:bind>
                         </tr>
                         </tbody>
                     </table>
