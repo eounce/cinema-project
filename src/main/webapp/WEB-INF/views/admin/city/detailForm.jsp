@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,40 +38,41 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
+            <form name="updateForm" action="/admin/citys/update/${city.id}" method="GET">
+            </form>
+            <form name="deleteForm" action="/admin/citys/del/${city.id}" method="POST">
+                <input type="hidden" name="_method" value="delete" />
+            </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> City DataTables</i>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/citys/add'">추가</button></h4>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"><a href="/admin/citys" style="text-decoration:none"> City</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/citys'"><i class="fas fa-undo"></i></a>
+                    <span class="float-right">&nbsp;</span>
+                    <a class="btn btn-primary float-right" href="#"
+                       onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
+                    <span class="float-right">&nbsp;</span>
+                    <a class="btn btn-primary float-right" href="#"
+                       onclick="javascript:document.updateForm.submit();"><i class="fas fa-pen"></i></a>
+                </h4>
             </div>
             <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th width="20%">ID</th>
-                            <th width="80%">Name</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th width="20%">ID</th>
-                            <th width="80%">Name</th>
-                        </tr>
-                        </tfoot>
-                        <tbody>
-
-                        <c:forEach var="city" items="${citys}">
-                        <tr>
-                            <th width="20%"><a href="/admin/citys/${city.id}" >${city.id}</a></th>
-                            <th width="80%">${city.name}</th>
-                        </tr>
-                        </c:forEach>
-
-                        </tbody>
-                    </table>
-                </div>
+                <table class="table table-bordered table-striped" width="100%" cellspacing="0">
+                    <tbody>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="id" value="${city.id}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Name</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="name" value="${city.name}" disabled>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
-
     </div>
     <!-- /.container-fluid -->
 

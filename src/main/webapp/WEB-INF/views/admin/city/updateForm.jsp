@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,38 +38,40 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> City DataTables</i>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/citys/add'">추가</button></h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th width="20%">ID</th>
-                            <th width="80%">Name</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th width="20%">ID</th>
-                            <th width="80%">Name</th>
-                        </tr>
-                        </tfoot>
+            <form method="post" action="/admin/citys/update/${city.id}">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> City</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/citys/${city.id}'"><i class="fas fa-undo"></i></a>
+                        <span class="float-right">&nbsp;</span>
+                        <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
                         <tbody>
-
-                        <c:forEach var="city" items="${citys}">
                         <tr>
-                            <th width="20%"><a href="/admin/citys/${city.id}" >${city.id}</a></th>
-                            <th width="80%">${city.name}</th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ID <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" value="${city.id}" readonly>
+                            </td>
                         </tr>
-                        </c:forEach>
-
+                        <tr>
+                            <!-- path:city객체의 name속성을 검사 -->
+                            <!-- spring 태그를 사용하기 위해서는 상단에 관련 taglib를 추가해줘야 합니다.-->
+                            <spring:bind path="city.name">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" class="form-control" value="${city.name}" name="${status.expression }"
+                                           id="${status.expression }" placeholder="도시명을 입력해주세요">
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>

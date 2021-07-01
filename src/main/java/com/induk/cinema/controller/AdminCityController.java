@@ -8,9 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -40,6 +38,8 @@ public class AdminCityController {
                           BindingResult bindingResult,
                           RedirectAttributes redirectAttributes) {
 
+        System.out.println(city.getName());
+
         if(bindingResult.hasErrors()) {
             return "admin/city/addForm";
         }
@@ -47,6 +47,44 @@ public class AdminCityController {
         Long id = cityService.saveCity(city);
 
         redirectAttributes.addAttribute("id", id);
+        return "redirect:/admin/citys/{id}";
+    }
+
+    @GetMapping("/{id}")
+    public String DetailForm(@PathVariable Long id, Model model) {
+        model.addAttribute("city", cityService.findCity(id));
+        return "admin/city/detailForm";
+    }
+
+    @DeleteMapping("/del/{id}")
+    public String deleteCity(@PathVariable Long id) {
+        cityService.deleteCity(id);
         return "redirect:/admin/citys";
+    }
+
+    @GetMapping("/update/{id}")
+    public String updateForm(@PathVariable Long id, Model model) {
+        City city = cityService.findCity(id);
+        model.addAttribute("city", city);
+        return "admin/city/updateForm";
+    }
+
+    @PostMapping("/update/{id}")
+    public String updateCity(@PathVariable("id") Long id,
+                             @Valid City city,
+                             Model model,
+                             BindingResult bindingResult,
+                             RedirectAttributes redirectAttributes) {
+
+        System.out.println(city.getName());
+        if(bindingResult.hasErrors()) {
+            redirectAttributes.addAttribute("id", id);
+            return "redirect:/admin/city/update/{id}";
+        }
+
+        cityService.updateCity(city);
+
+        model.addAttribute("city", city);
+        return "admin/city/detailForm";
     }
 }

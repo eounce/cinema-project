@@ -55,7 +55,8 @@
                             <spring:bind path="city.name">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" placeholder="도시명을 입력해주세요">
+                                    <input type="text" class="form-control" name="${status.expression }"
+                                           id="${status.expression }" placeholder="도시명을 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     ${status.errorMessage }
                                 </td>
