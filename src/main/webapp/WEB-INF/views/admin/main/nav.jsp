@@ -133,6 +133,26 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseMovie"
+           aria-expanded="true" aria-controls="collapseMovie">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>영화</span>
+        </a>
+        <div id="collapseMovie" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">배우 및 감독:</h6>
+                <a class="collapse-item" href="/admin/actors">배우</a>
+                <a class="collapse-item" href="#">출연 배우</a>
+                <a class="collapse-item" href="#">감독</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">영화:</h6>
+                <a class="collapse-item" href="#">영화</a>
+                <a class="collapse-item" href="#">장르</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
