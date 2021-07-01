@@ -114,6 +114,25 @@
             <span>Tables</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTheater"
+           aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>영화관</span>
+        </a>
+        <div id="collapseTheater" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">영화관:</h6>
+                <a class="collapse-item" href="login.html">영화관</a>
+                <a class="collapse-item" href="register.html">상영관</a>
+                <a class="collapse-item" href="forgot-password.html">좌석</a>
+                <div class="collapse-divider"></div>
+                <h6 class="collapse-header">기타:</h6>
+                <a class="collapse-item" href="/admin/citys">지역</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
@@ -124,7 +143,7 @@
 
     <!-- Sidebar Message -->
     <div class="sidebar-card d-none d-lg-flex">
-        <img class="sidebar-card-illustration mb-2" src="admin/img/undraw_rocket.svg" alt="...">
+        <img class="sidebar-card-illustration mb-2" src="/admin/img/undraw_rocket.svg" alt="...">
         <p class="text-center mb-2"><strong>SB Admin Pro</strong> is packed with premium features, components, and more!</p>
         <a class="btn btn-success btn-sm" href="https://startbootstrap.com/theme/sb-admin-pro">Upgrade to Pro!</a>
     </div>
@@ -254,7 +273,7 @@
                         </h6>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="admin/img/undraw_profile_1.svg"
+                                <img class="rounded-circle" src="/admin/img/undraw_profile_1.svg"
                                      alt="...">
                                 <div class="status-indicator bg-success"></div>
                             </div>
@@ -266,7 +285,7 @@
                         </a>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="admin/img/undraw_profile_2.svg"
+                                <img class="rounded-circle" src="/admin/img/undraw_profile_2.svg"
                                      alt="...">
                                 <div class="status-indicator"></div>
                             </div>
@@ -278,7 +297,7 @@
                         </a>
                         <a class="dropdown-item d-flex align-items-center" href="#">
                             <div class="dropdown-list-image mr-3">
-                                <img class="rounded-circle" src="admin/img/undraw_profile_3.svg"
+                                <img class="rounded-circle" src="/admin/img/undraw_profile_3.svg"
                                      alt="...">
                                 <div class="status-indicator bg-warning"></div>
                             </div>
@@ -312,7 +331,7 @@
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                         <img class="img-profile rounded-circle"
-                             src="admin/img/undraw_profile.svg">
+                             src="/admin/img/undraw_profile.svg">
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
