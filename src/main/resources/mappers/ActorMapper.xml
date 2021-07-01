@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.ActorRepository">
+    <select id="findAll" resultType="Actor">
+        select * from actor
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="Actor">
+        select * from actor where id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Actor">
+        insert into actor(name, image)
+        values (#{name}, #{image})
+    </insert>
+
+    <update id="update" parameterType="Actor">
+        update actor
+        set name=#{name}, image=#{image}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from actor where id = #{id}
+    </delete>
+</mapper>
