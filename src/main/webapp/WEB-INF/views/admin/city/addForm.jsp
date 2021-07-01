@@ -37,38 +37,27 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> City DataTables</i>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/citys/add'">추가</button></h4>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <thead>
-                        <tr>
-                            <th width="20%">ID</th>
-                            <th width="80%">Name</th>
-                        </tr>
-                        </thead>
-                        <tfoot>
-                        <tr>
-                            <th width="20%">ID</th>
-                            <th width="80%">Name</th>
-                        </tr>
-                        </tfoot>
+            <form method="post" action="/admin/citys/add">
+                <div class="card-header py-3">
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> City</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="history.back();"><i class="fas fa-undo"></i></a>
+                        <span class="float-right">&nbsp;</span>
+                        <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered table-striped">
                         <tbody>
-
-                        <c:forEach var="city" items="${citys}">
                         <tr>
-                            <th width="20%">${city.id}</th>
-                            <th width="80%">${city.name}</th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="name" placeholder="도시명을 입력해주세요">
+                            </td>
                         </tr>
-                        </c:forEach>
-
                         </tbody>
                     </table>
                 </div>
-            </div>
+            </form>
         </div>
 
     </div>

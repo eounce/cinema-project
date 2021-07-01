@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
@@ -15,7 +15,7 @@ public class City {
 
     private Long id;
 
-    @NotNull(message = "도시명은 필수 입력입니다.")
+    @NotBlank(message = "도시명은 필수 입력입니다.")
     private String name;
 
 }

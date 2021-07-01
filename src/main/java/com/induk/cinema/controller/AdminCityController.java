@@ -1,12 +1,18 @@
 package com.induk.cinema.controller;
 
-import com.induk.cinema.domain.Actor;
+import com.induk.cinema.domain.City;
 import com.induk.cinema.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/admin/citys")
@@ -19,5 +25,25 @@ public class AdminCityController {
     public String citys(Model model) {
         model.addAttribute("citys", cityService.cityList());
         return "admin/city/listForm";
+    }
+
+    @GetMapping("/add")
+    public String addForm() {
+        return "admin/city/addForm";
+    }
+
+    @PostMapping("/add")
+    public String addCity(@Valid City city,
+                          BindingResult bindingResult,
+                          RedirectAttributes redirectAttributes) {
+
+        if(bindingResult.hasErrors()) {
+            return "admin/city/addForm";
+        }
+
+        Long id = cityService.saveCity(city);
+
+        redirectAttributes.addAttribute("id", id);
+        return "redirect:/admin/citys";
     }
 }
