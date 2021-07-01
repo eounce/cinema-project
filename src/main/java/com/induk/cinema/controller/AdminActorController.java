@@ -17,7 +17,7 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/admin/actors")
 @RequiredArgsConstructor
-public class ActorController {
+public class AdminActorController {
 
     private final ActorService actorService;
 
