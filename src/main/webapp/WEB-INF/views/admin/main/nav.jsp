@@ -153,6 +153,21 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent"
+           aria-expanded="true" aria-controls="collapseEvent">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>이벤트</span>
+        </a>
+        <div id="collapseEvent" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">이벤트:</h6>
+                <a class="collapse-item" href="/admin/events">이벤트</a>
+                <a class="collapse-item" href="#">이벤트 코드</a>
+            </div>
+        </div>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
