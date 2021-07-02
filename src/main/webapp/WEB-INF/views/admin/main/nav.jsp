@@ -125,7 +125,7 @@
                 <h6 class="collapse-header">영화관:</h6>
                 <a class="collapse-item" href="/admin/cinemas">영화관</a>
                 <a class="collapse-item" href="/admin/theaters">상영관</a>
-                <a class="collapse-item" href="forgot-password.html">좌석</a>
+                <a class="collapse-item" href="/admin/seats">좌석</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">기타:</h6>
                 <a class="collapse-item" href="/admin/citys">지역</a>

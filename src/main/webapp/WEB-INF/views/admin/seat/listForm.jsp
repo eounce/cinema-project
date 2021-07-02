@@ -3,7 +3,6 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,53 +37,50 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/theaters/update/${theater.id}" method="GET">
-            </form>
-            <form name="deleteForm" action="/admin/theaters/del/${theater.id}" method="POST">
-                <input type="hidden" name="_method" value="delete" />
-            </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"><a href="/admin/theaters" style="text-decoration:none"> Cinema</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/theaters'"><i class="fas fa-undo"></i></a>
-                    <span class="float-right">&nbsp;</span>
-                    <a class="btn btn-primary float-right" href="#"
-                       onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
-                    <span class="float-right">&nbsp;</span>
-                    <a class="btn btn-primary float-right" href="#"
-                       onclick="javascript:document.updateForm.submit();"><i class="fas fa-pen"></i></a>
-                </h4>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"> Seat DataTables</i>
+                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/seats/add'">추가</button></h4>
             </div>
             <div class="card-body">
-                <table class="table table-bordered table-striped" width="100%" cellspacing="0">
-                    <tbody>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="id" value="${theater.id}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Name</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="name" value="${theater.name}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">CinemaName</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="cinemaName" value="${theater.theaterCinema.cinemaName}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Seat_Count</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="seat_count" value="${theater.seat_count}" disabled>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                        <tr>
+                            <th width="20%">ID</th>
+                            <th width="30%">Theater</th>
+                            <th width="30%">Seat_Number</th>
+                            <th width="20%">Status</th>
+                        </tr>
+                        </thead>
+                        <tfoot>
+                        <tr>
+                            <th width="20%">ID</th>
+                            <th width="30%">Theater</th>
+                            <th width="30%">Seat_Number</th>
+                            <th width="20%">Status</th>
+                        </tr>
+                        </tfoot>
+                        <tbody>
+
+                        <c:forEach var="seat" items="${seats}">
+                        <tr>
+                            <th width="20%"><a href="/admin/seats/${seat.id}" >${seat.id}</a></th>
+                            <th width="30%">${seat.seatTheater.theaterName}</th>
+                            <th width="30%">${seat.number}</th>
+                            <c:if test="${seat.status == 1}">
+                                <th width="20%">예약석</th>
+                            </c:if>
+                            <c:if test="${seat.status == 0}">
+                                <th width="20%">빈좌석</th>
+                            </c:if>
+                        </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
     <!-- /.container-fluid -->
 

@@ -38,14 +38,14 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/cinemas/update/${cinema.id}" method="GET">
+            <form name="updateForm" action="/admin/seats/update/${seat.id}" method="GET">
             </form>
-            <form name="deleteForm" action="/admin/cinemas/del/${cinema.id}" method="POST">
+            <form name="deleteForm" action="/admin/seats/del/${seat.id}" method="POST">
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"><a href="/admin/cinemas" style="text-decoration:none"> Cinema</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/cinemas'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/admin/seats" style="text-decoration:none"> Seat</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/seats'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
@@ -60,37 +60,30 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="id" value="${cinema.id}" disabled>
+                            <input type="text" class="form-control" name="id" value="${seat.id}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">City</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Theater</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="cityName" value="${cinema.cinemaCity.cityName}" disabled>
+                            <input type="text" class="form-control" name="name" value="${seat.seatTheater.theaterName}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Name</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Seat_Number</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="name" value="${cinema.name}" disabled>
+                            <input type="text" class="form-control" name="number" value="${seat.number}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Introduction</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Status</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="introduction" value="${cinema.introduction}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Address</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="address" value="${cinema.address}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Sales</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="sales" value="${cinema.sales}" disabled>
+                            <c:if test="${seat.status == 1}">
+                                <input type="text" class="form-control" name="status" value="예약석" disabled>
+                            </c:if>
+                            <c:if test="${seat.status == 0}">
+                                <input type="text" class="form-control" name="status" value="빈좌석" disabled>
+                            </c:if>
                         </td>
                     </tr>
                     </tbody>
