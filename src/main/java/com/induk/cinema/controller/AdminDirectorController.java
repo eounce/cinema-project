@@ -1,8 +1,11 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Actor;
+import com.induk.cinema.domain.Director;
 import com.induk.cinema.dto.ActorForm;
+import com.induk.cinema.dto.DirectorForm;
 import com.induk.cinema.service.ActorService;
+import com.induk.cinema.service.DirectorService;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,79 +25,79 @@ import java.net.MalformedURLException;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/actors")
+@RequestMapping("/admin/directors")
 @RequiredArgsConstructor
-public class AdminActorController {
+public class AdminDirectorController {
 
-    private final ActorService actorService;
+    private final DirectorService directorService;
     private final FileStore fileStore;
 
     @GetMapping
-    public String actors(Model model) {
-        model.addAttribute("actors", actorService.actorList());
-        return "admin/actor/listForm";
+    public String directors(Model model) {
+        model.addAttribute("directors", directorService.directorList());
+        return "admin/director/listForm";
     }
 
     @GetMapping("/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
-        model.addAttribute("actor", actorService.findActor(id));
-        return "admin/actor/detailForm";
+        model.addAttribute("director", directorService.findDirector(id));
+        return "admin/director/detailForm";
     }
 
     @GetMapping("/add")
     public String addForm(Model model) {
-        model.addAttribute("actorForm", new ActorForm());
-        return "admin/actor/addForm";
+        model.addAttribute("directorForm", new DirectorForm());
+        return "admin/director/addForm";
     }
 
     @PostMapping("/add")
-    public String addActor(@Valid ActorForm actorForm,
+    public String addDirector(@Valid DirectorForm directorForm,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) throws IOException {
-        if(actorForm.getImageFile().isEmpty()) {
-            bindingResult.addError(new FieldError("actorForm", "imageFile", "사진을 등록해주세요."));
-            return "admin/actor/addForm";
+        if(directorForm.getImageFile().isEmpty()) {
+            bindingResult.addError(new FieldError("directorForm", "imageFile", "사진을 등록해주세요."));
+            return "admin/director/addForm";
         }
 
         if(bindingResult.hasErrors()) {
-            return "admin/actor/addForm";
+            return "admin/director/addForm";
         }
 
-        Long id = actorService.saveActor(actorForm);
+        Long id = directorService.saveDirector(directorForm);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/actors/{id}";
+        return "redirect:/admin/directors/{id}";
     }
 
     @GetMapping("/{id}/edit")
     public String updateForm(@PathVariable Long id, Model model) {
-        model.addAttribute("actor", actorService.findActor(id));
-        return "admin/actor/updateForm";
+        model.addAttribute("director", directorService.findDirector(id));
+        return "admin/director/updateForm";
     }
 
     @PostMapping("/{id}/edit")
-    public String updateActor(@PathVariable Long id,
+    public String updateDirector(@PathVariable Long id,
                               @RequestParam MultipartFile imageFile,
-                              @Valid Actor actor,
+                              @Valid Director director,
                               BindingResult bindingResult) throws IOException {
         if(bindingResult.hasErrors()) {
-            return "admin/actor/updateForm";
+            return "admin/director/updateForm";
         }
 
-        actorService.updateActor(actor, imageFile);
+        directorService.updateDirector(director, imageFile);
 
-        return "redirect:/admin/actors/{id}";
+        return "redirect:/admin/directors/{id}";
     }
 
     @GetMapping("/{id}/delete")
-    public String deleteActor(@PathVariable Long id) {
-        actorService.deleteActor(id);
-        return "redirect:/admin/actors";
+    public String deleteDirector(@PathVariable Long id) {
+        directorService.deleteDirector(id);
+        return "redirect:/admin/directors";
     }
 
     @ResponseBody
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {
-        return new UrlResource("file:" + fileStore.getFullPath("actor", filename));
+        return new UrlResource("file:" + fileStore.getFullPath("director", filename));
     }
 }

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: 201712029@office.induk.ac.kr
-  Date: 2021-07-02
-  Time: 오전 3:06
+  Date: 2021-07-01
+  Time: 오후 10:08
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
@@ -32,11 +32,6 @@
             border-color: #dc3545;
             color: #dc3545;
         }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
     </style>
 </head>
 
@@ -53,10 +48,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/actors/${actor.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/admin/genres/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/actors'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-compact-disc"> Genre</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/genres'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -65,14 +60,7 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ID
-                            </th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="id" id="id" value="${actor.id}" readonly>
-                            </td>
-                        </tr>
-                        <tr>
-                            <spring:bind path="actor.name">
+                            <spring:bind path="genre.name">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="이름을 입력해주세요">
@@ -81,22 +69,6 @@
                                     </c:if>
                                 </td>
                             </spring:bind>
-                        </tr>
-                        <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">File</th>
-                            <td width="80%">
-                                <input type="file" class="form-control" name="imageFile" id="imageFile">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Uploaded File
-                            </th>
-                            <td width="80%">
-                                <img src="/admin/actors/images/${actor.storeFilename}">
-                                <input type="hidden" name="storeFilename" id="storeFilename" value="${actor.storeFilename}"/>
-                                <input type="hidden" name="uploadFilename" id="uploadFilename" value="${actor.uploadFilename}"/>
-                                <input type="hidden" name="path" id="path" value="${actor.path}"/>
-                            </td>
                         </tr>
                         </tbody>
                     </table>
