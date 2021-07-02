@@ -64,22 +64,19 @@ public class AdminCityController {
 
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
-        City city = cityService.findCity(id);
-        model.addAttribute("city", city);
+        model.addAttribute("city", cityService.findCity(id));
         return "admin/city/updateForm";
     }
 
     @PostMapping("/update/{id}")
-    public String updateCity(@PathVariable("id") Long id,
-                             @Valid City city,
-                             Model model,
+    public String updateCity(@Valid City city,
                              BindingResult bindingResult,
-                             RedirectAttributes redirectAttributes) {
+                             RedirectAttributes redirectAttributes,
+                             @PathVariable("id") Long id,
+                             Model model) {
 
-        System.out.println(city.getName());
         if(bindingResult.hasErrors()) {
-            redirectAttributes.addAttribute("id", id);
-            return "redirect:/admin/city/update/{id}";
+            return "admin/city/updateForm";
         }
 
         cityService.updateCity(city);
