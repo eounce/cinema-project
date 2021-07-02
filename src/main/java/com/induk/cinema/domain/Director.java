@@ -1,15 +1,17 @@
 package com.induk.cinema.domain;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.validation.constraints.NotEmpty;
 
-
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Actor {
-
+public class Director {
     private Long id;
 
     @NotEmpty(message = "이름을 입력해주세요.")

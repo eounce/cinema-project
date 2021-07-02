@@ -8,6 +8,7 @@ import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,18 +32,25 @@ public class ActorService {
     public Long saveActor(ActorForm actorForm) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(actorForm.getImageFile(), "actor");
 
-        Actor actor = Actor.builder()
-                .name(actorForm.getName())
-                .storeFilename(uploadFile.getStoreFilename())
-                .uploadFilename(uploadFile.getUploadFilename())
-                .path(uploadFile.getPath())
-                .build();
+        Actor actor = new Actor();
+        actor.setName(actorForm.getName());
+        actor.setUploadFilename(uploadFile.getUploadFilename());
+        actor.setStoreFilename(uploadFile.getStoreFilename());
+        actor.setPath(uploadFile.getPath());
 
         actorRepository.save(actor);
+
         return actor.getId();
     }
 
-    public void updateActor(Actor actor) {
+    public void updateActor(Actor actor, MultipartFile file) throws IOException {
+        if(!file.isEmpty()) {
+            UploadFile uploadFile = fileStore.storeFile(file, "actor");
+            actor.setStoreFilename(uploadFile.getStoreFilename());
+            actor.setUploadFilename(uploadFile.getUploadFilename());
+            actor.setPath(uploadFile.getPath());
+        }
+
         actorRepository.update(actor);
     }
 

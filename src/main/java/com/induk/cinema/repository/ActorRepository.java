@@ -10,7 +10,7 @@ public interface ActorRepository {
 
     List<Actor> findAll();
     Actor findById(Long id);
-    Long save(Actor actor);
+    void save(Actor actor);
     void update(Actor actor);
     void delete(Long id);
 }

@@ -53,7 +53,7 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/actors/${actor.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/admin/directors/${director.id}/edit" enctype="multipart/form-data">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
                         <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/actors'"><i class="fas fa-undo"></i></a>
@@ -68,11 +68,11 @@
                             <th scope="row" width="20%" style="vertical-align:middle;">ID
                             </th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="id" id="id" value="${actor.id}" readonly>
+                                <input type="text" class="form-control" name="id" id="id" value="${director.id}" readonly>
                             </td>
                         </tr>
                         <tr>
-                            <spring:bind path="actor.name">
+                            <spring:bind path="director.name">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="이름을 입력해주세요">
@@ -92,10 +92,10 @@
                             <th scope="row" width="20%" style="vertical-align:middle;">Uploaded File
                             </th>
                             <td width="80%">
-                                <img src="/admin/actors/images/${actor.storeFilename}">
-                                <input type="hidden" name="storeFilename" id="storeFilename" value="${actor.storeFilename}"/>
-                                <input type="hidden" name="uploadFilename" id="uploadFilename" value="${actor.uploadFilename}"/>
-                                <input type="hidden" name="path" id="path" value="${actor.path}"/>
+                                <img src="/admin/directors/images/${director.storeFilename}">
+                                <input type="hidden" name="storeFilename" id="storeFilename" value="${director.storeFilename}"/>
+                                <input type="hidden" name="uploadFilename" id="uploadFilename" value="${director.uploadFilename}"/>
+                                <input type="hidden" name="path" id="path" value="${director.path}"/>
                             </td>
                         </tr>
                         </tbody>
