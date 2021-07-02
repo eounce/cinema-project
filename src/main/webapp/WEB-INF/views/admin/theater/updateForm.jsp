@@ -38,10 +38,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/cinemas/update/${cinema.id}">
+            <form method="post" action="/admin/theaters/update/${theater.id}">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"> Cinema</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/cinemas/${cinema.id}'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"> Cinema</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/theaters/${theater.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -52,21 +52,32 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">ID <font color="red">*</font></th>
                             <td width="80%">
-                                <input type="text" class="form-control" value="${cinema.id}" readonly>
+                                <input type="text" class="form-control" value="${theater.id}" readonly>
                             </td>
                         </tr>
                         <tr>
-                            <spring:bind path="cinema.city_id">
+                            <spring:bind path="theater.name">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" class="form-control" value="${theater.name}" name="${status.expression }"
+                                           id="${status.expression }" placeholder="상영관명을 입력해주세요">
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="theater.cinema_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">City <font color="red">*</font></th>
                                 <td width="80%">
                                     <select name="${status.expression }" id="${status.expression }" class="form-control">
-                                        <option value="">도시를 선택해주세요</option>
-                                        <c:forEach var="city" items="${citys}">
-                                            <c:if test="${city.id == cinema.city_id}">
-                                                <option value="${city.id}" selected>${city.name}</option>
+                                        <option value="">영화관을 선택해주세요</option>
+                                        <c:forEach var="cinema" items="${cinemas}">
+                                            <c:if test="${cinema.id == theater.cinema_id}">
+                                                <option value="${cinema.id}" selected>${cinema.name}</option>
                                             </c:if>
-                                            <c:if test="${city.id != cinema.city_id}">
-                                                <option value="${city.id}">${city.name}</option>
+                                            <c:if test="${cinema.id != theater.cinema_id}">
+                                                <option value="${cinema.id}">${cinema.name}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>
@@ -76,45 +87,11 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="cinema.name">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
+                            <spring:bind path="theater.seat_count">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Seat_Count <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" value="${cinema.name}" name="${status.expression }"
-                                           id="${status.expression }" placeholder="극장명을 입력해주세요">
-                                    <!-- 해당 속성의 오류 message를 출력 -->
-                                    ${status.errorMessage }
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <spring:bind path="cinema.introduction">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Introduction <font color="red">*</font></th>
-                                <td width="80%">
-                                    <textarea name="${status.expression }" id="${status.expression }" style="width:100%; resize:none;"
-                                              rows="9" placeholder="극장 소개를 입력해주세요">${cinema.introduction}</textarea>
-                                    <!-- 해당 속성의 오류 message를 출력 -->
-                                    ${status.errorMessage }
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <spring:bind path="cinema.address">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Address <font color="red">*</font></th>
-                                <td width="80%">
-                                    <input type="text" class="form-control" value="${cinema.address}" name="${status.expression }"
+                                    <input type="text" class="form-control" value="${theater.seat_count}" name="${status.expression }"
                                            id="${status.expression }" placeholder="주소를 입력해주세요">
-                                    <!-- 해당 속성의 오류 message를 출력 -->
-                                    ${status.errorMessage }
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <spring:bind path="cinema.sales">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Sales <font color="red">*</font></th>
-                                <td width="80%">
-                                    <input type="text" class="form-control" value="${cinema.sales}" name="${status.expression }"
-                                           id="${status.expression }" name="sales"
-                                           id="sales" placeholder="매출을 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     ${status.errorMessage }
                                 </td>
