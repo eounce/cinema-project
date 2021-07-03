@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/genres")
+@RequestMapping("/csmovie/admin/genres")
 @RequiredArgsConstructor
 public class AdminGenreController {
 
@@ -30,7 +30,7 @@ public class AdminGenreController {
     }
 
     @GetMapping("/{id}")
-    public String genre(@PathVariable Long id, Model model) {
+    public String detailForm(@PathVariable Long id, Model model) {
         model.addAttribute("genre", genreService.findGenre(id));
         return "admin/genre/detailForm";
     }

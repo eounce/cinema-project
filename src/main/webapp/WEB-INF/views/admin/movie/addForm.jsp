@@ -48,10 +48,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/directors/add" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/movies/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/directors'"><i class="fas fa-undo"></i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movies'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -60,26 +60,46 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <spring:bind path="directorForm.name">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
-                                <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="이름을 입력해주세요">
-                                    <c:if test="${status.error}">
-                                        <div class="field-error">${status.errorMessage}</div>
-                                    </c:if>
-                                </td>
-                            </spring:bind>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Poster </th>
+                            <td width="80%">
+                                <input type="file" class="form-control" name="poster" id="poster">
+                            </td>
                         </tr>
                         <tr>
-                            <spring:bind path="directorForm.imageFile">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
-                                <td width="80%">
-                                    <input type="file" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
-                                    <c:if test="${status.error}">
-                                        <div class="field-error">${status.errorMessage}</div>
-                                    </c:if>
-                                </td>
-                            </spring:bind>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Title <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="title" id="title" placeholder="이름을 입력해주세요">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Language <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="language" id="language" placeholder="언어를 입력해주세요">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ShowTimes <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="showTimes" id="showTimes" placeholder="언어를 입력해주세요">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ReleaseDate <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="releaseDate" id="releaseDate" placeholder="언어를 입력해주세요">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Rating <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="rating" id="rating" placeholder="언어를 입력해주세요">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ScreeningFormat <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="ScreeningFormat" id="ScreeningFormat" placeholder="언어를 입력해주세요">
+                            </td>
                         </tr>
                         </tbody>
                     </table>

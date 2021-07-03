@@ -53,13 +53,13 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/genres/${genre.id}/edit" method="GET">
+            <form name="updateForm" action="/csmovie/admin/genres/${genre.id}/edit" method="GET">
             </form>
-            <form name="deleteForm" action="/admin/genres/${genre.id}/delete" method="GET">
+            <form name="deleteForm" action="/csmovie/admin/genres/${genre.id}/delete" method="GET">
             </form>
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-compact-disc"> Genre</i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/genres'"><i class="fas fa-undo"></i></a>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/genres'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>

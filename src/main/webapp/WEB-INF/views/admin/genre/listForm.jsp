@@ -56,8 +56,8 @@
                                     <tbody>
                                         <c:forEach var="genre" items="${genres}">
                                             <tr>
-                                                <td><a href="/admin/genres/${genre.id}">${genre.id}</a></td>
-                                                <td><a href="/admin/genres/${genre.id}">${genre.name}</a></td>
+                                                <td><a href="/csmovie/admin/genres/${genre.id}">${genre.id}</a></td>
+                                                <td><a href="/csmovie/admin/genres/${genre.id}">${genre.name}</a></td>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

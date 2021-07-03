@@ -22,7 +22,7 @@ import java.net.MalformedURLException;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/actors")
+@RequestMapping("/csmovie/admin/actors")
 @RequiredArgsConstructor
 public class AdminActorController {
 
@@ -36,7 +36,7 @@ public class AdminActorController {
     }
 
     @GetMapping("/{id}")
-    public String DetailForm(@PathVariable Long id, Model model) {
+    public String detailForm(@PathVariable Long id, Model model) {
         model.addAttribute("actor", actorService.findActor(id));
         return "admin/actor/detailForm";
     }

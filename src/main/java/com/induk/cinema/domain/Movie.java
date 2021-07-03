@@ -14,14 +14,15 @@ import java.time.LocalTime;
 public class Movie {
 
     private Long id;
-    private Long directorId;
-    private Long genreId;
+    private String poster;
     private String title;
     private String language;
     private LocalTime showTimes;
     private Integer grade;
     private LocalDateTime releaseDate;
-    private String cumulativeSales;
+    private Integer cumulativeSales;
     private String rating;
     private String screeningFormat;
+    private Director director;
+    private Genre genre;
 }

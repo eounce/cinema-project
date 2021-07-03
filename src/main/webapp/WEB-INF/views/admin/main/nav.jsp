@@ -142,13 +142,13 @@
         <div id="collapseMovie" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">배우 및 감독:</h6>
-                <a class="collapse-item" href="/admin/actors">배우</a>
+                <a class="collapse-item" href="/csmovie/admin/actors">배우</a>
                 <a class="collapse-item" href="#">출연 배우</a>
-                <a class="collapse-item" href="/admin/directors">감독</a>
+                <a class="collapse-item" href="/csmovie/admin/directors">감독</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">영화:</h6>
-                <a class="collapse-item" href="/admin/movies">영화</a>
-                <a class="collapse-item" href="/admin/genres">장르</a>
+                <a class="collapse-item" href="/csmovie/admin/movies">영화</a>
+                <a class="collapse-item" href="/csmovie/admin/genres">장르</a>
             </div>
         </div>
     </li>
