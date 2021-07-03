@@ -63,7 +63,7 @@ public class AdminActorController {
         Long id = actorService.saveActor(actorForm);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/actors/{id}";
+        return "redirect:/csmovie/admin/actors/{id}";
     }
 
     @GetMapping("/{id}/edit")
@@ -83,13 +83,13 @@ public class AdminActorController {
 
         actorService.updateActor(actor, imageFile);
 
-        return "redirect:/admin/actors/{id}";
+        return "redirect:/csmovie/admin/actors/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteActor(@PathVariable Long id) {
         actorService.deleteActor(id);
-        return "redirect:/admin/actors";
+        return "redirect:/csmovie/admin/actors";
     }
 
     @ResponseBody

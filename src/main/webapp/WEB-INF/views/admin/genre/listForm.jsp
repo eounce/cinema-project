@@ -36,7 +36,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-compact-disc"> Genre DataTables</i>
-                            <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/genres/add'">추가</button></h4>
+                            <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/genres/add'">추가</button></h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

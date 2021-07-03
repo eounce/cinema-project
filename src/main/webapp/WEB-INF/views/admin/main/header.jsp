@@ -18,7 +18,6 @@
 <%--<link href="/csmovie/admin/css/sb-admin-2.min.css" rel="stylesheet">--%>
 <link href="/admin/css/sb-admin-2.min.css" rel="stylesheet">
 
-
 <script>
     function del() {
         var con_test = confirm("삭제할까요 ?");

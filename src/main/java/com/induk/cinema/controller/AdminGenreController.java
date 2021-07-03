@@ -52,7 +52,7 @@ public class AdminGenreController {
         Long id = genreService.saveGenre(genre);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/genres/{id}";
+        return "redirect:/csmovie/admin/genres/{id}";
     }
 
     @GetMapping("/{id}/edit")
@@ -73,13 +73,13 @@ public class AdminGenreController {
 
         genreService.updateGenre(genre);
 
-        return "redirect:/admin/genres/{id}";
+        return "redirect:/csmovie/admin/genres/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteGenre(@PathVariable Long id) {
         genreService.deleteGenre(id);
 
-        return "redirect:/admin/genres";
+        return "redirect:/csmovie/admin/genres";
     }
 }

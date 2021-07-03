@@ -78,27 +78,27 @@
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ShowTimes <font color="red">*</font></th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ReleaseDate <font color="red">*</font></th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="showTimes" id="showTimes" placeholder="언어를 입력해주세요">
+                                <input type="text" autocomplete="off" id="datePicker" class="form-control" name="releaseDate" id="releaseDate" placeholder="개봉일을 입력해주세요">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ReleaseDate <font color="red">*</font></th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ShowTimes <font color="red">*</font></th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="releaseDate" id="releaseDate" placeholder="언어를 입력해주세요">
+                                <input type="number" class="form-control" name="showTimes" id="showTimes" placeholder="상영 시간을 입력해주세요." >
                             </td>
                         </tr>
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Rating <font color="red">*</font></th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="rating" id="rating" placeholder="언어를 입력해주세요">
+                                <input type="text" class="form-control" name="rating" id="rating" placeholder="상영 등급을 입력해주세요">
                             </td>
                         </tr>
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">ScreeningFormat <font color="red">*</font></th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="ScreeningFormat" id="ScreeningFormat" placeholder="언어를 입력해주세요">
+                                <input type="text" class="form-control" name="ScreeningFormat" id="ScreeningFormat" placeholder="포멧을 입력해주세요">
                             </td>
                         </tr>
                         </tbody>

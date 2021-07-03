@@ -66,7 +66,7 @@ public class AdminDirectorController {
         Long id = directorService.saveDirector(directorForm);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/directors/{id}";
+        return "redirect:/csmovie/admin/directors/{id}";
     }
 
     @GetMapping("/{id}/edit")
@@ -86,13 +86,13 @@ public class AdminDirectorController {
 
         directorService.updateDirector(director, imageFile);
 
-        return "redirect:/admin/directors/{id}";
+        return "redirect:/csmovie/admin/directors/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteDirector(@PathVariable Long id) {
         directorService.deleteDirector(id);
-        return "redirect:/admin/directors";
+        return "redirect:/csmovie/admin/directors";
     }
 
     @ResponseBody

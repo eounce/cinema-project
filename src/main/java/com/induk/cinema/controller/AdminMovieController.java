@@ -1,5 +1,6 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.dto.MovieForm;
 import com.induk.cinema.service.MovieService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,6 +28,7 @@ public class AdminMovieController {
 
     @GetMapping("/add")
     public String addForm(Model model) {
+        model.addAttribute("movieForm", new MovieForm());
         return "admin/movie/addForm";
     }
 }
