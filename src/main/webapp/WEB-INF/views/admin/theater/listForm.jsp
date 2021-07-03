@@ -20,6 +20,7 @@
     <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
+    <%--    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
@@ -39,7 +40,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"> Theater DataTables</i>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/theaters/add'">추가</button></h4>
+                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/theaters/add'">추가</button></h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -64,7 +65,7 @@
 
                         <c:forEach var="theater" items="${theaters}">
                         <tr>
-                            <th width="20%"><a href="/admin/theaters/${theater.id}" >${theater.id}</a></th>
+                            <th width="20%"><a href="/csmovie/admin/theaters/${theater.id}" >${theater.id}</a></th>
                             <th width="30%">${theater.name}</th>
                             <th width="30%">${theater.theaterCinema.cinemaName}</th>
                             <th width="20%">${theater.seat_count}</th>
@@ -87,10 +88,13 @@
 <c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
+<%--<script src="/csmovie/admin/vendor/datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
+<%--<script src="/csmovie/admin/js/demo/datatables-demo.js"></script>--%>
 <script src="/admin/js/demo/datatables-demo.js"></script>
 
 </div>

@@ -11,7 +11,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/cinema/admin">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -123,12 +123,12 @@
         <div id="collapseTheater" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">영화관:</h6>
-                <a class="collapse-item" href="/admin/cinemas">영화관</a>
-                <a class="collapse-item" href="/admin/theaters">상영관</a>
-                <a class="collapse-item" href="/admin/seats">좌석</a>
+                <a class="collapse-item" href="/csmovie/admin/cinemas">영화관</a>
+                <a class="collapse-item" href="/csmovie/admin/theaters">상영관</a>
+                <a class="collapse-item" href="/csmovie/admin/seats">좌석</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">기타:</h6>
-                <a class="collapse-item" href="/admin/citys">지역</a>
+                <a class="collapse-item" href="/csmovie/admin/citys">지역</a>
             </div>
         </div>
     </li>

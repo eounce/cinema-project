@@ -21,6 +21,7 @@
     <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
+<%--    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
@@ -38,17 +39,17 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/cinemas/update/${cinema.id}" method="GET">
+            <form name="updateForm" action="/csmovie/admin/cinemas/update/${cinema.id}" method="GET">
             </form>
-            <form name="deleteForm" action="/admin/cinemas/del/${cinema.id}" method="POST">
+            <form name="deleteForm" action="/csmovie/admin/cinemas/del/${cinema.id}" method="POST">
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"><a href="/admin/cinemas" style="text-decoration:none"> Cinema</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/cinemas'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"><a href="/csmovie/admin/cinemas" style="text-decoration:none"> Cinema</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/cinemas'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
-                       onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
+                       onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:document.updateForm.submit();"><i class="fas fa-pen"></i></a>
@@ -107,12 +108,14 @@
 <c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
+<%--<script src="/csmovie/admin/vendor/datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
+<%--<script src="/csmovie/admin/js/demo/datatables-demo.js"></script>--%>
 <script src="/admin/js/demo/datatables-demo.js"></script>
-
 </div>
 <!-- End of Content Wrapper -->
 
@@ -143,6 +146,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 

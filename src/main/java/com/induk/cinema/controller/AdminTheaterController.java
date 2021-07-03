@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin/theaters")
+@RequestMapping("/csmovie/admin/theaters")
 @RequiredArgsConstructor
 public class AdminTheaterController {
 
@@ -47,7 +47,7 @@ public class AdminTheaterController {
         Long id = theaterService.saveTheater(theater);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/theaters/{id}";
+        return "redirect:/csmovie/admin/theaters/{id}";
     }
 
     @GetMapping("/{id}")
@@ -59,7 +59,7 @@ public class AdminTheaterController {
     @DeleteMapping("/del/{id}")
     public String deleteTheater(@PathVariable Long id) {
         theaterService.deleteTheater(id);
-        return "redirect:/admin/theaters";
+        return "redirect:/csmovie/admin/theaters";
     }
 
     @GetMapping("/update/{id}")
@@ -83,6 +83,6 @@ public class AdminTheaterController {
 
         theaterService.updateTheater(theater);
 
-        return "redirect:/admin/theaters/{id}";
+        return "redirect:/csmovie/admin/theaters/{id}";
     }
 }
