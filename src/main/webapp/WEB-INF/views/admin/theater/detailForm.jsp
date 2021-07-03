@@ -21,6 +21,7 @@
     <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
+    <%--    <link href="/cinema/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
@@ -38,14 +39,14 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/theaters/update/${theater.id}" method="GET">
+            <form name="updateForm" action="/cinema/admin/theaters/update/${theater.id}" method="GET">
             </form>
-            <form name="deleteForm" action="/admin/theaters/del/${theater.id}" method="POST">
+            <form name="deleteForm" action="/cinema/admin/theaters/del/${theater.id}" method="POST">
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"><a href="/admin/theaters" style="text-decoration:none"> Cinema</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/theaters'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"><a href="/cinema/admin/theaters" style="text-decoration:none"> Cinema</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/cinema/admin/theaters'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
@@ -95,10 +96,13 @@
 <c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
+<%--<script src="/cinema/admin/vendor/datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="/cinema/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
+<%--<script src="/cinema/admin/js/demo/datatables-demo.js"></script>--%>
 <script src="/admin/js/demo/datatables-demo.js"></script>
 
 </div>

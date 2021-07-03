@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin/seats")
+@RequestMapping("/cinema/admin/seats")
 @RequiredArgsConstructor
 public class AdminSeatController {
 

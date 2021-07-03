@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin/theaters")
+@RequestMapping("/cinema/admin/theaters")
 @RequiredArgsConstructor
 public class AdminTheaterController {
 
