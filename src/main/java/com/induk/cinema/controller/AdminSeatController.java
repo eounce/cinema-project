@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/cinema/admin/seats")
+@RequestMapping("/csmovie/admin/seats")
 @RequiredArgsConstructor
 public class AdminSeatController {
 
@@ -49,7 +49,7 @@ public class AdminSeatController {
         Long id = seatService.saveSeat(seat);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/seats/{id}";
+        return "redirect:/csmovie/admin/seats/{id}";
     }
 
     @GetMapping("/{id}")
@@ -61,7 +61,7 @@ public class AdminSeatController {
     @DeleteMapping("/del/{id}")
     public String deleteTheater(@PathVariable Long id) {
         seatService.deleteSeat(id);
-        return "redirect:/admin/seats";
+        return "redirect:/csmovie/admin/seats";
     }
 
     @GetMapping("/update/{id}")
@@ -85,7 +85,7 @@ public class AdminSeatController {
 
         seatService.updateSeat(seat);
 
-        return "redirect:/admin/seats/{id}";
+        return "redirect:/csmovie/admin/seats/{id}";
     }
 
 }

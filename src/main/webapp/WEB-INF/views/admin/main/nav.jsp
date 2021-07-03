@@ -123,12 +123,12 @@
         <div id="collapseTheater" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">영화관:</h6>
-                <a class="collapse-item" href="/cinema/admin/cinemas">영화관</a>
-                <a class="collapse-item" href="/cinema/admin/theaters">상영관</a>
-                <a class="collapse-item" href="/cinema/admin/seats">좌석</a>
+                <a class="collapse-item" href="/csmovie/admin/cinemas">영화관</a>
+                <a class="collapse-item" href="/csmovie/admin/theaters">상영관</a>
+                <a class="collapse-item" href="/csmovie/admin/seats">좌석</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">기타:</h6>
-                <a class="collapse-item" href="/cinema/admin/citys">지역</a>
+                <a class="collapse-item" href="/csmovie/admin/citys">지역</a>
             </div>
         </div>
     </li>

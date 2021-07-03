@@ -21,7 +21,7 @@
     <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
-<%--    <link href="/cinema/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
+<%--    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 </head>
 
@@ -38,10 +38,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/cinema/admin/citys/add">
+            <form method="post" action="/csmovie/admin/citys/add">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"><a href="/cinema/admin/citys" style="text-decoration:none"> City</a></i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/cinema/admin/citys'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"><a href="/csmovie/admin/citys" style="text-decoration:none"> City</a></i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/citys'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -78,12 +78,12 @@
 <c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
-<%--<script src="/cinema/admin/vendor/datatables/jquery.dataTables.min.js"></script>--%>
-<%--<script src="/cinema/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
+<%--<script src="/csmovie/admin/vendor/datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <!-- Page level custom scripts -->
-<%--<script src="/cinema/admin/js/demo/datatables-demo.js"></script>--%>
+<%--<script src="/csmovie/admin/js/demo/datatables-demo.js"></script>--%>
 <script src="/admin/js/demo/datatables-demo.js"></script>
 </div>
 <!-- End of Content Wrapper -->
