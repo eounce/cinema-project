@@ -176,14 +176,14 @@
         </a>
         <div id="collapseReview" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="/admin/reviews">리뷰</a>
-                <a class="collapse-item" href="register.html">댓글</a>
+                <a class="collapse-item" href="/csmovie/admin/reviews">리뷰</a>
+                <a class="collapse-item" href="/csmovie/admin/comments">댓글</a>
             </div>
         </div>
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" href="/admin/members">
+        <a class="nav-link" href="/csmovie/admin/members">
             <i class="fas fa-user-friends"></i>
             <span>사용자</span></a>
     </li>

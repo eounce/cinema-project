@@ -15,7 +15,7 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Header -->
-    <c:import url="/WEB-INF/views/admin/main/header.jsp" />
+    <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -28,17 +28,17 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <c:import url="/WEB-INF/views/admin/main/nav.jsp" />
+    <c:import url="../main/nav.jsp" />
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/reviews/add" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/reviews/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><a href="/admin/reviews"><i class="fas fa-leaf"> Review </i></a>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/reviews'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/reviews"><i class="fas fa-leaf"> Review </i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/reviews'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -49,7 +49,7 @@
                         <tr>
                             <!-- path:city객체의 name속성을 검사 -->
                             <!-- spring 태그를 사용하기 위해서는 상단에 관련 taglib를 추가해줘야 합니다.-->
-                            <spring:bind path="reviewForm.member_id">
+                            <spring:bind path="review.memberId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
                                 <td width="80%">
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
@@ -64,7 +64,7 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="reviewForm.title">
+                            <spring:bind path="review.title">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Title <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" name="${status.expression}" id="${status.expression}" value="${status.value}" class="form-control" placeholder="제목을 입력해주세요">
@@ -73,7 +73,7 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="reviewForm.content">
+                            <spring:bind path="review.content">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
                                 <td width="80%">
                                     <textarea type="text" name="${status.expression}" id="${status.expression}" class="form-control" rows="9" placeholder="내용을 입력해주세요">${status.value}</textarea>
@@ -82,7 +82,7 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="reviewForm.image">
+                            <spring:bind path="review.imageForm">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Image <font color="red">*</font></th>
                                 <td width="80%">
                                     <input multiple="multiple" type="file" name="${status.expression}" id="${status.expression}" style="width: 100%"/>
@@ -103,7 +103,7 @@
 <!-- End of Main Content -->
 
 <!-- Footer -->
-<c:import url="/WEB-INF/views/admin/main/footer.jsp" />
+<c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>

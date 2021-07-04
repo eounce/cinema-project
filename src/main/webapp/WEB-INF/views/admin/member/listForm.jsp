@@ -13,10 +13,10 @@
 
     <title>SB Admin 2 - Tables</title>
 
-    <c:import url="/WEB-INF/views/admin/main/header.jsp" />
+    <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
-    <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -26,7 +26,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <c:import url="/WEB-INF/views/admin/main/nav.jsp" />
+        <c:import url="../main/nav.jsp" />
         <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -35,8 +35,8 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary"><a href="/admin/members"><i class="fas fa-user-friends"> Member DataTables</i></a>
-                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/members/add'">추가</button>
+                            <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/members"><i class="fas fa-user-friends"> Member DataTables</i></a>
+                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/members/add'">추가</button>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -63,7 +63,7 @@
                                     <tbody>
                                     <c:forEach var="member" items="${members}">
                                         <tr>
-                                            <td><a href="/admin/members/${member.id}">${member.id}</a></td>
+                                            <td><a href="/csmovie/admin/members/${member.id}">${member.id}</a></td>
                                             <td>${member.name}</td>
                                             <td>${member.email}</td>
                                             <td>${member.password}</td>
@@ -83,14 +83,14 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <c:import url="/WEB-INF/views/admin/main/footer.jsp" />
+            <c:import url="../main/footer.jsp" />
 
     <!-- Page level plugins -->
-    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/datatables-demo.js"></script>
+    <script src="/admin/js/demo/datatables-demo.js"></script>
 
 </body>
 

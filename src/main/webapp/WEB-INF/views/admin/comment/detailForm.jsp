@@ -1,5 +1,3 @@
-<%@ page import="java.text.SimpleDateFormat" %>
-<%@ page import="com.induk.cinema.domain.Member" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -20,7 +18,7 @@
     <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
-    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -37,14 +35,14 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/csmovie/admin/members/${member.id}/edit" method="GET">
+            <form name="updateForm" action="/csmovie/admin/comments/${comment.id}/edit" method="GET">
             </form>
-            <form name="deleteForm" action="/csmovie/admin/members/${member.id}/del" method="POST">
+            <form name="deleteForm" action="/csmovie/admin/comments/${comment.id}/del" method="POST">
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/members"><i class="fas fa-user-friends"> Member</i></a>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/members'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/comments"><i class="fas fa-comments"> Comment </i></a>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/comments'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
@@ -57,53 +55,33 @@
                 <table class="table table-bordered table-striped" width="100%" cellspacing="0">
                     <tbody>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">ID <font color="red">*</font></th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
                         <td width="80%">
-                            <input type="text" class="form-control" value="${member.id}" name="id" readonly>
+                            <input type="text" class="form-control" name="id" value="${comment.id}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Name</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Review_id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="name" value="${member.name}" disabled>
+                            <input type="text" class="form-control" name="" value="[${comment.review.id}] ${comment.review.title}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Email</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Member_id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="email" value="${member.email}" disabled>
+                            <input type="text" class="form-control" name="" value="[${comment.member.id}] ${comment.member.name}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">password</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="password" value="${member.password}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Address</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="address" value="${member.address}" disabled>
+                            <textarea type="text" name="content"class="form-control" rows="9" disabled>${comment.content}</textarea>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Subscription_date</th>
                         <td width="80%">
                             <input type="text" class="form-control" name="subscription_date" value="${subscription_date}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Admin</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="admin" value="${member.admin == 1 ? '관리자' : '사용자'}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
-                        <td width="80%">
-                            <c:if test="${not empty member.image}">
-                                <img src="/csmovie/admin/members/images/${member.image}" style="max-height: 200px">
-                            </c:if>
                         </td>
                     </tr>
                     </tbody>

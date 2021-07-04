@@ -19,10 +19,10 @@
     <title>SB Admin 2 - Tables</title>
 
     <!-- Header -->
-    <c:import url="/WEB-INF/views/admin/main/header.jsp" />
+    <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
-    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -32,17 +32,17 @@
 <div id="wrapper">
 
     <!-- Navigation -->
-    <c:import url="/WEB-INF/views/admin/main/nav.jsp" />
+    <c:import url="../main/nav.jsp" />
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/members/${member.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/members/${member.id}/edit" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><a href="/admin/members"><i class="fas fa-user-friends"> Member</i></a>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/members/${member.id}/edit'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/members"><i class="fas fa-user-friends"> Member</i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/members/${member.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -94,6 +94,12 @@
                             </spring:bind>
                         </tr>
                         <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Subscription_date</th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="subscription_date" value="${subscription_date}" readonly>
+                            </td>
+                        </tr>
+                        <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Admin <font color="red">*</font></th>
                             <td width="80%">
                                 <c:if test="${member.admin == 1}">
@@ -111,7 +117,7 @@
                             <td width="80%">
                                 <input multiple="multiple" type="file" name="files"/>
                                 <c:if test="${not empty member.image}">
-                                    <br><br><img src="/admin/members/images/${member.image}" style="max-height: 200px">
+                                    <br><br><img src="/csmovie/admin/members/images/${member.image}" style="max-height: 200px">
                                     <br><font color="red">이미지 삭제 </font><input type="checkbox" name="imageDel" value="1"/>
                                 </c:if>
                             </td>
@@ -129,7 +135,7 @@
 <!-- End of Main Content -->
 
 <!-- Footer -->
-<c:import url="/WEB-INF/views/admin/main/footer.jsp" />
+<c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>

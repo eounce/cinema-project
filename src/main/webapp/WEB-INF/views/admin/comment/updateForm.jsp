@@ -35,10 +35,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/csmovie/admin/reviews/${review.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/comments/${comment.id}/edit" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/reviews"><i class="fas fa-leaf"> Review</i></a>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/reviews/${review.id}'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/comments"><i class="fas fa-comments"> Comment </i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/comments/${comment.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -49,17 +49,38 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="id" value="${review.id}" readonly>
+                                <input type="text" class="form-control" name="id" value="${comment.id}" readonly>
                             </td>
                         </tr>
                         <tr>
-                            <spring:bind path="review.memberId">
+                            <spring:bind path="comment.reviewId">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Review_id <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                        <c:forEach var="review" items="${reviews}">
+                                            <c:choose>
+                                                <c:when test="${review.id == comment.reviewId}">
+                                                    <option value="${review.id}" selected>[${review.id}] ${review.title}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${review.id}">[${review.id}] ${review.title}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="comment.memberId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
                                 <td width="80%">
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
                                         <c:forEach var="member" items="${members}">
                                             <c:choose>
-                                                <c:when test="${member.id == review.memberId}">
+                                                <c:when test="${member.id == comment.memberId}">
                                                     <option value="${member.id}" selected>[${member.id}] ${member.name}</option>
                                                 </c:when>
                                                 <c:otherwise>
@@ -74,16 +95,7 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="review.title">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Title <font color="red">*</font></th>
-                                <td width="80%">
-                                    <input type="text" name="${status.expression}" id="${status.expression}" value="${status.value}" class="form-control" placeholder="제목을 입력해주세요">
-                                        ${status.errorMessage }
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <spring:bind path="review.content">
+                            <spring:bind path="comment.content">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
                                 <td width="80%">
                                     <textarea type="text" name="${status.expression}" id="${status.expression}" class="form-control" rows="9" placeholder="내용을 입력해주세요">${status.value}</textarea>
@@ -92,22 +104,9 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">View</th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="view" value="${review.view}" readonly>
-                            </td>
-                        </tr>
-                        <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Subscription_date</th>
                             <td width="80%">
                                 <input type="text" class="form-control" name="subscription_date" value="${subscription_date}" readonly>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Image <font color="red">*</font></th>
-                            <td width="80%">
-                                <input multiple="multiple" type="file" name="imageForm" style="width: 100%"/>
-                                <br><br><img src="/csmovie/admin/reviews/images/${review.image}" style="max-height: 200px;max-width: 100%">
                             </td>
                         </tr>
                         </tbody>

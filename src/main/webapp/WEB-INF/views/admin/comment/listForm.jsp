@@ -1,3 +1,6 @@
+<%@ page import="com.induk.cinema.domain.Comment" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -35,8 +38,8 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/reviews"><i class="fas fa-leaf"> Review DataTables</i></a>
-                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/reviews/add'">추가</button>
+                            <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/comments"><i class="fas fa-comments"> Comment DataTables</i></a>
+                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/comments/add'">추가</button>
                             </h4>
                         </div>
                         <div class="card-body">
@@ -45,31 +48,41 @@
                                     <thead>
                                         <tr>
                                             <th width="10%">ID</th>
-                                            <th width="20%">Member_id</th>
-                                            <th width="20%">Title</th>
-                                            <th width="40%">Content</th>
-                                            <th width="10%">View</th>
+                                            <th width="18%">Review_id</th>
+                                            <th width="18%">Member_id</th>
+                                            <th width="35%">Content</th>
+                                            <th width="19%">reporting_date</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th width="10%">ID</th>
-                                            <th width="20%">Member_id</th>
-                                            <th width="20%">Title</th>
-                                            <th width="40%">Content</th>
-                                            <th width="10%">View</th>
+                                            <th width="18%">Review_id</th>
+                                            <th width="18%">Member_id</th>
+                                            <th width="35%">Content</th>
+                                            <th width="19%">reporting_date</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <c:forEach var="review" items="${reviews}">
+                                    <%
+                                        List<Comment> comments =  (List<Comment>)request.getAttribute("comments");
+
+                                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+                                        for (Comment comment : comments){
+                                            String subscriptionDate = df.format(comment.getReportingDate());
+                                            String content = (comment.getContent().length() > 20)? comment.getContent().substring(0,20) + "..."
+                                                    : comment.getContent();
+                                    %>
                                         <tr>
-                                            <td><a href="/csmovie/admin/reviews/${review.id}">${review.id}</a></td>
-                                            <td>[${review.member.id}] ${review.member.name}</td>
-                                            <td>${review.title}</td>
-                                            <td>${review.content}</td>
-                                            <td>${review.view}</td>
+                                            <td><a href="/csmovie/admin/comments/<%=comment.getId()%>"><%=comment.getId()%></a></td>
+                                            <td>[<%=comment.getReview().getId()%>] <%=comment.getReview().getTitle()%></td>
+                                            <td>[<%=comment.getMember().getId()%>] <%=comment.getMember().getName()%></td>
+                                            <td><%=content%></td>
+                                            <td><%=subscriptionDate%></td>
                                         </tr>
-                                    </c:forEach>
+                                    <%
+                                        }
+                                    %>
                                     </tbody>
                                 </table>
                             </div>

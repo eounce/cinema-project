@@ -6,37 +6,37 @@
 
     <resultMap id="reviewResult" type="Review">
         <id property="id" column="id" />
-        <result property="memberId" column="member_id" />
         <result property="title" column="title" />
         <result property="content" column="content" />
         <result property="image" column="image" />
         <result property="view" column="view" />
+        <result property="memberId" column="member_id" />
         <result property="reportingDate" column="reporting_date" />
-        <association property="member" column="member_id" select="sdfwefsd"/>
-
+        <association property="member" column="member_id" javaType="Member">
+            <id property="id" column="member_id" />
+            <result property="name" column="name" />
+        </association>
     </resultMap>
-    <select id="sdfwefsd" resultType="com.induk.cinema.domain.Member">
-        select * from member where id = #{id}
-    </select>
 
     <select id="findAll" resultType="Review" resultMap="reviewResult">
-        select * from review
+        select review.*, member.id as member_id, member.name
+        from review inner join member on review.member_id = member.id
     </select>
 
-    <select id="findById" parameterType="Review" resultType="Review">
-        select review.*, member.name as member_name
-        from review left join member on review.member_id = member.id
+    <select id="findById" parameterType="Review" resultType="Review" resultMap="reviewResult">
+        select review.*, member.id as member_id, member.name
+        from review inner join member on review.member_id = member.id
         where review.id = #{id}
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Review">
         insert into review(member_id, title, content, image)
-        values (#{member_id}, #{title}, #{content}, #{image})
+        values (#{memberId}, #{title}, #{content}, #{image})
     </insert>
 
     <update id="update" parameterType="Review">
         update review
-        set member_id=#{member_id}, title=#{title}, content=#{content}, image=#{image}
+        set member_id=#{memberId}, title=#{title}, content=#{content}, image=#{image}
         where id=#{id}
     </update>
 

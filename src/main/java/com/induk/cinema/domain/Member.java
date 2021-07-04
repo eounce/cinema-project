@@ -1,17 +1,20 @@
 package com.induk.cinema.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter @Setter
@@ -38,6 +41,7 @@ public class Member {
     private String address;
 
     private String image;
-    private Timestamp subscription_date;
+
+    private Timestamp subscriptionDate;
     private int admin;       //0=사용자,    1=관리자
 }

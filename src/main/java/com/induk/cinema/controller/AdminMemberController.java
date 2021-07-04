@@ -17,11 +17,12 @@ import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin/members")
-public class AdminMemberController{
+@RequestMapping("/csmovie/admin/members")
+public class AdminMemberController {
 
     private final MemberService memberService;
     private final FileStore fileStore;
@@ -35,8 +36,11 @@ public class AdminMemberController{
     @GetMapping("/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
         Member member = memberService.findMember(id);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String subscriptionDate = df.format(member.getSubscriptionDate());
 
         model.addAttribute("member", member);
+        model.addAttribute("subscription_date", subscriptionDate);
         return "admin/member/detailForm";
     }
 
@@ -72,16 +76,21 @@ public class AdminMemberController{
             member.setImage(fileName);
             memberService.updateMember(member);
         }
-        return "redirect:/admin/members/";
+        return "redirect:/csmovie/admin/members/";
     }
     @DeleteMapping("/{id}/del")
     public String delMember(@PathVariable Long id){
         memberService.deleteMember(id);
-        return "redirect:/admin/members/";
+        return "redirect:/csmovie/admin/members/";
     }
     @GetMapping("/{id}/edit")
     public String updateForm(@PathVariable Long id, Model model){
-        model.addAttribute("member", memberService.findMember(id));
+        Member member = memberService.findMember(id);
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String subscriptionDate = df.format(member.getSubscriptionDate());
+
+        model.addAttribute("member", member);
+        model.addAttribute("subscription_date", subscriptionDate);
         return "/admin/member/updateForm";
     }
     @PostMapping("/{id}/edit")
@@ -97,7 +106,7 @@ public class AdminMemberController{
             return "admin/member/updateForm";
         }
         Member beforMember = memberService.findMember(id);
-        member.setSubscription_date(beforMember.getSubscription_date());
+        member.setSubscriptionDate(beforMember.getSubscriptionDate());
         if(imageDel == null) member.setImage(beforMember.getImage());
 
         //파일 업로드
@@ -114,7 +123,7 @@ public class AdminMemberController{
         }
 
         memberService.updateMember(member);
-        return "redirect:/admin/members/" + id;
+        return "redirect:/csmovie/admin/members/" + id;
     }
 
     @ResponseBody

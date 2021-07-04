@@ -21,7 +21,7 @@
     <c:import url="/WEB-INF/views/admin/main/header.jsp" />
 
     <!-- Custom styles for this page -->
-    <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 
 </head>
 
@@ -38,10 +38,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/members/add" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/members/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><a href="/admin/members"><i class="fas fa-user-friends"> Member</i></a>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/members'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><a href="/csmovie/admin/members"><i class="fas fa-user-friends"> Member</i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/members'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -115,11 +115,11 @@
 <c:import url="/WEB-INF/views/admin/main/footer.jsp" />
 
 <!-- Page level plugins -->
-<script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="/csmovie/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
-<script src="/admin/js/demo/datatables-demo.js"></script>
+<script src="/csmovie/admin/js/demo/datatables-demo.js"></script>
 
 </div>
 <!-- End of Content Wrapper -->
