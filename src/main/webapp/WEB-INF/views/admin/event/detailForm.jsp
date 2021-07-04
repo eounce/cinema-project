@@ -36,13 +36,13 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/events/${event.id}/edit" method="GET">
+            <form name="updateForm" action="/csmovie/admin/events/${event.id}/edit" method="GET">
             </form>
-            <form name="deleteForm" action="/admin/events/${event.id}/delete" method="GET">
+            <form name="deleteForm" action="/csmovie/admin/events/${event.id}/delete" method="GET">
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"><a href="/admin/events" style="text-decoration:none"> Event Detail</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/events'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"> Event Detail</i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/events'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
@@ -75,7 +75,7 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
                         <td width="80%">
-                            <img src="/admin/events/images/${event.storeFilename}">
+                            <img src="/csmovie/admin/events/images/${event.storeFilename}">
                         </td>
                     </tr>
                     <tr>

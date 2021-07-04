@@ -5,6 +5,7 @@ import com.induk.cinema.dto.EventForm;
 import com.induk.cinema.service.EventService;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
@@ -19,8 +20,9 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
+@Slf4j
 @Controller
-@RequestMapping("/admin/events")
+@RequestMapping("/csmovie/admin/events")
 @RequiredArgsConstructor
 public class AdminEventController {
 
@@ -56,7 +58,7 @@ public class AdminEventController {
         Long id = eventService.saveEvent(eventForm);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/events/{id}";
+        return "redirect:/csmovie/admin/events/{id}";
     }
 
     @GetMapping("/{id}")
@@ -65,10 +67,10 @@ public class AdminEventController {
         return "admin/event/detailForm";
     }
 
-    @DeleteMapping("/{id}/delete")
-    public String deleteCity(@PathVariable Long id) {
+    @GetMapping("/{id}/delete")
+    public String deleteEvent(@PathVariable Long id) {
         eventService.deleteEvent(id);
-        return "redirect:/admin/events";
+        return "redirect:/csmovie/admin/events";
     }
 
     @GetMapping("/{id}/edit")
@@ -88,7 +90,7 @@ public class AdminEventController {
 
         eventService.updateEvent(event, imageFile);
 
-        return "redirect:/admin/events/{id}";
+        return "redirect:/csmovie/admin/events/{id}";
     }
 
     @ResponseBody

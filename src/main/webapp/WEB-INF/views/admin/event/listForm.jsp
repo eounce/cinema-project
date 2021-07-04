@@ -37,7 +37,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"> Event DataTable</i>
-                    <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/events/add'">추가</button></h4>
+                    <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/events/add'">추가</button></h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -52,7 +52,7 @@
                         <tbody>
                         <c:forEach var="event" items="${events}">
                             <tr>
-                                <td><a href="/admin/events/${event.id}" ><c:out value="${event.id}"/></a></td>
+                                <td><a href="/csmovie/admin/events/${event.id}" ><c:out value="${event.id}"/></a></td>
                                 <td><c:out value="${event.title}"/></td>
                                 <td><c:out value="${event.reporting_date}"/></td>
                             </tr>
