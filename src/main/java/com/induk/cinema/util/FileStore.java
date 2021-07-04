@@ -52,7 +52,7 @@ public class FileStore {
     }
 
     private String extractExt(String originFilename) {
-        // image.jpg -> . 의 위치 가져오기
+        // imageForm.jpg -> . 의 위치 가져오기
         int pos = originFilename.lastIndexOf(".");
 
         // 위치 + 1 에서 확장자만 리턴

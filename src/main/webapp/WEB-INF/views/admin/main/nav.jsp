@@ -168,6 +168,26 @@
         </div>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
+           aria-expanded="true" aria-controls="collapsePages">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>리뷰</span>
+        </a>
+        <div id="collapseReview" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="/csmovie/admin/reviews">리뷰</a>
+                <a class="collapse-item" href="/csmovie/admin/comments">댓글</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="/csmovie/admin/members">
+            <i class="fas fa-user-friends"></i>
+            <span>사용자</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 
