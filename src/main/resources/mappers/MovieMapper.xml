@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.MovieRepository">
+    <resultMap id="resultMovie" type="Movie">
+        <id property="id" column="id" />
+        <result property="poster" column="poster" />
+        <result property="title" column="title" />
+        <result property="language" column="language" />
+        <result property="showTimes" column="show_times" />
+        <result property="grade" column="grade" />
+        <result property="releaseDate" column="release_date" />
+        <result property="cumulativeSales" column="cumulative_sales" />
+        <result property="rating" column="rating" />
+        <result property="screeningFormat" column="screening_format" />
+        <association property="director" column="director_id" resultMap="directorMap" />
+        <association property="genre" column="genre_id" resultMap="genreMap" />
+    </resultMap>
+
+    <resultMap id="directorMap" type="Director">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
+    <resultMap id="genreMap" type="Genre">
+        <id property="id" column="id" />
+        <result property="name" column="name" />
+    </resultMap>
+
+    <select id="findAll" resultMap="resultMovie">
+        select m.*, d.name, g.name
+        from movie m
+        inner join director d on m.director_id = d.id
+        inner join genre g on m.genre_id = g.id
+    </select>
+</mapper>

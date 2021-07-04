@@ -53,16 +53,16 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/admin/actors/${actor.id}/edit" method="GET">
+            <form name="updateForm" action="/csmovie/admin/actors/${actor.id}/edit" method="GET">
             </form>
-            <form name="deleteForm" action="/admin/actors/${actor.id}/delete" method="GET">
+            <form name="deleteForm" action="/csmovie/admin/actors/${actor.id}/delete" method="GET">
             </form>
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/actors'"><i class="fas fa-undo"></i></a>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/actors'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
-                       onclick="javascript:confirm('삭제할까요 ?'); document.deleteForm.submit();"><i class="fas fa-trash-alt"></i></a>
+                       onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:document.updateForm.submit();"><i class="fas fa-pen"></i></a>
@@ -99,7 +99,7 @@
                         <th scope="row" width="20%" style="vertical-align:middle;">Image
                         </th>
                         <td width="80%">
-                            <img src="/admin/actors/images/${actor.storeFilename}">
+                            <img src="/csmovie/admin/actors/images/${actor.storeFilename}">
                         </td>
                     </tr>
                     </tbody>

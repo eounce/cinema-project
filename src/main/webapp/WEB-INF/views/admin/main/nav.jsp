@@ -11,7 +11,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/admin">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/cinema/admin">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -123,12 +123,12 @@
         <div id="collapseTheater" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">영화관:</h6>
-                <a class="collapse-item" href="login.html">영화관</a>
-                <a class="collapse-item" href="register.html">상영관</a>
-                <a class="collapse-item" href="forgot-password.html">좌석</a>
+                <a class="collapse-item" href="/csmovie/admin/cinemas">영화관</a>
+                <a class="collapse-item" href="/csmovie/admin/theaters">상영관</a>
+                <a class="collapse-item" href="/csmovie/admin/seats">좌석</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">기타:</h6>
-                <a class="collapse-item" href="/admin/citys">지역</a>
+                <a class="collapse-item" href="/csmovie/admin/citys">지역</a>
             </div>
         </div>
     </li>
@@ -142,13 +142,28 @@
         <div id="collapseMovie" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">배우 및 감독:</h6>
-                <a class="collapse-item" href="/admin/actors">배우</a>
+                <a class="collapse-item" href="/csmovie/admin/actors">배우</a>
                 <a class="collapse-item" href="#">출연 배우</a>
-                <a class="collapse-item" href="#">감독</a>
+                <a class="collapse-item" href="/csmovie/admin/directors">감독</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">영화:</h6>
-                <a class="collapse-item" href="#">영화</a>
-                <a class="collapse-item" href="#">장르</a>
+                <a class="collapse-item" href="/csmovie/admin/movies">영화</a>
+                <a class="collapse-item" href="/csmovie/admin/genres">장르</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseEvent"
+           aria-expanded="true" aria-controls="collapseEvent">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>이벤트</span>
+        </a>
+        <div id="collapseEvent" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">이벤트:</h6>
+                <a class="collapse-item" href="/admin/events">이벤트</a>
+                <a class="collapse-item" href="#">이벤트 코드</a>
             </div>
         </div>
     </li>

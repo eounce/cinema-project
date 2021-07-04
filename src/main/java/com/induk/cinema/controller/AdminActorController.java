@@ -1,5 +1,6 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.domain.Actor;
 import com.induk.cinema.dto.ActorForm;
 import com.induk.cinema.service.ActorService;
 import com.induk.cinema.util.FileStore;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
@@ -20,7 +22,7 @@ import java.net.MalformedURLException;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/actors")
+@RequestMapping("/csmovie/admin/actors")
 @RequiredArgsConstructor
 public class AdminActorController {
 
@@ -34,7 +36,7 @@ public class AdminActorController {
     }
 
     @GetMapping("/{id}")
-    public String DetailForm(@PathVariable Long id, Model model) {
+    public String detailForm(@PathVariable Long id, Model model) {
         model.addAttribute("actor", actorService.findActor(id));
         return "admin/actor/detailForm";
     }
@@ -61,7 +63,7 @@ public class AdminActorController {
         Long id = actorService.saveActor(actorForm);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/actors/{id}";
+        return "redirect:/csmovie/admin/actors/{id}";
     }
 
     @GetMapping("/{id}/edit")
@@ -72,16 +74,22 @@ public class AdminActorController {
 
     @PostMapping("/{id}/edit")
     public String updateActor(@PathVariable Long id,
-                              @Valid ActorForm actorForm,
-                              BindingResult bindingResult) {
+                              @RequestParam MultipartFile imageFile,
+                              @Valid Actor actor,
+                              BindingResult bindingResult) throws IOException {
+        if(bindingResult.hasErrors()) {
+            return "admin/actor/updateForm";
+        }
 
-        return "redirect:/admin/actors/{id}";
+        actorService.updateActor(actor, imageFile);
+
+        return "redirect:/csmovie/admin/actors/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteActor(@PathVariable Long id) {
         actorService.deleteActor(id);
-        return "redirect:/admin/actors";
+        return "redirect:/csmovie/admin/actors";
     }
 
     @ResponseBody

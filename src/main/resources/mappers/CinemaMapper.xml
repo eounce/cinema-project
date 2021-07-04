@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.CinemaRepository">
+<resultMap id="resultCinema" type="com.induk.cinema.domain.Cinema">
+    <id property="id" column="id"/>
+    <result property="city_id" column="city_id"/>
+    <result property="name" column="name"/>
+    <result property="introduction" column="introduction"/>
+    <result property="address" column="address"/>
+    <result property="sales" column="sales"/>
+    <association property="cinemaCity" javaType="com.induk.cinema.dto.CinemaCity">
+        <result property="cityName" column="cityName"/>
+    </association>
+</resultMap>
+
+    <select id="findAll" resultMap="resultCinema">
+        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id
+    </select>
+
+    <select id="findCity" resultType="com.induk.cinema.domain.City">
+        select * from city
+    </select>
+
+    <select id="findById" parameterType="Long" resultMap="resultCinema">
+        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id where cinema.id = #{id}
+    </select>
+
+    <select id="findByCityId" parameterType="Long" resultType="String">
+        select name from city where id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Cinema">
+        insert into cinema(city_id, name, introduction, address, sales)
+        values (#{city_id}, #{name}, #{introduction}, #{address}, #{sales})
+    </insert>
+
+    <update id="update" parameterType="Cinema">
+        update cinema
+        set city_id=#{city_id}, name=#{name}, introduction=#{introduction}, address=#{address},sales=#{sales}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from cinema where id = #{id}
+    </delete>
+</mapper>
