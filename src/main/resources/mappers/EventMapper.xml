@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.EventRepository">
+    <select id="findAll" resultType="Event">
+        select * from event
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="Event">
+        select * from event where id=#{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Event">
+        insert into event(store_filename, upload_filename, path, title, content, start_date, end_date, reporting_date)
+        values (#{storeFilename}, #{uploadFilename}, #{path}, #{title}, #{content}, #{start_date}, #{end_date}, #{reporting_date})
+    </insert>
+
+    <update id="update" parameterType="Event">
+        update event
+        set store_filename=#{storeFilename}, upload_filename=#{uploadFilename}, path=#{path}, title=#{title}, content=#{content}, start_date=#{start_date}, end_date=#{end_date}, reporting_date=#{reporting_date}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from event where id=#{id}
+    </delete>
+</mapper>
