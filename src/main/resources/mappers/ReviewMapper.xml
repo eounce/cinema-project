@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.ReviewRepository">
+
+    <resultMap id="reviewResult" type="Review">
+        <id property="id" column="id" />
+        <result property="memberId" column="member_id" />
+        <result property="title" column="title" />
+        <result property="content" column="content" />
+        <result property="image" column="image" />
+        <result property="view" column="view" />
+        <result property="reportingDate" column="reporting_date" />
+        <association property="member" column="member_id" select="sdfwefsd"/>
+
+    </resultMap>
+    <select id="sdfwefsd" resultType="com.induk.cinema.domain.Member">
+        select * from member where id = #{id}
+    </select>
+
+    <select id="findAll" resultType="Review" resultMap="reviewResult">
+        select * from review
+    </select>
+
+    <select id="findById" parameterType="Review" resultType="Review">
+        select review.*, member.name as member_name
+        from review left join member on review.member_id = member.id
+        where review.id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Review">
+        insert into review(member_id, title, content, image)
+        values (#{member_id}, #{title}, #{content}, #{image})
+    </insert>
+
+    <update id="update" parameterType="Review">
+        update review
+        set member_id=#{member_id}, title=#{title}, content=#{content}, image=#{image}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Review">
+        delete from review where id = #{id}
+    </delete>
+</mapper>
