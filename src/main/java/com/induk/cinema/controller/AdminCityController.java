@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/admin/citys")
+@RequestMapping("/csmovie/admin/citys")
 @RequiredArgsConstructor
 public class AdminCityController {
 
@@ -47,7 +47,7 @@ public class AdminCityController {
         Long id = cityService.saveCity(city);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/citys/{id}";
+        return "redirect:/csmovie/admin/citys/{id}";
     }
 
     @GetMapping("/{id}")
@@ -59,7 +59,7 @@ public class AdminCityController {
     @DeleteMapping("/del/{id}")
     public String deleteCity(@PathVariable Long id) {
         cityService.deleteCity(id);
-        return "redirect:/admin/citys";
+        return "redirect:/csmovie/admin/citys";
     }
 
     @GetMapping("/update/{id}")

@@ -19,18 +19,39 @@
 
 
 <!-- Bootstrap core JavaScript-->
+<%--<script src="/csmovie/admin/vendor/jquery/jquery.min.js"></script>--%>
+<%--<script src="/csmovie/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>--%>
 <script src="/admin/vendor/jquery/jquery.min.js"></script>
 <script src="/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <!-- Core plugin JavaScript-->
+<%--<script src="/csmovie/admin/vendor/jquery-easing/jquery.easing.min.js"></script>--%>
 <script src="/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
+<%--<script src="/csmovie/admin/js/sb-admin-2.min.js"></script>--%>
 <script src="/admin/js/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
+<%--<script src="/csmovie/admin/vendor/chart.js/Chart.min.js"></script>--%>
 <script src="/admin/vendor/chart.js/Chart.min.js"></script>
 
 <!-- Page level custom scripts -->
+<%--<script src="/csmovie/admin/js/demo/chart-area-demo.js"></script>--%>
+<%--<script src="/csmovie/admin/js/demo/chart-pie-demo.js"></script>--%>
 <script src="/admin/js/demo/chart-area-demo.js"></script>
 <script src="/admin/js/demo/chart-pie-demo.js"></script>
+
+<!-- Date Picker -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.standalone.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/locales/bootstrap-datepicker.kr.min.js"></script>
+
+<script>
+    $('#datePicker').datepicker({
+        format : "yyyy-mm-dd",
+        language : "kr",
+        startDate : "-d",
+        todayHighlight : true
+    });
+</script>

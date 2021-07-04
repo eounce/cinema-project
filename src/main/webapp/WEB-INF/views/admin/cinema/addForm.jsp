@@ -21,8 +21,8 @@
     <c:import url="../main/header.jsp" />
 
     <!-- Custom styles for this page -->
+<%--    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">--%>
     <link href="/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -38,10 +38,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/cinemas/add">
+            <form method="post" action="/csmovie/admin/cinemas/add">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"> Cinema</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/cinemas'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"><a href="/csmovie/admin/cinemas" style="text-decoration:none"> Cinema</a></i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/cinemas'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -125,10 +125,13 @@
 <c:import url="../main/footer.jsp" />
 
 <!-- Page level plugins -->
+<%--<script src="/csmovie/admin/vendor/datatables/jquery.dataTables.min.js"></script>--%>
+<%--<script src="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>--%>
 <script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <!-- Page level custom scripts -->
+<%--<script src="/csmovie/admin/js/demo/datatables-demo.js"></script>--%>
 <script src="/admin/js/demo/datatables-demo.js"></script>
 
 </div>

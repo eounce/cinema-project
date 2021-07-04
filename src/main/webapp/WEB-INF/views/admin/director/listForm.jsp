@@ -36,7 +36,7 @@
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Director DataTables</i>
-                            <button type="submit" class="btn btn-primary float-right" onclick="location.href='/admin/directors/add'">추가</button></h4>
+                            <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/directors/add'">추가</button></h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -58,8 +58,8 @@
                                     <tbody>
                                         <c:forEach var="director" items="${directors}">
                                             <tr>
-                                                <td><a href="/admin/directors/${director.id}">${director.id}</a></td>
-                                                <td><a href="/admin/directors/${director.id}">${director.name}</a></td>
+                                                <td><a href="/csmovie/admin/directors/${director.id}">${director.id}</a></td>
+                                                <td><a href="/csmovie/admin/directors/${director.id}">${director.name}</a></td>
                                                 <td>${director.uploadFilename}</td>
                                             </tr>
                                         </c:forEach>

@@ -25,7 +25,7 @@ import java.net.MalformedURLException;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/directors")
+@RequestMapping("/csmovie/admin/directors")
 @RequiredArgsConstructor
 public class AdminDirectorController {
 
@@ -39,7 +39,7 @@ public class AdminDirectorController {
     }
 
     @GetMapping("/{id}")
-    public String DetailForm(@PathVariable Long id, Model model) {
+    public String detailForm(@PathVariable Long id, Model model) {
         model.addAttribute("director", directorService.findDirector(id));
         return "admin/director/detailForm";
     }
@@ -66,7 +66,7 @@ public class AdminDirectorController {
         Long id = directorService.saveDirector(directorForm);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/directors/{id}";
+        return "redirect:/csmovie/admin/directors/{id}";
     }
 
     @GetMapping("/{id}/edit")
@@ -86,13 +86,13 @@ public class AdminDirectorController {
 
         directorService.updateDirector(director, imageFile);
 
-        return "redirect:/admin/directors/{id}";
+        return "redirect:/csmovie/admin/directors/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteDirector(@PathVariable Long id) {
         directorService.deleteDirector(id);
-        return "redirect:/admin/directors";
+        return "redirect:/csmovie/admin/directors";
     }
 
     @ResponseBody

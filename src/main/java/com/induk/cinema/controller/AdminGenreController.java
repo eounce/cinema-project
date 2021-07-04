@@ -17,7 +17,7 @@ import javax.validation.Valid;
 
 @Slf4j
 @Controller
-@RequestMapping("/admin/genres")
+@RequestMapping("/csmovie/admin/genres")
 @RequiredArgsConstructor
 public class AdminGenreController {
 
@@ -30,7 +30,7 @@ public class AdminGenreController {
     }
 
     @GetMapping("/{id}")
-    public String genre(@PathVariable Long id, Model model) {
+    public String detailForm(@PathVariable Long id, Model model) {
         model.addAttribute("genre", genreService.findGenre(id));
         return "admin/genre/detailForm";
     }
@@ -52,7 +52,7 @@ public class AdminGenreController {
         Long id = genreService.saveGenre(genre);
 
         redirectAttributes.addAttribute("id", id);
-        return "redirect:/admin/genres/{id}";
+        return "redirect:/csmovie/admin/genres/{id}";
     }
 
     @GetMapping("/{id}/edit")
@@ -73,13 +73,13 @@ public class AdminGenreController {
 
         genreService.updateGenre(genre);
 
-        return "redirect:/admin/genres/{id}";
+        return "redirect:/csmovie/admin/genres/{id}";
     }
 
     @GetMapping("/{id}/delete")
     public String deleteGenre(@PathVariable Long id) {
         genreService.deleteGenre(id);
 
-        return "redirect:/admin/genres";
+        return "redirect:/csmovie/admin/genres";
     }
 }

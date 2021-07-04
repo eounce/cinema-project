@@ -53,10 +53,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/directors/${director.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/directors/${director.id}/edit" enctype="multipart/form-data">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Director</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/actors'"><i class="fas fa-undo"></i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/directors/${director.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -92,7 +92,7 @@
                             <th scope="row" width="20%" style="vertical-align:middle;">Uploaded File
                             </th>
                             <td width="80%">
-                                <img src="/admin/directors/images/${director.storeFilename}">
+                                <img src="/csmovie/admin/directors/images/${director.storeFilename}">
                                 <input type="hidden" name="storeFilename" id="storeFilename" value="${director.storeFilename}"/>
                                 <input type="hidden" name="uploadFilename" id="uploadFilename" value="${director.uploadFilename}"/>
                                 <input type="hidden" name="path" id="path" value="${director.path}"/>
