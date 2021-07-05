@@ -3,6 +3,7 @@ package com.induk.cinema.dto;
 import lombok.Data;
 import org.springframework.web.multipart.MultipartFile;
 import javax.validation.constraints.NotEmpty;
+import java.sql.Date;
 
 @Data
 public class EventForm {
@@ -11,7 +12,7 @@ public class EventForm {
     private String title;
     private MultipartFile imageFile;
     private String content;
-    private String start_date;
-    private String end_date;
-    private String reporting_date;
+    private Date start_date;
+    private Date end_date;
+    private Date reporting_date;
 }

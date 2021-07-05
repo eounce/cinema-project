@@ -79,13 +79,21 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Introduction</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="introduction" value="${cinema.introduction}" disabled>
+                            <textarea name="introduction" class="form-control" style="width:100%; resize:none;"
+                                      rows="9" disabled>${cinema.introduction}</textarea>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Address</th>
                         <td width="80%">
                             <input type="text" class="form-control" name="address" value="${cinema.address}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">mapAddress</th>
+                        <td width="80%">
+                            <textarea name="mapAddress" class="form-control" style="width:100%; resize:none;"
+                                      rows="9" disabled>${cinema.mapAddress}</textarea>
                         </td>
                     </tr>
                     <tr>

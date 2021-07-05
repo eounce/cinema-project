@@ -12,7 +12,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/cinema/admin">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/csmovie/admin">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-laugh-wink"></i>
         </div>
@@ -144,7 +144,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">배우 및 감독:</h6>
                 <a class="collapse-item" href="/csmovie/admin/actors">배우</a>
-                <a class="collapse-item" href="#">출연 배우</a>
                 <a class="collapse-item" href="/csmovie/admin/directors">감독</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">영화:</h6>
@@ -163,7 +162,7 @@
         <div id="collapseEvent" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">이벤트:</h6>
-                <a class="collapse-item" href="/admin/events">이벤트</a>
+                <a class="collapse-item" href="/csmovie/admin/events">이벤트</a>
                 <a class="collapse-item" href="#">이벤트 코드</a>
             </div>
         </div>

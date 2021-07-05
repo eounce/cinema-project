@@ -60,7 +60,15 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
+                                    <c:forEach var="movie" items="${movies}">
+                                        <tr>
+                                            <td><a href="/csmovie/admin/movies/${movie.id}">${movie.id}</a></td>
+                                            <td><a href="/csmovie/admin/movies/${movie.id}">${movie.title}</a></td>
+                                            <td>${movie.genre.name}</td>
+                                            <td>${movie.director.name}</td>
+                                            <td>${movie.releaseDate}</td>
+                                        </tr>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

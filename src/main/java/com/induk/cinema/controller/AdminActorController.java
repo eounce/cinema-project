@@ -51,11 +51,6 @@ public class AdminActorController {
     public String addActor(@Valid ActorForm actorForm,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) throws IOException {
-        if(actorForm.getImageFile().isEmpty()) {
-            bindingResult.addError(new FieldError("actorForm", "imageFile", "사진을 등록해주세요."));
-            return "admin/actor/addForm";
-        }
-
         if(bindingResult.hasErrors()) {
             return "admin/actor/addForm";
         }

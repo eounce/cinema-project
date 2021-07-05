@@ -35,7 +35,7 @@
     </style>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="javascript:checkBox();">
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -50,7 +50,7 @@
         <div class="card shadow mb-4">
             <form method="post" action="/csmovie/admin/movies/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-film"> Movie</i>
                         <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movies'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
@@ -62,44 +62,152 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Poster </th>
                             <td width="80%">
-                                <input type="file" class="form-control" name="poster" id="poster">
+                                <input type="file" class="form-control" name="imageFile" id="imageFile">
                             </td>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Title <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="title" id="title" placeholder="이름을 입력해주세요">
-                            </td>
+                            <spring:bind path="movieForm.title">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Title <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="제목을 입력해 주세요">
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Language <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="language" id="language" placeholder="언어를 입력해주세요">
-                            </td>
+                            <spring:bind path="movieForm.directorId">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Director <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2">
+                                        <option value="">==감독 선택==</option>
+                                        <c:forEach var="director" items="${directors}">
+                                            <c:choose>
+                                                <c:when test="${status.value == director.id}">
+                                                    <option value="${director.id}" selected>${director.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${director.id}">${director.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ReleaseDate <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" autocomplete="off" id="datePicker" class="form-control" name="releaseDate" id="releaseDate" placeholder="개봉일을 입력해주세요">
-                            </td>
+                            <spring:bind path="movieForm.genreId">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Genre <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }">
+                                        <option value="">==장르 선택==</option>
+                                        <c:forEach var="genre" items="${genres}">
+                                            <c:choose>
+                                                <c:when test="${status.value == genre.id}">
+                                                    <option value="${genre.id}" selected>${genre.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${genre.id}">${genre.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ShowTimes <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="number" class="form-control" name="showTimes" id="showTimes" placeholder="상영 시간을 입력해주세요." >
-                            </td>
+                            <spring:bind path="movieForm.language">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Language <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="언어를 입력해주세요">
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Rating <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="rating" id="rating" placeholder="상영 등급을 입력해주세요">
-                            </td>
+                            <spring:bind path="movieForm.releaseDate">
+                                <th scope="row" width="20%" style="vertical-align:middle;">ReleaseDate <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" autocomplete="off" id="datePicker" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" value="${status.value}" placeholder="개봉일을 입력해주세요">
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ScreeningFormat <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" class="form-control" name="ScreeningFormat" id="ScreeningFormat" placeholder="포멧을 입력해주세요">
-                            </td>
+                            <spring:bind path="movieForm.showTimes">
+                                <th scope="row" width="20%" style="vertical-align:middle;">ShowTimes <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="number" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="상영 시간을 입력해주세요." >
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="movieForm.rating">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Rating <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }">
+                                        <option value="">==상영 등급 선택==</option>
+                                        <c:forEach var="rating" items="${ratings}">
+                                            <c:choose>
+                                                <c:when test="${status.value eq rating.rating}">
+                                                    <option value="${rating.rating}" selected>${rating.rating}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${rating.rating}">${rating.rating}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="movieForm.screeningFormats">
+                                <script>
+                                    function checkBox() {
+                                        $("input[name='screeningFormats']").each(function(){
+                                            <c:forEach var="f" items="${status.actualValue}" >
+                                            var f = "<c:out value="${f}"/>";
+                                            if(this.value == f) {
+                                                this.checked = true;
+                                            }
+                                            </c:forEach>
+                                        });
+                                    }
+                                </script>
+
+                                <th scope="row" width="20%" style="vertical-align:middle;">Format <font color="red">*</font></th>
+                                <td width="80%">
+                                    <div class="form-check form-check-inline">
+                                        <c:forEach var="format" items="${formats}">
+                                            <label class="${status.error ? "form-check-label field-error" : "form-check-label"}">
+                                                <input type="checkbox" name="${status.expression}" id="${status.expression}"
+                                                       value="${format.format}" class="form-check-input">${format.format} &nbsp;&nbsp;
+                                            </label>
+                                        </c:forEach>
+                                    </div>
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
                         </tr>
                         </tbody>
                     </table>

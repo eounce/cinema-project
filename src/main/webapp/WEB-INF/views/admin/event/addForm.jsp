@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ page import="java.util.*, java.text.*" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%
     Date date = new Date();
     SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
@@ -48,10 +49,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/events/add" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/events/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"> Event Add</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/events'"><i class="fas fa-undo"></i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/events'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -97,7 +98,7 @@
                             <spring:bind path="eventForm.start_date">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Start_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="시작 날짜를 입력해주세요">
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="datePicker" value="${status.value}" placeholder="시작 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -108,7 +109,7 @@
                             <spring:bind path="eventForm.end_date">
                                 <th scope="row" width="20%" style="vertical-align:middle;">End_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="종료 날짜를 입력해주세요">
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="datePicker" value="${status.value}" placeholder="종료 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -119,7 +120,9 @@
                             <spring:bind path="eventForm.reporting_date">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression}" value="<%=strdate%>" readonly>
+                                    <c:set var="today" value="<%=new java.util.Date()%>"/>
+                                    <c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression}" value="${date}" readonly>
                                 </td>
                             </spring:bind>
                         </tr>

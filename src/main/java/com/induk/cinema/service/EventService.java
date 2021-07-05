@@ -35,9 +35,14 @@ public class EventService {
 
         Event event = new Event();
         event.setTitle(eventForm.getTitle());
-        event.setUploadFilename(uploadFile.getStoreFilename());
+        event.setUploadFilename(uploadFile.getUploadFilename());
         event.setStoreFilename(uploadFile.getStoreFilename());
         event.setPath(uploadFile.getPath());
+        event.setContent(eventForm.getContent());
+        event.setStart_date(eventForm.getStart_date());
+        event.setEnd_date(eventForm.getEnd_date());
+        event.setReporting_date(eventForm.getReporting_date());
+
         eventRepository.save(event);
 
         return event.getId();
@@ -47,6 +52,7 @@ public class EventService {
 
         if(!file.isEmpty()) {
             UploadFile uploadFile = fileStore.storeFile(file, "event");
+
             event.setStoreFilename(uploadFile.getStoreFilename());
             event.setUploadFilename(uploadFile.getUploadFilename());
             event.setPath(uploadFile.getPath());

@@ -9,9 +9,7 @@
         <result property="title" column="title" />
         <result property="language" column="language" />
         <result property="showTimes" column="show_times" />
-        <result property="grade" column="grade" />
         <result property="releaseDate" column="release_date" />
-        <result property="cumulativeSales" column="cumulative_sales" />
         <result property="rating" column="rating" />
         <result property="screeningFormat" column="screening_format" />
         <association property="director" column="director_id" resultMap="directorMap" />
@@ -19,19 +17,44 @@
     </resultMap>
 
     <resultMap id="directorMap" type="Director">
-        <id property="id" column="id" />
-        <result property="name" column="name" />
+        <id property="id" column="directorId" />
+        <result property="name" column="directorName" />
     </resultMap>
 
     <resultMap id="genreMap" type="Genre">
-        <id property="id" column="id" />
-        <result property="name" column="name" />
+        <id property="id" column="genreId" />
+        <result property="name" column="genreName" />
     </resultMap>
 
     <select id="findAll" resultMap="resultMovie">
-        select m.*, d.name, g.name
+        select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId
         from movie m
         inner join director d on m.director_id = d.id
         inner join genre g on m.genre_id = g.id
     </select>
+
+    <select id="findById" resultMap="resultMovie" parameterType="Long">
+        select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId
+        from movie m
+        inner join director d on m.director_id = d.id
+        inner join genre g on m.genre_id = g.id
+        where m.id = #{id}
+    </select>
+
+    <update id="update" parameterType="com.induk.cinema.dto.MovieForm">
+        update movie
+        set poster=#{poster}, title=#{title}, language=#{language}, show_times=#{showTimes},
+            release_date=#{releaseDate}, rating=#{rating}, screening_format=#{joinFormat},
+            director_id=#{directorId}, genre_id=#{genreId}
+        where id=#{id}
+    </update>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.dto.MovieForm">
+        insert into movie(poster, title, language, show_times, release_date, rating, screening_format, director_id, genre_id)
+        values (#{poster}, #{title}, #{language}, #{showTimes}, #{releaseDate}, #{rating}, #{joinFormat}, #{directorId}, #{genreId})
+    </insert>
+
+    <delete id="delete" parameterType="Long">
+        delete from movie where id = #{id};
+    </delete>
 </mapper>

@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -20,9 +20,8 @@ public class Event {
     private String storeFilename;
     private String uploadFilename;
     private String path;
-    @Size(max = 1024, message = "극장 소개는 최대 1024자입니다.")
     private String content;
-    private String start_date;
-    private String end_date;
-    private String reporting_date;
+    private Date start_date;
+    private Date end_date;
+    private Date reporting_date;
 }

@@ -46,10 +46,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/admin/events/${event.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/events/${event.id}/edit" enctype="multipart/form-data">
                 <div class="card-header py-3">
                     <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"> Event Edit</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/admin/events'"><i class="fas fa-undo"></i></a>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/events/${event.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -85,7 +85,7 @@
                             <th scope="row" width="20%" style="vertical-align:middle;">Uploaded File
                             </th>
                             <td width="80%">
-                                <img src="/admin/events/images/${event.storeFilename}">
+                                <img src="/csmovie/admin/events/images/${event.storeFilename}">
                                 <input type="hidden" name="storeFilename" id="storeFilename" value="${event.storeFilename}"/>
                                 <input type="hidden" name="uploadFilename" id="uploadFilename" value="${event.uploadFilename}"/>
                                 <input type="hidden" name="path" id="path" value="${event.path}"/>
@@ -108,7 +108,7 @@
                                 <th scope="row" width="20%" style="vertical-align:middle;">Start_date <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="${status.expression }" value="${event.start_date}" placeholder="시작 날짜를 입력해주세요">
+                                           id="datePicker" value="${event.start_date}" placeholder="시작 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -120,7 +120,7 @@
                                 <th scope="row" width="20%" style="vertical-align:middle;">End_date <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="${status.expression }" value="${event.end_date}" placeholder="종료 날짜를 입력해주세요">
+                                           id="datePicker" value="${event.end_date}" placeholder="종료 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -131,7 +131,7 @@
                             <spring:bind path="event.reporting_date">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reporting_date}" >
+                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reporting_date}" readonly >
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
