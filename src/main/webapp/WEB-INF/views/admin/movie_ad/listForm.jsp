@@ -35,8 +35,12 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-film"> Movie DataTables</i>
-                            <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movies/add'">추가</button></h4>
+                            <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-images"> Movie AD DataTables</i>
+                                <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movies/${param.get("movieId")}'"><i class="fas fa-undo"></i></a>
+                                <span class="float-right">&nbsp;</span>
+                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad/add?movieId=${param.get("movieId")}&title=${param.get("title")}'">추가</button>
+                                <span class="float-right">&nbsp;</span>
+                            </h4>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -45,30 +49,20 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>Title</th>
-                                            <th>Genre</th>
-                                            <th>Director</th>
-                                            <th>Release Date</th>
+                                            <th>Filename</th>
+                                            <th>Kind</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>ID</th>
                                             <th>Title</th>
-                                            <th>Genre</th>
-                                            <th>Director</th>
-                                            <th>Release Date</th>
+                                            <th>Filename</th>
+                                            <th>Kind</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <c:forEach var="movie" items="${movies}">
-                                        <tr>
-                                            <td><a href="/csmovie/admin/movies/${movie.id}">${movie.id}</a></td>
-                                            <td><a href="/csmovie/admin/movies/${movie.id}">${movie.title}</a></td>
-                                            <td>${movie.genre.name}</td>
-                                            <td>${movie.director.name}</td>
-                                            <td>${movie.releaseDate}</td>
-                                        </tr>
-                                    </c:forEach>
+
                                     </tbody>
                                 </table>
                             </div>

@@ -32,6 +32,10 @@ public class DirectorService {
     public Long saveDirector(DirectorForm directorForm) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(directorForm.getImageFile(), "director");
 
+        if(uploadFile == null) {
+            uploadFile = new UploadFile("default_director.png", "default_director.png", "director");
+        }
+
         Director director = new Director();
         director.setName(directorForm.getName());
         director.setUploadFilename(uploadFile.getUploadFilename());

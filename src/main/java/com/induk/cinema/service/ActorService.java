@@ -32,6 +32,10 @@ public class ActorService {
     public Long saveActor(ActorForm actorForm) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(actorForm.getImageFile(), "actor");
 
+        if(uploadFile == null) {
+            uploadFile = new UploadFile("default_actor.png", "default_actor.png", "actor");
+        }
+
         Actor actor = new Actor();
         actor.setName(actorForm.getName());
         actor.setUploadFilename(uploadFile.getUploadFilename());

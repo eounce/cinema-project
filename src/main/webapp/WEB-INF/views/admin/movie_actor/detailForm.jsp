@@ -53,17 +53,17 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/csmovie/admin/movies/${movie.id}/edit" method="GET">
+            <form name="updateForm" action="/csmovie/admin/movie_actors/${movieActor.id}/edit" method="GET">
+                <input type="hidden" name="movieId" value="${movieActor.movie.id}" />
+                <input type="hidden" name="title" value="${movieActor.movie.title}" />
             </form>
-            <form name="deleteForm" action="/csmovie/admin/movies/${movie.id}/delete" method="GET">
+            <form name="deleteForm" action="/csmovie/admin/movie_actors/${movieActor.id}/delete" method="GET">
+                <input type="hidden" name="movieId" value="${movieActor.movie.id}" />
+                <input type="hidden" name="title" value="${movieActor.movie.title}" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-film"> Movie</i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movies'"><i class="fas fa-undo"></i></a>
-                    <span class="float-right">&nbsp;</span>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_actors?movieId=${movie.id}&title=${movie.title}'"><i class="fas fa-users"></i></a>
-                    <span class="float-right">&nbsp;</span>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad?movieId=${movie.id}&title=${movie.title}'"><i class="fas fa-images"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-users"> Movie Actor</i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_actors?movieId=${movieActor.movie.id}&title=${movieActor.movie.title}'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
@@ -77,73 +77,31 @@
                 <table class="table table-bordered table-striped">
                     <tbody>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Image
-                        </th>
-                        <td width="80%">
-                            <img src="/csmovie/admin/movies/images/${movie.poster}">
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">ID
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="id" id="id" value="${movie.id}" readonly>
+                            <input type="text" class="form-control" name="id" id="id" value="${movieActor.id}" readonly>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Title
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="title" id="title" value="${movie.title}" readonly>
+                            <input type="text" class="form-control" name="title" id="title" value="${movieActor.movie.title}" readonly>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Director
+                        <th scope="row" width="20%" style="vertical-align:middle;">Name
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="directorName" id="directorName" value="${movie.director.name}" readonly>
+                            <input type="text" class="form-control" name="name" id="name" value="${movieActor.actor.name}" readonly>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Genre
+                        <th scope="row" width="20%" style="vertical-align:middle;">Role
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="genreName" id="genreName" value="${movie.genre.name}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Language
-                        </th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="language" id="language" value="${movie.language}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">ReleaseDate
-                        </th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="releaseDate" id="releaseDate" value="${movie.releaseDate}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">ShowTimes
-                        </th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="showTimes" id="showTimes" value="${movie.showTimes}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Rating
-                        </th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="rating" id="rating" value="${movie.rating}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Format
-                        </th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="format" id="format" value="${movie.screeningFormat}" readonly>
+                            <input type="text" class="form-control" name="role" id="role" value="${movieActor.role}" readonly>
                         </td>
                     </tr>
                     </tbody>

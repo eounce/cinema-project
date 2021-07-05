@@ -54,11 +54,6 @@ public class AdminDirectorController {
     public String addDirector(@Valid DirectorForm directorForm,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) throws IOException {
-        if(directorForm.getImageFile().isEmpty()) {
-            bindingResult.addError(new FieldError("directorForm", "imageFile", "사진을 등록해주세요."));
-            return "admin/director/addForm";
-        }
-
         if(bindingResult.hasErrors()) {
             return "admin/director/addForm";
         }
