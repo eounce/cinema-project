@@ -36,4 +36,8 @@
     <delete id="delete" parameterType="Member">
         delete from member where id = #{id};
     </delete>
+
+    <select id="login" resultType="Member" resultMap="memberResult">
+        select * from member where email = #{email} and password = #{password}
+    </select>
 </mapper>

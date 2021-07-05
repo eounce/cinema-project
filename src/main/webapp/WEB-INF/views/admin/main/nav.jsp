@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 201712035@office.induk.ac.kr
@@ -384,9 +385,17 @@
                 <li class="nav-item dropdown no-arrow">
                     <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
-                        <img class="img-profile rounded-circle"
-                             src="/admin/img/undraw_profile.svg">
+                        <span class="mr-2 d-none d-lg-inline text-gray-600 small">${sessionScope.member.name}</span>
+                        <c:choose>
+                            <c:when test="${not empty sessionScope.member.image}">
+                                <img class="img-profile rounded-circle"
+                                     src="/csmovie/admin/members/images/${sessionScope.member.image} ">
+                            </c:when>
+                            <c:otherwise>
+                                <img class="img-profile rounded-circle"
+                                     src="/admin/img/undraw_profile.svg">
+                            </c:otherwise>
+                        </c:choose>
                     </a>
                     <!-- Dropdown - User Information -->
                     <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
