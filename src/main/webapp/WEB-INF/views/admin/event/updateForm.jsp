@@ -108,7 +108,7 @@
                                 <th scope="row" width="20%" style="vertical-align:middle;">Start_date <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="${status.expression }" value="${event.start_date}" placeholder="시작 날짜를 입력해주세요">
+                                           id="datePicker" value="${event.start_date}" placeholder="시작 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -120,7 +120,7 @@
                                 <th scope="row" width="20%" style="vertical-align:middle;">End_date <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="${status.expression }" value="${event.end_date}" placeholder="종료 날짜를 입력해주세요">
+                                           id="datePicker" value="${event.end_date}" placeholder="종료 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -131,7 +131,7 @@
                             <spring:bind path="event.reporting_date">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reporting_date}" >
+                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reporting_date}" readonly >
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>

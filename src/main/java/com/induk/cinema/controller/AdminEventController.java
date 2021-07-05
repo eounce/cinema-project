@@ -1,6 +1,7 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Event;
+import com.induk.cinema.domain.Member;
 import com.induk.cinema.dto.EventForm;
 import com.induk.cinema.service.EventService;
 import com.induk.cinema.util.FileStore;
