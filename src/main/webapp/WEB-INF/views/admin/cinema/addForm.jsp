@@ -98,6 +98,17 @@
                             </spring:bind>
                         </tr>
                         <tr>
+                            <spring:bind path="cinema.mapAddress">
+                                <th scope="row" width="20%" style="vertical-align:middle;">mapAddress <font color="red">*</font></th>
+                                <td width="80%">
+                                    <textarea name="${status.expression }" id="${status.expression }" style="width:100%; resize:none;"
+                                              rows="9" placeholder="구글맵 주소를 입력해주세요"></textarea>
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="cinema.sales">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Sales <font color="red">*</font></th>
                                 <td width="80%">

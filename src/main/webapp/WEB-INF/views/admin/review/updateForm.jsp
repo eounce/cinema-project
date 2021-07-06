@@ -53,6 +53,27 @@
                             </td>
                         </tr>
                         <tr>
+                            <spring:bind path="review.movieId">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Movie_id <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                        <c:forEach var="movie" items="${movies}">
+                                            <c:choose>
+                                                <c:when test="${movie.id == review.movieId}">
+                                                    <option value="${movie.id}" selected>(${movie.id})${movie.title}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${movie.id}">(${movie.id})${movie.title}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+                                    </select>
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="review.memberId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
                                 <td width="80%">
@@ -60,10 +81,10 @@
                                         <c:forEach var="member" items="${members}">
                                             <c:choose>
                                                 <c:when test="${member.id == review.memberId}">
-                                                    <option value="${member.id}" selected>[${member.id}] ${member.name}</option>
+                                                    <option value="${member.id}" selected>(${member.id}) ${member.name}</option>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <option value="${member.id}">[${member.id}] ${member.name}</option>
+                                                    <option value="${member.id}">(${member.id}) ${member.name}</option>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:forEach>

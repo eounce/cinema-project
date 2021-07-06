@@ -1,3 +1,5 @@
+<%@ page import="com.induk.cinema.domain.Review" %>
+<%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
@@ -44,32 +46,42 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th width="10%">ID</th>
-                                            <th width="20%">Member_id</th>
+                                            <th width="7%">ID</th>
+                                            <th width="14%">Movie_id</th>
+                                            <th width="14%">Member_id</th>
                                             <th width="20%">Title</th>
-                                            <th width="40%">Content</th>
+                                            <th width="35%">Content</th>
                                             <th width="10%">View</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th width="10%">ID</th>
-                                            <th width="20%">Member_id</th>
+                                            <th width="7%">ID</th>
+                                            <th width="14%">Movie_id</th>
+                                            <th width="14%">Member_id</th>
                                             <th width="20%">Title</th>
-                                            <th width="40%">Content</th>
+                                            <th width="35%">Content</th>
                                             <th width="10%">View</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <c:forEach var="review" items="${reviews}">
+                                    <%
+                                        List<Review> reviews = (List<Review>) request.getAttribute("reviews");
+                                        for(Review review : reviews){
+                                            String content = review.getContent();
+                                            content = (content.length() > 20)? content.substring(0,20) + "..."  : content;
+                                    %>
                                         <tr>
-                                            <td><a href="/csmovie/admin/reviews/${review.id}">${review.id}</a></td>
-                                            <td>[${review.member.id}] ${review.member.name}</td>
-                                            <td>${review.title}</td>
-                                            <td>${review.content}</td>
-                                            <td>${review.view}</td>
+                                            <td><a href="/csmovie/admin/reviews/<%=review.getId()%>"><%=review.getId()%></a></td>
+                                            <td>(<%=review.getMovie().getId()%>)<%=review.getMovie().getTitle()%></td>
+                                            <td>(<%=review.getMember().getId()%>)<%=review.getMember().getName()%></td>
+                                            <td><%=review.getTitle()%></td>
+                                            <td><%=content%></td>
+                                            <td><%=review.getView()%></td>
                                         </tr>
-                                    </c:forEach>
+                                        <%
+                                            }
+                                        %>
                                     </tbody>
                                 </table>
                             </div>

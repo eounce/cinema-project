@@ -75,8 +75,8 @@
                                     %>
                                         <tr>
                                             <td><a href="/csmovie/admin/comments/<%=comment.getId()%>"><%=comment.getId()%></a></td>
-                                            <td>[<%=comment.getReview().getId()%>] <%=comment.getReview().getTitle()%></td>
-                                            <td>[<%=comment.getMember().getId()%>] <%=comment.getMember().getName()%></td>
+                                            <td>(<%=comment.getReview().getId()%>) <%=comment.getReview().getTitle()%></td>
+                                            <td>(<%=comment.getMember().getId()%>) <%=comment.getMember().getName()%></td>
                                             <td><%=content%></td>
                                             <td><%=subscriptionDate%></td>
                                         </tr>

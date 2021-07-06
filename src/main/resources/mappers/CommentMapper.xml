@@ -21,23 +21,24 @@
     </resultMap>
 
     <select id="findAll" resultType="Comment" resultMap="CommentResult">
-        select comment.*, review.id as review_id, review.title ,member.id as member_id, member.name
+        select comment.*, review.title, member.name
         from comment inner join review on comment.review_id = review.id
         inner join member on comment.member_id = member.id
     </select>
 
     <select id="findById" parameterType="Comment" resultType="Comment" resultMap="CommentResult">
-        select comment.*, review.id as review_id, review.title ,member.id as member_id, member.name
+        select comment.*, review.title , member.name
         from comment inner join review on comment.review_id = review.id
         inner join member on comment.member_id = member.id
         where comment.id = #{id}
     </select>
 
     <select id="findByReviewId" parameterType="Comment" resultType="Comment" resultMap="CommentResult">
-        select comment.*, review.id as review_id, review.title ,member.id as member_id, member.name
+        select * from ((select comment.*, review.title , member.name
         from comment inner join review on comment.review_id = review.id
-                     inner join member on comment.member_id = member.id
-        where review.id = #{id}
+            inner join member on comment.member_id = member.id
+        where review.id = #{id} ) as s)
+        order by s.reporting_date asc
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Comment">

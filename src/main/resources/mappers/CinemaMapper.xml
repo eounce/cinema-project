@@ -9,6 +9,7 @@
     <result property="name" column="name"/>
     <result property="introduction" column="introduction"/>
     <result property="address" column="address"/>
+    <result property="mapAddress" column="mapAddress"/>
     <result property="sales" column="sales"/>
     <association property="cinemaCity" javaType="com.induk.cinema.dto.CinemaCity">
         <result property="cityName" column="cityName"/>
@@ -32,13 +33,13 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Cinema">
-        insert into cinema(city_id, name, introduction, address, sales)
-        values (#{city_id}, #{name}, #{introduction}, #{address}, #{sales})
+        insert into cinema(city_id, name, introduction, address, mapAddress, sales)
+        values (#{city_id}, #{name}, #{introduction}, #{address}, #{mapAddress}, #{sales})
     </insert>
 
     <update id="update" parameterType="Cinema">
         update cinema
-        set city_id=#{city_id}, name=#{name}, introduction=#{introduction}, address=#{address},sales=#{sales}
+        set city_id=#{city_id}, name=#{name}, introduction=#{introduction}, address=#{address}, mapAddress=#{mapAddress}, sales=#{sales}
         where id=#{id}
     </update>
 

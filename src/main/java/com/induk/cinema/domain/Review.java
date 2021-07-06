@@ -19,6 +19,9 @@ public class Review {
     @NotNull(message = "작성자는 필수 선택입니다.")
     private Long memberId;
 
+    @NotNull(message = "영화는 필수 선택입니다.")
+    private Long movieId;
+
     @NotBlank(message = "제목은 필수 입력입니다.")
     @Length(max=30)
     private String title;
@@ -32,5 +35,6 @@ public class Review {
     private Integer view;
     private Timestamp reportingDate;
     private Member member;
+    private Movie movie;
     private List<Comment> comments;
 }

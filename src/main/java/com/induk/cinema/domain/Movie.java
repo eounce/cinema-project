@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -16,11 +17,10 @@ public class Movie {
     private Long id;
     private String poster;
     private String title;
+    private String summary;
     private String language;
-    private LocalTime showTimes;
-    private Integer grade;
-    private LocalDateTime releaseDate;
-    private Integer cumulativeSales;
+    private Integer showTimes;
+    private String releaseDate;
     private String rating;
     private String screeningFormat;
     private Director director;

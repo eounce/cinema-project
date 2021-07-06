@@ -12,4 +12,5 @@ public interface MemberRepository {
     Long save(Member member);
     void update(Member member);
     void delete(Long id);
+    Member login(Member member);
 }

@@ -47,15 +47,27 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <!-- path:city객체의 name속성을 검사 -->
-                            <!-- spring 태그를 사용하기 위해서는 상단에 관련 taglib를 추가해줘야 합니다.-->
+                            <spring:bind path="review.movieId">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Movie_id <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                        <option value="" selected>영화를 선택해주세요</option>
+                                        <c:forEach var="movie" items="${movies}">
+                                            <option value="${movie.id}"> (${movie.id})${movie.title}</option>
+                                        </c:forEach>
+                                    </select>
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="review.memberId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
                                 <td width="80%">
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
                                         <option value="" selected>작성자를 선택해주세요</option>
                                         <c:forEach var="member" items="${members}">
-                                            <option value="${member.id}">[${member.id}] ${member.name}</option>
+                                            <option value="${member.id}">(${member.id}) ${member.name}</option>
                                         </c:forEach>
                                     </select>
                                         <!-- 해당 속성의 오류 message를 출력 -->
