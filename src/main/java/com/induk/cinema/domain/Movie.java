@@ -17,6 +17,7 @@ public class Movie {
     private Long id;
     private String poster;
     private String title;
+    private String summary;
     private String language;
     private Integer showTimes;
     private String releaseDate;
