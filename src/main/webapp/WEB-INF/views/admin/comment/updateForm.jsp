@@ -60,10 +60,10 @@
                                         <c:forEach var="review" items="${reviews}">
                                             <c:choose>
                                                 <c:when test="${review.id == comment.reviewId}">
-                                                    <option value="${review.id}" selected>[${review.id}] ${review.title}</option>
+                                                    <option value="${review.id}" selected>(${review.id}) ${review.title}</option>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <option value="${review.id}">[${review.id}] ${review.title}</option>
+                                                    <option value="${review.id}">(${review.id}) ${review.title}</option>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:forEach>
@@ -81,10 +81,10 @@
                                         <c:forEach var="member" items="${members}">
                                             <c:choose>
                                                 <c:when test="${member.id == comment.memberId}">
-                                                    <option value="${member.id}" selected>[${member.id}] ${member.name}</option>
+                                                    <option value="${member.id}" selected>(${member.id}) ${member.name}</option>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <option value="${member.id}">[${member.id}] ${member.name}</option>
+                                                    <option value="${member.id}">(${member.id}) ${member.name}</option>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:forEach>

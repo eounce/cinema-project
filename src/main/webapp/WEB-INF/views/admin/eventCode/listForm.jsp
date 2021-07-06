@@ -1,3 +1,4 @@
+<%@ page import="com.induk.cinema.domain.EventCode" %>
 <%@ page import="java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -12,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Event - Tables</title>
+    <title>EventCode - Tables</title>
 
     <!-- Header -->
     <c:import url="../main/header.jsp" />
@@ -36,8 +37,8 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"> Event DataTable</i>
-                    <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/events/add'">추가</button></h4>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-receipt"> EventCode DataTable</i>
+                    <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/eventCodes/add'">추가</button></h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -45,16 +46,22 @@
                         <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Title</th>
-                            <th>Reporting Date</th>
+                            <th>Event_id</th>
+                            <th>code</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="event" items="${events}">
+                        <c:forEach var="eventCode" items="${eventCodes}">
                             <tr>
-                                <td><a href="/csmovie/admin/events/${event.id}" ><c:out value="${event.id}"/></a></td>
-                                <td><c:out value="${event.title}"/></td>
-                                <td><c:out value="${event.reportingDate}"/></td>
+                                <td><a href="/csmovie/admin/eventCodes/${eventCode.id}" >${eventCode.id}</a></td>
+                                <td>
+                                    <c:forEach var="event" items="${events}">
+                                        <c:if test="${event.id == eventCode.eventId}">
+                                            [${event.id}] ${event.title}
+                                        </c:if>
+                                    </c:forEach>
+                                </td>
+                                <td>${eventCode.code}</td>
                             </tr>
                         </c:forEach>
                         </tbody>

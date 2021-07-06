@@ -63,9 +63,15 @@
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Movie_id</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="id" value="(${review.movie.id})${review.movie.title}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Member_id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="" value="[${review.member.id}] ${review.member.name}" disabled>
+                            <input type="text" class="form-control" name="" value="(${review.member.id})${review.member.name}" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -127,7 +133,7 @@
                                 <c:forEach var="comment" items="${comments}">
                                     <tr>
                                         <td scope="row" width="20%" style="vertical-align:middle;">
-                                            <a href="/csmovie/admin/comments/${comment.id}">[${comment.member.id}] ${comment.member.name}
+                                            <a href="/csmovie/admin/comments/${comment.id}">(${comment.member.id}) ${comment.member.name}
                                         </td>
                                         <td width="60%">
                                             <input type="text" class="form-control" value="${comment.content}" disabled>

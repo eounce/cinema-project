@@ -163,7 +163,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">이벤트:</h6>
                 <a class="collapse-item" href="/csmovie/admin/events">이벤트</a>
-                <a class="collapse-item" href="#">이벤트 코드</a>
+                <a class="collapse-item" href="/csmovie/admin/eventCodes">이벤트 코드</a>
             </div>
         </div>
     </li>

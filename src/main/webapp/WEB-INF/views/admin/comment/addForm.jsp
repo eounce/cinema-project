@@ -55,7 +55,7 @@
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
                                         <option value="" selected>리뷰를 선택해주세요</option>
                                         <c:forEach var="review" items="${reviews}">
-                                            <option value="${review.id}">[${review.id}] ${review.title}</option>
+                                            <option value="${review.id}">(${review.id}) ${review.title}</option>
                                         </c:forEach>
                                     </select>
                                         <!-- 해당 속성의 오류 message를 출력 -->
@@ -72,7 +72,7 @@
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
                                         <option value="" selected>작성자를 선택해주세요</option>
                                         <c:forEach var="member" items="${members}">
-                                            <option value="${member.id}">[${member.id}] ${member.name}</option>
+                                            <option value="${member.id}">(${member.id}) ${member.name}</option>
                                         </c:forEach>
                                     </select>
                                     <!-- 해당 속성의 오류 message를 출력 -->

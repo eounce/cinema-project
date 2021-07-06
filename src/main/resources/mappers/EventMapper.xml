@@ -13,12 +13,12 @@
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Event">
         insert into event(store_filename, upload_filename, path, title, content, start_date, end_date, reporting_date)
-        values (#{storeFilename}, #{uploadFilename}, #{path}, #{title}, #{content}, #{start_date}, #{end_date}, #{reporting_date})
+        values (#{storeFilename}, #{uploadFilename}, #{path}, #{title}, #{content}, #{startDate}, #{endDate}, #{reportingDate})
     </insert>
 
     <update id="update" parameterType="Event">
         update event
-        set store_filename=#{storeFilename}, upload_filename=#{uploadFilename}, path=#{path}, title=#{title}, content=#{content}, start_date=#{start_date}, end_date=#{end_date}, reporting_date=#{reporting_date}
+        set store_filename=#{storeFilename}, upload_filename=#{uploadFilename}, path=#{path}, title=#{title}, content=#{content}, start_date=#{startDate}, end_date=#{endDate}, reporting_date=#{reportingDate}
         where id=#{id}
     </update>
 

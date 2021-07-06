@@ -3,6 +3,7 @@ package com.induk.cinema.controller;
 import com.induk.cinema.domain.Review;
 import com.induk.cinema.service.CommentService;
 import com.induk.cinema.service.MemberService;
+import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReviewService;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +28,7 @@ import java.text.SimpleDateFormat;
 public class AdminReviewController {
 
     private final ReviewService reviewService;
+    private final MovieService movieService;
     private final MemberService memberService;
     private final CommentService commentService;
     private final FileStore fileStore;
@@ -53,6 +55,7 @@ public class AdminReviewController {
 
     @GetMapping("/add")
     public String addForm(Model model) {
+        model.addAttribute("movies", movieService.movieList());
         model.addAttribute("members", memberService.memberList());
         model.addAttribute("review", new Review());
         return "admin/review/addForm";
@@ -66,6 +69,7 @@ public class AdminReviewController {
 
         if(review.getImageForm().isEmpty()) {
             bindingResult.addError(new FieldError("reviewForm", "imageForm", "이미지는 필수 등록입니다."));
+            model.addAttribute("movies", movieService.movieList());
             model.addAttribute("members", memberService.memberList());
             return "admin/review/addForm";
         }
@@ -105,6 +109,7 @@ public class AdminReviewController {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String subscriptionDate = df.format(review.getReportingDate());
 
+        model.addAttribute("movies", movieService.movieList());
         model.addAttribute("subscription_date", subscriptionDate);
         model.addAttribute("review", review);
         model.addAttribute("members", memberService.memberList());
@@ -123,8 +128,9 @@ public class AdminReviewController {
             String subscriptionDate = df.format(beforReview.getReportingDate());
             review.setImage(beforReview.getImage());
 
+            model.addAttribute("movies", movieService.movieList());
             model.addAttribute("subscription_date", subscriptionDate);
-            model.addAttribute("reviewForm", review);
+            model.addAttribute("review", review);
             model.addAttribute("members", memberService.memberList());
             return "admin/review/updateForm";
         }
