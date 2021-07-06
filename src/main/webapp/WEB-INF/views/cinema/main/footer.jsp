@@ -11,7 +11,7 @@
 <footer class="footer-section">
     <div class="newslater-section padding-bottom">
         <div class="container">
-            <div class="newslater-container bg_img" data-background="./assets/images/newslater/newslater-bg01.jpg">
+            <div class="newslater-container bg_img" data-background="/cinema/assets/images/newslater/newslater-bg01.jpg">
                 <div class="newslater-wrapper">
                     <h5 class="cate">subscribe to Boleto </h5>
                     <h3 class="title">to get exclusive benifits</h3>
@@ -28,7 +28,7 @@
         <div class="footer-top">
             <div class="logo">
                 <a href="index-1.html">
-                    <img src="cinema/assets/images/footer/footer-logo.png" alt="footer">
+                    <img src="/cinema/assets/images/footer/footer-logo.png" alt="footer">
                 </a>
             </div>
             <ul class="social-icons">
@@ -88,17 +88,17 @@
 <!-- ==========Newslater-Section========== -->
 
 
-<script src="cinema/assets/js/jquery-3.3.1.min.js"></script>
-<script src="cinema/assets/js/modernizr-3.6.0.min.js"></script>
-<script src="cinema/assets/js/plugins.js"></script>
-<script src="cinema/assets/js/bootstrap.min.js"></script>
-<script src="cinema/assets/js/heandline.js"></script>
-<script src="cinema/assets/js/isotope.pkgd.min.js"></script>
-<script src="cinema/assets/js/magnific-popup.min.js"></script>
-<script src="cinema/assets/js/owl.carousel.min.js"></script>
-<script src="cinema/assets/js/wow.min.js"></script>
-<script src="cinema/assets/js/countdown.min.js"></script>
-<script src="cinema/assets/js/odometer.min.js"></script>
-<script src="cinema/assets/js/viewport.jquery.js"></script>
-<script src="cinema/assets/js/nice-select.js"></script>
-<script src="cinema/assets/js/main.js"></script>
+<script src="/cinema/assets/js/jquery-3.3.1.min.js"></script>
+<script src="/cinema/assets/js/modernizr-3.6.0.min.js"></script>
+<script src="/cinema/assets/js/plugins.js"></script>
+<script src="/cinema/assets/js/bootstrap.min.js"></script>
+<script src="/cinema/assets/js/heandline.js"></script>
+<script src="/cinema/assets/js/isotope.pkgd.min.js"></script>
+<script src="/cinema/assets/js/magnific-popup.min.js"></script>
+<script src="/cinema/assets/js/owl.carousel.min.js"></script>
+<script src="/cinema/assets/js/wow.min.js"></script>
+<script src="/cinema/assets/js/countdown.min.js"></script>
+<script src="/cinema/assets/js/odometer.min.js"></script>
+<script src="/cinema/assets/js/viewport.jquery.js"></script>
+<script src="/cinema/assets/js/nice-select.js"></script>
+<script src="/cinema/assets/js/main.js"></script>
