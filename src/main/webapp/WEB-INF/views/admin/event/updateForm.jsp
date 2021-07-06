@@ -104,11 +104,11 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="event.start_date">
+                            <spring:bind path="event.startDate">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Start_date <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="datePicker" value="${event.start_date}" placeholder="시작 날짜를 입력해주세요">
+                                           id="datePicker" value="${event.startDate}" placeholder="시작 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -116,11 +116,11 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="event.end_date">
+                            <spring:bind path="event.endDate">
                                 <th scope="row" width="20%" style="vertical-align:middle;">End_date <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="datePicker" value="${event.end_date}" placeholder="종료 날짜를 입력해주세요">
+                                           id="datePicker" value="${event.endDate}" placeholder="종료 날짜를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -128,10 +128,10 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="event.reporting_date">
+                            <spring:bind path="event.reportingDate">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reporting_date}" readonly >
+                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reportingDate}" readonly >
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>

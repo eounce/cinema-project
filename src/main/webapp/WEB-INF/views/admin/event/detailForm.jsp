@@ -87,19 +87,19 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Start_date</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="start_date" id="start_date" value="${event.start_date}" readonly>
+                            <input type="text" class="form-control" name="start_date" id="start_date" value="${event.startDate}" readonly>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">End_date</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="end_date" id="end_date" value="${event.end_date}" readonly>
+                            <input type="text" class="form-control" name="end_date" id="end_date" value="${event.endDate}" readonly>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reporting_date}" readonly>
+                            <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reportingDate}" readonly>
                         </td>
                     </tr>
                     </tbody>

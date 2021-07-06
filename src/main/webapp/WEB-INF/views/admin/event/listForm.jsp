@@ -54,7 +54,7 @@
                             <tr>
                                 <td><a href="/csmovie/admin/events/${event.id}" ><c:out value="${event.id}"/></a></td>
                                 <td><c:out value="${event.title}"/></td>
-                                <td><c:out value="${event.reporting_date}"/></td>
+                                <td><c:out value="${event.reportingDate}"/></td>
                             </tr>
                         </c:forEach>
                         </tbody>

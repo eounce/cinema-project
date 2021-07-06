@@ -39,9 +39,9 @@ public class EventService {
         event.setStoreFilename(uploadFile.getStoreFilename());
         event.setPath(uploadFile.getPath());
         event.setContent(eventForm.getContent());
-        event.setStart_date(eventForm.getStart_date());
-        event.setEnd_date(eventForm.getEnd_date());
-        event.setReporting_date(eventForm.getReporting_date());
+        event.setStartDate(eventForm.getStart_date());
+        event.setEndDate(eventForm.getEnd_date());
+        event.setReportingDate(eventForm.getReporting_date());
 
         eventRepository.save(event);
 

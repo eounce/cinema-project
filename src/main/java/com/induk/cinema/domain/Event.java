@@ -21,7 +21,7 @@ public class Event {
     private String uploadFilename;
     private String path;
     private String content;
-    private Date start_date;
-    private Date end_date;
-    private Date reporting_date;
+    private Date startDate;
+    private Date endDate;
+    private Date reportingDate;
 }
