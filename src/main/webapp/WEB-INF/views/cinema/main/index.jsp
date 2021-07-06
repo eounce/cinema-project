@@ -15,19 +15,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="cinema/assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="cinema/assets/css/all.min.css">
-    <link rel="stylesheet" href="cinema/assets/css/animate.css">
-    <link rel="stylesheet" href="cinema/assets/css/flaticon.css">
-    <link rel="stylesheet" href="cinema/assets/css/magnific-popup.css">
-    <link rel="stylesheet" href="cinema/assets/css/odometer.css">
-    <link rel="stylesheet" href="cinema/assets/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="cinema/assets/css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="cinema/assets/css/nice-select.css">
-    <link rel="stylesheet" href="cinema/assets/css/jquery.animatedheadline.css">
-    <link rel="stylesheet" href="cinema/assets/css/main.css">
+    <link rel="stylesheet" href="/cinema/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/cinema/assets/css/all.min.css">
+    <link rel="stylesheet" href="/cinema/assets/css/animate.css">
+    <link rel="stylesheet" href="/cinema/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/cinema/assets/css/magnific-popup.css">
+    <link rel="stylesheet" href="/cinema/assets/css/odometer.css">
+    <link rel="stylesheet" href="/cinema/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/cinema/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/cinema/assets/css/nice-select.css">
+    <link rel="stylesheet" href="/cinema/assets/css/jquery.animatedheadline.css">
+    <link rel="stylesheet" href="/cinema/assets/css/main.css">
 
-    <link rel="shortcut icon" href="cinema/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/cinema/assets/images/favicon.png" type="image/x-icon">
 
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
 
@@ -58,7 +58,7 @@
         <div class="header-wrapper">
             <div class="logo">
                 <a href="index.html">
-                    <img src="cinema/assets/images/logo/logo.png" alt="logo">
+                    <img src="/cinema/assets/images/logo/logo.png" alt="logo">
                 </a>
             </div>
             <ul class="menu">
@@ -189,7 +189,7 @@
 
 <!-- ==========Banner-Section========== -->
 <section class="banner-section">
-    <div class="banner-bg bg_img bg-fixed" data-background="cinema/assets/images/banner/banner01.jpg"></div>
+    <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner01.jpg"></div>
     <div class="container">
         <div class="banner-content">
             <h1 class="title  cd-headline clip"><span class="d-block">book your</span> tickets for
@@ -208,7 +208,7 @@
 <!-- ==========Ticket-Search========== -->
 <section class="search-ticket-section padding-top pt-lg-0">
     <div class="container">
-        <div class="search-tab bg_img" data-background="cinema/assets/images/ticket/ticket-bg01.jpg">
+        <div class="search-tab bg_img" data-background="/cinema/assets/images/ticket/ticket-bg01.jpg">
             <div class="row align-items-center mb--20">
                 <div class="col-lg-6 mb-20">
                     <div class="search-ticket-header">
@@ -220,19 +220,19 @@
                     <ul class="tab-menu ticket-tab-menu">
                         <li class="active">
                             <div class="tab-thumb">
-                                <img src="cinema/assets/images/ticket/ticket-tab01.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/ticket-tab01.png" alt="ticket">
                             </div>
                             <span>movie</span>
                         </li>
                         <li>
                             <div class="tab-thumb">
-                                <img src="cinema/assets/images/ticket/ticket-tab02.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/ticket-tab02.png" alt="ticket">
                             </div>
                             <span>events</span>
                         </li>
                         <li>
                             <div class="tab-thumb">
-                                <img src="cinema/assets/images/ticket/ticket-tab03.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/ticket-tab03.png" alt="ticket">
                             </div>
                             <span>sports</span>
                         </li>
@@ -248,7 +248,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/city.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/city.png" alt="ticket">
                             </div>
                             <span class="type">city</span>
                             <select class="select-bar">
@@ -263,7 +263,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/date.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/date.png" alt="ticket">
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
@@ -275,7 +275,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/cinema.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/cinema.png" alt="ticket">
                             </div>
                             <span class="type">cinema</span>
                             <select class="select-bar">
@@ -298,7 +298,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/city.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/city.png" alt="ticket">
                             </div>
                             <span class="type">city</span>
                             <select class="select-bar">
@@ -313,7 +313,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/date.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/date.png" alt="ticket">
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
@@ -325,7 +325,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/cinema.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/cinema.png" alt="ticket">
                             </div>
                             <span class="type">event</span>
                             <select class="select-bar">
@@ -348,7 +348,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/city.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/city.png" alt="ticket">
                             </div>
                             <span class="type">city</span>
                             <select class="select-bar">
@@ -363,7 +363,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/date.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/date.png" alt="ticket">
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
@@ -375,7 +375,7 @@
                         </div>
                         <div class="form-group">
                             <div class="thumb">
-                                <img src="cinema/assets/images/ticket/cinema.png" alt="ticket">
+                                <img src="/cinema/assets/images/ticket/cinema.png" alt="ticket">
                             </div>
                             <span class="type">sports</span>
                             <select class="select-bar">
@@ -406,19 +406,19 @@
                         <ul>
                             <li>
                                 <a href="#0">
-                                    <span class="img"><img src="cinema/assets/images/sidebar/icons/sidebar01.png" alt="sidebar"></span>
+                                    <span class="img"><img src="/cinema/assets/images/sidebar/icons/sidebar01.png" alt="sidebar"></span>
                                     <span class="cate">24X7 Care</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#0">
-                                    <span class="img"><img src="cinema/assets/images/sidebar/icons/sidebar02.png" alt="sidebar"></span>
+                                    <span class="img"><img src="/cinema/assets/images/sidebar/icons/sidebar02.png" alt="sidebar"></span>
                                     <span class="cate">100% Assurance</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="#0">
-                                    <span class="img"><img src="cinema/assets/images/sidebar/icons/sidebar03.png" alt="sidebar"></span>
+                                    <span class="img"><img src="/cinema/assets/images/sidebar/icons/sidebar03.png" alt="sidebar"></span>
                                     <span class="cate">Our Promise</span>
                                 </a>
                             </li>
@@ -428,7 +428,7 @@
                 <div class="widget-1 widget-banner">
                     <div class="widget-1-body">
                         <a href="#0">
-                            <img src="cinema/assets/images/sidebar/banner/banner01.jpg" alt="banner">
+                            <img src="/cinema/assets/images/sidebar/banner/banner01.jpg" alt="banner">
                         </a>
                     </div>
                 </div>
@@ -466,7 +466,7 @@
                 <div class="widget-1 widget-banner">
                     <div class="widget-1-body">
                         <a href="#0">
-                            <img src="cinema/assets/images/sidebar/banner/banner02.jpg" alt="banner">
+                            <img src="/cinema/assets/images/sidebar/banner/banner02.jpg" alt="banner">
                         </a>
                     </div>
                 </div>
@@ -482,7 +482,7 @@
                             <div class="movie-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/movie/movie01.jpg" alt="movie">
+                                        <img src="/cinema/assets/images/movie/movie01.jpg" alt="movie">
                                     </a>
                                 </div>
                                 <div class="movie-content bg-one">
@@ -492,13 +492,13 @@
                                     <ul class="movie-rating-percent">
                                         <li>
                                             <div class="thumb">
-                                                <img src="cinema/assets/images/movie/tomato.png" alt="movie">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
                                             </div>
                                             <span class="content">88%</span>
                                         </li>
                                         <li>
                                             <div class="thumb">
-                                                <img src="cinema/assets/images/movie/cake.png" alt="movie">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
                                             </div>
                                             <span class="content">88%</span>
                                         </li>
@@ -510,7 +510,7 @@
                             <div class="movie-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/movie/movie02.jpg" alt="movie">
+                                        <img src="/cinema/assets/images/movie/movie02.jpg" alt="movie">
                                     </a>
                                 </div>
                                 <div class="movie-content bg-one">
@@ -520,13 +520,13 @@
                                     <ul class="movie-rating-percent">
                                         <li>
                                             <div class="thumb">
-                                                <img src="cinema/assets/images/movie/tomato.png" alt="movie">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
                                             </div>
                                             <span class="content">88%</span>
                                         </li>
                                         <li>
                                             <div class="thumb">
-                                                <img src="cinema/assets/images/movie/cake.png" alt="movie">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
                                             </div>
                                             <span class="content">88%</span>
                                         </li>
@@ -538,7 +538,7 @@
                             <div class="movie-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/movie/movie03.jpg" alt="movie">
+                                        <img src="/cinema/assets/images/movie/movie03.jpg" alt="movie">
                                     </a>
                                 </div>
                                 <div class="movie-content bg-one">
@@ -548,13 +548,13 @@
                                     <ul class="movie-rating-percent">
                                         <li>
                                             <div class="thumb">
-                                                <img src="cinema/assets/images/movie/tomato.png" alt="movie">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
                                             </div>
                                             <span class="content">88%</span>
                                         </li>
                                         <li>
                                             <div class="thumb">
-                                                <img src="cinema/assets/images/movie/cake.png" alt="movie">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
                                             </div>
                                             <span class="content">88%</span>
                                         </li>
@@ -574,7 +574,7 @@
                             <div class="event-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/event/event01.jpg" alt="event">
+                                        <img src="/cinema/assets/images/event/event01.jpg" alt="event">
                                     </a>
                                     <div class="event-date">
                                         <h6 class="date-title">28</h6>
@@ -595,7 +595,7 @@
                             <div class="event-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/event/event02.jpg" alt="event">
+                                        <img src="/cinema/assets/images/event/event02.jpg" alt="event">
                                     </a>
                                     <div class="event-date">
                                         <h6 class="date-title">28</h6>
@@ -616,7 +616,7 @@
                             <div class="event-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/event/event03.jpg" alt="event">
+                                        <img src="/cinema/assets/images/event/event03.jpg" alt="event">
                                     </a>
                                     <div class="event-date">
                                         <h6 class="date-title">28</h6>
@@ -645,7 +645,7 @@
                             <div class="sports-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/sports/sports01.jpg" alt="sports">
+                                        <img src="/cinema/assets/images/sports/sports01.jpg" alt="sports">
                                     </a>
                                     <div class="event-date">
                                         <h6 class="date-title">28</h6>
@@ -666,7 +666,7 @@
                             <div class="sports-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/sports/sports02.jpg" alt="sports">
+                                        <img src="/cinema/assets/images/sports/sports02.jpg" alt="sports">
                                     </a>
                                     <div class="event-date">
                                         <h6 class="date-title">28</h6>
@@ -687,7 +687,7 @@
                             <div class="sports-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
-                                        <img src="cinema/assets/images/sports/sports03.jpg" alt="sports">
+                                        <img src="/cinema/assets/images/sports/sports03.jpg" alt="sports">
                                     </a>
                                     <div class="event-date">
                                         <h6 class="date-title">28</h6>
