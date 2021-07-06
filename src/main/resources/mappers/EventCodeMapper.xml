@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.EventCodeRepository">
+
+    <select id="findAll" resultType="EventCode">
+        select eventCode.*, event.*
+        from eventCode inner join event on eventCode.event_id=event.id
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="EventCode">
+        select eventCode.*, event.*
+        from eventCode inner join event on eventCode.event_id=event.id
+        where eventCode.id=#{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="EventCode">
+        insert into eventCode(event_id, code, issue_date, code_limit, discount_rate)
+        values (#{eventId}, #{code}, #{issueDate}, #{codeLimit}, #{discountRate})
+    </insert>
+
+    <update id="update" parameterType="EventCode">
+        update eventCode
+        set event_id=#{eventId}, code=#{code}, issue_date=#{issueDate}, code_limit=#{codeLimit}, discount_rate=#{discountRate}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from eventCode where id=#{id}
+    </delete>
+</mapper>

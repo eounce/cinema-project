@@ -1,3 +1,5 @@
+<%@ page import="com.induk.cinema.domain.EventCode" %>
+<%@ page import="com.induk.cinema.domain.Event" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -43,10 +45,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/csmovie/admin/events/add" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/eventCodes/add" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-gift"> Event Add</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/events'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-receipt"> EventCode Add</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/eventCodes'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -55,11 +57,26 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <spring:bind path="eventForm.title">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Title <font color="red">*</font></th>
+                            <spring:bind path="eventCodeForm.event_id">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Event_id <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                        <option value="" selected>이벤트를 선택해주세요</option>
+                                        <c:forEach var="event" items="${events}">
+                                            <option value="${event.id}">[${event.id}] ${event.title}</option>
+                                        </c:forEach>
+                                    </select>
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="eventCodeForm.code">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Code <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}"
-                                           id="${status.expression }" value="${status.value}" placeholder="제목을 입력해주세요">
+                                           id="${status.expression }" placeholder="코드를 입력해주세요"></textarea>
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -67,10 +84,10 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="eventForm.imageFile">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Image <font color="red">*</font></th>
+                            <spring:bind path="eventCodeForm.issue_date">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Issue_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="file" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="datePicker" value="${status.value}" placeholder="발급 일을 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -78,10 +95,10 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="eventForm.content">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
+                            <spring:bind path="eventCodeForm.code_limit">
+                                <th scope="row" width="20%" style="vertical-align:middle;">code_limit <font color="red">*</font></th>
                                 <td width="80%">
-                                    <textarea rows="5" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" placeholder="내용을 입력해주세요"></textarea>
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="datePicker" value="${status.value}" placeholder="사용 기한를 입력해주세요">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -89,34 +106,10 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="eventForm.start_date">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Start_date <font color="red">*</font></th>
+                            <spring:bind path="eventCodeForm.discount_rate">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Discount_rate <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="datePicker" value="${status.value}" placeholder="시작 날짜를 입력해주세요">
-                                    <c:if test="${status.error}">
-                                        <div class="field-error">${status.errorMessage}</div>
-                                    </c:if>
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <spring:bind path="eventForm.end_date">
-                                <th scope="row" width="20%" style="vertical-align:middle;">End_date <font color="red">*</font></th>
-                                <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="datePicker" value="${status.value}" placeholder="종료 날짜를 입력해주세요">
-                                    <c:if test="${status.error}">
-                                        <div class="field-error">${status.errorMessage}</div>
-                                    </c:if>
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <spring:bind path="eventForm.reporting_date">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date <font color="red">*</font></th>
-                                <td width="80%">
-                                    <c:set var="today" value="<%=new java.util.Date()%>"/>
-                                    <c:set var="date"><fmt:formatDate value="${today}" pattern="yyyy-MM-dd" /></c:set>
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression}" value="${date}" readonly>
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression}" value="${status.value}" placeholder="할인율을 입력해주세요">
                                 </td>
                             </spring:bind>
                         </tr>
@@ -176,4 +169,3 @@
 </body>
 
 </html>
-
