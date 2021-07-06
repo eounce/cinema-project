@@ -98,6 +98,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Summary </th>
+                        <td width="80%">
+                            <textarea class="form-control" name="summary" id="summary" rows="5" readonly>${movie.summary}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Director
                         </th>
                         <td width="80%">

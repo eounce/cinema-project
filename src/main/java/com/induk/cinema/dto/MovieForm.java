@@ -19,6 +19,9 @@ public class MovieForm {
     @NotEmpty(message = "제목을 입력해 주세요.")
     private String title;
 
+    @NotEmpty(message = "소개를 입력해 주세요.")
+    private String summary;
+
     @NotNull(message = "감독을 선택해 주세요.")
     private Long directorId;
 
@@ -48,6 +51,7 @@ public class MovieForm {
         this.id = movie.getId();
         this.poster = movie.getPoster();
         this.title = movie.getTitle();
+        this.summary = movie.getSummary();
         this.directorId = movie.getDirector().getId();
         this.genreId = movie.getGenre().getId();
         this.language = movie.getLanguage();

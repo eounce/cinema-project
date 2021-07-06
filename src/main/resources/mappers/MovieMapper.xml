@@ -7,6 +7,7 @@
         <id property="id" column="id" />
         <result property="poster" column="poster" />
         <result property="title" column="title" />
+        <result property="summary" column="summary" />
         <result property="language" column="language" />
         <result property="showTimes" column="show_times" />
         <result property="releaseDate" column="release_date" />
@@ -43,15 +44,15 @@
 
     <update id="update" parameterType="com.induk.cinema.dto.MovieForm">
         update movie
-        set poster=#{poster}, title=#{title}, language=#{language}, show_times=#{showTimes},
+        set poster=#{poster}, title=#{title}, summary=#{summary}, language=#{language}, show_times=#{showTimes},
             release_date=#{releaseDate}, rating=#{rating}, screening_format=#{joinFormat},
             director_id=#{directorId}, genre_id=#{genreId}
         where id=#{id}
     </update>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.dto.MovieForm">
-        insert into movie(poster, title, language, show_times, release_date, rating, screening_format, director_id, genre_id)
-        values (#{poster}, #{title}, #{language}, #{showTimes}, #{releaseDate}, #{rating}, #{joinFormat}, #{directorId}, #{genreId})
+        insert into movie(poster, title, summary, language, show_times, release_date, rating, screening_format, director_id, genre_id)
+        values (#{poster}, #{title}, #{summary}, #{language}, #{showTimes}, #{releaseDate}, #{rating}, #{joinFormat}, #{directorId}, #{genreId})
     </insert>
 
     <delete id="delete" parameterType="Long">

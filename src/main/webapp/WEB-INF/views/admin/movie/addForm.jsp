@@ -77,6 +77,17 @@
                             </spring:bind>
                         </tr>
                         <tr>
+                            <spring:bind path="movieForm.summary">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Summary <font color="red">*</font></th>
+                                <td width="80%">
+                                    <textarea class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" rows="5" placeholder="소개를 입력해 주세요">${status.value}</textarea>
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="movieForm.directorId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Director <font color="red">*</font></th>
                                 <td width="80%">
