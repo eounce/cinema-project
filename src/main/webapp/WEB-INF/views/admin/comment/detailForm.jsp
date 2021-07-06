@@ -63,13 +63,13 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Review_id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="" value="[${comment.review.id}] ${comment.review.title}" disabled>
+                            <input type="text" class="form-control" name="" value="(${comment.review.id}) ${comment.review.title}" disabled>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Member_id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="" value="[${comment.member.id}] ${comment.member.name}" disabled>
+                            <input type="text" class="form-control" name="" value="(${comment.member.id}) ${comment.member.name}" disabled>
                         </td>
                     </tr>
                     <tr>
