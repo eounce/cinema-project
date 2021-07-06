@@ -53,13 +53,15 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/csmovie/admin/actors/${actor.id}/edit" method="GET">
+            <form name="updateForm" action="/csmovie/admin/movie_ad/${movieAd.id}/edit" method="GET">
+                <input type="hidden" name="movieId" value="${movieAd.movie.id}">
             </form>
-            <form name="deleteForm" action="/csmovie/admin/actors/${actor.id}/delete" method="GET">
+            <form name="deleteForm" action="/csmovie/admin/movie_ad/${movieAd.id}/delete" method="GET">
+                <input type="hidden" name="movieId" value="${movieAd.movie.id}">
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/actors'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-images"> Movie AD</i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad?movieId=${movieAd.movie.id}'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
@@ -76,30 +78,43 @@
                         <th scope="row" width="20%" style="vertical-align:middle;">ID
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="id" id="id" value="${actor.id}" readonly>
+                            <input type="text" class="form-control" name="id" id="id" value="${movieAd.id}" readonly>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Name
+                        <th scope="row" width="20%" style="vertical-align:middle;">Title
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="name" id="name" value="${actor.name}"
-                                   readonly>
+                            <input type="text" class="form-control" name="title" id="title" value="${movieAd.movie.title}" readonly>
                         </td>
                     </tr>
+                    <c:choose>
+                        <c:when test="${movieAd.kind eq 'image'}">
+                            <tr>
+                                <th scope="row" width="20%" style="vertical-align:middle;">Image
+                                </th>
+                                <td width="80%">
+                                    <img src="/csmovie/admin/movie_ad/images/${movieAd.storeFilename}">
+                                </td>
+                            </tr>
+                        </c:when>
+                        <c:otherwise>
+                            <tr>
+                                <th scope="row" width="20%" style="vertical-align:middle;">Video
+                                </th>
+                                <td width="80%">
+                                    <iframe width="560" height="315" src="${movieAd.storeFilename}"
+                                            title="YouTube video player" frameborder="0"
+                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                </td>
+                            </tr>
+                        </c:otherwise>
+                    </c:choose>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Filename
+                        <th scope="row" width="20%" style="vertical-align:middle;">Kind
                         </th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="filename" id="filename"
-                                   value="${actor.uploadFilename}" readonly>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Image
-                        </th>
-                        <td width="80%">
-                            <img src="/csmovie/admin/actors/images/${actor.storeFilename}">
+                            <input type="text" class="form-control" name="kind" id="kind" value="${movieAd.kind}" readonly>
                         </td>
                     </tr>
                     </tbody>

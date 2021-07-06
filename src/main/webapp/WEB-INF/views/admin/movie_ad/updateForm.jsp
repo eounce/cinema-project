@@ -53,10 +53,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/csmovie/admin/actors/${actor.id}/edit" enctype="multipart/form-data">
+            <form method="post" action="/csmovie/admin/movie_ad/${movieAdForm.id}/edit" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/actors/${actor.id}'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-images"> Movie AD</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad/${movieAdForm.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -65,37 +65,70 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ID
-                            </th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">ID </th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="id" id="id" value="${actor.id}" readonly>
+                                <input type="text" class="form-control" name="id" id="id" value="${movieAdForm.id}" readonly>
                             </td>
                         </tr>
                         <tr>
-                            <spring:bind path="actor.name">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
-                                <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="이름을 입력해주세요">
-                                    <c:if test="${status.error}">
-                                        <div class="field-error">${status.errorMessage}</div>
-                                    </c:if>
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">File</th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Title </th>
                             <td width="80%">
-                                <input type="file" class="form-control" name="imageFile" id="imageFile">
+                                <input type="text" class="form-control" name="title" id="title" value="${movie.title}" readonly>
+                                <input type="hidden" name="movieId" id="movieId" value="${movie.id}">
                             </td>
                         </tr>
+                        <c:choose>
+                            <c:when test="${movieAdForm.kind eq 'image'}">
+                                <tr>
+                                    <th scope="row" width="20%" style="vertical-align:middle;">Image
+                                    </th>
+                                    <td width="80%">
+                                        <img src="/csmovie/admin/movie_ad/images/${movieAdForm.storeFilename}">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <spring:bind path="movieAdForm.imageFiles">
+                                        <th scope="row" width="20%" style="vertical-align:middle;">Image File</th>
+                                        <td width="80%">
+                                            <input type="file" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }">
+                                            <c:if test="${status.error}">
+                                                <div class="field-error">${status.errorMessage}</div>
+                                            </c:if>
+                                        </td>
+                                    </spring:bind>
+                                </tr>
+                            </c:when>
+                            <c:otherwise>
+                                <tr>
+                                    <th scope="row" width="20%" style="vertical-align:middle;">Video
+                                    </th>
+                                    <td width="80%">
+                                        <iframe width="560" height="315" src="${movieAdForm.storeFilename}"
+                                                title="YouTube video player" frameborder="0"
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <spring:bind path="movieAdForm.video">
+                                        <th scope="row" width="20%" style="vertical-align:middle;">Video URL </th>
+                                        <td width="80%">
+                                            <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression}">
+                                            <c:if test="${status.error}">
+                                                <div class="field-error">${status.errorMessage}</div>
+                                            </c:if>
+                                        </td>
+                                    </spring:bind>
+                                </tr>
+                            </c:otherwise>
+                        </c:choose>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Uploaded File
+                            <th scope="row" width="20%" style="vertical-align:middle;">Kind
                             </th>
                             <td width="80%">
-                                <img src="/csmovie/admin/actors/images/${actor.storeFilename}">
-                                <input type="hidden" name="storeFilename" id="storeFilename" value="${actor.storeFilename}"/>
-                                <input type="hidden" name="uploadFilename" id="uploadFilename" value="${actor.uploadFilename}"/>
-                                <input type="hidden" name="path" id="path" value="${actor.path}"/>
+                                <input type="text" class="form-control" name="kind" id="kind" value="${movieAdForm.kind}" readonly>
+                                <input type="hidden" name="uploadFilename" id="uploadFilename" value="${movieAdForm.uploadFilename}" />
+                                <input type="hidden" name="storeFilename" id="storeFilename" value="${movieAdForm.storeFilename}" />
+                                <input type="hidden" name="path" id="path" value="${movieAdForm.path}" />
                             </td>
                         </tr>
                         </tbody>

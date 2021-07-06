@@ -32,10 +32,38 @@
             border-color: #dc3545;
             color: #dc3545;
         }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
+    <script>
+        function radioCheck() {
+            if ($("input[name=kind]:checked").val() == 'image') {
+                $("input:text[name=video]").attr("disabled", true);
+                $("input:file[name=imageFiles]").attr("disabled", false);
+            } else if ($("input[name=kind]:checked").val() == 'video') {
+                $("input:text[name=video]").attr("disabled", false);
+                $("input:file[name=imageFiles]").attr("disabled", true);
+            }
+
+            $(document).ready(function() {
+                $("input:radio[name=kind]").click(function() {
+                    if($("input[name=kind]:checked").val() == 'image') {
+                        $("input:text[name=video]").attr("disabled", true);
+                        $("input:file[name=imageFiles]").attr("disabled", false);
+                    } else if($("input[name=kind]:checked").val() == 'video') {
+                        $("input:text[name=video]").attr("disabled", false);
+                        $("input:file[name=imageFiles]").attr("disabled", true);
+                    }
+                });
+            });
+        }
+    </script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="javascript:radioCheck();">
 
 <!-- Page Wrapper -->
 <div id="wrapper">
@@ -48,10 +76,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/csmovie/admin/actors/add" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-user"> Actor</i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/actors'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-images"> Movie AD</i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad?movieId=${param.get("movieId")}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -60,10 +88,17 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <spring:bind path="actorForm.name">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Title </th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="title" id="title" value="${movie.title}" readonly>
+                                <input type="hidden" name="movieId" id="movieId" value="${movie.id}">
+                            </td>
+                        </tr>
+                        <tr>
+                            <spring:bind path="movieAdForm.imageFiles">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Images</th>
                                 <td width="80%">
-                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}" placeholder="이름을 입력해주세요">
+                                    <input type="file" multiple="multiple" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
@@ -71,13 +106,34 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="actorForm.imageFile">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
+                            <spring:bind path="movieAdForm.video">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Video </th>
                                 <td width="80%">
-                                    <input type="file" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
+                                    <input type="text" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression}" disabled>
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="movieAdForm.kind">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Title </th>
+                                <td width="80%">
+                                    <c:choose>
+                                        <c:when test="${status.value eq 'video'}">
+                                            <input type="radio" name="kind" id="k1" value="image">
+                                            <label for="k1">사진</label>
+                                            <input type="radio" name="kind" id="k2" value="video" checked="checked">
+                                            <label for="k2">동영상</label>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <input type="radio" name="kind" id="k1" value="image" checked="checked">
+                                            <label for="k1">사진</label>
+                                            <input type="radio" name="kind" id="k2" value="video">
+                                            <label for="k2">동영상</label>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </td>
                             </spring:bind>
                         </tr>

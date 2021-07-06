@@ -63,7 +63,7 @@
                     <span class="float-right">&nbsp;</span>
                     <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_actors?movieId=${movie.id}&title=${movie.title}'"><i class="fas fa-users"></i></a>
                     <span class="float-right">&nbsp;</span>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad?movieId=${movie.id}&title=${movie.title}'"><i class="fas fa-images"></i></a>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad?movieId=${movie.id}'"><i class="fas fa-images"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>

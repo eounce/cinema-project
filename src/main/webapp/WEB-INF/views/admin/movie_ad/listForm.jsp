@@ -38,7 +38,7 @@
                             <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-images"> Movie AD DataTables</i>
                                 <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movies/${param.get("movieId")}'"><i class="fas fa-undo"></i></a>
                                 <span class="float-right">&nbsp;</span>
-                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad/add?movieId=${param.get("movieId")}&title=${param.get("title")}'">추가</button>
+                                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/movie_ad/add?movieId=${param.get("movieId")}'">추가</button>
                                 <span class="float-right">&nbsp;</span>
                             </h4>
                         </div>
@@ -62,7 +62,14 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-
+                                        <c:forEach var="movieAd" items="${movieAds}">
+                                            <tr>
+                                                <td><a href="/csmovie/admin/movie_ad/${movieAd.id}">${movieAd.id}</a></td>
+                                                <td><a href="/csmovie/admin/movie_ad/${movieAd.id}">${movieAd.movie.title}</a></td>
+                                                <td>${movieAd.uploadFilename}</td>
+                                                <td>${movieAd.kind}</td>
+                                            </tr>
+                                        </c:forEach>
                                     </tbody>
                                 </table>
                             </div>

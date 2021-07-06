@@ -86,9 +86,6 @@ public class AdminMovieController {
 
         MovieForm movieForm = new MovieForm(movieService.findMovie(id));
 
-        log.info("movieFrom.directorId = {}", movieForm.getDirectorId());
-        log.info("movieFrom.genreId = {}", movieForm.getGenreId());
-
         model.addAttribute("movieForm", movieForm);
         return "admin/movie/updateForm";
     }
