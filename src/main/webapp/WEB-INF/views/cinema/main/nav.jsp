@@ -30,7 +30,7 @@
         <div class="header-wrapper">
             <div class="logo">
                 <a href="index.html">
-                    <img src="cinema/assets/images/logo/logo.png" alt="logo">
+                    <img src="/cinema/assets/images/logo/logo.png" alt="logo">
                 </a>
             </div>
             <ul class="menu">
@@ -71,6 +71,9 @@
                         </li>
                         <li>
                             <a href="popcorn.html">Movie Food</a>
+                        </li>
+                        <li>
+                            <a href="/csmovie/cinema">Cinema</a>
                         </li>
                     </ul>
                 </li>
