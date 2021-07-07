@@ -21,9 +21,6 @@
     <!-- Header -->
     <c:import url="../main/header.jsp" />
 
-    <!-- Custom styles for this page -->
-    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -136,13 +133,6 @@
 
 <!-- Footer -->
 <c:import url="../main/footer.jsp" />
-
-<!-- Page level plugins -->
-<script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/admin/js/demo/datatables-demo.js"></script>
 
 </div>
 <!-- End of Content Wrapper -->

@@ -20,9 +20,6 @@
     <!-- Header -->
     <c:import url="/WEB-INF/views/admin/main/header.jsp" />
 
-    <!-- Custom styles for this page -->
-    <link href="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 </head>
 
 <body id="page-top">
@@ -113,13 +110,6 @@
 
 <!-- Footer -->
 <c:import url="/WEB-INF/views/admin/main/footer.jsp" />
-
-<!-- Page level plugins -->
-<script src="/csmovie/admin/vendor/datatables/jquery.dataTables.min.js"></script>
-<script src="/csmovie/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-<!-- Page level custom scripts -->
-<script src="/csmovie/admin/js/demo/datatables-demo.js"></script>
 
 </div>
 <!-- End of Content Wrapper -->
