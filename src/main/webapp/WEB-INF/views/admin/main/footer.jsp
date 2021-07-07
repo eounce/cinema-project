@@ -53,6 +53,13 @@
 <!-- select2 javascript cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 
+<!-- Page level plugins -->
+<script src="/admin/vendor/datatables/jquery.dataTables.min.js"></script>
+<script src="/admin/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+<!-- Page level custom scripts -->
+<script src="/admin/js/demo/datatables-demo.js"></script>
+
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
      aria-hidden="true">

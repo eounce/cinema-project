@@ -20,8 +20,7 @@ import java.io.PrintWriter;
 @Aspect
 @Component
 public class LoginAspect {
-    /*
-     Logger logger = LoggerFactory.getLogger(LoginAspect.class);
+     /*Logger logger = LoggerFactory.getLogger(LoginAspect.class);
 
     @Pointcut("execution(* com.induk.cinema.controller.Admin*.*(..))")
     public void loginInspectPointcut() {
@@ -47,6 +46,5 @@ public class LoginAspect {
             writer.print("</script>");
             writer.close();
         }
-    }
-     */
+    }*/
 }
