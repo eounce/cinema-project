@@ -78,16 +78,9 @@
                                 <input type="file" class="form-control" name="imageFile" id="imageFile">
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Uploaded File
-                            </th>
-                            <td width="80%">
-                                <img src="/csmovie/admin/events/images/${event.storeFilename}">
                                 <input type="hidden" name="storeFilename" id="storeFilename" value="${event.storeFilename}"/>
                                 <input type="hidden" name="uploadFilename" id="uploadFilename" value="${event.uploadFilename}"/>
                                 <input type="hidden" name="path" id="path" value="${event.path}"/>
-                            </td>
-                        </tr>
                         <tr>
                             <spring:bind path="event.content">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
