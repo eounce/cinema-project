@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 201712035@office.induk.ac.kr
@@ -148,9 +149,19 @@
                 <li>
                     <a href="contact.html">contact</a>
                 </li>
-                <li class="header-button pr-0">
-                    <a href="sign-up.html">join us</a>
-                </li>
+                <c:choose>
+                    <c:when test="${empty sessionScope.member}">
+                        <li class="header-button pr-0">
+                            <a href="/csmovie/members/login">로그인</a>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <li class="header-button pr-0">
+                            <a href="/csmovie/members/logout">로그아웃</a>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
+
             </ul>
             <div class="header-bar d-lg-none">
                 <span></span>
