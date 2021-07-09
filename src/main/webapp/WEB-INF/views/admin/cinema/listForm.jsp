@@ -44,7 +44,7 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="20%">Dong</th>
+                            <th width="20%">City</th>
                             <th width="20%">Name</th>
                             <th width="20%">address</th>
                             <th width="20%">sales</th>
@@ -53,7 +53,7 @@
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="20%">Dong</th>
+                            <th width="20%">City</th>
                             <th width="20%">Name</th>
                             <th width="20%">address</th>
                             <th width="20%">sales</th>
@@ -64,7 +64,7 @@
                         <c:forEach var="cinema" items="${cinemas}">
                         <tr>
                             <th width="20%"><a href="/csmovie/admin/cinemas/${cinema.id}" >${cinema.id}</a></th>
-                            <th width="20%">${cinema.cinemaCity.dongName}</th>
+                            <th width="20%">${cinema.cinemaCity.cityName}</th>
                             <th width="20%">${cinema.name}</th>
                             <th width="20%">${cinema.address}</th>
                             <th width="20%">${cinema.sales}</th>

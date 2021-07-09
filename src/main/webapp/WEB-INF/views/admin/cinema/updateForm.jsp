@@ -53,17 +53,17 @@
                             </td>
                         </tr>
                         <tr>
-                            <spring:bind path="cinema.dong_id">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Dong <font color="red">*</font></th>
+                            <spring:bind path="cinema.city_id">
+                                <th scope="row" width="20%" style="vertical-align:middle;">City <font color="red">*</font></th>
                                 <td width="80%">
                                     <select name="${status.expression }" id="${status.expression }" class="form-control">
-                                        <option value="">구/지점을 선택해주세요</option>
-                                        <c:forEach var="dong" items="${dongs}">
-                                            <c:if test="${dong.id == cinema.dong_id}">
-                                                <option value="${dong.id}" selected>${dong.name}</option>
+                                        <option value="">시/도를 선택해주세요</option>
+                                        <c:forEach var="city" items="${citys}">
+                                            <c:if test="${city.id == cinema.city_id}">
+                                                <option value="${city.id}" selected>${city.name}</option>
                                             </c:if>
-                                            <c:if test="${dong.id != cinema.dong_id}">
-                                                <option value="${dong.id}">${dong.name}</option>
+                                            <c:if test="${city.id != cinema.city_id}">
+                                                <option value="${city.id}">${city.name}</option>
                                             </c:if>
                                         </c:forEach>
                                     </select>

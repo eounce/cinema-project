@@ -10,6 +10,7 @@ import java.util.List;
 public interface CinemaRepository {
     List<Cinema> findAll();
     Cinema findById(Long id);
+    List<Cinema> findCinemaListByCityId(Long id);
     Long save(Cinema cinema);
     void update(Cinema cinema);
     void delete(Long id);

@@ -23,6 +23,10 @@ public class CinemaService {
         return cinemaRepository.findById(id);
     }
 
+    public List<Cinema> findCinemaListByCityId(Long id) {
+        return cinemaRepository.findCinemaListByCityId(id);
+    }
+
     public Long saveCinema(Cinema cinema) {
         cinemaRepository.save(cinema);
         return cinema.getId();
@@ -43,5 +47,7 @@ public class CinemaService {
     public List<City> findCity() {
         return cinemaRepository.findCity();
     }
+
+
 
 }

@@ -61,12 +61,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Dong</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="dongName" value="${cinema.cinemaCity.dongName}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Name</th>
                         <td width="80%">
                             <input type="text" class="form-control" name="name" value="${cinema.name}" disabled>

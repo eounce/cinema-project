@@ -338,200 +338,56 @@
             </div>
             <div class="col-lg-9 mb-50 mb-lg-0">
                 <div class="filter-tab tab">
-                    <div class="filter-area">
-                        <div class="filter-main">
-                            <div class="left">
-                                <div class="item">
-                                    <span class="show">Show :</span>
-                                    <select class="select-bar">
-                                        <option value="12">12</option>
-                                        <option value="15">15</option>
-                                        <option value="18">18</option>
-                                        <option value="21">21</option>
-                                        <option value="24">24</option>
-                                        <option value="27">27</option>
-                                        <option value="30">30</option>
-                                    </select>
-                                </div>
-                                <div class="item">
-                                    <span class="show">Sort By :</span>
-                                    <select class="select-bar">
-                                        <option value="showing">now showing</option>
-                                        <option value="exclusive">exclusive</option>
-                                        <option value="trending">trending</option>
-                                        <option value="most-view">most view</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <ul class="grid-button tab-menu">
-                                <li>
-                                    <i class="fas fa-th"></i>
-                                </li>
-                                <li class="active">
-                                    <i class="fas fa-bars"></i>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
                     <div class="tab-area">
-                        <div class="tab-item">
-                            <div class="row mb-10 justify-content-center">
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="movie-grid">
-                                        <div class="movie-thumb c-thumb">
-                                            <a href="movie-details.html">
-                                                <img src="/cinema/assets/images/movie/movie01.jpg" alt="movie">
-                                            </a>
-                                        </div>
-                                        <div class="movie-content bg-one">
-                                            <h5 class="title m-0">
-                                                <a href="movie-details.html">alone</a>
-                                            </h5>
-                                            <ul class="movie-rating-percent">
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="/cinema/assets/images/movie/cake.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="movie-grid">
-                                        <div class="movie-thumb c-thumb">
-                                            <a href="movie-details.html">
-                                                <img src="/cinema/assets/images/movie/movie02.jpg" alt="movie">
-                                            </a>
-                                        </div>
-                                        <div class="movie-content bg-one">
-                                            <h5 class="title m-0">
-                                                <a href="movie-details.html">mars</a>
-                                            </h5>
-                                            <ul class="movie-rating-percent">
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="/cinema/assets/images/movie/cake.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-lg-4">
-                                    <div class="movie-grid">
-                                        <div class="movie-thumb c-thumb">
-                                            <a href="movie-details.html">
-                                                <img src="/cinema/assets/images/movie/movie03.jpg" alt="movie">
-                                            </a>
-                                        </div>
-                                        <div class="movie-content bg-one">
-                                            <h5 class="title m-0">
-                                                <a href="movie-details.html">venus</a>
-                                            </h5>
-                                            <ul class="movie-rating-percent">
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                                <li>
-                                                    <div class="thumb">
-                                                        <img src="/cinema/assets/images/movie/cake.png" alt="movie">
-                                                    </div>
-                                                    <span class="content">88%</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-item active">
-                            <div class="cinema-area mb-10">
-                                <div class="cinema-list">
-                                    <div class="cinema-content bg-one">
-                                        <h5 class="title">
-                                            <a href="cinema-details.html">alone</a>
-                                        </h5>
-                                        <p class="duration">2hrs 50 min</p>
-                                        <div class="cinema-tags">
-                                            <a href="#0">action</a>
-                                            <a href="#0">adventure</a>
-                                            <a href="#0">fantasy</a>
-                                        </div>
-                                        <div class="release">
-                                            <span>Release Date : </span> <a href="#0"> November 8 , 2020</a>
-                                        </div>
-                                        <ul class="cinema-rating-percent">
-                                            <li>
-                                                <div class="thumb">
-                                                    <img src="/cinema/assets/images/movie/tomato.png" alt="cinema">
-                                                </div>
-                                                <span class="content">88%</span>
+                        <div class="movie-details">
+                            <div class="tab summery-review">
+                                <ul class="tab-menu">
+                                    <c:forEach var="city" items="${citys}">
+                                        <c:if test="${city.id == 1}">
+                                            <li class="active">
+                                                ${city.name}
                                             </li>
+                                        </c:if>
+                                        <c:if test="${city.id != 1}">
                                             <li>
-                                                <div class="thumb">
-                                                    <img src="/cinema/assets/images/movie/cake.png" alt="cinema">
-                                                </div>
-                                                <span class="content">88%</span>
+                                                ${city.name}
                                             </li>
-                                        </ul>
-                                        <div class="book-area">
-                                            <div class="book-ticket">
-                                                <div class="react-item">
-                                                    <a href="#0">
-                                                        <div class="thumb">
-                                                            <img src="/cinema/assets/images/icons/heart.png" alt="icons">
+                                        </c:if>
+                                    </c:forEach>
+                                </ul>
+                                <div class="tab-area">
+                                    <c:forEach var="city" items="${citys}">
+                                        <c:if test="${city.id == 1}">
+                                            <div class="tab-item active">
+                                        </c:if>
+                                        <c:if test="${city.id != 1}">
+                                            <div class="tab-item">
+                                        </c:if>
+                                            <div class="row mb-10 justify-content-center">
+                                                <c:forEach var="cinema" items="${cinemas}">
+                                                    <c:if test="${cinema.city_id == city.id}">
+                                                        <div class="col-sm-6 col-lg-4">
+                                                            <div class="movie-grid">
+                                                                <div class="movie-content bg-one">
+                                                                    <h6 class="title m-0">
+                                                                        <a href="movie-details.html">${cinema.name}</a>
+                                                                    </h6>
+                                                                    <ul class="movie-rating-percent">
+                                                                        <li>
+                                                                            <i class="fas fa-map-marker-alt"> ${cinema.address}</i>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
                                                         </div>
-                                                    </a>
-                                                </div>
-                                                <div class="react-item mr-auto">
-                                                    <a href="#0">
-                                                        <div class="thumb">
-                                                            <img src="/cinema/assets/images/icons/book.png" alt="icons">
-                                                        </div>
-                                                        <span>book ticket</span>
-                                                    </a>
-                                                </div>
-                                                <div class="react-item">
-                                                    <a href="#0" class="popup-video">
-                                                        <div class="thumb">
-                                                            <img src="/cinema/assets/images/icons/play-button.png" alt="icons">
-                                                        </div>
-                                                        <span>watch trailer</span>
-                                                    </a>
-                                                </div>
+                                                    </c:if>
+                                                </c:forEach>
                                             </div>
                                         </div>
-                                    </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="pagination-area text-center">
-                        <a href="#0"><i class="fas fa-angle-double-left"></i><span>Prev</span></a>
-                        <a href="#0">1</a>
-                        <a href="#0">2</a>
-                        <a href="#0" class="active">3</a>
-                        <a href="#0">4</a>
-                        <a href="#0">5</a>
-                        <a href="#0"><span>Next</span><i class="fas fa-angle-double-right"></i></a>
                     </div>
                 </div>
             </div>

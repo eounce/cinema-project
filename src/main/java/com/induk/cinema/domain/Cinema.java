@@ -16,8 +16,8 @@ public class Cinema {
 
     private Long id;
 
-    @NotNull(message = "구/지점명은 필수 입력입니다.")
-    private Long dong_id;
+    @NotNull(message = "시/도명은 필수 입력입니다.")
+    private Long city_id;
 
     @NotBlank(message = "극장명은 필수 입력입니다.")
     private String name;

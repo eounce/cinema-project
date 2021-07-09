@@ -5,5 +5,4 @@ import lombok.Data;
 @Data
 public class CinemaCity {
     private String cityName;
-    private String dongName;
 }
