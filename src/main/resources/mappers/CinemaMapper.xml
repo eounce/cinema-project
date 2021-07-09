@@ -5,7 +5,7 @@
 <mapper namespace="com.induk.cinema.repository.CinemaRepository">
 <resultMap id="resultCinema" type="com.induk.cinema.domain.Cinema">
     <id property="id" column="id"/>
-    <result property="city_id" column="city_id"/>
+    <result property="dong_id" column="dong_id"/>
     <result property="name" column="name"/>
     <result property="introduction" column="introduction"/>
     <result property="address" column="address"/>
@@ -13,11 +13,13 @@
     <result property="sales" column="sales"/>
     <association property="cinemaCity" javaType="com.induk.cinema.dto.CinemaCity">
         <result property="cityName" column="cityName"/>
+        <result property="dongName" column="dongName"/>
     </association>
 </resultMap>
 
     <select id="findAll" resultMap="resultCinema">
-        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id
+        select cinema.*, dong.name as dongName, city.name as cityName
+        from (cinema left join dong on cinema.dong_id = dong.id) left join city on dong.city_id = city.id
     </select>
 
     <select id="findCity" resultType="com.induk.cinema.domain.City">
@@ -25,7 +27,8 @@
     </select>
 
     <select id="findById" parameterType="Long" resultMap="resultCinema">
-        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id where cinema.id = #{id}
+        select cinema.*, dong.name as dongName, city.name as cityName
+        from (cinema left join dong on cinema.dong_id = dong.id) left join city on dong.city_id = city.id where cinema.id = #{id}
     </select>
 
     <select id="findByCityId" parameterType="Long" resultType="String">
@@ -33,13 +36,13 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Cinema">
-        insert into cinema(city_id, name, introduction, address, mapAddress, sales)
-        values (#{city_id}, #{name}, #{introduction}, #{address}, #{mapAddress}, #{sales})
+        insert into cinema(dong_id, name, introduction, address, mapAddress, sales)
+        values (#{dong_id}, #{name}, #{introduction}, #{address}, #{mapAddress}, #{sales})
     </insert>
 
     <update id="update" parameterType="Cinema">
         update cinema
-        set city_id=#{city_id}, name=#{name}, introduction=#{introduction}, address=#{address}, mapAddress=#{mapAddress}, sales=#{sales}
+        set dong_id=#{dong_id}, name=#{name}, introduction=#{introduction}, address=#{address}, mapAddress=#{mapAddress}, sales=#{sales}
         where id=#{id}
     </update>
 

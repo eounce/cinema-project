@@ -58,7 +58,8 @@
                 <a class="collapse-item" href="/csmovie/admin/seats">좌석</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">기타:</h6>
-                <a class="collapse-item" href="/csmovie/admin/citys">지역</a>
+                <a class="collapse-item" href="/csmovie/admin/citys">시/도</a>
+                <a class="collapse-item" href="/csmovie/admin/dongs">구/지점명</a>
             </div>
         </div>
     </li>

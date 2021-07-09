@@ -35,10 +35,10 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form method="post" action="/csmovie/admin/citys/update/${city.id}">
+            <form method="post" action="/csmovie/admin/dongs/add">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"><a href="/csmovie/admin/citys" style="text-decoration:none"> City</a></i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/citys/${city.id}'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"><a href="/csmovie/admin/dongs" style="text-decoration:none"> Dong</a></i>
+                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/dongs'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -47,19 +47,33 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">ID <font color="red">*</font></th>
-                            <td width="80%">
-                                <input type="text" class="form-control" value="${city.id}" readonly>
-                            </td>
-                        </tr>
-                        <tr>
                             <!-- path:city객체의 name속성을 검사 -->
                             <!-- spring 태그를 사용하기 위해서는 상단에 관련 taglib를 추가해줘야 합니다.-->
-                            <spring:bind path="city.name">
+                            <spring:bind path="dong.name">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Name <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="form-control" name="${status.expression }"
-                                           id="${status.expression }" placeholder="시/도명을 입력해주세요" value="${city.name}">
+                                           id="${status.expression }" placeholder="구/지점명을 입력해주세요">
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                    ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="dong.city_id">
+                                <th scope="row" width="20%" style="vertical-align:middle;">City <font color="red">*</font></th>
+                                <td width="80%">
+                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                        <option value="">시/도를 선택해주세요</option>
+                                        <c:forEach var="city" items="${citys}">
+                                            <c:if test="${city.id == dong.city_id}">
+                                                <option value="${city.id}" selected>${city.name}</option>
+                                            </c:if>
+                                            <c:if test="${city.id != dong.city_id}">
+                                                <option value="${city.id}">${city.name}</option>
+                                            </c:if>
+                                        </c:forEach>
+                                    </select>
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                         ${status.errorMessage }
                                 </td>

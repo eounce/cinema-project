@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.induk.cinema.repository.DongRepository">
+<resultMap id="resultDong" type="com.induk.cinema.domain.Dong">
+    <id property="id" column="id"/>
+    <result property="city_id" column="city_id"/>
+    <result property="name" column="name"/>
+    <association property="dongCity" javaType="com.induk.cinema.dto.DongCity">
+        <result property="cityName" column="cityName"/>
+    </association>
+</resultMap>
+    <select id="findAll" resultMap="resultDong">
+        select dong.*, city.name as cityName from dong left join city on dong.city_id = city.id
+    </select>
+
+    <select id="findById" parameterType="Long" resultMap="resultDong">
+        select dong.*, city.name as cityName from dong left join city on dong.city_id = city.id where dong.id = #{id}
+    </select>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Dong">
+        insert into dong(name, city_id)
+        values (#{name}, #{city_id})
+    </insert>
+
+    <update id="update" parameterType="Dong">
+        update dong
+        set name=#{name}, city_id=#{city_id}
+        where id=#{id}
+    </update>
+
+    <delete id="delete" parameterType="Long">
+        delete from dong where id = #{id}
+    </delete>
+</mapper>

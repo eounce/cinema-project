@@ -3,7 +3,6 @@ package com.induk.cinema.dto;
 import lombok.Data;
 
 @Data
-public class CinemaCity {
+public class DongCity {
     private String cityName;
-    private String dongName;
 }

@@ -35,8 +35,8 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"> Cinema DataTables</i>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/cinemas/add'">추가</button></h4>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"> Dong DataTables</i>
+                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/dongs/add'">추가</button></h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -44,30 +44,24 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="20%">Dong</th>
-                            <th width="20%">Name</th>
-                            <th width="20%">address</th>
-                            <th width="20%">sales</th>
+                            <th width="40%">Name</th>
+                            <th width="40%">City_Name</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="20%">Dong</th>
-                            <th width="20%">Name</th>
-                            <th width="20%">address</th>
-                            <th width="20%">sales</th>
+                            <th width="40%">Name</th>
+                            <th width="40%">City_Name</th>
                         </tr>
                         </tfoot>
                         <tbody>
 
-                        <c:forEach var="cinema" items="${cinemas}">
+                        <c:forEach var="dong" items="${dongs}">
                         <tr>
-                            <th width="20%"><a href="/csmovie/admin/cinemas/${cinema.id}" >${cinema.id}</a></th>
-                            <th width="20%">${cinema.cinemaCity.dongName}</th>
-                            <th width="20%">${cinema.name}</th>
-                            <th width="20%">${cinema.address}</th>
-                            <th width="20%">${cinema.sales}</th>
+                            <th width="20%"><a href="/csmovie/admin/dongs/${dong.id}" >${dong.id}</a></th>
+                            <th width="40%">${dong.name}</th>
+                            <th width="40%">${dong.dongCity.cityName}</th>
                         </tr>
                         </c:forEach>
 
