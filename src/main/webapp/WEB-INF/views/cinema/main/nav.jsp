@@ -49,7 +49,7 @@
                     <a href="#0">movies</a>
                     <ul class="submenu">
                         <li>
-                            <a href="movie-grid.html">Movie Grid</a>
+                            <a href="/csmovie/movies">Movie Grid</a>
                         </li>
                         <li>
                             <a href="movie-list.html">Movie List</a>

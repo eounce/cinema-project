@@ -59,7 +59,7 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Poster </th>
                             <td width="80%">
-                                <input type="file" class="form-control" name="imageFile" id="imageFile">
+                                <input type="file" class="form-control" name="imageFile" id="imageFile" accept="image/*">
                             </td>
                         </tr>
                         <tr>

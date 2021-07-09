@@ -71,7 +71,7 @@
                             <spring:bind path="directorForm.imageFile">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
                                 <td width="80%">
-                                    <input type="file" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
+                                    <input type="file" accept="image/*" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>

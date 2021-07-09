@@ -82,7 +82,7 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">File</th>
                             <td width="80%">
-                                <input type="file" class="form-control" name="imageFile" id="imageFile">
+                                <input type="file" accept="image/*" class="form-control" name="imageFile" id="imageFile">
                             </td>
                         </tr>
                         <tr>

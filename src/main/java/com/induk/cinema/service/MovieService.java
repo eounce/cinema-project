@@ -11,7 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -23,6 +26,21 @@ public class MovieService {
 
     public List<Movie> movieList() {
         return movieRepository.findAll();
+    }
+
+    public List<Movie> movieListOpt(List<String> genreChBox, List<String> formatChBox, int sort) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("genres", genreChBox);
+        map.put("sort", sort);
+
+        if (formatChBox == null) {
+            map.put("format", "");
+        } else {
+            String format = String.join(",", formatChBox);
+            map.put("format", format);
+        }
+
+        return movieRepository.findByOption(map);
     }
 
     public Movie findMovie(Long id) {
