@@ -20,6 +20,7 @@
     <!-- Header -->
     <c:import url="../main/header.jsp" />
 
+
 </head>
 
 <body id="page-top">
@@ -35,14 +36,14 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/csmovie/admin/cinemas/update/${cinema.id}" method="GET">
+            <form name="updateForm" action="/csmovie/admin/dongs/update/${dong.id}" method="GET">
             </form>
-            <form name="deleteForm" action="/csmovie/admin/cinemas/del/${cinema.id}" method="POST">
+            <form name="deleteForm" action="/csmovie/admin/dongs/del/${dong.id}" method="POST">
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-theater-masks"><a href="/csmovie/admin/cinemas" style="text-decoration:none"> Cinema</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/cinemas'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-city"><a href="/csmovie/admin/dongs" style="text-decoration:none"> Dong</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/dongs'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
@@ -57,45 +58,19 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="id" value="${cinema.id}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Dong</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="dongName" value="${cinema.cinemaCity.dongName}" disabled>
+                            <input type="text" class="form-control" name="id" value="${dong.id}" disabled>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Name</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="name" value="${cinema.name}" disabled>
+                            <input type="text" class="form-control" name="name" value="${dong.name}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Introduction</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">City_Name</th>
                         <td width="80%">
-                            <textarea name="introduction" class="form-control" style="width:100%; resize:none;"
-                                      rows="9" disabled>${cinema.introduction}</textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Address</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="address" value="${cinema.address}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">mapAddress</th>
-                        <td width="80%">
-                            <textarea name="mapAddress" class="form-control" style="width:100%; resize:none;"
-                                      rows="9" disabled>${cinema.mapAddress}</textarea>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Sales</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="sales" value="${cinema.sales}" disabled>
+                            <input type="text" class="form-control" name="cityName" value="${dong.dongCity.cityName}" disabled>
                         </td>
                     </tr>
                     </tbody>
@@ -141,7 +116,6 @@
         </div>
     </div>
 </div>
-
 
 </body>
 

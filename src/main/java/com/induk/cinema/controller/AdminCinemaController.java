@@ -3,6 +3,7 @@ package com.induk.cinema.controller;
 import com.induk.cinema.domain.Cinema;
 import com.induk.cinema.domain.City;
 import com.induk.cinema.service.CinemaService;
+import com.induk.cinema.service.DongService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ import javax.validation.Valid;
 public class AdminCinemaController {
 
     private final CinemaService cinemaService;
+    private final DongService dongService;
 
     @GetMapping
     public String cinemas(Model model) {
@@ -28,7 +30,7 @@ public class AdminCinemaController {
     @GetMapping("/add")
     public String addForm(Model model) {
         //비어있는 객체를 넘겨야 오류가 발생하지 않음
-        model.addAttribute("citys", cinemaService.findCity());
+        model.addAttribute("dongs", dongService.dongList());
         model.addAttribute("cinema", new Cinema());
         return "admin/cinema/addForm";
     }
@@ -40,7 +42,7 @@ public class AdminCinemaController {
                           Model model) {
 
         if(bindingResult.hasErrors()) {
-            model.addAttribute("citys", cinemaService.findCity());
+            model.addAttribute("dongs", dongService.dongList());
             return "admin/cinema/addForm";
         }
 
@@ -64,7 +66,7 @@ public class AdminCinemaController {
 
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
-        model.addAttribute("citys", cinemaService.findCity());
+        model.addAttribute("dongs", dongService.dongList());
         model.addAttribute("cinema", cinemaService.findCinema(id));
         return "admin/cinema/updateForm";
     }
@@ -77,7 +79,7 @@ public class AdminCinemaController {
                                @PathVariable("id") Long id) {
 
         if(bindingResult.hasErrors()) {
-            model.addAttribute("citys", cinemaService.findCity());
+            model.addAttribute("dongs", dongService.dongList());
             return "admin/cinema/updateForm";
         }
 

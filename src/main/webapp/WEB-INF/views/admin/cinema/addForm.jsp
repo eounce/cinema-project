@@ -47,13 +47,13 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <spring:bind path="cinema.city_id">
-                                <th scope="row" width="20%" style="vertical-align:middle;">City <font color="red">*</font></th>
+                            <spring:bind path="cinema.dong_id">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Dong <font color="red">*</font></th>
                                 <td width="80%">
                                     <select name="${status.expression }" id="${status.expression }" class="form-control">
-                                        <option value="" selected>도시를 선택해주세요</option>
-                                        <c:forEach var="city" items="${citys}">
-                                            <option value="${city.id}">${city.name}</option>
+                                        <option value="" selected>구/지점을 선택해주세요</option>
+                                        <c:forEach var="dong" items="${dongs}">
+                                            <option value="${dong.id}">${dong.name}</option>
                                         </c:forEach>
                                     </select>
                                     <!-- 해당 속성의 오류 message를 출력 -->
