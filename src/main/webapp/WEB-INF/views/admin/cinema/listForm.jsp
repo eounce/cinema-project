@@ -3,6 +3,8 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -46,8 +48,8 @@
                             <th width="20%">ID</th>
                             <th width="20%">City</th>
                             <th width="20%">Name</th>
-                            <th width="20%">address</th>
-                            <th width="20%">sales</th>
+                            <th width="20%">Facility</th>
+                            <th width="20%">Sales</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -55,8 +57,8 @@
                             <th width="20%">ID</th>
                             <th width="20%">City</th>
                             <th width="20%">Name</th>
-                            <th width="20%">address</th>
-                            <th width="20%">sales</th>
+                            <th width="20%">Facility</th>
+                            <th width="20%">Sales</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -66,8 +68,8 @@
                             <th width="20%"><a href="/csmovie/admin/cinemas/${cinema.id}" >${cinema.id}</a></th>
                             <th width="20%">${cinema.cinemaCity.cityName}</th>
                             <th width="20%">${cinema.name}</th>
-                            <th width="20%">${cinema.address}</th>
-                            <th width="20%">${cinema.sales}</th>
+                            <th width="20%">${cinema.facility}</th>
+                            <th width="20%"><fmt:formatNumber type="number" maxFractionDigits="3" value="${cinema.sales}"/>원</th>
                         </tr>
                         </c:forEach>
 

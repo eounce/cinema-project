@@ -7,6 +7,7 @@
     <id property="id" column="id"/>
     <result property="city_id" column="city_id"/>
     <result property="name" column="name"/>
+    <result property="facility" column="facility"/>
     <result property="introduction" column="introduction"/>
     <result property="address" column="address"/>
     <result property="mapAddress" column="mapAddress"/>
@@ -40,13 +41,13 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Cinema">
-        insert into cinema(city_id, name, introduction, address, mapAddress, sales)
-        values (#{city_id}, #{name}, #{introduction}, #{address}, #{mapAddress}, #{sales})
+        insert into cinema(city_id, name, facility, introduction, address, mapAddress, sales)
+        values (#{city_id}, #{name}, #{facility}, #{introduction}, #{address}, #{mapAddress}, #{sales})
     </insert>
 
     <update id="update" parameterType="Cinema">
         update cinema
-        set city_id=#{city_id}, name=#{name}, introduction=#{introduction}, address=#{address}, mapAddress=#{mapAddress}, sales=#{sales}
+        set city_id=#{city_id}, name=#{name}, facility=#{facility}, introduction=#{introduction}, address=#{address}, mapAddress=#{mapAddress}, sales=#{sales}
         where id=#{id}
     </update>
 

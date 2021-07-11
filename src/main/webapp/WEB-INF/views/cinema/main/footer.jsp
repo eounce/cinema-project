@@ -32,31 +32,11 @@
                 </a>
             </div>
             <ul class="social-icons">
-                <li>
-                    <a href="#0">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0" class="active">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="fab fa-pinterest-p"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="fab fa-google"></i>
-                    </a>
-                </li>
-                <li>
-                    <a href="#0">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </li>
+                <li><a href="https://www.facebook.com/megaboxon"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="https://twitter.com/megaboxon"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="http://instagram.com/megaboxon"><i class="fab fa-linkedin-in"></i></a></li>
+                <li><a href="https://play.google.com/store/apps/details?id=com.megabox.mop"><i class="fab fa-google-play"></i></a></li>
+                <li><a href="https://itunes.apple.com/kr/app/megabox/id894443858?l=ko&ls=1&mt=8"><i class="fab fa-apple"></i></a></li>
             </ul>
         </div>
         <div class="footer-bottom">
@@ -65,6 +45,7 @@
                     <p>Copyright © 2020.All Rights Reserved By <a href="#0">Boleto </a></p>
                 </div>
                 <ul class="links">
+                    <!--
                     <li>
                         <a href="#0">About</a>
                     </li>
@@ -80,6 +61,7 @@
                     <li>
                         <a href="#0">Feedback</a>
                     </li>
+                    -->
                 </ul>
             </div>
         </div>

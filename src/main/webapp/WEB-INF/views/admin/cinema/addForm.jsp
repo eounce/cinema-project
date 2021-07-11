@@ -73,6 +73,17 @@
                             </spring:bind>
                         </tr>
                         <tr>
+                            <spring:bind path="cinema.facility">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Facility <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="text" class="form-control" name="${status.expression }"
+                                           id="${status.expression }" placeholder=",로 구분하여 시설명을 입력해주세요(ex : 일반상영관,장애인석)">
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="cinema.introduction">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Introduction <font color="red">*</font></th>
                                 <td width="80%">

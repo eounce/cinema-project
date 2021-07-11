@@ -28,7 +28,7 @@
 
 <!-- ==========Banner-Section========== -->
 <section class="banner-section">
-    <div class="banner-bg bg_img bg-fixed" data-background="./assets/images/banner/banner02.jpg"></div>
+    <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner02.jpg"></div>
     <div class="container">
         <div class="banner-content">
             <h1 class="title bold">get <span class="color-theme">movie</span> tickets</h1>
@@ -41,7 +41,7 @@
 <!-- ==========Ticket-Search========== -->
 <section class="search-ticket-section padding-top pt-lg-0">
     <div class="container">
-        <div class="search-tab bg_img" data-background="./assets/images/ticket/ticket-bg01.jpg">
+        <div class="search-tab bg_img" data-background="/cinema/assets/images/ticket/ticket-bg01.jpg">
             <div class="row align-items-center mb--20">
                 <div class="col-lg-6 mb-20">
                     <div class="search-ticket-header">
@@ -370,7 +370,7 @@
                                                             <div class="movie-grid">
                                                                 <div class="movie-content bg-one">
                                                                     <h6 class="title m-0">
-                                                                        <a href="movie-details.html">${cinema.name}</a>
+                                                                        <a href="/csmovie/cinema/${cinema.id}">${cinema.name}</a>
                                                                     </h6>
                                                                     <ul class="movie-rating-percent">
                                                                         <li>

@@ -1,14 +1,17 @@
 package com.induk.cinema.controller;
 
-import com.induk.cinema.domain.City;
+import com.induk.cinema.domain.Cinema;
 import com.induk.cinema.service.CinemaService;
 import com.induk.cinema.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -25,6 +28,17 @@ public class CinemaController {
         model.addAttribute("citys", cityService.cityList());
 
         return "cinema/cinema/listForm";
+    }
+
+    @GetMapping("/{id}")
+    public String DetailForm(@PathVariable Long id, Model model) {
+
+        Cinema cinema = cinemaService.findCinema(id);
+        model.addAttribute("cinema", cinema);
+
+        List<String> list = Arrays.asList(cinema.getFacility().split(","));
+        model.addAttribute("facilitys", list);
+        return "cinema/cinema/detailForm";
     }
 
 

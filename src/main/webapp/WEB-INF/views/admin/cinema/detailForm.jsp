@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -67,6 +68,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Facility</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="facility" value="${cinema.facility}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Introduction</th>
                         <td width="80%">
                             <textarea name="introduction" class="form-control" style="width:100%; resize:none;"
@@ -89,7 +96,7 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Sales</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="sales" value="${cinema.sales}" disabled>
+                            <input type="text" class="form-control" name="sales" value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${cinema.sales}"/>원" disabled>
                         </td>
                     </tr>
                     </tbody>
