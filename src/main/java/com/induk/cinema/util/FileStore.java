@@ -15,6 +15,7 @@ public class FileStore {
 
     private String path = System.getProperty("user.dir");
     private String fileDir = path + "\\src\\main\\webapp\\WEB-INF\\views\\image\\";
+    //private String fileDir = path + "/webapps/csmovie/WEB-INF/views/image/";
 
     public String getFullPath(String directory, String filename) {
         return fileDir + directory + "\\" + filename;

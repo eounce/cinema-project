@@ -31,6 +31,13 @@
         where mad.id=#{id}
     </select>
 
+    <select id="findByTrailer" resultMap="resultMovieAd" parameterType="Long">
+        select mad.*, m.id as movieId, m.title
+        from movie_ad mad
+        inner join movie m on mad.movie_id = m.id
+        where m.id=#{id} and mad.kind like 'video'
+    </select>
+
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
         insert into movie_ad(movie_id, store_filename, upload_filename, path, kind) values
         <foreach collection="list" item="item" separator=", ">

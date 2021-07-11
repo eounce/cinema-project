@@ -27,6 +27,8 @@ public class MovieAdService {
 
     public MovieAd findMovieAd(Long id) { return movieAdRepository.findById(id); }
 
+    public MovieAd findMovieTrailer(Long id) { return movieAdRepository.findByTrailer(id); }
+
     public void addMovieAd(MovieAdForm movieAdForm) throws IOException {
         List<MovieAdForm> movieAdForms = new ArrayList<>();
 

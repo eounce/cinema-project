@@ -12,6 +12,7 @@ public interface MovieRepository {
 
     List<Movie> findAll();
     List<Movie> findByOption(Map<String, Object> map);
+    int countAll(Map<String, Object> map);
     Movie findById(Long id);
     void save(MovieForm movieForm);
     void update(MovieForm movieForm);

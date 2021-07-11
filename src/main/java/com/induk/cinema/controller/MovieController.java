@@ -1,10 +1,15 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Movie;
+import com.induk.cinema.domain.MovieAd;
 import com.induk.cinema.dto.Format;
+import com.induk.cinema.dto.MoviePage;
 import com.induk.cinema.service.GenreService;
+import com.induk.cinema.service.MovieAdService;
 import com.induk.cinema.service.MovieService;
+import com.induk.cinema.util.Criteria;
 import com.induk.cinema.util.FileStore;
+import com.induk.cinema.util.PageMaker;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -24,6 +29,7 @@ public class MovieController {
 
     private final GenreService genreService;
     private final MovieService movieService;
+    private final MovieAdService movieAdService;
     private final FileStore fileStore;
 
 
@@ -37,14 +43,32 @@ public class MovieController {
 
     @ResponseBody
     @PostMapping("/list")
-    public List<Movie> movie_list(@RequestParam(value = "genreChBox[]", required = false) List<String> genreChBox,
+    public MoviePage movie_list(@RequestParam(value = "genreChBox[]", required = false) List<String> genreChBox,
                                   @RequestParam(value = "formatChBox[]", required = false) List<String> formatChBox,
-                                  @RequestParam(value = "sort") int sort) {
+                                  @RequestParam(value = "sort") int sort,
+                                  @RequestParam(value = "page") int page) {
+        // 페이지 처리
+        Criteria criteria = new Criteria();
+        criteria.setPage(page);
 
-        log.info("genre : {}", genreChBox);
-        log.info("format : {}", formatChBox);
-        log.info("sort : {}", sort);
-        return movieService.movieListOpt(genreChBox, formatChBox, sort);
+        PageMaker pageMaker = new PageMaker();
+        pageMaker.setCri(criteria);
+        pageMaker.setTotalCount(movieService.movieCounts(genreChBox, formatChBox, sort));
+
+        // 영화 트레일러 가져오기
+        List<Movie> movies = movieService.movieListOpt(genreChBox, formatChBox, sort, criteria);
+        for (Movie movie : movies) {
+            MovieAd movieTrailer = movieAdService.findMovieTrailer(movie.getId());
+            if(movieTrailer != null) {
+                movie.setTrailer(movieTrailer.getStoreFilename());
+            }
+        }
+
+        MoviePage moviePage = new MoviePage();
+        moviePage.setMovieList(movies);
+        moviePage.setPageMaker(pageMaker);
+
+        return moviePage;
     }
 
     @ResponseBody

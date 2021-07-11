@@ -60,6 +60,31 @@
             </otherwise>
         </choose>
         order by m.release_date
+        limit #{startPage}, #{perPageNum}
+    </select>
+
+    <select id="countAll" resultType="int" parameterType="java.util.HashMap">
+        select count(*)
+        from movie m
+        where m.screening_format like concat('%',#{format},'%')
+        <if test="genres != null">
+            and m.genre_id in
+            <foreach collection="genres" item="opt" open="(" close=")" separator=", ">
+                #{opt}
+            </foreach>
+        </if>
+        <choose>
+            <when test="sort == 1">
+                <![CDATA[
+                    and m.release_date <= now()
+                ]]>
+            </when>
+            <otherwise>
+                <![CDATA[
+                    and m.release_date > now()
+                ]]>
+            </otherwise>
+        </choose>
     </select>
 
     <!--<select id="findByOption" resultMap="resultMovie" parameterType="java.util.List">

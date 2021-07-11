@@ -20,7 +20,7 @@
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
 </head>
 
-<body onload="createTable();">
+<body onload="createTable(1);">
 
 <c:import url="../main/nav.jsp"/>
 
@@ -242,7 +242,7 @@
                         <div class="check-area">
                             <c:forEach var="format" items="${formats}" varStatus="status">
                                 <div class="form-group">
-                                    <input type="checkbox" onchange="createTable();" class="format" name="format" value="${format.format}" id="format${status.index}">
+                                    <input type="checkbox" onchange="createTable(1);" class="format" name="format" value="${format.format}" id="format${status.index}">
                                     <label for="format${status.index}">${format.format}</label>
                                 </div>
                             </c:forEach>
@@ -255,7 +255,7 @@
                         <div class="check-area">
                             <c:forEach var="genre" items="${genres}" varStatus="status">
                                 <div class="form-group">
-                                    <input type="checkbox" onchange="createTable();" class="genre" name="genre" value="${genre.id}" id="genre${status.index}">
+                                    <input type="checkbox" onchange="createTable(1);" class="genre" name="genre" value="${genre.id}" id="genre${status.index}">
                                     <label for="genre${status.index}">${genre.name}</label>
                                 </div>
                             </c:forEach>
@@ -270,7 +270,7 @@
                             <div class="left">
                                 <div class="item">
                                     <span class="show">Sort By :</span>
-                                    <select class="select-bar" id="sort" name="sort" onchange="createTable();">
+                                    <select class="select-bar" id="sort" name="sort" onchange="createTable(1);">
                                         <option value="1" selected>현재 상영작</option>
                                         <option value="2">개봉 예정작</option>
                                     </select>
@@ -299,14 +299,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="pagination-area text-center">
-                        <a href="#0"><i class="fas fa-angle-double-left"></i><span>Prev</span></a>
-                        <a href="#0">1</a>
-                        <a href="#0">2</a>
-                        <a href="#0" class="active">3</a>
-                        <a href="#0">4</a>
-                        <a href="#0">5</a>
-                        <a href="#0"><span>Next</span><i class="fas fa-angle-double-right"></i></a>
+                    <div class="pagination-area text-center" id="pagination">
+
                     </div>
                 </div>
             </div>
@@ -319,10 +313,10 @@
     $("#clear").click(function () {
         $(".format").prop("checked", false);
         $(".genre").prop("checked", false);
-        createTable();
+        createTable(1);
     });
 
-    function createTable() {
+    function createTable(page) {
         var genrearray = new Array();
         var formatArray = new Array();
 
@@ -336,39 +330,61 @@
             formatArray.push($(this).val());
         });
 
-        console.log(genrearray);
-        console.log(sort);
-
         $.ajax({
             url: "/csmovie/movies/list",
             data: {
                 genreChBox: genrearray,
                 formatChBox: formatArray,
-                sort: sort
+                sort: sort,
+                page: page
             },
             type: 'post',
             success: function(data) {
                 let res1 = "";
                 let res2 = "";
+                let pagination = "";
                 console.log(data);
 
-                for(let i=0; i<data.length; i++) {
+                var movies = data.movieList;
+                var pageMaker = data.pageMaker;
+
+                if (pageMaker.prev) {
+                    pagination += "<a href=\"#0\" onclick=\"createTable("+ (pageMaker.startPage - 1) +");\"><i class=\"fas fa-angle-double-left\"></i><span>Prev</span></a>"
+                }
+
+                for (let i = pageMaker.startPage; i <= pageMaker.endPage; i++) {
+                    if (i == page) {
+                        pagination += "<a href=\"#0\" class=\"active\" onclick=\"createTable("+i+");\">" + i + "</a>"
+                    } else {
+                        pagination += "<a href=\"#0\" onclick=\"createTable("+i+");\">" + i + "</a>"
+                    }
+                }
+
+                if (pageMaker.next) {
+                    pagination += "<a href=\"#0\" onclick=\"createTable("+ (pageMaker.endPage + 1) +");\"><span>Next</span><i class=\"fas fa-angle-double-right\"></i></a>"
+                }
+
+                $("#pagination").html(pagination);
+
+                for(let i=0; i<movies.length; i++) {
+                    var trailer = movies[i].trailer != null ? movies[i].trailer : "#0";
+
                     res2 += "<div class=\"movie-list\">\n" +
                         "        <div class=\"movie-thumb c-thumb\">\n" +
-                        "            <a href=\"movie-details.html\" class=\"w-100 bg_img h-100\" data-background=\"/csmovie/movies/images/" + data[i].poster + "\">\n" +
-                        "                <img src=\"/csmovie/movies/images/" + data[i].poster + "\" alt=\"movie\">\n" +
+                        "            <a href=\"movie-details.html\" class=\"w-100 bg_img h-100\" data-background=\"/csmovie/movies/images/" + movies[i].poster + "\">\n" +
+                        "                <img src=\"/csmovie/movies/images/" + movies[i].poster + "\" alt=\"movie\">\n" +
                         "            </a>\n" +
                         "        </div>\n" +
                         "        <div class=\"movie-content bg-one\">\n" +
                         "            <h5 class=\"title\">\n" +
-                        "                <a href=\"movie-details.html\">" + data[i].title + "</a>\n" +
+                        "                <a href=\"movie-details.html\">" + movies[i].title + "</a>\n" +
                         "            </h5>\n" +
-                        "            <p class=\"duration\">" + data[i].showTimes + "분</p>\n" +
+                        "            <p class=\"duration\">" + movies[i].showTimes + "분</p>\n" +
                         "            <div class=\"movie-tags\">\n" +
-                        "                <a>" + data[i].genre.name + "</a>\n" +
+                        "                <a>" + movies[i].genre.name + "</a>\n" +
                         "            </div>\n" +
                         "            <div class=\"release\">\n" +
-                        "                <span>개봉일 : </span> <a> " + data[i].releaseDate + "</a>\n" +
+                        "                <span>개봉일 : </span> <a> " + movies[i].releaseDate + "</a>\n" +
                         "            </div>\n" +
                         "            <ul class=\"movie-rating-percent\">\n" +
                         "                <li>\n" +
@@ -402,7 +418,7 @@
                         "                        </a>\n" +
                         "                    </div>\n" +
                         "                    <div class=\"react-item\">\n" +
-                        "                        <a href=\"#0\" class=\"popup-video\">\n" +
+                        "                        <a href=\"" + trailer + "\" class=\"popup-video\">\n" +
                         "                            <div class=\"thumb\">\n" +
                         "                                <img src=\"/cinema/assets/images/icons/play-button.png\" alt=\"icons\">\n" +
                         "                            </div>\n" +
@@ -418,12 +434,12 @@
                         "        <div class=\"movie-grid\">\n" +
                         "            <div class=\"movie-thumb c-thumb\">\n" +
                         "                <a href=\"movie-details.html\">\n" +
-                        "                    <img src=\"/csmovie/movies/images/" + data[i].poster + "\" alt=\"movie\">\n" +
+                        "                    <img src=\"/csmovie/movies/images/" + movies[i].poster + "\" alt=\"movie\">\n" +
                         "                </a>\n" +
                         "            </div>\n" +
                         "            <div class=\"movie-content bg-one\">\n" +
                         "                <h5 class=\"title m-0\">\n" +
-                        "                    <a href=\"movie-details.html\">" + data[i].title + "</a>\n" +
+                        "                    <a href=\"movie-details.html\">" + movies[i].title + "</a>\n" +
                         "                </h5>\n" +
                         "                <ul class=\"movie-rating-percent\">\n" +
                         "                    <li>\n" +

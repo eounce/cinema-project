@@ -4,6 +4,7 @@ import com.induk.cinema.domain.Movie;
 import com.induk.cinema.dto.MovieForm;
 import com.induk.cinema.dto.UploadFile;
 import com.induk.cinema.repository.MovieRepository;
+import com.induk.cinema.util.Criteria;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -28,7 +29,24 @@ public class MovieService {
         return movieRepository.findAll();
     }
 
-    public List<Movie> movieListOpt(List<String> genreChBox, List<String> formatChBox, int sort) {
+    public List<Movie> movieListOpt(List<String> genreChBox, List<String> formatChBox, int sort, Criteria criteria) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("genres", genreChBox);
+        map.put("sort", sort);
+        map.put("startPage", criteria.getPageStart());
+        map.put("perPageNum", criteria.getPerPageNum());
+
+        if (formatChBox == null) {
+            map.put("format", "");
+        } else {
+            String format = String.join(",", formatChBox);
+            map.put("format", format);
+        }
+
+        return movieRepository.findByOption(map);
+    }
+    
+    public int movieCounts(List<String> genreChBox, List<String> formatChBox, int sort) {
         Map<String, Object> map = new HashMap<>();
         map.put("genres", genreChBox);
         map.put("sort", sort);
@@ -40,7 +58,7 @@ public class MovieService {
             map.put("format", format);
         }
 
-        return movieRepository.findByOption(map);
+        return movieRepository.countAll(map);
     }
 
     public Movie findMovie(Long id) {

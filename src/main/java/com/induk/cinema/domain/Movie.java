@@ -25,4 +25,6 @@ public class Movie {
     private String screeningFormat;
     private Director director;
     private Genre genre;
+
+    private String trailer;
 }
