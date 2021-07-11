@@ -235,7 +235,7 @@
 
                 <div class="widget-1 widget-check">
                     <div class="widget-header">
-                        <h5 class="m-title">Filter By</h5> <a href="#" class="clear-check" id="clear">Clear All</a>
+                        <h5 class="m-title">Filter By</h5> <a href="#0" class="clear-check" id="clear">Clear All</a>
                     </div>
                     <div class="widget-1-body">
                         <h6 class="subtitle">experience</h6>
@@ -371,13 +371,13 @@
 
                     res2 += "<div class=\"movie-list\">\n" +
                         "        <div class=\"movie-thumb c-thumb\">\n" +
-                        "            <a href=\"movie-details.html\" class=\"w-100 bg_img h-100\" data-background=\"/csmovie/movies/images/" + movies[i].poster + "\">\n" +
+                        "            <a href=\"/csmovie/movies/"+ movies[i].id +"\" class=\"w-100 bg_img h-100\" data-background=\"/csmovie/movies/images/" + movies[i].poster + "\">\n" +
                         "                <img src=\"/csmovie/movies/images/" + movies[i].poster + "\" alt=\"movie\">\n" +
                         "            </a>\n" +
                         "        </div>\n" +
                         "        <div class=\"movie-content bg-one\">\n" +
                         "            <h5 class=\"title\">\n" +
-                        "                <a href=\"movie-details.html\">" + movies[i].title + "</a>\n" +
+                        "                <a href=\"/csmovie/movies/"+ movies[i].id +"\">" + movies[i].title + "</a>\n" +
                         "            </h5>\n" +
                         "            <p class=\"duration\">" + movies[i].showTimes + "분</p>\n" +
                         "            <div class=\"movie-tags\">\n" +
@@ -433,13 +433,13 @@
                     res1 += "<div class=\"col-sm-6 col-lg-4\">\n" +
                         "        <div class=\"movie-grid\">\n" +
                         "            <div class=\"movie-thumb c-thumb\">\n" +
-                        "                <a href=\"movie-details.html\">\n" +
+                        "                <a href=\"/csmovie/movies/"+ movies[i].id +"\">\n" +
                         "                    <img src=\"/csmovie/movies/images/" + movies[i].poster + "\" alt=\"movie\">\n" +
                         "                </a>\n" +
                         "            </div>\n" +
                         "            <div class=\"movie-content bg-one\">\n" +
                         "                <h5 class=\"title m-0\">\n" +
-                        "                    <a href=\"movie-details.html\">" + movies[i].title + "</a>\n" +
+                        "                    <a href=\"/csmovie/movies/"+ movies[i].id +"\">" + movies[i].title + "</a>\n" +
                         "                </h5>\n" +
                         "                <ul class=\"movie-rating-percent\">\n" +
                         "                    <li>\n" +

@@ -20,6 +20,7 @@
     <resultMap id="directorMap" type="Director">
         <id property="id" column="directorId" />
         <result property="name" column="directorName" />
+        <result property="storeFilename" column="store_filename" />
     </resultMap>
 
     <resultMap id="genreMap" type="Genre">
@@ -102,7 +103,7 @@
     </select>-->
 
     <select id="findById" resultMap="resultMovie" parameterType="Long">
-        select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId
+        select m.*, d.name as directorName, d.store_filename, g.name as genreName, d.id as directorId, g.id as genreId
         from movie m
         inner join director d on m.director_id = d.id
         inner join genre g on m.genre_id = g.id
