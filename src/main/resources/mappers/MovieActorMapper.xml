@@ -18,10 +18,11 @@
     <resultMap id="actorMap" type="Actor" >
         <id property="id" column="actorId" />
         <result property="name" column="name" />
+        <result property="storeFilename" column="store_filename" />
     </resultMap>
 
     <select id="findByMovieId" resultMap="resultMovieActor" parameterType="Long">
-        select ma.*, m.title, a.name, m.id as movieId, a.id as actorId
+        select ma.*, m.title, a.name, m.id as movieId, a.id as actorId, a.store_filename
         from movie_actor ma
         inner join movie m on ma.movie_id = m.id
         inner join actor a on ma.actor_id = a.id

@@ -32,10 +32,17 @@
     </select>
 
     <select id="findByTrailer" resultMap="resultMovieAd" parameterType="Long">
-        select mad.*, m.id as movieId, m.title
+        select mad.*
         from movie_ad mad
         inner join movie m on mad.movie_id = m.id
         where m.id=#{id} and mad.kind like 'video'
+    </select>
+
+    <select id="findByImage" resultMap="resultMovieAd" parameterType="Long">
+        select mad.*
+        from movie_ad mad
+        inner join movie m on mad.movie_id = m.id
+        where m.id=#{id} and mad.kind like 'image'
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="java.util.List">
