@@ -84,6 +84,17 @@
                             </spring:bind>
                         </tr>
                         <tr>
+                            <spring:bind path="cinema.subtitle">
+                                <th scope="row" width="20%" style="vertical-align:middle;">SubTitle </th>
+                                <td width="80%">
+                                    <textarea name="${status.expression }" id="${status.expression }" style="width:100%; resize:none;"
+                                              rows="4" placeholder="소제목를 입력해주세요">${cinema.subtitle}</textarea>
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="cinema.facility">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Facility <font color="red">*</font></th>
                                 <td width="80%">
@@ -102,6 +113,17 @@
                                               rows="9" placeholder="극장 소개를 입력해주세요">${cinema.introduction}</textarea>
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     ${status.errorMessage }
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
+                            <spring:bind path="cinema.parking">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Parking <font color="red">*</font></th>
+                                <td width="80%">
+                                    <textarea name="${status.expression }" id="${status.expression }" style="width:100%; resize:none;"
+                                              rows="4" placeholder="주차안내를 입력해주세요">${cinema.parking}</textarea>
+                                    <!-- 해당 속성의 오류 message를 출력 -->
+                                        ${status.errorMessage }
                                 </td>
                             </spring:bind>
                         </tr>

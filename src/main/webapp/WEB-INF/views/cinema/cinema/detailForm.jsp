@@ -7,6 +7,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 
 <!DOCTYPE html>
 <html>
@@ -41,10 +43,10 @@
                 </div>
                 <div class="social-and-duration">
                     <div class="duration-area">
-                        <!--
                         <div class="item">
-                            <i class="fas fa-calendar-alt"></i><span>06 Dec, 2020</span>
+                            <span><c:if test="${cinema.subtitle != null}">${cinema.subtitle}</c:if></span>
                         </div>
+                        <!--
                         <div class="item">
                             <i class="far fa-clock"></i><span>2 hrs 50 mins</span>
                         </div>
@@ -70,7 +72,8 @@
     <div class="container">
         <div class="row justify-content-center flex-wrap-reverse mb--50">
             <div class="col-lg-3 col-sm-10 col-md-6 mb-50">
-                <div class="widget-1 widget-tags">
+                <div class="widget-1 widget-offer widget-tags">
+                    <h3 class="title">보유 시설</h3>
                     <ul>
                         <c:forEach var="facility" items="${facilitys}">
                         <li>
@@ -144,15 +147,33 @@
                         <div class="tab-area">
                             <div class="tab-item active">
                                 <div class="item" style="margin-bottom:15px;">
-                                    <h5 class="sub-title">상세정보</h5>
-                                    <p style="font-size:20px; margin-top:10px;">${cinema.introduction}</p>
+                                    <p style="font-size:20px; margin-top:60px;">${fn:replace(cinema.introduction, replaceChar, "<br>")}</p>
                                 </div>
                                 <div class="item" style=""><div class="header"></div></div>
+
+                                <div class="item">
+                                    <div class="header">
+                                        <h5 class="sub-title">주차 안내</h5>
+                                    </div>
+                                    <div class="blog-author">
+                                        <div style="font-size: 100px;">
+                                            <i class="fas fa-parking"></i>
+                                        </div>
+                                        <div class="author-content">
+                                            <h5 class="title">
+                                            </h5>
+                                            <p>
+                                                ${fn:replace(cinema.parking, replaceChar, "<br>")}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
                                 <div class="item">
                                     <div class="header">
                                         <h5 class="sub-title">영화관 위치
                                             <div class="item">
-                                                <span style="font-size:20px">도로명 주소 : ${cinema.address}</span>
+                                                <span style="font-size:15px; margin-top:5px;">도로명 주소 : ${cinema.address}</span>
                                             </div>
                                         </h5>
                                     </div>
@@ -160,275 +181,245 @@
                                         <iframe src="${cinema.mapAddress}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                     </div>
                                 </div>
-                                <div class="item">
-                                    <div class="header">
-                                        <h5 class="sub-title">crew</h5>
-                                        <div class="navigation">
-                                            <div class="cast-prev-2"><i class="flaticon-double-right-arrows-angles"></i></div>
-                                            <div class="cast-next-2"><i class="flaticon-double-right-arrows-angles"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="casting-slider-two owl-carousel">
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="/cinema/assets/images/cast/cast05.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">pete warren</a></h6>
-                                                <span class="cate">actor</span>
-                                            </div>
-                                        </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="/cinema/assets/images/cast/cast06.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">howard bass</a></h6>
-                                                <span class="cate">executive producer</span>
-                                            </div>
-                                        </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="/cinema/assets/images/cast/cast07.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">naomi smith</a></h6>
-                                                <span class="cate">producer</span>
-                                            </div>
-                                        </div>
-                                        <div class="cast-item">
-                                            <div class="cast-thumb">
-                                                <a href="#0">
-                                                    <img src="/cinema/assets/images/cast/cast08.jpg" alt="cast">
-                                                </a>
-                                            </div>
-                                            <div class="cast-content">
-                                                <h6 class="cast-title"><a href="#0">tom martinez</a></h6>
-                                                <span class="cate">producer</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
+
                             <div class="tab-item">
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast02.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">minkuk seo</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast04.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">rudra rai</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast01.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">rafuj</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast03.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">bela bose</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="load-more text-center">
-                                    <a href="#0" class="custom-button transparent">load more</a>
-                                </div>
+
+
                             </div>
 
                             <div class="tab-item">
                                 <div>
-                                    <div style="float:left;">
-                                        <p class="fee-table-tit">  2D</p>
-                                        <div class="table-wrap">
-                                            <table class="data-table a-c" summary="가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다.">
-                                                <colgroup>
-                                                    <col>
-                                                    <col style="width:25%;">
-                                                    <col style="width:25%;">
-                                                    <col style="width:25%;">
-                                                </colgroup>
-                                                <thead>
-                                                    <tr>
-                                                        <th scope="col">요일</th>
-                                                        <th scope="col">상영시간</th>
-                                                        <th scope="col">일반</th>
-                                                        <th scope="col">청소년</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th scope="rowgroup" rowspan="3">월~목</th>
-                                                    <td>조조 (06:00~)</td>
-                                                    <td>9,000</td>
-                                                    <td>7,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>일반 (10:01~)</td>
-                                                    <td>13,000</td>
-                                                    <td>10,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>심야 (23:00~)</td>
-                                                    <td>12,000</td>
-                                                    <td>9,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="rowgroup" rowspan="3">금~일<br>공휴일</th>
-                                                    <td>조조 (06:00~)</td>
-                                                    <td>10,000</td>
-                                                    <td>7,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>일반 (10:01~)</td>
-                                                    <td>14,000</td>
-                                                    <td>11,000</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>심야 (23:00~)</td>
-                                                    <td>13,000</td>
-                                                    <td>10,000</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                    <div style="float:left;">
-                                        <p class="fee-table-tit">  3D</p>
-                                        <div class="table-wrap">
-                                            <table class="data-table a-c" summary="가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다.">			<caption>가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다.</caption>			<colgroup>				<col>				<col style="width:25%;">				<col style="width:25%;">				<col style="width:25%;">			</colgroup>			<thead>				<tr>					<th scope="col">요일</th>					<th scope="col">상영시간</th>					<th scope="col">일반</th>					<th scope="col">청소년</th>				</tr>			</thead>			<tbody><tr><th scope="rowgroup" rowspan="3">월~목</th><td>조조 (06:00~)</td><td>10,000</td><td>8,000</td></tr><tr><td>일반 (10:01~)</td><td>14,000</td><td>11,000</td></tr><tr><td>심야 (23:00~)</td><td>13,000</td><td>10,000</td></tr><tr><th scope="rowgroup" rowspan="3">금~일<br>공휴일</th><td>조조 (06:00~)</td><td>11,000</td><td>9,000</td></tr><tr><td>일반 (10:01~)</td><td>15,000</td><td>12,000</td></tr><tr><td>심야 (23:00~)</td><td>14,000</td><td>11,000</td></tr></tbody>		</table>	</div></div></div>
-                            </div>
+                                    <c:forEach var="facility" items="${facilitys}">
+                                        <c:if test="${facility == '일반상영관'}">
+                                            <div style="float:left; width:50%;">
+                                                <p style="margin-top:20px;">  2D</p>
+                                                <div class="table-wrap">
+                                                    <table class="data-table a-c" summary="가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다." style="text-align: center;">
+                                                        <colgroup>
+                                                            <col>
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">요일</th>
+                                                                <th scope="col">상영시간</th>
+                                                                <th scope="col">일반</th>
+                                                                <th scope="col">청소년</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="rowgroup" rowspan="3">월~목</th>
+                                                            <td>조조 (06:00~)</td>
+                                                            <td>5,000</td>
+                                                            <td>2,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>일반 (10:01~)</td>
+                                                            <td>10,000</td>
+                                                            <td>7,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>심야 (23:00~)</td>
+                                                            <td>9,000</td>
+                                                            <td>6,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="rowgroup" rowspan="3">금~일<br>공휴일</th>
+                                                            <td>조조 (06:00~)</td>
+                                                            <td>5,000</td>
+                                                            <td>2,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>일반 (10:01~)</td>
+                                                            <td>11,000</td>
+                                                            <td>8,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>심야 (23:00~)</td>
+                                                            <td>10,000</td>
+                                                            <td>7,000</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
 
+                                            <div style="float:left; width:50%;">
+                                                <p style="margin-top:20px;">  3D</p>
+                                                <div class="table-wrap">
+                                                    <table class="data-table a-c" summary="가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다." style="text-align: center;">
+                                                        <colgroup>
+                                                            <col>
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                        </colgroup>
+                                                        <thead>
+                                                            <tr>
+                                                                <th scope="col">요일</th>
+                                                                <th scope="col">상영시간</th>
+                                                                <th scope="col">일반</th>
+                                                                <th scope="col">청소년</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th scope="rowgroup" rowspan="3">월~목</th>
+                                                                <td>조조 (06:00~)</td>
+                                                                <td>10,000</td>
+                                                                <td>7,000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>일반 (10:01~)</td>
+                                                                <td>15,000</td>
+                                                                <td>12,000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>심야 (23:00~)</td>
+                                                                <td>14,000</td>
+                                                                <td>11,000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th scope="rowgroup" rowspan="3">금~일<br>공휴일</th>
+                                                                <td>조조 (06:00~)</td>
+                                                                <td>10,000</td>
+                                                                <td>7,000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>일반 (10:01~)</td>
+                                                                <td>16,000</td>
+                                                                <td>13,000</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>심야 (23:00~)</td>
+                                                                <td>15,000</td>
+                                                                <td>12,000</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${facility == 'MX'}">
+                                            <div style="float:left; width:50%;">
+                                                <p style="margin-top:20px;">  MX 2D</p>
+                                                <div class="table-wrap">
+                                                    <table class="data-table a-c" summary="가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다." style="text-align: center;">
+                                                        <colgroup>
+                                                            <col>
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                        </colgroup>
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">요일</th>
+                                                            <th scope="col">상영시간</th>
+                                                            <th scope="col">일반</th>
+                                                            <th scope="col">청소년</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="rowgroup" rowspan="3">월~목</th>
+                                                            <td>조조 (06:00~)</td>
+                                                            <td>8,000</td>
+                                                            <td>5,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>일반 (10:01~)</td>
+                                                            <td>13,000</td>
+                                                            <td>10,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>심야 (23:00~)</td>
+                                                            <td>12,000</td>
+                                                            <td>9,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="rowgroup" rowspan="3">금~일<br>공휴일</th>
+                                                            <td>조조 (06:00~)</td>
+                                                            <td>8,000</td>
+                                                            <td>5,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>일반 (10:01~)</td>
+                                                            <td>14,000</td>
+                                                            <td>11,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>심야 (23:00~)</td>
+                                                            <td>13,000</td>
+                                                            <td>10,000</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div style="float:left; width:50%;">
+                                                <p style="margin-top:20px;">  MX 3D</p>
+                                                <div class="table-wrap">
+                                                    <table class="data-table a-c" summary="가격표를 요일, 상영시간, 일반, 청소년 순서로 보여줍니다." style="text-align: center;">
+                                                        <colgroup>
+                                                            <col>
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                            <col style="width:25%;">
+                                                        </colgroup>
+                                                        <thead>
+                                                        <tr>
+                                                            <th scope="col">요일</th>
+                                                            <th scope="col">상영시간</th>
+                                                            <th scope="col">일반</th>
+                                                            <th scope="col">청소년</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <th scope="rowgroup" rowspan="3">월~목</th>
+                                                            <td>조조 (06:00~)</td>
+                                                            <td>13,000</td>
+                                                            <td>10,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>일반 (10:01~)</td>
+                                                            <td>15,000</td>
+                                                            <td>12,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>심야 (23:00~)</td>
+                                                            <td>14,000</td>
+                                                            <td>11,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="rowgroup" rowspan="3">금~일<br>공휴일</th>
+                                                            <td>조조 (06:00~)</td>
+                                                            <td>10,000</td>
+                                                            <td>7,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>일반 (10:01~)</td>
+                                                            <td>16,000</td>
+                                                            <td>13,000</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>심야 (23:00~)</td>
+                                                            <td>15,000</td>
+                                                            <td>12,000</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </c:if>
+                                    </c:forEach>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

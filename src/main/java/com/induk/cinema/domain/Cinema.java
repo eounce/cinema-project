@@ -23,12 +23,18 @@ public class Cinema {
     private String name;
 
     @Size(max = 64, message = "시설명은 최대 64자입니다.")
+    private String subtitle;
+
+    @Size(max = 64, message = "시설명은 최대 64자입니다.")
     @NotBlank(message = "시설명은 필수 입력입니다.(시설명 구분 = ,)")
     private String facility;
 
     @Size(max = 1024, message = "극장 소개는 최대 1024자입니다.")
     @NotBlank(message = "극장 소개는 필수 입력입니다.")
     private String introduction;
+
+    @NotBlank(message = "주차안내는 필수 입력입니다.")
+    private String parking;
 
     @NotBlank(message = "극장 주소는 필수 입력입니다.")
     private String address;

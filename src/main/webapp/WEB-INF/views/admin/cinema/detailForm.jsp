@@ -68,6 +68,12 @@
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">SubTitle</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="name" value="${cinema.subtitle}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Facility</th>
                         <td width="80%">
                             <input type="text" class="form-control" name="facility" value="${cinema.facility}" disabled>
@@ -78,6 +84,13 @@
                         <td width="80%">
                             <textarea name="introduction" class="form-control" style="width:100%; resize:none;"
                                       rows="9" disabled>${cinema.introduction}</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Parking</th>
+                        <td width="80%">
+                            <textarea name="introduction" class="form-control" style="width:100%; resize:none;"
+                                      rows="9" disabled>${cinema.parking}</textarea>
                         </td>
                     </tr>
                     <tr>
