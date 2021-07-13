@@ -37,7 +37,7 @@
         <div class="card shadow mb-4">
             <form method="post" action="/csmovie/admin/theaters/add">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"><a href="/csmovie/admin/theaters" style="text-decoration:none"> Cinema</a></i>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-video"><a href="/csmovie/admin/theaters" style="text-decoration:none"> Theater</a></i>
                         <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/theaters'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
