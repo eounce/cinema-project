@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.time.LocalDate" %><%--
   Created by IntelliJ IDEA.
   User: 201712029@office.induk.ac.kr
   Date: 2021-07-11
@@ -19,10 +19,14 @@
 
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
 
-
+    <style>
+        /*.rating i:nth-child(1) {
+            color: #f1481f;
+        }*/
+    </style>
 </head>
 
-<body>
+<body onload="appraisalsList(${movie.id})">
 
 <c:import url="../main/nav.jsp"/>
 
@@ -95,8 +99,8 @@
                 </div>
                 <div class="item">
                     <div class="item-header">
-                        <h5 class="title">4.5</h5>
-                        <div class="rated">
+                        <h5 class="title" id="movieRating">4.5</h5>&nbsp;&nbsp;
+                        <div class="rating" id="ratingValue">
                             <i class="fas fa-heart"></i>
                             <i class="fas fa-heart"></i>
                             <i class="fas fa-heart"></i>
@@ -105,19 +109,6 @@
                         </div>
                     </div>
                     <p>Users Rating</p>
-                </div>
-                <div class="item">
-                    <div class="item-header">
-                        <div class="rated rate-it">
-                            <i class="fas fa-heart"></i>
-                            <i class="fas fa-heart"></i>
-                            <i class="fas fa-heart"></i>
-                            <i class="fas fa-heart"></i>
-                            <i class="fas fa-heart"></i>
-                        </div>
-                        <h5 class="title">0.0</h5>
-                    </div>
-                    <p><a href="#0">Rate It</a></p>
                 </div>
             </div>
             <a href="#0" class="custom-button">book tickets</a>
@@ -197,7 +188,7 @@
                                 정보
                             </li>
                             <li>
-                                리뷰 <span>147</span>
+                                평점 <span id="appraisalCount">147</span>
                             </li>
                         </ul>
                         <div class="tab-area">
@@ -245,153 +236,137 @@
                                 </div>
                             </div>
                             <div class="tab-item">
-                                <div class="movie-review-item">
+                                <div id="movie-review-itmes">
+
+                                </div>
+
+                                <!-- 평점 입력 화면 -->
+                                <div class="movie-review-item" id="appraisalToggle" style="display: none;">
                                     <div class="author">
                                         <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast02.jpg" alt="cast">
+                                            <a>
+                                                <img src="/csmovie/appraisals/images/${sessionScope.member.image}" alt="cast" style="height: 54px;width: 54px">
                                             </a>
                                         </div>
                                         <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">minkuk seo</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
+                                            <%
+                                                LocalDate now = LocalDate.now();
+                                            %>
+                                            <span class="reply-date"><%=now%></span>
+                                            <h6 class="subtitle"><a href="#0">${sessionScope.member.name}</a></h6>
                                         </div>
                                     </div>
                                     <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
+                                        <form action="#0" method="post" id="form1">
+                                            <table class="table table-borderless">
+                                                <tbody>
+                                                    <tr>
+                                                        <td width="100%">
+                                                            <div class="make_heart">
+                                                                <i class="fas fa-heart fa-3x" style="color: #f1481f"></i>
+                                                                <i class="fas fa-heart fa-3x"></i>
+                                                                <i class="fas fa-heart fa-3x"></i>
+                                                                <i class="fas fa-heart fa-3x"></i>
+                                                                <i class="fas fa-heart fa-3x"></i>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%">
+                                                            <input type="text" name="title" id="title" class="form-control" placeholder="제목" required>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%">
+                                                            <textarea name="content" id="content" rows="3" class="form-control" placeholder="내용" required></textarea>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="100%">
+                                                            <input type="hidden" id="movieId" name="movieId" value="${movie.id}">
+                                                            <input type="hidden" id="memberId" name="memberId" value="${sessionScope.member.id}">
+                                                            <input type="hidden" id="grade" name="grade" value="1">
+                                                            <input type="button" id="submit" class="btn btn-sm btn-primary"  value="저장" />
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="movie-review-item">
+
+                                <!-- 평점 수정 화면 -->
+                                <div class="movie-review-item" id="appraisalUpdateToggle" style="display: none;">
                                     <div class="author">
                                         <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast04.jpg" alt="cast">
+                                            <a>
+                                                <img src="/csmovie/appraisals/images/${sessionScope.member.image}" alt="cast" style="height: 54px;width: 54px">
                                             </a>
                                         </div>
                                         <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">rudra rai</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
+                                            <%
+                                                LocalDate now2 = LocalDate.now();
+                                            %>
+                                            <span class="reply-date"><%=now2%></span>
+                                            <h6 class="subtitle"><a href="#0">${sessionScope.member.name}</a></h6>
                                         </div>
                                     </div>
                                     <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
+                                        <form action="#0" method="post" id="form2">
+                                            <table class="table table-borderless">
+                                                <tbody>
+                                                <tr>
+                                                    <td width="100%">
+                                                        <div class="make_heart">
+                                                            <i class="fas fa-heart fa-3x" style="color: #f1481f"></i>
+                                                            <i class="fas fa-heart fa-3x"></i>
+                                                            <i class="fas fa-heart fa-3x"></i>
+                                                            <i class="fas fa-heart fa-3x"></i>
+                                                            <i class="fas fa-heart fa-3x"></i>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%">
+                                                        <input type="text" name="titleUpdate" id="titleUpdate" class="form-control" placeholder="제목" required>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%">
+                                                        <textarea name="contentUpdate" id="contentUpdate" rows="3" class="form-control" placeholder="내용" required></textarea>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td width="100%">
+                                                        <input type="hidden" id="id2" name="id">
+                                                        <input type="hidden" id="movieId2" name="movieId" value="${movie.id}">
+                                                        <input type="hidden" id="grade2" name="grade" value="1">
+                                                        <input type="button" id="update" class="btn btn-sm btn-primary"  value="수정" />
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </form>
                                     </div>
                                 </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast01.jpg" alt="cast">
-                                            </a>
+
+                                <c:choose>
+                                    <c:when test="${empty sessionScope.member}">
+                                        <div class="load-more text-center">
+                                            <a class="custom-button transparent">내 평가 작성</a>
                                         </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">rafuj</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <div class="load-more text-center">
+                                            <a href="#0" class="custom-button transparent" id="appraisal">내 평가 작성</a>
                                         </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="movie-review-item">
-                                    <div class="author">
-                                        <div class="thumb">
-                                            <a href="#0">
-                                                <img src="/cinema/assets/images/cast/cast03.jpg" alt="cast">
-                                            </a>
-                                        </div>
-                                        <div class="movie-review-info">
-                                            <span class="reply-date">13 Days Ago</span>
-                                            <h6 class="subtitle"><a href="#0">bela bose</a></h6>
-                                            <span><i class="fas fa-check"></i> verified review</span>
-                                        </div>
-                                    </div>
-                                    <div class="movie-review-content">
-                                        <div class="review">
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                            <i class="flaticon-favorite-heart-button"></i>
-                                        </div>
-                                        <h6 class="cont-title">Awesome Movie</h6>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer volutpat enim non ante egestas vehicula. Suspendisse potenti. Fusce malesuada fringilla lectus venenatis porttitor. </p>
-                                        <div class="review-meta">
-                                            <a href="#0">
-                                                <i class="flaticon-hand"></i><span>8</span>
-                                            </a>
-                                            <a href="#0" class="dislike">
-                                                <i class="flaticon-dont-like-symbol"></i><span>0</span>
-                                            </a>
-                                            <a href="#0">
-                                                Report Abuse
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
+                                    </c:otherwise>
+                                </c:choose>
+
                                 <div class="load-more text-center">
                                     <a href="#0" class="custom-button transparent">load more</a>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -404,6 +379,256 @@
 
 <!-- ==========Newslater-Section========== -->
 <c:import url="../main/footer.jsp"/>
+
+<script>
+    // validation
+    var markingErrorField = function (response) {
+        const errorFields = response.responseJSON.errors;
+
+        if(!errorFields) {
+            alert(response.response.message);
+            return;
+        }
+
+        var $field, error;
+        for (var i=0, length = errorFields.length; i < length; i++) {
+            error = errorFields[i];
+            $field = $('#' + error['field']);
+
+            if($field && $field.length > 0) {
+                $field.siblings('.error-message').remove();
+                $field.after('<span class="error-message text-danger">' + error.defaultMessage + '</span>');
+            }
+        }
+    };
+
+    // 날짜 차이 계산 함수
+    function dateDiff(_date1, _date2) {
+        var diffDate_1 = _date1 instanceof Date ? _date1 : new Date(_date1);
+        var diffDate_2 = _date2 instanceof Date ? _date2 : new Date(_date2);
+
+        diffDate_1 = new Date(diffDate_1.getFullYear(), diffDate_1.getMonth()+1, diffDate_1.getDate());
+        diffDate_2 = new Date(diffDate_2.getFullYear(), diffDate_2.getMonth()+1, diffDate_2.getDate());
+
+        var diff = Math.abs(diffDate_2.getTime() - diffDate_1.getTime());
+        diff = Math.ceil(diff / (1000 * 3600 * 24));
+
+        return diff;
+    }
+
+    // 평점 삭제
+    function appraisalsDelete(id) {
+        console.log(id);
+
+        var con_test = confirm("삭제할까요 ?");
+        if (con_test == true) {
+            $(function() {
+                $.ajax({
+                    type: "post",
+                    url: "/csmovie/appraisals/delete",
+                    data: {
+                        id: id
+                    },
+                    success: function (data) {
+                        appraisalsList(data);
+                    }
+                });
+            });
+        } else if (con_test == false) {
+            return 0;
+        }
+    }
+
+    // 평점 수정 클릭 시
+    function appraisalsUpdate(title, content, grade, id) {
+        $("#titleUpdate").siblings('.error-message').remove();
+        $("#contentUpdate").siblings(".error-message").remove();
+
+        $("#appraisalToggle").hide();
+        $("#appraisalUpdateToggle").toggle();
+
+        console.log(content);
+
+        $("#titleUpdate").val(title);
+        $("#contentUpdate").val(content);
+        $('input[name=grade]').attr('value', grade);
+        $('input[name=id]').attr('value', id);
+
+        $('.make_heart i').css({color:'#222529'});
+        $('.make_heart i:nth-child(-n+' + grade + ')').css({color:'#f1481f'});
+    }
+
+    // 평점 수정
+    $(function () {
+        $("#update").on("click", function() {
+            $("#titleUpdate").siblings('.error-message').remove();
+            $("#contentUpdate").siblings(".error-message").remove();
+
+            var form2 = $("#form2").serialize();
+
+            console.log(form2);
+            $.ajax({
+                type: "post",
+                url: "/csmovie/appraisals/update",
+                data: form2,
+                dataType: 'json',
+                success: function (data) {
+                    $("#appraisalUpdateToggle").toggle();
+                    appraisalsList(data);
+                },
+                error: function (response) {
+                    markingErrorField(response);
+                }
+            });
+        });
+    });
+
+    // 평점 목록
+    function appraisalsList(movieId) {
+        console.log(movieId);
+        $(function() {
+            $.ajax({
+                type: "post",
+                url: "/csmovie/appraisals",
+                data: {
+                    movieId: movieId
+                },
+                success: function (data) {
+                    console.log(data);
+
+                    let res = "";
+                    var grade = 0;
+
+                    for(let i=0; i<data.length; i++) {
+                        grade += data[i].grade;
+
+                        var diff = dateDiff(data[i].reportingDate, new Date());
+                        var date = diff == 0 ? "오늘" : diff + "일 전";
+                        var memberId = ${sessionScope.member.id}
+
+                        res += "<div class=\"movie-review-item\">\n" +
+                            "                                    <div class=\"author\">\n" +
+                            "                                        <div class=\"thumb\">\n" +
+                            "                                            <a href=\"#0\">\n" +
+                            "                                                <img src=\"/csmovie/appraisals/images/" + data[i].memberImage + "\" alt=\"cast\" style=\"height: 54px;width: 54px\">\n" +
+                            "                                            </a>\n" +
+                            "                                        </div>\n" +
+                            "                                        <div class=\"movie-review-info\">\n" +
+                            "                                            <span class=\"reply-date\">" + date + "</span>\n" +
+                            "                                            <h6 class=\"subtitle\"><a href=\"#0\">" + data[i].memberName + "</a></h6>\n" +
+                            "                                            <span><i class=\"fas fa-check\"></i> verified review</span>\n" +
+                            "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "                                    <div class=\"movie-review-content\">\n" +
+                            "                                        <div class=\"rating\" data-rate=\"" + data[i].grade + "\">\n" +
+                            "                                            <i class=\"flaticon-favorite-heart-button\"></i>\n" +
+                            "                                            <i class=\"flaticon-favorite-heart-button\"></i>\n" +
+                            "                                            <i class=\"flaticon-favorite-heart-button\"></i>\n" +
+                            "                                            <i class=\"flaticon-favorite-heart-button\"></i>\n" +
+                            "                                            <i class=\"flaticon-favorite-heart-button\"></i>\n" +
+                            "                                        </div>\n" +
+                            "                                        <h6 class=\"cont-title\">" + data[i].title + "</h6>\n" +
+                            "                                        <p>" + data[i].content + "</p>\n" +
+                            "                                        <div class=\"review-meta\">\n" +
+                            "                                            <a href=\"#0\">\n" +
+                            "                                                <i class=\"flaticon-hand\"></i><span>" + data[i].likeCount + "</span>\n" +
+                            "                                            </a>\n" +
+                            "                                            <a href=\"#0\" class=\"dislike\">\n" +
+                            "                                                <i class=\"flaticon-dont-like-symbol\"></i><span>" + data[i].hateCount + "</span>\n" +
+                            "                                            </a>\n";
+                            if(memberId == data[i].memberId) {
+                                res += "                                         <a href=\"#0\" onclick=\"appraisalsDelete(" + data[i].id + ")\">\n"+
+                                    "                                                삭제\n" +
+                                    "                                            </a>\n" +
+                                    "                                            <a href=\"#0\" onclick=\"appraisalsUpdate('" + data[i].title + "','" + data[i].content + "'," + data[i].grade + "," + data[i].id + ")\">\n" +
+                                    "                                               수정\n" +
+                                    "                                            </a>\n";
+                            }
+                        res += "                                        </div>\n" +
+                            "                                    </div>\n" +
+                            "                                </div>";
+                    }
+                    $("#movie-review-itmes").html(res);
+
+                    grade = grade / data.length;
+                    $("#appraisalCount").text(data.length);
+                    $('#movieRating').text(isNaN(grade) ? '0' : grade.toFixed(1));
+                    $('#ratingValue').attr("data-rate", Math.round(grade));
+
+                    var rating = $('.rating');
+
+                    rating.each(function() {
+                        var targetScore = $(this).attr('data-rate');
+                        console.log(targetScore);
+
+                        $(this).find('i:nth-child(-n+' + targetScore + ')').css({color: '#f1481f'});
+                    });
+                }
+            })
+        });
+    }
+
+    // 평점 작성 버튼 클릭시 토글
+    $(function () {
+       $("#appraisal").click(function () {
+           $("#title").siblings('.error-message').remove();
+           $("#content").siblings(".error-message").remove();
+
+           $('#title').val("");
+           $('#content').val("");
+
+           $("#appraisalUpdateToggle").hide();
+
+           $('.make_heart i').css({color:'#222529'});
+           $('.make_heart i:nth-child(1)').css({color:'#f1481f'});
+           $('input[name=grade]').attr('value', 1);
+
+           $("#appraisalToggle").toggle();
+       });
+    });
+
+    // 하트 클릭시 색칠
+    $(function () {
+        $('.make_heart i').click(function() {
+            var targetNum = $(this).index() + 1;
+            $('input[name=grade]').attr('value', targetNum);
+
+            $('.make_heart i').css({color:'#222529'});
+            $('.make_heart i:nth-child(-n+' + targetNum + ')').css({color:'#f1481f'});
+        });
+    });
+
+    // 평점 저장
+    $(function () {
+       $("#submit").on("click", function() {
+           $("#title").siblings('.error-message').remove();
+           $("#content").siblings(".error-message").remove();
+
+           var form1 = $("#form1").serialize();
+
+           console.log(form1);
+           $.ajax({
+               type: "post",
+               url: "/csmovie/appraisals/add",
+               data: form1,
+               dataType: 'json',
+               success: function (data) {
+                   $("#appraisalToggle").toggle();
+                   $('#form1').each(function() {
+                       this.reset();
+                   });
+                   $('.make_heart i').css({color:'#222529'});
+                   $('.make_heart i:nth-child(1)').css({color:'#f1481f'});
+
+                   appraisalsList(data);
+               },
+               error: function (response) {
+                   markingErrorField(response);
+               }
+           });
+       });
+    });
+</script>
 
 </body>
 

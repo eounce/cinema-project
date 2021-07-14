@@ -21,3 +21,5 @@
 <link rel="stylesheet" href="/cinema/assets/css/main.css">
 
 <link rel="shortcut icon" href="/cinema/assets/images/favicon.png" type="image/x-icon">
+
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css'/>

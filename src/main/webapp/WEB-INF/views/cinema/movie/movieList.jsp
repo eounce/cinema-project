@@ -368,6 +368,7 @@
 
                 for(let i=0; i<movies.length; i++) {
                     var trailer = movies[i].trailer != null ? movies[i].trailer : "#0";
+                    var formats = movies[i].screeningFormat.split(',');
 
                     res2 += "<div class=\"movie-list\">\n" +
                         "        <div class=\"movie-thumb c-thumb\">\n" +
@@ -386,29 +387,16 @@
                         "            <div class=\"release\">\n" +
                         "                <span>개봉일 : </span> <a> " + movies[i].releaseDate + "</a>\n" +
                         "            </div>\n" +
-                        "            <ul class=\"movie-rating-percent\">\n" +
-                        "                <li>\n" +
-                        "                    <div class=\"thumb\">\n" +
-                        "                        <img src=\"/cinema/assets/images/movie/tomato.png\" alt=\"movie\">\n" +
-                        "                    </div>\n" +
-                        "                    <span class=\"content\">88%</span>\n" +
-                        "                </li>\n" +
-                        "                <li>\n" +
-                        "                    <div class=\"thumb\">\n" +
-                        "                        <img src=\"/cinema/assets/images/movie/cake.png\" alt=\"movie\">\n" +
-                        "                    </div>\n" +
-                        "                    <span class=\"content\">88%</span>\n" +
-                        "                </li>\n" +
-                        "            </ul>\n" +
+                        "            <div class=\"widget-1 widget-tags\">\n" +
+                        "                <br><br><br>" +
+                        "                <ul>\n";
+                        for(let i = 0; i < formats.length; i++) {
+                            res2 += "        <li><a>" + formats[i] + "</a></li>\n";
+                        }
+                    res2 += "            </ul>\n" +
+                        "            </div>" +
                         "            <div class=\"book-area\">\n" +
                         "                <div class=\"book-ticket\">\n" +
-                        "                    <div class=\"react-item\">\n" +
-                        "                        <a href=\"#0\">\n" +
-                        "                            <div class=\"thumb\">\n" +
-                        "                                <img src=\"/cinema/assets/images/icons/heart.png\" alt=\"icons\">\n" +
-                        "                            </div>\n" +
-                        "                        </a>\n" +
-                        "                    </div>\n" +
                         "                    <div class=\"react-item mr-auto\">\n" +
                         "                        <a href=\"#0\">\n" +
                         "                            <div class=\"thumb\">\n" +
@@ -441,20 +429,14 @@
                         "                <h5 class=\"title m-0\">\n" +
                         "                    <a href=\"/csmovie/movies/"+ movies[i].id +"\">" + movies[i].title + "</a>\n" +
                         "                </h5>\n" +
-                        "                <ul class=\"movie-rating-percent\">\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"thumb\">\n" +
-                        "                            <img src=\"/cinema/assets/images/movie/tomato.png\" alt=\"movie\">\n" +
-                        "                        </div>\n" +
-                        "                        <span class=\"content\">88%</span>\n" +
-                        "                    </li>\n" +
-                        "                    <li>\n" +
-                        "                        <div class=\"thumb\">\n" +
-                        "                            <img src=\"/cinema/assets/images/movie/cake.png\" alt=\"movie\">\n" +
-                        "                        </div>\n" +
-                        "                        <span class=\"content\">88%</span>\n" +
-                        "                    </li>\n" +
-                        "                </ul>\n" +
+                        "                <div class=\"widget-1 widget-tags\">\n" +
+                        "                <br/><br/>" +
+                        "                    <ul>\n";
+                        for(let i = 0; i < formats.length; i++) {
+                            res1 += "            <li><a>" + formats[i] + "</a></li>\n";
+                        }
+                    res1 +=    "             </ul>\n" +
+                        "                </div>" +
                         "            </div>\n" +
                         "        </div>\n" +
                         "    </div>";

@@ -50,16 +50,7 @@
                     <a href="#0">movies</a>
                     <ul class="submenu">
                         <li>
-                            <a href="/csmovie/movies">Movie Grid</a>
-                        </li>
-                        <li>
-                            <a href="movie-list.html">Movie List</a>
-                        </li>
-                        <li>
-                            <a href="movie-details.html">Movie Details</a>
-                        </li>
-                        <li>
-                            <a href="movie-details-2.html">Movie Details 2</a>
+                            <a href="/csmovie/movies">영화</a>
                         </li>
                         <li>
                             <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
