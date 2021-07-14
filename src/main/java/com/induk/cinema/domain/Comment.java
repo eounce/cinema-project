@@ -1,24 +1,24 @@
 package com.induk.cinema.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.induk.cinema.util.CurrentPage;
+import com.induk.cinema.util.PaginationInfo;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Comment {
+public class Comment extends CurrentPage {
     private Long id;
 
     @NotNull(message = "게시글은 필수 선택입니다.")
@@ -32,8 +32,9 @@ public class Comment {
     @NotBlank(message = "내용은 필수 입력입니다.")
     @Length(max=1024)
     private String content;
-
-    private Timestamp reportingDate;
-
-
+    private String contentRepl;
+    private String reportingDate;
+    private String calDateDays;
+    private PaginationInfo paginationInfo;
+    private Integer countByReviewId;
 }

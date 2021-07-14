@@ -1,19 +1,22 @@
 package com.induk.cinema.domain;
 
 
+import com.induk.cinema.util.CurrentPage;
+import com.induk.cinema.util.PaginationInfo;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.sql.Timestamp;
 import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Review {
+public class Review extends CurrentPage {
     private Long id;
 
     @NotNull(message = "작성자는 필수 선택입니다.")
@@ -33,8 +36,28 @@ public class Review {
     private MultipartFile imageForm;
     private String image;
     private Integer view;
-    private Timestamp reportingDate;
+    private String reportingDate;
     private Member member;
     private Movie movie;
-    private List<Comment> comments;
+    private Integer commentCount;
+    private List<Comment> commentList;
+    private String searchText;
+    private Integer searchMovieId;
+    private PaginationInfo paginationInfo;
+    private String sortType;
+
+    @Override
+    public String makeQueryString(int pageNo) {
+
+        UriComponents uriComponents = UriComponentsBuilder.newInstance()
+                .queryParam("searchText", searchText)
+                .queryParam("searchMovieId", searchMovieId)
+                .queryParam("currentPageNo", pageNo)
+                .queryParam("sortType", sortType)
+                .build()
+                .encode();
+
+        return uriComponents.toUriString();
+    }
+
 }

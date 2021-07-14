@@ -92,7 +92,7 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Subscription_date</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="subscription_date" value="${subscription_date}" disabled>
+                            <input type="text" class="form-control" name="subscription_date" value="${review.reportingDate}" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -123,8 +123,8 @@
                                 </thead>
                                 <tbody>
                                 <c:if test="${empty comments}">
-                                    <tr>
-                                        <th scope="row" colspan="3" style="vertical-align:middle;">댓글 없음...</th>
+                                    <tr align="center">
+                                        <th scope="row" colspan="3" style="vertical-align:middle;color: red">댓글 없음...</th>
                                     </tr>
                                 </c:if>
                                 <c:forEach var="comment" items="${comments}">

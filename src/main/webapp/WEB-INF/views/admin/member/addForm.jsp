@@ -94,7 +94,7 @@
                         </tr>
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Image </th>
-                            <td width="80%"> <input multiple="multiple" type="file" name="files"/></td>
+                            <td width="80%"> <input multiple="multiple" type="file" name="imageForm"/></td>
                         </tr>
                         </tbody>
                     </table>

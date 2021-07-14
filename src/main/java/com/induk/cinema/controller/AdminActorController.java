@@ -56,7 +56,6 @@ public class AdminActorController {
         }
 
         Long id = actorService.saveActor(actorForm);
-
         redirectAttributes.addAttribute("id", id);
         return "redirect:/csmovie/admin/actors/{id}";
     }

@@ -50,7 +50,14 @@
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
                                         <option value="" selected>영화를 선택해주세요</option>
                                         <c:forEach var="movie" items="${movies}">
-                                            <option value="${movie.id}"> (${movie.id})${movie.title}</option>
+                                            <c:choose>
+                                                <c:when test="${status.value == movie.id}">
+                                                    <option value="${movie.id}" selected> (${movie.id})${movie.title}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${movie.id}"> (${movie.id})${movie.title}</option>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:forEach>
                                     </select>
                                         ${status.errorMessage }
@@ -64,7 +71,15 @@
                                     <select name="${status.expression}" id="${status.expression}" class="form-control">
                                         <option value="" selected>작성자를 선택해주세요</option>
                                         <c:forEach var="member" items="${members}">
-                                            <option value="${member.id}">(${member.id}) ${member.name}</option>
+                                            <c:choose>
+                                                <c:when test="${status.value == member.id}">
+                                                    <option value="${member.id}" selected>(${member.id}) ${member.name}</option>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <option value="${member.id}">(${member.id}) ${member.name}</option>
+                                                </c:otherwise>
+                                            </c:choose>
+
                                         </c:forEach>
                                     </select>
                                         <!-- 해당 속성의 오류 message를 출력 -->

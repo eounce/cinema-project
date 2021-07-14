@@ -36,10 +36,10 @@
             </div>
             <ul class="menu">
                 <li>
-                    <a href="#0" class="active">Home</a>
+                    <a href="#0">Home</a>
                     <ul class="submenu">
                         <li>
-                            <a href="#0" class="active">Home One</a>
+                            <a href="#0">Home One</a>
                         </li>
                         <li>
                             <a href="index-2.html">Home Two</a>
@@ -130,7 +130,7 @@
                     <a href="#0">blog</a>
                     <ul class="submenu">
                         <li>
-                            <a href="blog.html">Blog</a>
+                            <a href="blog.html">리뷰</a>
                         </li>
                         <li>
                             <a href="blog-details.html">Blog Single</a>
@@ -139,6 +139,11 @@
                 </li>
                 <li>
                     <a href="contact.html">contact</a>
+                </li>
+
+                <li>
+                    <% String urlActive = (request.getRequestURL().toString().contains("/cinema/review"))?"active":""; %>
+                    <a href="/csmovie/reviews" class="<%=urlActive%>">리뷰</a>
                 </li>
                 <c:choose>
                     <c:when test="${empty sessionScope.member}">

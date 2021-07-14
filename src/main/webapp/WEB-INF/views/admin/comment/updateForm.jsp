@@ -103,7 +103,7 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Subscription_date</th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="subscription_date" value="${subscription_date}" readonly>
+                                <input type="text" class="form-control" name="subscription_date" value="${comment.reportingDate}" readonly>
                             </td>
                         </tr>
                         </tbody>

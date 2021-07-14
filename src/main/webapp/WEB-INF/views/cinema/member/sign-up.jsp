@@ -169,7 +169,7 @@
                                 이미지 선택
                             </label>
                             <label for="input_file">업로드</label>
-                            <input type="file" id="input_file" name="file" class="upload-hidden" accept="image/gif, image/bmp, image/png, image/jpeg" onchange="checkImage()">
+                            <input type="file" id="input_file" name="imageForm" class="upload-hidden" accept="image/gif, image/bmp, image/png, image/jpeg" onchange="checkImage()">
                         </div>
                         <div class="form-group checkgroup">
                             <input type="checkbox" id="terms" required checked>

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -41,7 +42,8 @@ public class Member {
     private String address;
 
     private String image;
+    private MultipartFile imageForm;
 
-    private Timestamp subscriptionDate;
+    private String subscriptionDate;
     private int admin;       //0=사용자,    1=관리자
 }

@@ -32,7 +32,6 @@ public class AdminCommentController {
     private final CommentService commentService;
     private final ReviewService reviewService;
     private final MemberService memberService;
-    private final FileStore fileStore;
 
     @GetMapping
     public String comments(Model model) {
@@ -42,13 +41,7 @@ public class AdminCommentController {
 
     @GetMapping("/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
-
-        Comment comment = commentService.findComment(id);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String subscriptionDate = df.format(comment.getReportingDate());
-
-        model.addAttribute("subscription_date", subscriptionDate);
-        model.addAttribute("comment", comment);
+        model.addAttribute("comment", commentService.findComment(id));
         return "admin/comment/detailForm";
     }
 
@@ -84,12 +77,7 @@ public class AdminCommentController {
     }
     @GetMapping("/{id}/edit")
     public String updateForm(@PathVariable Long id, Model model){
-        Comment comment = commentService.findComment(id);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String subscriptionDate = df.format(comment.getReportingDate());
-
-        model.addAttribute("subscription_date", subscriptionDate);
-        model.addAttribute("comment", comment);
+        model.addAttribute("comment", commentService.findComment(id));
         model.addAttribute("reviews", reviewService.reviewList());
         model.addAttribute("members", memberService.memberList());
         return "/admin/comment/updateForm";
@@ -102,10 +90,6 @@ public class AdminCommentController {
 
         //형식 검사
         if(bindingResult.hasErrors()) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String subscriptionDate = df.format(beforComment.getReportingDate());
-
-            model.addAttribute("subscription_date", subscriptionDate);
             model.addAttribute("reviews", reviewService.reviewList());
             model.addAttribute("members", memberService.memberList());
             return "admin/comment/updateForm";

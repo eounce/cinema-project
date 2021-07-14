@@ -1,3 +1,5 @@
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="com.induk.cinema.dto.HistoryUrl" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -38,7 +40,8 @@
                         <span class="cate">hello</span>
                         <h2 class="title">welcome back</h2>
                     </div>
-                    <form class="account-form" action="/csmovie/members/login" method="post">
+                    <% HistoryUrl historyUrl = (HistoryUrl)request.getAttribute("historyUrl");%>
+                    <form class="account-form" action="/csmovie/members/login?<%=historyUrl.getParam()%>" method="post">
                         <div class="form-group">
                             <spring:bind path="member.email">
                                 <label for="${status.expression}">이메일<span> *</span></label>

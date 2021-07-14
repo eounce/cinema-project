@@ -41,15 +41,8 @@ public class AdminReviewController {
 
     @GetMapping("/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
-
-        Review review = reviewService.findReview(id);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String subscriptionDate = df.format(review.getReportingDate());
-
-
         model.addAttribute("comments", commentService.findCommentByReviewId(id));
-        model.addAttribute("subscription_date", subscriptionDate);
-        model.addAttribute("review", review);
+        model.addAttribute("review", reviewService.findReview(id));
         return "admin/review/detailForm";
     }
 
@@ -64,37 +57,17 @@ public class AdminReviewController {
     @PostMapping("/add")
     public String addReview(@Valid Review review,
                            BindingResult bindingResult,
-                           RedirectAttributes redirectAttributes,
                             Model model) throws IOException {
 
-        if(review.getImageForm().isEmpty()) {
-            bindingResult.addError(new FieldError("reviewForm", "imageForm", "이미지는 필수 등록입니다."));
+        if(review.getImageForm().isEmpty() || bindingResult.hasErrors()) {
+            if(review.getImageForm().isEmpty())
+                bindingResult.addError(new FieldError("reviewForm", "imageForm", "이미지는 필수 등록입니다."));
             model.addAttribute("movies", movieService.movieList());
             model.addAttribute("members", memberService.memberList());
             return "admin/review/addForm";
         }
 
-        //형식 검사
-        if(bindingResult.hasErrors()) {
-            model.addAttribute("members", memberService.memberList());
-            return "admin/review/addForm";
-        }
-        review.setImage("false");
-
-        Long id = reviewService.saveReview(review);
-
-        //파일 업로드
-        String rootPath = System.getProperty("user.dir");
-        String basePath = rootPath + "/src/main/webapp/WEB-INF/views/image/review";        //파일 저장소
-        String fileName = id.toString() + "_" + review.getImageForm().getOriginalFilename();  //파일이름
-        String filePath = basePath + "/" + fileName;
-        File dest = new File(filePath);
-        review.getImageForm().transferTo(dest); // 파일 업로드 작업 수행
-        review.setId(id);
-        review.setImage(fileName);
-
-
-        reviewService.updateReview(review);
+        reviewService.saveReview(review);
 
         return "redirect:/csmovie/admin/reviews/";
     }
@@ -105,13 +78,8 @@ public class AdminReviewController {
     }
     @GetMapping("/{id}/edit")
     public String updateForm(@PathVariable Long id, Model model){
-        Review review = reviewService.findReview(id);
-        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        String subscriptionDate = df.format(review.getReportingDate());
-
         model.addAttribute("movies", movieService.movieList());
-        model.addAttribute("subscription_date", subscriptionDate);
-        model.addAttribute("review", review);
+        model.addAttribute("review", reviewService.findReview(id));
         model.addAttribute("members", memberService.memberList());
         return "/admin/review/updateForm";
     }
@@ -120,33 +88,13 @@ public class AdminReviewController {
                              @PathVariable Long id,
                              Model model) throws IOException {
         Review beforReview = reviewService.findReview(id);
-
-
+        review.setImage(beforReview.getImage());
         //형식 검사
         if(bindingResult.hasErrors()) {
-            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String subscriptionDate = df.format(beforReview.getReportingDate());
-            review.setImage(beforReview.getImage());
-
             model.addAttribute("movies", movieService.movieList());
-            model.addAttribute("subscription_date", subscriptionDate);
             model.addAttribute("review", review);
             model.addAttribute("members", memberService.memberList());
             return "admin/review/updateForm";
-        }
-
-        review.setImage(beforReview.getImage());
-        //파일 업로드
-        if(!review.getImageForm().getOriginalFilename().isEmpty()) {
-            String rootPath = System.getProperty("user.dir");
-            String basePath = rootPath + "/src/main/webapp/WEB-INF/views/image/review";        //파일 저장소
-            String fileName = id.toString() + "_" + review.getImageForm().getOriginalFilename();  //파일이름
-            String filePath = basePath + "/" + fileName;
-            File dest = new File(filePath);
-            review.getImageForm().transferTo(dest); // 파일 업로드 작업 수행
-
-            review.setId(id);
-            review.setImage(fileName);
         }
 
         reviewService.updateReview(review);

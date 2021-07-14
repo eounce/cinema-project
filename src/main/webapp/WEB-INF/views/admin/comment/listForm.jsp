@@ -63,10 +63,8 @@
                                     <tbody>
                                     <%
                                         List<Comment> comments =  (List<Comment>)request.getAttribute("comments");
-
-                                        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                                         for (Comment comment : comments){
-                                            String subscriptionDate = df.format(comment.getReportingDate());
+                                            String subscriptionDate = comment.getReportingDate().substring(0,10);
                                             String content = (comment.getContent().length() > 20)? comment.getContent().substring(0,20) + "..."
                                                     : comment.getContent();
                                     %>

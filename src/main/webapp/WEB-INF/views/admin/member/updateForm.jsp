@@ -93,7 +93,7 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Subscription_date</th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="subscription_date" value="${subscription_date}" readonly>
+                                <input type="text" class="form-control" name="subscriptionDate" value="${member.subscriptionDate}" readonly>
                             </td>
                         </tr>
                         <tr>
@@ -112,11 +112,9 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Image </th>
                             <td width="80%">
-                                <input multiple="multiple" type="file" name="files"/>
-                                <c:if test="${not empty member.image}">
-                                    <br><br><img src="/csmovie/admin/members/images/${member.image}" style="max-height: 200px">
-                                    <br><font color="red">이미지 삭제 </font><input type="checkbox" name="imageDel" value="1"/>
-                                </c:if>
+                                <input multiple="multiple" type="file" name="imageForm"/>
+                                <br><br><img src="/csmovie/admin/members/images/${member.image}" style="max-height: 200px">
+                                <br><font color="red">이미지 삭제 </font><input type="checkbox" name="imageDel" value="1"/>
                             </td>
                         </tr>
                         </tbody>

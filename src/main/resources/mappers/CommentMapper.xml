@@ -17,28 +17,45 @@
         <association property="member" column="member_id" javaType="Member">
             <id property="id" column="member_id" />
             <result property="name" column="name" />
+            <result property="image" column="member_image" />
         </association>
     </resultMap>
 
     <select id="findAll" resultType="Comment" resultMap="CommentResult">
-        select comment.*, review.title, member.name
+        select comment.*, review.title, member.name, member.image as member_image
         from comment inner join review on comment.review_id = review.id
         inner join member on comment.member_id = member.id
     </select>
 
     <select id="findById" parameterType="Comment" resultType="Comment" resultMap="CommentResult">
-        select comment.*, review.title , member.name
+        select comment.*, review.title , member.name, member.image as member_image
         from comment inner join review on comment.review_id = review.id
         inner join member on comment.member_id = member.id
         where comment.id = #{id}
     </select>
 
     <select id="findByReviewId" parameterType="Comment" resultType="Comment" resultMap="CommentResult">
-        select * from ((select comment.*, review.title , member.name
+        select * from ((select comment.*, review.title , member.name, member.image as member_image
         from comment inner join review on comment.review_id = review.id
             inner join member on comment.member_id = member.id
         where review.id = #{id} ) as s)
-        order by s.reporting_date asc
+        order by s.reporting_date desc
+    </select>
+
+    <select id="findByReviewIdPaging" parameterType="Comment" resultType="Comment" resultMap="CommentResult">
+        select * from ((select comment.*, review.title , member.name, member.image as member_image
+                        from comment inner join review on comment.review_id = review.id
+                                     inner join member on comment.member_id = member.id
+                        where review.id = #{reviewId} ) as s)
+        order by s.reporting_date desc
+            limit #{paginationInfo.firstRecordIndex}, #{recordsPerPage}
+    </select>
+
+    <select id="findByReviewIdPagingCount" parameterType="Comment" resultType="int">
+        select count(*) from ((select comment.*, review.title , member.name, member.image as member_image
+                               from comment inner join review on comment.review_id = review.id
+                                            inner join member on comment.member_id = member.id
+                               where review.id = #{reviewId} ) as s)
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Comment">

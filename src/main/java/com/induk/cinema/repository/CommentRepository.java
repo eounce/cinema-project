@@ -10,8 +10,10 @@ public interface CommentRepository {
 
     List<Comment> findAll();
     List<Comment> findByReviewId(Long id);
+    List<Comment> findByReviewIdPaging(Comment commnet);
+    Integer findByReviewIdPagingCount(Comment comment);
     Comment findById(Long id);
     Long save(Comment comment);
-    void update(Comment comment);
-    void delete(Long id);
+    Integer update(Comment comment);
+    Integer delete(Long id);
 }
