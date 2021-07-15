@@ -20,7 +20,7 @@ public class Schedule {
 
     private Long id;
     private Long movie_id;
-    private Long theather_id;
+    private Long theater_id;
     private String start_time;
     private String end_time;
     private String screening_data;
