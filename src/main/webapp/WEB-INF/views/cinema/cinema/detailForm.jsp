@@ -184,8 +184,48 @@
                             </div>
 
                             <div class="tab-item">
-
-
+                                <c:forEach var="movie" items="${movies}">
+                                <div class="details-banner-wrapper">
+                                    <div class="details-banner-content offset-lg-1" style="margin-bottom:30px;">
+                                        <div class="social-and-duration">
+                                            <div class="duration-area" >
+                                                <div class="item">
+                                                    <span>${movie.scheduleForm.movie_title}/${movie.scheduleForm.movie_rating}</span>
+                                                </div>
+                                                <!--
+                                                <div class="item">
+                                                    <i class="far fa-clock"></i><span>2 hrs 50 mins</span>
+                                                </div>
+                                                -->
+                                            </div>
+                                            <ul class="social-share">
+                                                <span>상영중/상영시간 ${movie.scheduleForm.movie_showtimes}분</span>
+                                            </ul>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-3" style="margin-top:10px; margin-bottom:10px;">
+                                            <h4>${movie.scheduleForm.theater_name}</h4>
+                                            <div class="social-and-duration">
+                                                <div class="duration-area" >
+                                                    <div class="item">
+                                                        <span>총${movie.scheduleForm.theater_seat}석</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2" style="margin-top:10px; margin-bottom:10px;">
+                                            <h6>${movie.screening_format}</h6>
+                                        </div>
+                                        <c:forEach var="schedule" items="${schedules}">
+                                            <c:if test="${movie.scheduleForm.movie_title.equals(schedule.scheduleForm.movie_title)}">
+                                            <div class="col-md-2" style="margin-top:10px; margin-bottom:10px;">
+                                                <h6>${schedule.start_time}~${schedule.end_time}</h6>
+                                            </div>
+                                            </c:if>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                                </c:forEach>
                             </div>
 
                             <div class="tab-item">

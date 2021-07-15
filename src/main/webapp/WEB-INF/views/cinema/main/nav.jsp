@@ -65,7 +65,7 @@
                             <a href="popcorn.html">Movie Food</a>
                         </li>
                         <li>
-                            <a href="/csmovie/cinema">Cinema</a>
+                            <a href="/csmovie/cinema">상영관</a>
                         </li>
                     </ul>
                 </li>

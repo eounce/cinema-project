@@ -1,6 +1,8 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Cinema;
+import com.induk.cinema.domain.Movie;
+import com.induk.cinema.domain.Schedule;
 import com.induk.cinema.service.CinemaService;
 import com.induk.cinema.service.CityService;
 import lombok.RequiredArgsConstructor;
@@ -38,6 +40,13 @@ public class CinemaController {
 
         List<String> list = Arrays.asList(cinema.getFacility().split(","));
         model.addAttribute("facilitys", list);
+
+        List<Schedule> movies = cinemaService.findMovie(id);
+        model.addAttribute("movies", movies);
+
+        List<Schedule> schedules = cinemaService.findSceduleByCinema(id);
+        model.addAttribute("schedules", schedules);
+
         return "cinema/cinema/detailForm";
     }
 
