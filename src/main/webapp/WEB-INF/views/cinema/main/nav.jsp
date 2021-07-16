@@ -36,13 +36,10 @@
             </div>
             <ul class="menu">
                 <li>
-                    <a href="/csmovie">Home</a>
-                </li>
-                <li>
-                    <a href="#0">movies</a>
+                    <a href="#0">영화</a>
                     <ul class="submenu">
                         <li>
-                            <a href="/csmovie/movies">영화</a>
+                            <a href="/csmovie/movies">전체영화</a>
                         </li>
                         <li>
                             <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
