@@ -329,284 +329,99 @@
         <div class="tab">
             <div class="section-header-2">
                 <div class="left">
-                    <h2 class="title">events</h2>
-                    <p>Be sure not to miss these Event today.</p>
+                    <h2 class="title">reviews</h2>
+                    <p>How about watching movie reviews?</p>
                 </div>
                 <ul class="tab-menu">
                     <li class="active">
-                        now showing
+                        popularity
                     </li>
                     <li>
-                        coming soon
-                    </li>
-                    <li>
-                        exclusive
+                        recently
                     </li>
                 </ul>
             </div>
             <div class="tab-area mb-30-none">
                 <div class="tab-item active">
                     <div class="owl-carousel owl-theme tab-slider">
+                        <c:forEach items="${popularReviews}" var="review">
                         <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
+                                <div class="event-grid">
+                                    <div class="movie-thumb c-thumb" style="height: 250px;background: white;overflow: hidden">
+                                        <a href="/csmovie/reviews/${review.id}">
+                                            <img src="/csmovie/reviews/images/${review.image}" style="min-height: 250px;">
+                                        </a>
+                                    </div>
+                                    <div class="post-item">
+                                        <div class="post-content">
+                                            <div class="post-header" style="padding-bottom: 10px;">
+                                                <div class="meta-post">
+                                                    <a style="margin-right: 1.0em"><i class="flaticon-view"></i>${review.view} View</a>
+                                                    <a><i class="flaticon-conversation"></i>${review.commentCount} Comments</a>
+                                                </div>
+                                                <h4 class="title">
+                                                    <a href="/csmovie/reviews/${review.id}" style="height: 2.3em;line-height: 1.2">
+                                                        ${review.title}
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div class="entry-content" style="padding-top: 10px;">
+                                                <div class="left">
+                                                    <span class="date"  >${review.reportingDate}  BY</span>
+                                                    <div class="authors">
+                                                        <div class="thumb">
+                                                            <a><img src="/csmovie/members/images/${review.member.image}" alt="#0"></a>
+                                                        </div>
+                                                        <h6 class="title"><a >${review.member.name}</a></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event04.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world digital conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
                 <div class="tab-item">
                     <div class="owl-carousel owl-theme tab-slider">
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
+                        <c:forEach items="${recentReviews}" var="review">
+                            <div class="item">
+                                <div class="event-grid">
+                                    <div class="movie-thumb c-thumb" style="height: 250px;background: white;overflow: hidden">
+                                        <a href="/csmovie/reviews/${review.id}">
+                                            <img src="/csmovie/reviews/images/${review.image}" style="min-height: 250px;">
+                                        </a>
                                     </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
+                                    <div class="post-item">
+                                        <div class="post-content">
+                                            <div class="post-header" style="padding-bottom: 10px;">
+                                                <div class="meta-post">
+                                                    <a style="margin-right: 1.0em"><i class="flaticon-view"></i>${review.view} View</a>
+                                                    <a><i class="flaticon-conversation"></i>${review.commentCount} Comments</a>
+                                                </div>
+                                                <h4 class="title">
+                                                    <a href="/csmovie/reviews/${review.id}" style="height: 2.3em;line-height: 1.2">
+                                                            ${review.title}
+                                                    </a>
+                                                </h4>
+                                            </div>
+                                            <div class="entry-content" style="padding-top: 10px;">
+                                                <div class="left">
+                                                    <span class="date"  >${review.reportingDate}  BY</span>
+                                                    <div class="authors">
+                                                        <div class="thumb">
+                                                            <a><img src="/csmovie/members/images/${review.member.image}" alt="#0"></a>
+                                                        </div>
+                                                        <h6 class="title"><a >${review.member.name}</a></h6>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event04.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world digital conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-item">
-                    <div class="owl-carousel owl-theme tab-slider">
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event01.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">Digital Economy Conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event02.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">web design conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event03.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">digital thinkers meetup</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="event-grid">
-                                <div class="movie-thumb c-thumb">
-                                    <a href="#0">
-                                        <img src="/cinema/assets/images/event/event04.jpg" alt="event">
-                                    </a>
-                                    <div class="event-date">
-                                        <h6 class="date-title">28</h6>
-                                        <span>Dec</span>
-                                    </div>
-                                </div>
-                                <div class="movie-content bg-one">
-                                    <h5 class="title m-0">
-                                        <a href="#0">world digital conference 2020</a>
-                                    </h5>
-                                    <div class="movie-rating-percent">
-                                        <span>327 Montague Street</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

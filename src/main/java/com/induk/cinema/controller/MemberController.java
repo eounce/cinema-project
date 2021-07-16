@@ -93,6 +93,58 @@ public class MemberController {
         session.invalidate();
         return "redirect:/csmovie";
     }
+
+    @GetMapping("/edit")
+    public String updateForm(HttpSession session, Model model){
+        Member m = (Member)session.getAttribute("member");
+        model.addAttribute("member", memberService.findMember(m.getId()));
+        return "/cinema/member/updateForm";
+    }
+
+    @PostMapping("/edit")
+    public String updateForm(HttpSession session, @Valid Member member,
+                         BindingResult bindingResult, HttpServletResponse response,
+                         @RequestParam(value = "imageDel", required = false) String imageDel) throws IOException {
+
+        Member sessionMember = (Member)session.getAttribute("member");
+        Member m = memberService.findMember(sessionMember.getId());
+
+        member.setImage(m.getImage());
+        member.setId(m.getId());
+        member.setAdmin(m.getAdmin());
+        //형식 검사
+        if(bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("address") ||
+                bindingResult.hasFieldErrors("name")) {
+            return "cinema/member/updateForm";
+        }
+        if(member.getPassword() == null || member.getPassword().equals("")) member.setPassword(m.getPassword());
+        System.out.println("\n\n\n mp:"+member.getPassword());
+        System.out.println("\n\n\n m.p:"+m.getPassword());
+
+        int result = memberService.updateMember(member, imageDel);
+
+        if(result >0) {
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('수정되었습니다'); location.href='/csmovie/members/edit';</script>");
+            out.flush();
+        }
+        else{
+            response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('수정에 실패하였습니다.'); location.href=/csmovie/members/edit;</script>");
+            out.flush();
+        }
+        return "redirect:/csmovie/members/edit";
+    }
+
+    @GetMapping("/reservationList")
+    public String reservationListForm(HttpSession session, Model model){
+        Member m = (Member)session.getAttribute("member");
+        model.addAttribute("member", memberService.findMember(m.getId()));
+        return "/cinema/member/reservationListForm";
+    }
+
     @ResponseBody
     @GetMapping("/images/{filename}")
     public Resource downloadImage(@PathVariable String filename) throws MalformedURLException {

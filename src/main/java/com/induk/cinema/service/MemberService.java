@@ -38,7 +38,7 @@ public class MemberService {
         return member.getId();
     }
 
-    public void updateMember(Member member, String imageDel) throws IOException {
+    public int updateMember(Member member, String imageDel) throws IOException {
         if(imageDel == null){
             UploadFile uploadFile = fileStore.storeFile(member.getImageForm(), "member");
 
@@ -51,7 +51,7 @@ public class MemberService {
         }
         else member.setImage("user_image.png");
 
-        memberRepository.update(member);
+        return memberRepository.update(member);
     }
 
     public void deleteMember(Long id) {

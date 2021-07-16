@@ -1,7 +1,9 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Movie;
+import com.induk.cinema.dto.SortType;
 import com.induk.cinema.service.MovieService;
+import com.induk.cinema.service.ReviewService;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -25,6 +27,7 @@ public class MainController {
 
     private final MovieService movieService;
     private final FileStore fileStore;
+    private final ReviewService reviewService;
 
     @RequestMapping
     public String home(Model model) {
@@ -36,6 +39,8 @@ public class MainController {
 
         model.addAttribute("movies", movies);
         model.addAttribute("formats", formats);
+        model.addAttribute("popularReviews", reviewService.reviewBySortType(SortType.Popularity));
+        model.addAttribute("recentReviews", reviewService.reviewBySortType(SortType.Recent));
         return "cinema/main/index";
     }
 

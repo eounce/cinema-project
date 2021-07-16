@@ -106,7 +106,7 @@
                         %>
                         <div class="post-item post-details">
                             <div class="post-thumb" style="text-align: center">
-                                <img src="/csmovie/reviews/images/${review.image}" style="width: inherit;">
+                                <img src="/csmovie/reviews/images/${review.image}" style="width: inherit;max-width: 100%">
                             </div>
                             <div class="post-content">
                                 <div class="post-meta text-center">
@@ -365,12 +365,13 @@
                                     "<i class=\"fas fa-angle-double-left\"></i><span>Prev</span>" +
                                 "</div>" +
                             "</a>" : "");
-                    for(var i=comments[0].paginationInfo.firstPage; i<= comments[0].paginationInfo.lastPage;i++){
-                        page +=
-                            "<a type=\"button\" class=\"" + (comments[0].currentPageNo == i ? "active" : "") +"\" onclick=\"listComment(" +reviewId+ ", " +i+ "," +sessionMemberId+ ")\">" +
-                                "<div class=\"page-color " + (comments[0].currentPageNo == i ? "page-active" : "") +"\">" + i + "</div>" +
-                            "</a>";
-                    }
+                    if(comments[0].paginationInfo.lastRecordIndex != 0)
+                        for(var i=comments[0].paginationInfo.firstPage; i<= comments[0].paginationInfo.lastPage;i++){
+                            page +=
+                                "<a type=\"button\" class=\"" + (comments[0].currentPageNo == i ? "active" : "") +"\" onclick=\"listComment(" +reviewId+ ", " +i+ "," +sessionMemberId+ ")\">" +
+                                    "<div class=\"page-color " + (comments[0].currentPageNo == i ? "page-active" : "") +"\">" + i + "</div>" +
+                                "</a>";
+                        }
                     page +=
                         (comments[0].paginationInfo.hasNextPage ?
                             "<a type=\"button\" onclick=\"listComment(" + reviewId +"," + (comments[0].paginationInfo.lastPage+1) + "," +sessionMemberId+")\">" +
@@ -418,13 +419,15 @@
         }
 
         function addComment(reviewId, memberId){
+            if(!memberId) {
+                alert('로그인이 필요한 서비스입니다.');
+                if(confirm('로그인 하러 가시겠습니까?'))
+                    location.href = "/csmovie/members/login?historyUrl=" + window.location.pathname ;
+                return;
+            }
             if($('#content').val() == "") {
                 alert("댓글을 작성해 주세요.");
                 $('#content').focus();
-                return;
-            }
-            if(!memberId) {
-                alert('로그인이 필요한 서비스입니다.');
                 return;
             }
             var data = {
@@ -450,6 +453,12 @@
             });
         }
         function delComment(commentId, reviewId, currentPageNo, sessionMemberId){
+            if(!sessionMemberId) {
+                alert('로그인이 필요한 서비스입니다.');
+                if(confirm('로그인 하러 가시겠습니까?'))
+                    location.href = "/csmovie/members/login?historyUrl=" + window.location.pathname ;
+                return;
+            }
             if(!confirm('삭제하시겠습니까?')) return;
             var data = {
                 id:commentId,
@@ -476,6 +485,8 @@
         function updateCommentForm(commentId, content, reviewId, currentPageNo, memberId, sessionMemberId){
             if(!memberId) {
                 alert('로그인이 필요한 서비스입니다.');
+                if(confirm('로그인 하러 가시겠습니까?'))
+                    location.href = "/csmovie/members/login?historyUrl=" + window.location.pathname ;
                 return;
             }
             content = content.replace(/(<br>|<br\/>|<br \/>)/g, '\r\n');

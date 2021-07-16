@@ -58,11 +58,11 @@ public class ReviewService {
         return reviewList;
     }
 
-    public List<Review> popularityReview(){
+    public List<Review> reviewBySortType(SortType sortType){
         //인기있는 리뷰 10개를 가져오기 위한 초기화
         Review review = new Review();
         review.setSearchText("");
-        review.setSortType(SortType.Popularity.getCode());
+        review.setSortType(sortType.getCode());
         review.setSearchMovieId(0);
         review.setPaginationInfo(new PaginationInfo(new CurrentPage()));
         review.getPaginationInfo().setFirstRecordIndex(0);

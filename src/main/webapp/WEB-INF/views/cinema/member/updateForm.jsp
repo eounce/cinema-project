@@ -141,7 +141,7 @@
 <section class="main-page-header speaker-banner bg_img" data-background="./assets/images/banner/banner07.jpg" style="background-image: url(&quot;./assets/images/banner/banner07.jpg&quot;);">
     <div class="container">
         <div class="speaker-banner-content">
-            <h2 class="title">리뷰 작성</h2>
+            <h2 class="title">내 정보 수정</h2>
             <ul class="breadcrumb">
                 <li>
                     <a href="/csmovie">
@@ -149,10 +149,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/csmovie/reviews">리뷰</a>
+                    <a>내정보</a>
                 </li>
                 <li>
-                    리뷰 작성
+                    내 정보 수정
                 </li>
             </ul>
         </div>
@@ -160,85 +160,78 @@
 </section>
 <!-- ==========Banner-Section========== -->
 
-<!-- ==========Page-Title========== -->
-<section class="page-title bg-one">
-    <div class="container">
-        <div class="page-title-area">
-            <div class="item md-order-1">
-                <a href="/csmovie/reviews" class="custom-button back-button">
-                    <i class="flaticon-double-right-arrows-angles"></i>back
-                </a>
-            </div>
-            <div class="item date-item">
-                <h6>영화 리뷰 작성하기</h6>
-            </div>
-            <%
-                Date now = new Date();
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                String time1 = format.format(now).substring(0,10);
-                String time2 = format.format(now).substring(11,16);
-
-            %>
-            <div class="item" style="text-align: center">
-                <h5 class="title"><%=time2%></h5>
-                <p><%=time1%></p>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- ==========Page-Title========== -->
 
 <!-- ==========Event-Section========== -->
 <div class="event-facility padding-bottom padding-top">
     <div class="container">
         <div class="row">
-            <div class="col-1"></div>
-            <div class="col-lg-10">
+            <div class="col-2"></div>
+            <div class="col-lg-8">
                 <div class="checkout-widget checkout-card mb-0" style="border-radius: 10px;">
-                    <h5 class="title" style="margin-bottom: 15px;"><i class="fas fa-feather-alt"></i> 리뷰 작성 </h5>
+                    <h5 class="title" style="margin-bottom: 15px;"><i class="fas fa-user-friends"></i> 내 정보 수정 </h5>
 
-                    <form class="payment-card-form" method="post" action="/csmovie/reviews/add" enctype="multipart/form-data">
+                    <form class="payment-card-form" method="post" action="/csmovie/members/edit" enctype="multipart/form-data">
                         <div class="form-group w-100">
-                            <spring:bind path="review.title">
-                                <label for="${status.expression}"> 제목<span style="color: #e03232"> *</span></label>
+                            <spring:bind path="member.name">
+                                <label for="${status.expression}"> 이름</label>
                                 <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" class="custom-focus" style="border:1px solid #2d4186;" required>
                                 <span style="color: red">${status.errorMessage }</span>
                             </spring:bind>
                         </div>
                         <div class="form-group w-100">
-                            <spring:bind path="review.movieId">
-                                <label forid="${status.expression}"> 영화<span style="color: #e03232"> *</span></label>
-                                <select class="custom-select" name="${status.expression}" id="${status.expression}" required>
-                                    <option value="">==영화를 선택해주세요==</option>
-                                    <c:forEach var="movie" items="${movies}">
-                                        <option value="${movie.id}">${movie.title}</option>
-                                    </c:forEach>
-                                </select>
+                            <spring:bind path="member.email">
+                                <label for="${status.expression}"> 이메일<span style="color: #e03232"> *</span></label>
+                                <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" class="custom-focus" style="border:1px solid #2d4186;" required>
                                 <span style="color: red">${status.errorMessage }</span>
                             </spring:bind>
                         </div>
                         <div class="form-group w-100">
-                            <spring:bind path="review.content">
-                                <label for="${status.expression}" > 내용<span style="color: #e03232"> *</span></label>
-                                <textarea type="text" name="${status.expression}" id="${status.expression}" class="custom-textarea custom-focus" required>${status.value}</textarea>
+                            <spring:bind path="member.address">
+                                <label for="${status.expression}"> 주소<span style="color: #e03232"> *</span></label>
+                                <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" class="custom-focus" style="border:1px solid #2d4186;" required>
                                 <span style="color: red">${status.errorMessage }</span>
                             </spring:bind>
                         </div>
+                        <div class="form-group w-100">
+                            <spring:bind path="member.password">
+                                <label for="${status.expression}"> 비밀번호 수정<span style="color: #e03232"> *수정 시 입력</span></label>
+                                <input type="password" name="${status.expression}" value="" id="${status.expression}" class="custom-focus" style="border:1px solid #2d4186;">
+                            </spring:bind>
+                        </div>
+
+
                         <div class="form-group" style="margin-bottom: 0px;">
-                            <label>이미지<span style="color: #e03232"> *</span></label>
+                            <label>이미지</label>
                         </div>
                         <div class="filebox bs3-primary preview-image">
-                            <spring:bind path="review.imageForm">
-                                <label for="${status.expression}" class="upload-name" style="border: none;width: 200px;background-color: white;color: black;" disabled="disabled">
-                                    이미지 선택
-                                </label>
-                                <label for="${status.expression}">업로드</label>
-                                <input type="file" name="${status.expression}" id="${status.expression}" class="upload-hidden" accept="image/gif, image/bmp, image/png, image/jpeg" onchange="checkImage()" required>
-                                <span style="color: red">${status.errorMessage }</span>
-                            </spring:bind>
-                        </div>
+                            <div class="upload-display">
+                                <div class="upload-thumb-wrap">
+                                    <img src="/csmovie/members/images/${member.image}" class="upload-thumb">
+                                </div>
+                            </div>
+
+                            <c:choose>
+                                <c:when test="${member.image != 'user_image.png'}">
+                                    <div style="width: 100%;margin-bottom: 10px;">
+                                        <input type="checkbox" name="imageDel" value="1" style="height: auto;width: auto"> 이미지 삭제
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div style="width: 100%;margin-bottom: 10px;">
+                                        <span style="color: #e03232">*기본 이미지는 삭제가 불가능합니다.</span>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>
+
+                            <label for="imageForm" class="upload-name" style="border: none;width: 200px;background-color: white;color: black;" disabled="disabled">
+                                이미지 수정하기
+                            </label>
+                            <label for="imageForm">업로드</label>
+                            <input type="file" name="imageForm" id="imageForm" class="upload-hidden" accept="image/gif, image/bmp, image/png, image/jpeg" onchange="checkImage()">
+                            <span style="color: red"></span>
+                         </div>
                         <div class="form-group" style="width: 100%;text-align: right;">
-                            <input type="submit" class="custom-button" value="작성하기" style="border-radius: 10px;">
+                            <input type="submit" class="custom-button" value="수정하기" style="border-radius: 10px;">
                         </div>
                     </form>
 

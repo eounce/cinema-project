@@ -53,7 +53,8 @@ public class LoginAspect {
         }
     }*/
     //사용자페이지 로그인 여부
-    @Pointcut("execution(* com.induk.cinema.controller.ReviewController.addForm(..)) || execution(* com.induk.cinema.controller.ReviewController.updateForm(..))")
+    @Pointcut("execution(* com.induk.cinema.controller.ReviewController.addForm(..)) || execution(* com.induk.cinema.controller.ReviewController.updateForm(..)) || " +
+            "execution(* com.induk.cinema.controller.ReviewController.delReview(..)) ||execution(* com.induk.cinema.controller.MemberController.updateForm(..)))")
     public void userLoginInspectPointcut() {
     }
 

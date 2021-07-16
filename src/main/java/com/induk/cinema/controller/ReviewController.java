@@ -3,6 +3,7 @@ package com.induk.cinema.controller;
 import com.induk.cinema.domain.Comment;
 import com.induk.cinema.domain.Member;
 import com.induk.cinema.domain.Review;
+import com.induk.cinema.dto.SortType;
 import com.induk.cinema.service.CommentService;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReviewService;
@@ -35,7 +36,7 @@ public class ReviewController {
     @GetMapping
     public String reviews(Model model, @ModelAttribute("params") Review params) {
         model.addAttribute("reviewCountsByMovie", reviewService.reviewCountByMovie());
-        model.addAttribute("popularReviews", reviewService.popularityReview());
+        model.addAttribute("popularReviews", reviewService.reviewBySortType(SortType.Popularity));
         model.addAttribute("reviews", reviewService.reviewListByKeyword(params));
         return "/cinema/review/listForm";
     }
@@ -46,7 +47,7 @@ public class ReviewController {
         commentParams.setReviewId(id);
         model.addAttribute("reviewCountsByMovie", reviewService.reviewCountByMovie());
         model.addAttribute("comments", commentService.findCommentByReviewIdPaging(commentParams));
-        model.addAttribute("popularReviews", reviewService.popularityReview());
+        model.addAttribute("popularReviews", reviewService.reviewBySortType(SortType.Popularity));
         model.addAttribute("review", reviewService.findReview(id));
         return "/cinema/review/detailForm";
     }
