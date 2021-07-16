@@ -1,8 +1,6 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Movie;
-import com.induk.cinema.domain.MovieActor;
-import com.induk.cinema.domain.MovieAd;
 import com.induk.cinema.dto.Format;
 import com.induk.cinema.dto.MoviePage;
 import com.induk.cinema.service.*;
@@ -19,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -29,8 +28,6 @@ public class MovieController {
 
     private final GenreService genreService;
     private final MovieService movieService;
-    private final MovieAdService movieAdService;
-    private final MovieActorService movieActorService;
     private final FileStore fileStore;
 
 
@@ -55,14 +52,7 @@ public class MovieController {
         pageMaker.setCri(criteria);
         pageMaker.setTotalCount(movieService.movieCounts(genreChBox, formatChBox, sort));
 
-        // 영화 트레일러 가져오기
         List<Movie> movies = movieService.movieListOpt(genreChBox, formatChBox, sort, criteria);
-        for (Movie movie : movies) {
-            MovieAd movieTrailer = movieAdService.findMovieTrailer(movie.getId());
-            if(movieTrailer != null) {
-                movie.setTrailer(movieTrailer.getStoreFilename());
-            }
-        }
 
         MoviePage moviePage = new MoviePage();
         moviePage.setMovieList(movies);
@@ -73,18 +63,16 @@ public class MovieController {
 
     @GetMapping("/{id}")
     public String movieDetail(@PathVariable Long id, Model model) {
-        Movie movie = movieService.findMovie(id);
-        List<MovieAd> movieImage = movieAdService.findMovieImage(id);
-        MovieAd movieAd = movieAdService.findMovieTrailer(id);
-        List<MovieActor> movieActors = movieActorService.movieActorList(id);
+        HashMap<String, Object> movieDetail = movieService.findMovieDetail(id);
+        String screeningFormat = movieDetail.get("screeningFormat").toString();
+        List<String> formatList = Arrays.asList(screeningFormat.split(","));
+        movieDetail.put("formatList", formatList);
 
-        if(movieAd != null) { movie.setTrailer(movieAd.getStoreFilename()); }
-        List<String> formats = Arrays.asList(movie.getScreeningFormat().split(","));
+        log.info("movieDetail : {}", movieDetail);
+        log.info("movieActor : {}", movieDetail.get("actorList"));
+        log.info("movieAd : {}", movieDetail.get("movieAdList"));
 
-        model.addAttribute("movie", movie);
-        model.addAttribute("images", movieImage);
-        model.addAttribute("formats", formats);
-        model.addAttribute("movieActors", movieActors);
+        model.addAttribute("movieDetail", movieDetail);
 
         return "cinema/movie/movieDetail";
     }

@@ -30,21 +30,13 @@
     <div class="container">
         <div class="header-wrapper">
             <div class="logo">
-                <a href="index.html">
+                <a href="/csmovie">
                     <img src="/cinema/assets/images/logo/logo.png" alt="logo">
                 </a>
             </div>
             <ul class="menu">
                 <li>
-                    <a href="#0">Home</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="#0">Home One</a>
-                        </li>
-                        <li>
-                            <a href="index-2.html">Home Two</a>
-                        </li>
-                    </ul>
+                    <a href="/csmovie">Home</a>
                 </li>
                 <li>
                     <a href="#0">movies</a>

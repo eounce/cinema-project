@@ -28,7 +28,7 @@
 
 <!-- ==========Banner-Section========== -->
 <section class="banner-section">
-    <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner01.jpg"></div>
+    <div class="banner-bg bg_img bg-fixed" data-background="/csmovie/assets/images/banner/banner01.jpg"></div>
     <div class="container">
         <div class="banner-content">
             <h1 class="title  cd-headline clip"><span class="d-block">book your</span> tickets for
@@ -47,7 +47,7 @@
 <!-- ==========Ticket-Search========== -->
 <section class="search-ticket-section padding-top pt-lg-0">
     <div class="container">
-        <div class="search-tab bg_img" data-background="/cinema/assets/images/ticket/ticket-bg01.jpg">
+        <div class="search-tab bg_img" data-background="/csmovie/assets/images/ticket/ticket-bg01.jpg">
             <div class="row align-items-center mb--20">
                 <div class="col-lg-6 mb-20">
                     <div class="search-ticket-header">
@@ -82,7 +82,7 @@
                 <div class="tab-item active">
                     <form class="ticket-search-form">
                         <div class="form-group large">
-                            <input type="text" placeholder="Search for Movies">
+                            <input type="text" placeholder="Search fo Movies">
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
                         <div class="form-group">
@@ -106,10 +106,10 @@
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
+                                <option value="26-12-19">23/10/2019</option>
+                                <option value="26-12-19">24/10/2019</option>
+                                <option value="26-12-19">25/10/2019</option>
+                                <option value="26-12-19">26/10/2019</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -132,7 +132,7 @@
                 <div class="tab-item">
                     <form class="ticket-search-form">
                         <div class="form-group large">
-                            <input type="text" placeholder="Search for Events">
+                            <input type="text" placeholder="Search fo Events">
                             <button type="submit"><i class="fas fa-search"></i></button>
                         </div>
                         <div class="form-group">
@@ -156,10 +156,10 @@
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
+                                <option value="26-12-19">23/10/2019</option>
+                                <option value="26-12-19">24/10/2019</option>
+                                <option value="26-12-19">25/10/2019</option>
+                                <option value="26-12-19">26/10/2019</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -206,10 +206,10 @@
                             </div>
                             <span class="type">date</span>
                             <select class="select-bar">
-                                <option value="26-12-19">23/10/2020</option>
-                                <option value="26-12-19">24/10/2020</option>
-                                <option value="26-12-19">25/10/2020</option>
-                                <option value="26-12-19">26/10/2020</option>
+                                <option value="26-12-19">23/10/2019</option>
+                                <option value="26-12-19">24/10/2019</option>
+                                <option value="26-12-19">25/10/2019</option>
+                                <option value="26-12-19">26/10/2019</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -235,89 +235,31 @@
 </section>
 <!-- ==========Ticket-Search========== -->
 
-<!-- ==========Movie-Main-Section========== -->
-<section class="movie-section padding-top padding-bottom bg-two">
+<!-- ==========Movie-Section========== -->
+<section class="movie-section padding-top padding-bottom">
     <div class="container">
-        <div class="row flex-wrap-reverse justify-content-center">
-            <div class="col-lg-3 col-sm-10  mt-50 mt-lg-0">
-                <div class="widget-1 widget-facility">
-                    <div class="widget-1-body">
-                        <ul>
-                            <li>
-                                <a href="#0">
-                                    <span class="img"><img src="/cinema/assets/images/sidebar/icons/sidebar01.png" alt="sidebar"></span>
-                                    <span class="cate">24X7 Care</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0">
-                                    <span class="img"><img src="/cinema/assets/images/sidebar/icons/sidebar02.png" alt="sidebar"></span>
-                                    <span class="cate">100% Assurance</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0">
-                                    <span class="img"><img src="/cinema/assets/images/sidebar/icons/sidebar03.png" alt="sidebar"></span>
-                                    <span class="cate">Our Promise</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+        <div class="tab">
+            <div class="section-header-2">
+                <div class="left">
+                    <h2 class="title">movies</h2>
+                    <p>Be sure not to miss these Movies today.</p>
                 </div>
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="/cinema/assets/images/sidebar/banner/banner01.jpg" alt="banner">
-                        </a>
-                    </div>
-                </div>
-                <div class="widget-1 widget-trending-search">
-                    <h3 class="title">Trending Searches</h3>
-                    <div class="widget-1-body">
-                        <ul>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">mars</a>
-                                </h6>
-                                <p>Movies</p>
-                            </li>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">alone</a>
-                                </h6>
-                                <p>Movies</p>
-                            </li>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">music event</a>
-                                </h6>
-                                <p>event</p>
-                            </li>
-                            <li>
-                                <h6 class="sub-title">
-                                    <a href="#0">NBA Games 2020</a>
-                                </h6>
-                                <p>Sports</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="widget-1 widget-banner">
-                    <div class="widget-1-body">
-                        <a href="#0">
-                            <img src="/cinema/assets/images/sidebar/banner/banner02.jpg" alt="banner">
-                        </a>
-                    </div>
-                </div>
+                <ul class="tab-menu">
+                    <li class="active">
+                        now showing
+                    </li>
+                    <li>
+                        coming soon
+                    </li>
+                    <li>
+                        exclusive
+                    </li>
+                </ul>
             </div>
-            <div class="col-lg-9">
-                <div class="article-section padding-bottom">
-                    <div class="section-header-1">
-                        <h2 class="title">movies</h2>
-                        <a class="view-all" href="movie-grid.html">View All</a>
-                    </div>
-                    <div class="row mb-30-none justify-content-center">
-                        <div class="col-sm-6 col-lg-4">
+            <div class="tab-area mb-30-none">
+                <div class="tab-item active">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
                             <div class="movie-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -345,7 +287,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="item">
                             <div class="movie-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -373,7 +315,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="item">
                             <div class="movie-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -401,15 +343,299 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie04.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">horror night</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="article-section padding-bottom">
-                    <div class="section-header-1">
-                        <h2 class="title">events</h2>
-                        <a class="view-all" href="events.html">View All</a>
+                <div class="tab-item">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie01.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">alone</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie02.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">mars</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie03.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">venus</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie04.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">horror night</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row mb-30-none justify-content-center">
-                        <div class="col-sm-6 col-lg-4">
+                </div>
+                <div class="tab-item">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie01.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">alone</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie02.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">mars</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie03.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">venus</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/movie/movie04.jpg" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">horror night</a>
+                                    </h5>
+                                    <ul class="movie-rating-percent">
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/tomato.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                        <li>
+                                            <div class="thumb">
+                                                <img src="/cinema/assets/images/movie/cake.png" alt="movie">
+                                            </div>
+                                            <span class="content">88%</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Movie-Section========== -->
+
+<!-- ==========Event-Section========== -->
+<section class="event-section padding-top padding-bottom bg-four">
+    <div class="container">
+        <div class="tab">
+            <div class="section-header-2">
+                <div class="left">
+                    <h2 class="title">events</h2>
+                    <p>Be sure not to miss these Event today.</p>
+                </div>
+                <ul class="tab-menu">
+                    <li class="active">
+                        now showing
+                    </li>
+                    <li>
+                        coming soon
+                    </li>
+                    <li>
+                        exclusive
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-area mb-30-none">
+                <div class="tab-item active">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
                             <div class="event-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -430,7 +656,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="item">
                             <div class="event-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -451,7 +677,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="item">
                             <div class="event-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -472,15 +698,236 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event04.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world digital conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="article-section">
-                    <div class="section-header-1">
-                        <h2 class="title">sports</h2>
-                        <a class="view-all" href="sports.html">View All</a>
+                <div class="tab-item">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event01.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">Digital Economy Conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event02.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">web design conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event03.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">digital thinkers meetup</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event04.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world digital conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="row mb-30-none justify-content-center">
-                        <div class="col-sm-6 col-lg-4">
+                </div>
+                <div class="tab-item">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event01.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">Digital Economy Conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event02.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">web design conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event03.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">digital thinkers meetup</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="event-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/event/event04.jpg" alt="event">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world digital conference 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ==========Event-Section========== -->
+
+<!-- ==========Sports-Section========== -->
+<section class="sports-section padding-top padding-bottom">
+    <div class="container">
+        <div class="tab">
+            <div class="section-header-2">
+                <div class="left">
+                    <h2 class="title">sports</h2>
+                    <p>Be sure not to miss these Sports today.</p>
+                </div>
+                <ul class="tab-menu">
+                    <li class="active">
+                        now showing
+                    </li>
+                    <li>
+                        coming soon
+                    </li>
+                    <li>
+                        exclusive
+                    </li>
+                </ul>
+            </div>
+            <div class="tab-area mb-30-none">
+                <div class="tab-item active">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
                             <div class="sports-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -501,7 +948,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="item">
                             <div class="sports-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -522,7 +969,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-lg-4">
+                        <div class="item">
                             <div class="sports-grid">
                                 <div class="movie-thumb c-thumb">
                                     <a href="#0">
@@ -535,7 +982,204 @@
                                 </div>
                                 <div class="movie-content bg-one">
                                     <h5 class="title m-0">
-                                        <a href="#0">basket ball tournament 2020</a>
+                                        <a href="#0">basket ball league tournament</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports04.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world badminton league 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-item">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports01.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">football league tournament</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports02.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world cricket league 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports03.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">basket ball league tournament</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports04.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world badminton league 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-item">
+                    <div class="owl-carousel owl-theme tab-slider">
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports01.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">football league tournament</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports02.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world cricket league 2020</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports03.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">basket ball league tournament</a>
+                                    </h5>
+                                    <div class="movie-rating-percent">
+                                        <span>327 Montague Street</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="sports-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="#0">
+                                        <img src="/cinema/assets/images/sports/sports04.jpg" alt="sports">
+                                    </a>
+                                    <div class="event-date">
+                                        <h6 class="date-title">28</h6>
+                                        <span>Dec</span>
+                                    </div>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="#0">world badminton league 2020</a>
                                     </h5>
                                     <div class="movie-rating-percent">
                                         <span>327 Montague Street</span>
@@ -549,7 +1193,7 @@
         </div>
     </div>
 </section>
-<!-- ==========Movie-Main-Section========== -->
+<!-- ==========Sports-Section========== -->
 
 <c:import url="footer.jsp"/>
 
