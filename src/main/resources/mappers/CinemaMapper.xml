@@ -38,9 +38,27 @@
     </association>
 </resultMap>
 
+<resultMap id="resultCinemaCity" type="com.induk.cinema.domain.Schedule">
+    <id property="id" column="id"/>
+    <result property="movie_id" column="movie_id"/>
+    <result property="theater_id" column="theater_id"/>
+    <result property="start_time" column="start_time"/>
+    <result property="end_time" column="end_time"/>
+    <result property="screening_data" column="screening_data"/>
+    <result property="screening_format" column="screening_format"/>
+    <result property="price" column="price"/>
+    <association property="cinemaCity" javaType="com.induk.cinema.dto.CinemaCity">
+        <result property="cityName" column="cityName"/>
+    </association>
+</resultMap>
+
     <select id="findAll" resultMap="resultCinema">
         select cinema.*, city.name as cityName
         from cinema left join city on cinema.city_id = city.id
+    </select>
+
+    <select id="findCinemaByText" parameterType="String" resultMap="resultCinema">
+        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id where cinema.name like concat('%', #{searchText}, '%');
     </select>
 
     <select id="findCity" resultType="com.induk.cinema.domain.City">

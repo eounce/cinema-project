@@ -48,9 +48,9 @@
                         <h5 class="title">검색</h5>
                         <div class="search-form">
                             <input type="text" name="searchText" id="searchText"
-                                   placeholder="검색어를 입력해주세요" onkeydown="if(event.keyCode==13)search($('#searchText').val());">
+                                   placeholder="검색어를 입력해주세요" onkeydown="if(event.keyCode==13)move($('#searchText').val());">
                             <button type="button" class="custom-button" id="searchButton"
-                                    onclick="search($('#searchText').val());"><i class="flaticon-loupe"></i>Search</button>
+                                    onclick="move($('#searchText').val());"><i class="flaticon-loupe"></i>Search</button>
                         </div>
                     </div>
                 </div>
@@ -60,24 +60,20 @@
                     <div class="tab-area">
                         <div class="movie-details">
                             <div class="tab summery-review">
-                                <ul class="tab-menu">
+                                <ul class="tab-menu" id="city_name">
                                     <c:forEach var="city" items="${citys}">
                                         <c:if test="${city.id == 1}">
-                                            <li class="active">
-                                                ${city.name}
-                                            </li>
+                                            <li class="active">${city.name}</li>
                                         </c:if>
                                         <c:if test="${city.id != 1}">
-                                            <li>
-                                                ${city.name}
-                                            </li>
+                                            <li>${city.name}</li>
                                         </c:if>
                                     </c:forEach>
                                 </ul>
                                 <div class="tab-area">
                                     <c:forEach var="city" items="${citys}">
                                         <c:if test="${city.id == 1}">
-                                            <div class="tab-item active">
+                                            <div class="tab-item active" id="item_active">
                                         </c:if>
                                         <c:if test="${city.id != 1}">
                                             <div class="tab-item">
@@ -89,7 +85,7 @@
                                                             <div class="movie-grid">
                                                                 <div class="movie-content bg-one">
                                                                     <h6 class="title m-0">
-                                                                        <a href="/csmovie/cinema/${cinema.id}">${cinema.name}</a>
+                                                                        <a href="/csmovie/cinemas/detail/${cinema.id}">${cinema.name}</a>
                                                                     </h6>
                                                                     <ul class="movie-rating-percent">
                                                                         <li>
@@ -121,12 +117,78 @@
 
 
 
-<script>
+<script>/*search($('#searchText').val());
     function search(searchText) {
-        var word = searchText;
-        var encodeWord = encodeURI(word);
-        console.log(word);
-        console.log(encodeWord);
+        var text = " ";
+        if(searchText != ""){
+            text=searchText;
+        }
+        console.log(text);
+        $.ajax({
+            url: "/csmovie/cinemas/listAjax",
+            data: text,
+            type:"POST",
+            contentType: "application/json; charset=UTF-8",
+            success: function (cinemas){
+
+                $("#city_name").children().remove();
+                $("#item_active").children().remove();
+
+                var array = [];
+
+                for(var i=0;i<cinemas.length;i++) {
+                    if(!array.indexOf(cinemas[i].cinemaCity.cityName)){
+                        array.push(cinemas[i].cinemaCity.cityName);
+                    }
+                }
+                var city = "";
+
+                //for(var i=0;i<cinemas.length;i++) {
+                //    if(i==0){
+                //        city +=
+                //            "<li class=\"active\" id=\"active\">";
+                //    } else {
+                //        city +=
+                //            "<li>";
+                //    }
+                //   city += cinemas[i].cinemaCity.cityName +
+                //        "</li>";
+                //}
+
+                city += "<li class=\"active\">" +
+                    "검색됨" +
+                    "</li>";
+                $("#city_name").html(city);
+
+                var item = "";
+                item +=
+                    "<div class=\"row mb-10 justify-content-center\">";
+                for(var i=0;i<cinemas.length;i++){
+                    item +=
+                        "<div class=\"col-sm-6 col-lg-4\">" +
+                        "<div class=\"movie-grid\">" +
+                        "<div class=\"movie-content bg-one\">" +
+                        "<h6 class=\"title m-0\">" +
+                        "<a href=\"/csmovie/cinemas/" + cinemas[i].id + "\">" + cinemas[i].name + "</a>" +
+                        "</h6>" +
+                        "<ul class=\"movie-rating-percent\">"+
+                        "<li>" +
+                        "<i class=\"fas fa-map-marker-alt\"> " + cinemas[i].address + "</i>" +
+                        "</li>" +
+                        "</ul>" +
+                        "</div>" +
+                        "</div>" +
+                        "</div>";
+                }
+                item +=
+                    "</div>";
+                $("#item_active").html(item);
+            }
+        });
+    }
+    */
+    function move(searchText) {
+        location.href="/csmovie/cinemas/"+searchText;
     }
 </script>
 

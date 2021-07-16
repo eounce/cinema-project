@@ -8,6 +8,7 @@ import java.util.List;
 @Mapper
 public interface CinemaRepository {
     List<Cinema> findAll();
+    List<Cinema> findCinemaByText(String searchText);
     Cinema findById(Long id);
     List<Schedule> findByTheater(Long id);
     List<Schedule> findMovie(Long id);

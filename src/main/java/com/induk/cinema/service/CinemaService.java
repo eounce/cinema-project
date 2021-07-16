@@ -18,6 +18,10 @@ public class CinemaService {
         return cinemaRepository.findAll();
     }
 
+    public List<Cinema> findCinemaByText(String searchText) {
+        return cinemaRepository.findCinemaByText(searchText);
+    }
+
     public Cinema findCinema(Long id) {
         return cinemaRepository.findById(id);
     }

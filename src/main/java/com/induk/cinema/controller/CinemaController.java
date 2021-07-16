@@ -1,24 +1,19 @@
 package com.induk.cinema.controller;
 
-import com.induk.cinema.domain.Cinema;
-import com.induk.cinema.domain.Movie;
-import com.induk.cinema.domain.Schedule;
-import com.induk.cinema.domain.Theater;
+import com.induk.cinema.domain.*;
 import com.induk.cinema.service.CinemaService;
 import com.induk.cinema.service.CityService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/csmovie/cinema")
+@RequestMapping("/csmovie/cinemas")
 @RequiredArgsConstructor
 public class CinemaController {
 
@@ -33,7 +28,28 @@ public class CinemaController {
         return "cinema/cinema/listForm";
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/{searchText}")
+    public String searchhome(@PathVariable String searchText, Model model) {
+
+
+        List<Cinema> cinemas =cinemaService.findCinemaByText(searchText);
+        model.addAttribute("cinemas", cinemas);
+        model.addAttribute("citys", cityService.cityList());
+
+        return "cinema/cinema/listForm";
+    }
+
+/*
+    @PostMapping("/listAjax")
+    @ResponseBody
+    public List<Cinema> listFormAjax(@RequestBody String searchText){
+        List<Cinema> cinemas =cinemaService.findCinemaByText(searchText);
+        return cinemas;
+    }
+*/
+
+
+    @GetMapping("/detail/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
 
         Cinema cinema = cinemaService.findCinema(id);
