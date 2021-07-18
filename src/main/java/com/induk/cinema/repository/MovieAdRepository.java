@@ -11,7 +11,6 @@ public interface MovieAdRepository {
 
     List<MovieAd> findByMovieId(Long id);
     MovieAd findById(Long id);
-    MovieAd findByTrailer(Long id);
     List<MovieAd> findByImage(Long id);
     void save(List<MovieAdForm> movieAds);
     void delete(Long id);

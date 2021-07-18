@@ -50,6 +50,16 @@ public class AppraisalController {
         return movieId;
     }
 
+    @PostMapping("/like")
+    public void like(@RequestParam(value = "count") int count, @RequestParam(value = "id") Long id) {
+        appraisalService.likeInc(count, id);
+    }
+
+    @PostMapping("/hate")
+    public void hate(@RequestParam(value = "count") int count, @RequestParam(value = "id") Long id) {
+        appraisalService.hateInc(count, id);
+    }
+
     @GetMapping("/images/{filename}")
     public Resource movieImage(@PathVariable String filename) throws MalformedURLException {
         return new UrlResource("file:" + fileStore.getFullPath("member", filename));

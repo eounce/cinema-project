@@ -25,10 +25,12 @@ public class MovieService {
     private final MovieRepository movieRepository;
     private final FileStore fileStore;
 
+    // 어드민 페이지 활용
     public List<Movie> movieList() {
         return movieRepository.findAll();
     }
 
+    // 사용자 페이지 활용
     public List<Movie> movieListOpt(List<String> genreChBox, List<String> formatChBox, int sort, Criteria criteria) {
         Map<String, Object> map = new HashMap<>();
         map.put("genres", genreChBox);
@@ -45,7 +47,8 @@ public class MovieService {
 
         return movieRepository.findByOption(map);
     }
-    
+
+    // 페이지 처리 활용
     public int movieCounts(List<String> genreChBox, List<String> formatChBox, int sort) {
         Map<String, Object> map = new HashMap<>();
         map.put("genres", genreChBox);
@@ -61,9 +64,13 @@ public class MovieService {
         return movieRepository.countAll(map);
     }
 
+    // 어드민 페이지 활용
     public Movie findMovie(Long id) {
         return movieRepository.findById(id);
     }
+
+    // 사용자 페이지 활용
+    public HashMap<String, Object> findMovieDetail(Long id) { return movieRepository.findByIdMovieDetail(id); }
 
     public Long saveMovie(MovieForm movieForm, MultipartFile multipartFile) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(multipartFile, "movie");
