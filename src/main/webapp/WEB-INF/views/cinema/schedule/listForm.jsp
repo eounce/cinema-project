@@ -303,7 +303,7 @@
                                 <img src="/cinema/assets/images/ticket/date.png" alt="ticket">
                             </div>
                             <span class="type">날짜</span>
-                            <select class="select-bar form-control-sm" style="background: none; border-width: 0px;" id="dateCombo">
+                            <select class="select-bar form-control-sm" onchange="findSchedule()" style="background: none; border-width: 0px;" id="dateCombo">
                                 <%--
                                 <%LocalDate date = LocalDate.now();%>
                                 <option value="<%=date%>" style="color:#000000"><%=date%></option>
@@ -336,7 +336,7 @@
                                 <img src="/cinema/assets/images/ticket/cinema.png" alt="ticket">
                             </div>
                             <span class="type">영화관</span>
-                            <select class="select-bar form-control-sm" id="cinemaId" style="background: none; border-width: 0px;">
+                            <select class="select-bar form-control-sm" id="cinemaId" onchange="findSchedule()" style="background: none; border-width: 0px;">
                                 <option value="">영화관 선택</option>
                             </select>
                         </div>
@@ -385,7 +385,7 @@
     function callCinema() {
         var cityId = $("#cityId").val();
 
-        if(cityId != "" && cinemaId != ""){
+        if(cityId != "" && cinemaId != "") {
             $("#cityErr").children().remove();
             $("#cinemaErr").children().remove();
         }
