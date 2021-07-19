@@ -98,6 +98,20 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSchedule"
+           aria-expanded="true" aria-controls="collapseEvent">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>상영시간표</span>
+        </a>
+        <div id="collapseSchedule" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">상영시간표:</h6>
+                <a class="collapse-item" href="/csmovie/admin/schedules">시간표</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseReview"
            aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-folder"></i>

@@ -19,18 +19,70 @@
     </association>
 </resultMap>
 
+<resultMap id="resultScedule" type="com.induk.cinema.domain.Schedule">
+    <id property="id" column="id"/>
+    <result property="movie_id" column="movie_id"/>
+    <result property="theater_id" column="theater_id"/>
+    <result property="start_time" column="start_time"/>
+    <result property="end_time" column="end_time"/>
+    <result property="screening_data" column="screening_data"/>
+    <result property="screening_format" column="screening_format"/>
+    <result property="price" column="price"/>
+    <association property="scheduleForm" javaType="com.induk.cinema.dto.ScheduleForm">
+        <result property="movie_title" column="movie_title"/>
+        <result property="movie_rating" column="movie_rating"/>
+        <result property="movie_showtimes" column="movie_showtimes"/>
+        <result property="theater_name" column="theater_name"/>
+        <result property="theater_seat" column="theater_seat"/>
+        <result property="cinema_id" column="cinema_id"/>
+    </association>
+</resultMap>
+
+<resultMap id="resultCinemaCity" type="com.induk.cinema.domain.Schedule">
+    <id property="id" column="id"/>
+    <result property="movie_id" column="movie_id"/>
+    <result property="theater_id" column="theater_id"/>
+    <result property="start_time" column="start_time"/>
+    <result property="end_time" column="end_time"/>
+    <result property="screening_data" column="screening_data"/>
+    <result property="screening_format" column="screening_format"/>
+    <result property="price" column="price"/>
+    <association property="cinemaCity" javaType="com.induk.cinema.dto.CinemaCity">
+        <result property="cityName" column="cityName"/>
+    </association>
+</resultMap>
+
     <select id="findAll" resultMap="resultCinema">
         select cinema.*, city.name as cityName
         from cinema left join city on cinema.city_id = city.id
+    </select>
+
+    <select id="findCinemaByText" parameterType="String" resultMap="resultCinema">
+        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id where cinema.name like concat('%', #{searchText}, '%');
     </select>
 
     <select id="findCity" resultType="com.induk.cinema.domain.City">
         select * from city
     </select>
 
+    <select id="findSceduleByCinema" resultMap="resultScedule">
+        select schedule.*, movie.title as movie_title, movie.rating as movie_rating, movie.show_times as movie_showtimes, theater.name as theater_name, theater.seat_count as theater_seat, theater.cinema_id as cinema_id from schedule left join movie on schedule.movie_id = movie.id
+        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{id}
+    </select>
+
     <select id="findById" parameterType="Long" resultMap="resultCinema">
         select cinema.*, city.name as cityName
         from cinema left join city on cinema.city_id = city.id where cinema.id = #{id}
+    </select>
+
+    <select id="findByTheater" parameterType="Long" resultMap="resultScedule">
+        select distinct schedule.movie_id, theater.id as theater_id, theater.name as theater_name, theater.seat_count as theater_seat, schedule.movie_id from schedule
+        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{id}
+    </select>
+
+    <select id="findMovie" parameterType="Long" resultMap="resultScedule">
+        select distinct movie.id as movie_id, movie.title as movie_title, movie.screening_format as screening_format, movie.rating as movie_rating, movie.show_times as movie_showtimes, theater.cinema_id as cinema_id from schedule left join movie on schedule.movie_id = movie.id
+        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{id}
     </select>
 
     <select id="findCinemaListByCityId" parameterType="Long" resultMap="resultCinema">

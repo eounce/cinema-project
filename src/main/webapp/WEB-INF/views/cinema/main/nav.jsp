@@ -42,6 +42,9 @@
                             <a href="/csmovie/movies">전체영화</a>
                         </li>
                         <li>
+                            <a href="/csmovie/schedules">시간표</a>
+                        </li>
+                        <li>
                             <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
                         </li>
                         <li>
@@ -54,7 +57,7 @@
                             <a href="popcorn.html">Movie Food</a>
                         </li>
                         <li>
-                            <a href="/csmovie/cinema">Cinema</a>
+                            <a href="/csmovie/cinemas">상영관</a>
                         </li>
                     </ul>
                 </li>
