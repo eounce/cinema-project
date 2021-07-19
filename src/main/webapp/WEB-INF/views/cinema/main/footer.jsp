@@ -85,3 +85,27 @@
 <script src="/cinema/assets/js/nice-select.js"></script>
 <script src="/cinema/assets/js/contact.js"></script>
 <script src="/cinema/assets/js/main.js"></script>
+
+
+
+<!-- select2 css cdn -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
+<!-- select2 javascript cdn -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
+<script>
+    function formatState(state) {
+        if (!state.id) {
+            return state.text;
+        }
+        return $(
+            '<div style="' + $(state.element).data('style') + '"> ' + state.text + '</div>'
+        );
+    };
+    $(document).ready(function () {
+        $("#select2").select2({
+            theme: "bootstrap",
+            width: null
+        });
+    });
+</script>

@@ -114,17 +114,20 @@
             border-radius: 10px;
             height:300px;
         }
-        .custom-select{
-            height: 60px;
-            border-radius: 10px;
-            border-color: #2d4186;
-            color: #dbe2fb;
-            background:transparent;
-            background: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='%23343a40' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e") no-repeat right .75rem center/8px 10px;
+        .select2-selection{
+            height: 60px!important;
+            padding: 17px 10px!important;
+            border-radius: 10px!important;
+            border-color: #2d4186!important;
+            color: #dbe2fb!important;
+            background:transparent!important;
         }
-        .custom-select option{
+        .select2-results__option{
             color: #dbe2fb;
             background:#032055;
+        }
+        .select2-selection__rendered{
+            color: #dbe2fb!important;
         }
         .custom-focus:focus{
             border-color:#80bdff!important;
@@ -207,7 +210,7 @@
                         <div class="form-group w-100">
                             <spring:bind path="review.movieId">
                                 <label forid="${status.expression}"> 영화<span style="color: #e03232"> *</span></label>
-                                <select class="custom-select" name="${status.expression}" id="${status.expression}" required>
+                                <select class="custom-select" name="${status.expression}" id="select2" required>
                                     <c:forEach var="movie" items="${movies}">
                                         <c:choose>
                                             <c:when test="${review.movieId == movie.id}">
@@ -245,7 +248,7 @@
                             <input type="file" id="input_file" name="imageForm" class="upload-hidden" accept="image/gif, image/bmp, image/png, image/jpeg" onchange="checkImage()">
                         </div>
                         <div class="form-group" style="width: 100%;text-align: right;">
-                            <input type="submit" class="custom-button" value="작성하기" style="border-radius: 10px;">
+                            <input type="submit" class="custom-button" value="수정하기" style="border-radius: 10px;">
                         </div>
                     </form>
 
