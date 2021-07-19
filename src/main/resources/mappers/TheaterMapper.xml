@@ -14,7 +14,7 @@
 </resultMap>
 
     <select id="findAll" resultMap="resultTheater">
-        select theater.*, cinema.name as cinemaName from theater left join cinema on theater.cinema_id = cinema.id
+        select theater.*, cinema.name as cinemaName from theater left join cinema on theater.cinema_id = cinema.id order by cinemaName desc, theater.name asc
     </select>
 
     <select id="findCinema" resultType="com.induk.cinema.domain.Cinema">

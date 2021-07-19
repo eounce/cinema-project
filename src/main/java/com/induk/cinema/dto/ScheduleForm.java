@@ -11,4 +11,5 @@ public class ScheduleForm {
     private String theater_name;
     private String theater_seat;
     private Long cinema_id;
+    private String cinema_name;
 }
