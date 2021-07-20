@@ -3,11 +3,13 @@ package com.induk.cinema.controller;
 import com.induk.cinema.domain.*;
 import com.induk.cinema.service.CinemaService;
 import com.induk.cinema.service.CityService;
+import com.induk.cinema.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +21,7 @@ public class CinemaController {
 
     private final CityService cityService;
     private final CinemaService cinemaService;
+    private final ScheduleService scheduleService;
 
     @GetMapping
     public String home(Model model) {
@@ -52,22 +55,37 @@ public class CinemaController {
     @GetMapping("/detail/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
 
+        //LocalDate date = LocalDate.now();
+        String date = "2021-07-13";
+
         Cinema cinema = cinemaService.findCinema(id);
         model.addAttribute("cinema", cinema);
 
         List<String> list = Arrays.asList(cinema.getFacility().split(","));
         model.addAttribute("facilitys", list);
 
-        List<Schedule> movies = cinemaService.findMovie(id);
+        List<Schedule> movies = cinemaService.findMovie(id, date);
         model.addAttribute("movies", movies);
 
-        List<Schedule> schedules = cinemaService.findSceduleByCinema(id);
-        model.addAttribute("schedules", schedules);
-
-        List<Schedule> theaters = cinemaService.findByTheater(id);
+        List<Schedule> theaters = cinemaService.findByTheater(id, date);
         model.addAttribute("theaters", theaters);
 
+        List<Schedule> schedulestest = scheduleService.findScheduleForAjax("", date, id);
+        model.addAttribute("schedulestests", schedulestest);
+
         return "cinema/cinema/detailForm";
+    }
+
+    @PostMapping("/scheduleAjax")
+    @ResponseBody
+    public List<Schedule> scheduleAjax(@RequestParam(value = "date") String date,
+                                       @RequestParam(value = "cinemaId") Long cinemaId){
+
+        List<Schedule> schedules = cinemaService.findScheduleForAjax(date, cinemaId);
+
+
+
+        return schedules;
     }
 
 

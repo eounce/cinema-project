@@ -26,12 +26,12 @@ public class CinemaService {
         return cinemaRepository.findById(id);
     }
 
-    public List<Schedule> findByTheater(Long id) {
-        return cinemaRepository.findByTheater(id);
+    public List<Schedule> findByTheater(Long id, String date) {
+        return cinemaRepository.findByTheater(id, date);
     }
 
-    public List<Schedule> findMovie(Long id) {
-        return cinemaRepository.findMovie(id);
+    public List<Schedule> findMovie(Long id, String date) {
+        return cinemaRepository.findMovie(id, date);
     }
 
     public List<Schedule> findSceduleByCinema(Long id) {
@@ -63,6 +63,8 @@ public class CinemaService {
         return cinemaRepository.findCity();
     }
 
-
+    public List<Schedule> findScheduleForAjax(String date, Long cinemaId) {
+        return cinemaRepository.findScheduleForAjax(date, cinemaId);
+    }
 
 }
