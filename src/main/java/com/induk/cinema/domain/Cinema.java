@@ -47,4 +47,5 @@ public class Cinema {
     private String sales;
 
     private CinemaCity cinemaCity;
+    private City city;
 }

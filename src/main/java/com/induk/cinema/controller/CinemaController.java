@@ -42,15 +42,17 @@ public class CinemaController {
         return "cinema/cinema/listForm";
     }
 
-/*
+
     @PostMapping("/listAjax")
     @ResponseBody
     public List<Cinema> listFormAjax(@RequestBody String searchText){
+        if(searchText.equals(" "))
+            searchText="";
         List<Cinema> cinemas =cinemaService.findCinemaByText(searchText);
+        for(int i=0;i<cinemas.size();i++)
+            System.out.println("i : " + cinemas.get(i).getCinemaCity().getCityName());
         return cinemas;
     }
-*/
-
 
     @GetMapping("/detail/{id}")
     public String DetailForm(@PathVariable Long id, Model model) {
