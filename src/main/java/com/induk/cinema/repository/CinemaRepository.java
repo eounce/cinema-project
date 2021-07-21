@@ -10,8 +10,8 @@ public interface CinemaRepository {
     List<Cinema> findAll();
     List<Cinema> findCinemaByText(String searchText);
     Cinema findById(Long id);
-    List<Schedule> findByTheater(Long id);
-    List<Schedule> findMovie(Long id);
+    List<Schedule> findByTheater(Long id, String date);
+    List<Schedule> findMovie(Long id, String date);
     List<Schedule> findSceduleByCinema(Long id);
     List<Cinema> findCinemaListByCityId(Long id);
     Long save(Cinema cinema);
@@ -20,4 +20,6 @@ public interface CinemaRepository {
 
     String findByCityId(Long id);
     List<City> findCity();
+
+    List<Schedule> findScheduleForAjax(String date, Long cinemaId);
 }

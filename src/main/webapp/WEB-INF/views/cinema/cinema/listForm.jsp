@@ -48,9 +48,9 @@
                         <h5 class="title">검색</h5>
                         <div class="search-form">
                             <input type="text" name="searchText" id="searchText"
-                                   placeholder="검색어를 입력해주세요" onkeydown="if(event.keyCode==13)move($('#searchText').val());">
+                                   placeholder="검색어를 입력해주세요" onkeydown="if(event.keyCode==13)search($('#searchText').val());">
                             <button type="button" class="custom-button" id="searchButton"
-                                    onclick="move($('#searchText').val());"><i class="flaticon-loupe"></i>Search</button>
+                                    onclick="search($('#searchText').val());"><i class="flaticon-loupe"></i>Search</button>
                         </div>
                     </div>
                 </div>
@@ -66,11 +66,11 @@
                                             <li class="active">${city.name}</li>
                                         </c:if>
                                         <c:if test="${city.id != 1}">
-                                            <li>${city.name}</li>
+                                            <li onclick="moveCity(${city.id});">${city.name}</li>
                                         </c:if>
                                     </c:forEach>
                                 </ul>
-                                <div class="tab-area">
+                                <div class="tab-area" id="item">
                                     <c:forEach var="city" items="${citys}">
                                         <c:if test="${city.id == 1}">
                                             <div class="tab-item active" id="item_active">
@@ -117,7 +117,7 @@
 
 
 
-<script>/*search($('#searchText').val());
+<script>
     function search(searchText) {
         var text = " ";
         if(searchText != ""){
@@ -129,67 +129,156 @@
             data: text,
             type:"POST",
             contentType: "application/json; charset=UTF-8",
+            error: function(){
+                alert("오류 발생");
+            },
             success: function (cinemas){
 
                 $("#city_name").children().remove();
-                $("#item_active").children().remove();
+                $("#item").children().remove();
 
-                var array = [];
+                var array_name = [];
+                var array_id = [];
 
                 for(var i=0;i<cinemas.length;i++) {
-                    if(!array.indexOf(cinemas[i].cinemaCity.cityName)){
-                        array.push(cinemas[i].cinemaCity.cityName);
+                    if(array_name.indexOf(cinemas[i].cinemaCity.cityName) == -1){
+                        array_name.push(cinemas[i].cinemaCity.cityName);
+                        array_id.push(cinemas[i].city_id);
+                        console.log(cinemas[i].cinemaCity.cityName + cinemas[i].city_id);
                     }
                 }
                 var city = "";
+                for(var i=0;i<array_name.length;i++) {
+                   if(i==0){
+                       city +=
+                           "<li class=\"active\" id=\"active\">";
+                   } else {
+                       city +=
+                           "<li onclick=\"moveCity(" + array_id[i] + ");\">";
+                   }
+                  city += array_name[i] +
+                       "</li>";
+                }
 
-                //for(var i=0;i<cinemas.length;i++) {
-                //    if(i==0){
-                //        city +=
-                //            "<li class=\"active\" id=\"active\">";
-                //    } else {
-                //        city +=
-                //            "<li>";
-                //    }
-                //   city += cinemas[i].cinemaCity.cityName +
-                //        "</li>";
-                //}
-
-                city += "<li class=\"active\">" +
-                    "검색됨" +
-                    "</li>";
+                // city += "<li class=\"active\">" +
+                //     "검색됨" +
+                //     "</li>";
                 $("#city_name").html(city);
 
                 var item = "";
                 item +=
+                    "<div class=\"tab-item active\">" +
                     "<div class=\"row mb-10 justify-content-center\">";
                 for(var i=0;i<cinemas.length;i++){
-                    item +=
-                        "<div class=\"col-sm-6 col-lg-4\">" +
-                        "<div class=\"movie-grid\">" +
-                        "<div class=\"movie-content bg-one\">" +
-                        "<h6 class=\"title m-0\">" +
-                        "<a href=\"/csmovie/cinemas/" + cinemas[i].id + "\">" + cinemas[i].name + "</a>" +
-                        "</h6>" +
-                        "<ul class=\"movie-rating-percent\">"+
-                        "<li>" +
-                        "<i class=\"fas fa-map-marker-alt\"> " + cinemas[i].address + "</i>" +
-                        "</li>" +
-                        "</ul>" +
-                        "</div>" +
-                        "</div>" +
-                        "</div>";
+                    console.log(array_id[i] + " " + cinemas[i].city_id);
+                    if(array_id[0] == cinemas[i].city_id) {
+                        item +=
+                            "<div class=\"col-sm-6 col-lg-4\">" +
+                            "<div class=\"movie-grid\">" +
+                            "<div class=\"movie-content bg-one\">" +
+                            "<h6 class=\"title m-0\">" +
+                            "<a href=\"/csmovie/cinemas/detail/" + cinemas[i].id + "\">" + cinemas[i].name + "</a>" +
+                            "</h6>" +
+                            "<ul class=\"movie-rating-percent\">" +
+                            "<li>" +
+                            "<i class=\"fas fa-map-marker-alt\"> " + cinemas[i].address + "</i>" +
+                            "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>";
+                    }
                 }
                 item +=
                     "</div>";
-                $("#item_active").html(item);
+                $("#item").html(item);
             }
         });
     }
-    */
+
     function move(searchText) {
         location.href="/csmovie/cinemas/"+searchText;
     }
+
+    function moveCity(cityId) {
+        var text = " ";
+        if($("#searchText").val())
+            text = $("#searchText").val();
+
+        $.ajax({
+            url: "/csmovie/cinemas/listAjax",
+            data: text,
+            type:"POST",
+            contentType: "application/json; charset=UTF-8",
+            error: function(){
+                alert("오류 발생");
+            },
+            success: function (cinemas){
+
+                $("#city_name").children().remove();
+                $("#item").children().remove();
+
+                var array_name = [];
+                var array_id = [];
+
+                for(var i=0;i<cinemas.length;i++) {
+                    if(array_name.indexOf(cinemas[i].cinemaCity.cityName) == -1){
+                        array_name.push(cinemas[i].cinemaCity.cityName);
+                        array_id.push(cinemas[i].city_id);
+                    }
+                }
+                var city = "";
+
+                for(var i=0;i<array_name.length;i++) {
+                    if(array_id[i] == cityId){
+                        city +=
+                            "<li class=\"active\">";
+                    } else {
+                        city +=
+                            "<li onclick=\"moveCity(" + array_id[i] + ");\">";
+                    }
+                    city += array_name[i] +
+                        "</li>";
+                }
+
+                // city += "<li class=\"active\">" +
+                //     "검색됨" +
+                //     "</li>";
+                $("#city_name").html(city);
+
+                var item = "";
+                item +=
+                    "<div class=\"tab-item active\">" +
+                    "<div class=\"row mb-10 justify-content-center\">";
+                for(var i=0;i<cinemas.length;i++){
+                    console.log("city_id :" + cinemas[i].city_id);
+                    console.log("array_id :" + array_id[i]);
+                    if(cinemas[i].city_id == cityId) {
+                        item +=
+                            "<div class=\"col-sm-6 col-lg-4\">" +
+                            "<div class=\"movie-grid\">" +
+                            "<div class=\"movie-content bg-one\">" +
+                            "<h6 class=\"title m-0\">" +
+                            "<a href=\"/csmovie/cinemas/detail/" + cinemas[i].id + "\">" + cinemas[i].name + "</a>" +
+                            "</h6>" +
+                            "<ul class=\"movie-rating-percent\">" +
+                            "<li>" +
+                            "<i class=\"fas fa-map-marker-alt\"> " + cinemas[i].address + "</i>" +
+                            "</li>" +
+                            "</ul>" +
+                            "</div>" +
+                            "</div>" +
+                            "</div>";
+                    }
+                }
+                item +=
+                    "</div>" +
+                    "</div>";
+                $("#item").html(item);
+            }
+        });
+    }
+
 </script>
 
 
