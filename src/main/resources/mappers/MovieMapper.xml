@@ -68,6 +68,18 @@
         order by m.release_date
     </select>
 
+    <select id="findHighRank" resultMap="resultMovie">
+        select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId, sum(r.adult+r.youth) as count
+        from reservation r
+        inner join schedule s on r.schedule_id = s.id
+        inner join movie m on s.movie_id = m.id
+        inner join director d on m.director_id = d.id
+        inner join genre g on m.genre_id = g.id
+        group by m.title
+        order by count desc
+        limit 0, 4
+    </select>
+
     <select id="findByOption" resultMap="resultMovie" parameterType="java.util.HashMap">
         select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId, ma.store_filename as trailer
         from movie m
