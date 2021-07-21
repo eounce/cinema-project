@@ -84,4 +84,5 @@
 <script src="/cinema/assets/js/viewport.jquery.js"></script>
 <script src="/cinema/assets/js/nice-select.js"></script>
 <script src="/cinema/assets/js/contact.js"></script>
-<script src="/cinema/assets/js/main.js"></script>
+<% String urlActive = (request.getRequestURL().toString().contains("/schedule/listForm"))?"main_del.js":"main.js"; %>
+    <script src="/cinema/assets/js/<%=urlActive%>"></script>

@@ -377,7 +377,7 @@
 </div>
 <!-- ==========Movie-Section========== -->
 
-<c:import url="../main/footer_s.jsp"/>
+<c:import url="../main/footer.jsp"/>
 
 
 </body>
