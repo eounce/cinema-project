@@ -241,6 +241,41 @@
 <!-- ==========Movie-Section========== -->
 <section class="movie-section padding-top padding-bottom">
     <div class="container">
+
+        <div class="col-lg-12">
+            <div class="article-section padding-bottom">
+                <div class="section-header-1">
+                    <h2 class="title">movie top4</h2>
+                    <a class="view-all" href="/csmovie/movies">View All</a>
+                </div>
+                <div class="row mb-30-none justify-content-center">
+                    <c:forEach var="movie" items="${top4}" varStatus="status">
+                        <div class="col-sm-6 col-lg-3">
+                            <div class="movie-grid">
+                                <div class="movie-thumb c-thumb">
+                                    <a href="/csmovie/movies/${movie.id}">
+                                        <img src="/csmovie/images/${movie.poster}" alt="movie">
+                                    </a>
+                                </div>
+                                <div class="movie-content bg-one">
+                                    <h5 class="title m-0">
+                                        <a href="/csmovie/movies/${movie.id}"><span class="color-theme">${status.count}</span>&nbsp; ${movie.title}</a>
+                                    </h5><br><br>
+                                    <div class="widget-1 widget-tags">
+                                        <ul>
+                                            <c:forEach var="format" items="${top4Formats.get(status.index)}">
+                                                <li><a>${format}</a></li>
+                                            </c:forEach>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+            </div>
+        </div>
+
         <div class="tab">
             <div class="section-header-2">
                 <div class="left">

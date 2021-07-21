@@ -48,6 +48,10 @@ public class MovieService {
         return movieRepository.findByOption(map);
     }
 
+    public List<Movie> movieListHighRank() {
+        return movieRepository.findHighRank();
+    }
+
     // 페이지 처리 활용
     public int movieCounts(List<String> genreChBox, List<String> formatChBox, int sort) {
         Map<String, Object> map = new HashMap<>();

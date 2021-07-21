@@ -295,7 +295,7 @@
                 <div class="tab-item active">
                     <form class="ticket-search-form" onsubmit="return false">
                         <div class="form-group large col-lg-3">
-                            <input type="text" placeholder="Search fo Movies" id="movieTitle" onkeydown="if(event.keyCode==13)findSchedule()">
+                            <input type="text" placeholder="Search fo Movies" id="movieTitle" value="${title}" onkeydown="if(event.keyCode==13)findSchedule()">
                             <button type="button" onclick="findSchedule()" ><i class="fas fa-search"></i></button>
                         </div>
                         <div class="form-group col-lg-3">
