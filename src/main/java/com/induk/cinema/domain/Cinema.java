@@ -33,6 +33,7 @@ public class Cinema {
     @NotBlank(message = "극장 소개는 필수 입력입니다.")
     private String introduction;
 
+    @Size(max = 255, message = "주차안내는 최대 255자입니다.")
     @NotBlank(message = "주차안내는 필수 입력입니다.")
     private String parking;
 
