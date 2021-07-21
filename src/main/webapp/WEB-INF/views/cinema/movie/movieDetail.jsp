@@ -26,7 +26,7 @@
     </style>
 </head>
 
-<body onload="appraisalsList(${movieDetail.id})">
+<body onload="appraisalsList(${movieDetail.id}, 3)">
 
 <c:import url="../main/nav.jsp"/>
 
@@ -60,11 +60,11 @@
                         </div>
                     </div>
                     <ul class="social-share">
-                        <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="https://ko-kr.facebook.com/enespanol/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/?lang=ko"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.pinterest.co.kr/"><i class="fab fa-pinterest-p"></i></a></li>
+                        <li><a href="https://www.instagram.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://www.google.co.kr/"><i class="fab fa-google-plus-g"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -370,7 +370,7 @@
                                 </c:choose>
 
                                 <div class="load-more text-center">
-                                    <a href="#0" class="custom-button transparent">load more</a>
+                                    <a href="#0" onclick="paging(${movieDetail.id});" id="loadMore" data-rate="3" class="custom-button transparent">load more</a>
                                 </div>
 
                             </div>
@@ -442,7 +442,8 @@
                    id: id
                },
                success: function () {
-                   appraisalsList (movieId);
+                   var page = $('#loadMore').attr('data-rate');
+                   appraisalsList(movieId, page);
                }
            });
         });
@@ -458,7 +459,8 @@
                     id: id
                 },
                 success: function () {
-                    appraisalsList (movieId);
+                    var page = $('#loadMore').attr('data-rate');
+                    appraisalsList(movieId, page);
                 }
             });
         });
@@ -478,7 +480,8 @@
                         id: id
                     },
                     success: function (data) {
-                        appraisalsList(data);
+                        var page = $('#loadMore').attr('data-rate');
+                        appraisalsList(data, page);
                     }
                 });
             });
@@ -522,7 +525,9 @@
                 dataType: 'json',
                 success: function (data) {
                     $("#appraisalUpdateToggle").toggle();
-                    appraisalsList(data);
+
+                    var page = $('#loadMore').attr('data-rate');
+                    appraisalsList(data, page);
                 },
                 error: function (response) {
                     markingErrorField(response);
@@ -532,7 +537,7 @@
     });
 
     // 평점 목록
-    function appraisalsList(movieId) {
+    function appraisalsList(movieId, page) {
         console.log(movieId);
         $(function() {
             $.ajax({
@@ -543,6 +548,7 @@
                 },
                 success: function (data) {
                     console.log(data);
+                    console.log(page);
 
                     let res = "";
                     var grade = 0;
@@ -552,10 +558,15 @@
 
                         var diff = dateDiff(data[i].reportingDate, new Date());
                         var date = diff == 0 ? "오늘" : diff + "일 전";
+                        if(i < page) {
+                            res += "<div class=\"movie-review-item\">\n";
+                        }
+                        else {
+                            res += "<div class=\"movie-review-item\" style='display: none'>\n";
+                        }
                         var memberId = ${sessionScope.member.id}
 
-                        res += "<div class=\"movie-review-item\">\n" +
-                            "                                    <div class=\"author\">\n" +
+                        res += "                                    <div class=\"author\">\n" +
                             "                                        <div class=\"thumb\">\n" +
                             "                                            <a href=\"#0\">\n" +
                             "                                                <img src=\"/csmovie/appraisals/images/" + data[i].memberImage + "\" alt=\"cast\" style=\"height: 54px;width: 54px\">\n" +
@@ -668,7 +679,8 @@
                    $('.make_heart i').css({color:'#222529'});
                    $('.make_heart i:nth-child(1)').css({color:'#f1481f'});
 
-                   appraisalsList(data);
+                   var page = $('#loadMore').attr('data-rate');
+                   appraisalsList(data, page);
                },
                error: function (response) {
                    markingErrorField(response);
@@ -676,6 +688,13 @@
            });
        });
     });
+
+    function paging(movieId) {
+        var page = $('#loadMore').attr("data-rate");
+        $('#loadMore').attr("data-rate", Number(page)+3);
+
+        appraisalsList(movieId, Number(page)+3);
+    }
 </script>
 
 </body>
