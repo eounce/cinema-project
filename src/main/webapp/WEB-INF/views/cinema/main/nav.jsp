@@ -58,28 +58,7 @@
                     </ul>
                 </li>
                 <li>
-<<<<<<< HEAD
                     <a href="/csmovie/events">이벤트</a>
-=======
-                    <a href="#0">이벤트</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="events.html">Events</a>
-                        </li>
-                        <li>
-                            <a href="event-details.html">Event Details</a>
-                        </li>
-                        <li>
-                            <a href="event-speaker.html">Event Speaker</a>
-                        </li>
-                        <li>
-                            <a href="event-ticket.html">Event Ticket</a>
-                        </li>
-                        <li>
-                            <a href="event-checkout.html">Event Checkout</a>
-                        </li>
-                    </ul>
->>>>>>> master
                 </li>
                 <li>
                     <% String urlActive = (request.getRequestURL().toString().contains("/cinema/review"))?"active":""; %>
