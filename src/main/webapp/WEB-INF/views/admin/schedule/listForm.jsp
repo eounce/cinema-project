@@ -3,6 +3,7 @@
 <%@ page import="java.util.List" %>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,46 +36,45 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"> Seat DataTables</i>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/add'">추가</button></h4>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-calendar-week"> Schedule DataTables</i>
+                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/schedules/add'">추가</button></h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
-                            <th width="20%">ID</th>
+                            <th width="10%">ID</th>
+                            <th width="20%">Movie</th>
                             <th width="20%">Theater</th>
-                            <th width="20%">Seat_Number</th>
-                            <th width="20%">Status</th>
-                            <th width="20%">Reservation_Id</th>
+                            <th width="10%">Start</th>
+                            <th width="20%">Screening_date</th>
+                            <th width="20%">Price</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
-                            <th width="20%">ID</th>
+                            <th width="10%">ID</th>
+                            <th width="20%">Movie</th>
                             <th width="20%">Theater</th>
-                            <th width="20%">Seat_Number</th>
-                            <th width="20%">Status</th>
-                            <th width="20%">Reservation_Id</th>
+                            <th width="10%">Start</th>
+                            <th width="20%">Screening_date</th>
+                            <th width="20%">Price</th>
                         </tr>
                         </tfoot>
                         <tbody>
 
-                        <c:forEach var="seat" items="${seats}">
+                        <c:forEach var="schedule" items="${schedules}">
                         <tr>
-                            <th width="20%"><a href="/csmovie/admin/seats/${seat.id}" >${seat.id}</a></th>
-                            <th width="20%">${seat.seatTheater.theaterName}</th>
-                            <th width="20%">${seat.number}</th>
-                            <c:if test="${seat.status == 1}">
-                                <th width="20%">예약석</th>
-                            </c:if>
-                            <c:if test="${seat.status == 0}">
-                                <th width="20%">빈좌석</th>
-                            </c:if>
-                            <th width="20%">${seat.reservation_id}</th>
+                            <th width="10%"><a href="/csmovie/admin/schedules/${schedule.id}" >${schedule.id}</a></th>
+                            <th width="20%">${schedule.scheduleForm.movie_title}</th>
+                            <th width="20%">${schedule.scheduleForm.cinema_name}/${schedule.scheduleForm.theater_name}</th>
+                            <th width="10%">${schedule.start_time}</th>
+                            <th width="20%">${schedule.screening_date}</th>
+                            <th width="20%"><fmt:formatNumber type="number" maxFractionDigits="3" value="${schedule.price}"/>원</th>
                         </tr>
                         </c:forEach>
+
                         </tbody>
                     </table>
                 </div>

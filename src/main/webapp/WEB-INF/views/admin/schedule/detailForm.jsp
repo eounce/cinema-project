@@ -4,6 +4,7 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix = "fmt" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -35,14 +36,14 @@
 
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
-            <form name="updateForm" action="/csmovie/admin/seats/update/${seat.id}" method="GET">
+            <form name="updateForm" action="/csmovie/admin/schedules/update/${schedule.id}" method="GET">
             </form>
-            <form name="deleteForm" action="/csmovie/admin/seats/del/${seat.id}" method="POST">
+            <form name="deleteForm" action="/csmovie/admin/schedules/del/${schedule.id}" method="POST">
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats" style="text-decoration:none"> Seat</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-calendar-week"><a href="/csmovie/admin/schedules" style="text-decoration:none"> Schedule</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/schedules'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
@@ -57,36 +58,49 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">ID</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="id" value="${seat.id}" disabled>
+                            <input type="text" class="form-control" name="id" value="${schedule.id}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Movie</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="movie" value="${schedule.scheduleForm.movie_title}" disabled>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Theater</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="name" value="${seat.seatTheater.theaterName}" disabled>
+                            <input type="text" class="form-control" name="theater" value="${schedule.scheduleForm.cinema_name}/${schedule.scheduleForm.theater_name}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Seat_Number</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Start_Time</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="number" value="${seat.number}" disabled>
+                            <input type="text" class="form-control" name="start_time" value="${schedule.start_time}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Status</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">End_Time</th>
                         <td width="80%">
-                            <c:if test="${seat.status == 1}">
-                                <input type="text" class="form-control" name="status" value="예약석" disabled>
-                            </c:if>
-                            <c:if test="${seat.status == 0}">
-                                <input type="text" class="form-control" name="status" value="빈좌석" disabled>
-                            </c:if>
+                            <input type="text" class="form-control" name="end_time" value="${schedule.end_time}" disabled>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Reservation_Id</th>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Screening_date</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="number" value="${seat.reservation_id}" disabled>
+                            <input type="text" class="form-control" name="screening_date" value="${schedule.screening_date}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Screening_Format</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="screening_format" value="${schedule.screening_format}" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Price</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="price" value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${schedule.price}"/>원" disabled>
                         </td>
                     </tr>
                     </tbody>
@@ -132,8 +146,6 @@
         </div>
     </div>
 </div>
-
-
 
 </body>
 

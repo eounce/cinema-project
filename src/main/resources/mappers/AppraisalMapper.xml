@@ -12,6 +12,7 @@
         from appraisal ap
         left join member m on ap.member_id = m.id
         where ap.movie_id = #{id}
+        order by ap.like_count desc
     </select>
 
     <select id="findById" parameterType="Long" resultType="Appraisal">
@@ -32,4 +33,16 @@
     <delete id="delete" parameterType="Long">
         delete from appraisal where id = #{id}
     </delete>
+
+    <update id="likeInc" parameterType="java.util.Map">
+        update appraisal
+        set like_count=#{likeCount}
+        where id=#{id}
+    </update>
+
+    <update id="hateInc" parameterType="java.util.Map">
+        update appraisal
+        set hate_count=#{hateCount}
+        where id=#{id}
+    </update>
 </mapper>

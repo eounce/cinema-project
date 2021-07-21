@@ -83,6 +83,26 @@
                                 </td>
                             </spring:bind>
                         </tr>
+                        <!--
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Reservation
+                            <td width="80%">
+                                <select name="reservation_id" id="reservation_id" class="form-control">
+                                    <option value="" selected>예매번호를 선택해주세요</option>
+                                    <c:forEach var="reservation" items="${reservations}">
+                                        <option value="${reservation.id}">${reservation.id}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Reservation</th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="reservation_id"
+                                       id="reservation_id" placeholder="예매번호를 입력해주세요">
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>

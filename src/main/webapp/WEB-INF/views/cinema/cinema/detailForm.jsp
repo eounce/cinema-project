@@ -27,6 +27,43 @@
 
 <c:import url="../main/nav.jsp"/>
 
+<style>
+    .seat-plan-wrapper li .movie-schedule {
+        width: calc(100% - 45%);
+        padding: 30px;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: start;
+        margin: -5px;
+    }
+
+    .seat-plan-wrapper li .movie-schedule .item {
+        color: #ffffff;
+        padding: 5px;
+        width: 70px;
+        background: #162f5f;
+        position: relative;
+        mask-position: center center;
+        -webkit-mask-position: center center;
+        text-align: center;
+        mask-image: url(/cinema/assets/css/img/movie-seat.png);
+        -webkit-mask-image: url(/cinema/assets/css/img/movie-seat.png);
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-size: 100% 100%;
+        mask-size: 100% 100%;
+        cursor: pointer;
+        -webkit-transition: all ease 0.3s;
+        transition: all ease 0.3s;
+        margin: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+</style>
+
 <!-- ==========Banner-Section========== -->
 <section class="details-banner bg_img" data-background="/cinema/assets/images/banner/banner03.jpg">
     <div class="container">
@@ -184,8 +221,74 @@
                             </div>
 
                             <div class="tab-item">
+                                <div class="container">
 
+                                    <div class="filter-area">
+                                        <div class="filter-main">
+                                            <div class="left w-100 justify-content-between">
+                                                <div class="item">
+                                                    <span class="show">날짜 선택 :</span>
+                                                    <%--
+                                                        <%LocalDate date = LocalDate.now();%>
+                                                    --%>
+                                                    <select id="dateCombo" class="select-bar" onchange="findSchedule(${cinema.id})">
+                                                        <option value="2021-07-13" selected>2021-07-13</option>
+                                                        <option value="2021-07-14">2021-07-14</option>
+                                                        <option value="2021-07-15">2021-07-15</option>
+                                                        <option value="2021-07-16">2021-07-16</option>
+                                                        <option value="2021-07-17">2021-07-17</option>
+                                                    </select>
+                                                </div>
+                                                <div class="item mr-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
+                                    <div class="row justify-content-center">
+                                        <div class="col-lg-12 mb-5 mb-lg-0" id="scheduleForm">
+                                            <c:forEach var="movie" items="${movies}">
+                                            <div class="details-banner-content" style="margin-bottom:30px;">
+                                                <div class="social-and-duration">
+                                                    <div class="duration-area" >
+                                                        <div class="item">
+                                                            <span>${movie.scheduleForm.movie_title}/${movie.scheduleForm.movie_rating}</span>
+                                                        </div>
+                                                    </div>
+                                                    <ul class="social-share" style="padding-right: 10px;">
+                                                        <span>상영중/상영시간${movie.scheduleForm.movie_showtimes}분</span>
+                                                    </ul>
+                                                </div>
+                                                <ul class="seat-plan-wrapper bg-five">
+                                                    <c:forEach var="theater" items="${theaters}">
+                                                    <c:if test="${theater.movie_id == movie.movie_id}">
+                                                    <li>
+                                                        <div class="movie-name">
+                                                            <div>
+                                                                <h5>${theater.scheduleForm.theater_name}</h5>총${theater.scheduleForm.theater_seat}석
+                                                            </div>
+                                                            <div>
+                                                                ${movie.screening_format}
+                                                            </div>
+                                                        </div>
+                                                        <div class="movie-schedule">
+                                                            <c:forEach var="schedulestest" items="${schedulestests}">
+                                                                <c:if test="${schedulestest.theater_id == theater.theater_id and schedulestest.movie_id == theater.movie_id}">
+                                                                    <div class="item">
+                                                                            ${schedulestest.start_time}
+                                                                    </div>
+                                                                </c:if>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </li>
+                                                    </c:if>
+                                                    </c:forEach>
+                                                </ul>
+                                            </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="tab-item">
@@ -432,5 +535,103 @@
 <c:import url="../main/footer.jsp"/>
 
 </body>
+
+<script>
+    function findSchedule(cinemaId) {
+        var date = $("#dateCombo").val();
+
+        $.ajax({
+            type: "post",
+            url: "/csmovie/cinemas/scheduleAjax",
+            data: {
+                date: date,
+                cinemaId: cinemaId
+            },
+            success: function (schedules) {
+                $("#scheduleForm").children().remove();
+
+                var array_name = [];
+                var array_time = [];
+                var array_rating = [];
+
+                for(var i=0;i<schedules.length;i++) {
+                    if(array_name.indexOf(schedules[i].scheduleForm.movie_title) == -1){
+                        array_name.push(schedules[i].scheduleForm.movie_title);
+                        array_time.push(schedules[i].scheduleForm.movie_showtimes);
+                        array_rating.push(schedules[i].scheduleForm.movie_rating);
+                    }
+                }
+                console.log("1.length : " + array_name.length);
+
+                var array_theater = [];
+                var array_theater_id = [];
+                var array_seat = [];
+                var array_format = [];
+                var array_movie = [];
+                for(var i=0;i<schedules.length;i++){
+                    array_theater.push(schedules[i].scheduleForm.theater_name);
+                    array_theater_id.push(schedules[i].theater_id);
+                    array_seat.push(schedules[i].scheduleForm.theater_seat);
+                    array_format.push(schedules[i].screening_format);
+                    array_movie.push(schedules[i].scheduleForm.movie_title);
+                }
+                console.log("2.length : " + array_name.length);
+
+                var item = "";
+                for(var a=0;a<array_name.length;a++){
+                    item += "<div class=\"details-banner-content\" style=\"margin-bottom:30px;\">\n" +
+                        "                                            <div class=\"social-and-duration\">\n" +
+                        "                                                <div class=\"duration-area\" >\n" +
+                        "                                                    <div class=\"item\">\n" +
+                        "                                                        <span>" + array_name[a] + "/" + array_rating[a] + "</span>\n" +
+                        "                                                    </div>\n" +
+                        "                                                    <!--\n" +
+                        "                                                    <div class=\"item\">\n" +
+                        "                                                        <i class=\"far fa-clock\"></i><span>2 hrs 50 mins</span>\n" +
+                        "                                                    </div>\n" +
+                        "                                                    -->\n" +
+                        "                                                </div>\n" +
+                        "                                                <ul class=\"social-share\" style=\"padding-right: 10px;\">\n" +
+                        "                                                    <span>상영중/상영시간 " + array_time[a] + "분</span>\n" +
+                        "                                                </ul>\n" +
+                        "                                        </div>";
+                    var temp = [];
+                    for(var b=0;b<array_theater_id.length;b++) {
+                        if(array_movie[b] == array_name[a] && temp.indexOf(array_theater_id[b]) == -1) {
+                            item += "<ul class=\"seat-plan-wrapper bg-five\">\n" +
+                                "                        <li>\n" +
+                                "                            <div class=\"movie-name\">\n" +
+                                "                               <div>\n" +
+                                "                                   <h5>" + array_theater[b] + "</h5>총" + array_seat[b] + "석\n" +
+                                "                               </div>\n" +
+                                "                               <div>\n" +
+                                "                                  " + array_format[b] + "\n" +
+                                "                               </div>"+
+                                "                            </div>\n" +
+                                "                            <div class=\"movie-schedule\">\n";
+                            temp.push(array_theater_id[b]);
+                            for (var c = 0; c < schedules.length; c++) {
+                                if (array_name[a] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id) {
+                                    item +=
+                                        "                                <div class=\"item\">\n" +
+                                        "                                    " + schedules[c].start_time + "\n" +
+                                        "                                </div>\n";
+                                }
+                            }
+                            item +=
+                                "                            </div>\n" +
+                                "                        </li>";
+                            "      </ul>";
+                        }
+                    }
+                    item += "</div>";
+                }
+                $("#scheduleForm").html(item);
+            }
+        });
+    }
+
+
+</script>
 
 </html>

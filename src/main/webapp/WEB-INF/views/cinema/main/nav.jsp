@@ -30,100 +30,57 @@
     <div class="container">
         <div class="header-wrapper">
             <div class="logo">
-                <a href="index.html">
+                <a href="/csmovie">
                     <img src="/cinema/assets/images/logo/logo.png" alt="logo">
                 </a>
             </div>
             <ul class="menu">
                 <li>
-                    <a href="#0">Home</a>
+                    <a href="#0">영화</a>
                     <ul class="submenu">
                         <li>
-                            <a href="#0">Home One</a>
-                        </li>
-                        <li>
-                            <a href="index-2.html">Home Two</a>
+                            <a href="/csmovie/movies">전체영화</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#0">movies</a>
+                    <a href="/csmovie/cinemas">극장</a>
+                </li>
+                <li>
+                    <a href="#0">예매</a>
                     <ul class="submenu">
                         <li>
-                            <a href="/csmovie/movies">영화</a>
+                            <a href="/#0">빠른예매</a>
                         </li>
                         <li>
-                            <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
-                        </li>
-                        <li>
-                            <a href="movie-seat-plan.html">Movie Seat Plan</a>
-                        </li>
-                        <li>
-                            <a href="movie-checkout.html">Movie Checkout</a>
-                        </li>
-                        <li>
-                            <a href="popcorn.html">Movie Food</a>
-                        </li>
-                        <li>
-                            <a href="/csmovie/cinema">Cinema</a>
+                            <a href="/csmovie/schedules?title=">시간표</a>
                         </li>
                     </ul>
                 </li>
                 <li>
+<<<<<<< HEAD
                     <a href="/csmovie/events">이벤트</a>
-                </li>
-                <li>
-                    <a href="#0">sports</a>
+=======
+                    <a href="#0">이벤트</a>
                     <ul class="submenu">
                         <li>
-                            <a href="sports.html">Sports</a>
+                            <a href="events.html">Events</a>
                         </li>
                         <li>
-                            <a href="sport-details.html">Sport Details</a>
+                            <a href="event-details.html">Event Details</a>
                         </li>
                         <li>
-                            <a href="sports-ticket.html">Sport Ticket</a>
+                            <a href="event-speaker.html">Event Speaker</a>
                         </li>
                         <li>
-                            <a href="sports-checkout.html">Sport Checkout</a>
+                            <a href="event-ticket.html">Event Ticket</a>
+                        </li>
+                        <li>
+                            <a href="event-checkout.html">Event Checkout</a>
                         </li>
                     </ul>
+>>>>>>> master
                 </li>
-                <li>
-                    <a href="#0">pages</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="about.html">About Us</a>
-                        </li>
-                        <li>
-                            <a href="apps-download.html">Apps Download</a>
-                        </li>
-                        <li>
-                            <a href="sign-in.html">Sign In</a>
-                        </li>
-                        <li>
-                            <a href="sign-up.html">Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="404.html">404</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#0">blog</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="blog.html">리뷰</a>
-                        </li>
-                        <li>
-                            <a href="blog-details.html">Blog Single</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="contact.html">contact</a>
-                </li>
-
                 <li>
                     <% String urlActive = (request.getRequestURL().toString().contains("/cinema/review"))?"active":""; %>
                     <a href="/csmovie/reviews" class="<%=urlActive%>">리뷰</a>

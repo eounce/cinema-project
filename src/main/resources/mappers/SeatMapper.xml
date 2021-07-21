@@ -8,6 +8,7 @@
     <result property="theater_id" column="theater_id"/>
     <result property="number" column="number"/>
     <result property="status" column="status"/>
+    <result property="reservation_id" column="reservation_id"/>
     <association property="seatTheater" javaType="com.induk.cinema.dto.SeatTheater">
         <result property="theaterName" column="theaterName"/>
     </association>
@@ -22,8 +23,8 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Seat">
-        insert into seat(theater_id, number, status)
-        values (#{theater_id}, #{number}, #{status})
+        insert into seat(theater_id, number, status, reservation_id)
+        values (#{theater_id}, #{number}, #{status}, #{reservation_id})
     </insert>
 
     <select id="findById" parameterType="Long" resultMap="resultSeat">
@@ -36,7 +37,7 @@
 
     <update id="update" parameterType="Seat">
         update seat
-        set theater_id=#{theater_id}, number=#{number}, status=#{status}
+        set theater_id=#{theater_id}, number=#{number}, status=#{status}, reservation_id=#{reservation_id}
         where id=#{id}
     </update>
 

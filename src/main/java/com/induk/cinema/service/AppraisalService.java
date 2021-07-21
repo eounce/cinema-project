@@ -9,7 +9,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @Service
@@ -39,5 +41,21 @@ public class AppraisalService {
         appraisalRepository.delete(id);
 
         return appraisal.getMovieId();
+    }
+
+    public void likeInc(int count, Long id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("likeCount", count+1);
+        map.put("id", id);
+
+        appraisalRepository.likeInc(map);
+    }
+
+    public void hateInc(int count, Long id) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("hateCount", count+1);
+        map.put("id", id);
+
+        appraisalRepository.hateInc(map);
     }
 }

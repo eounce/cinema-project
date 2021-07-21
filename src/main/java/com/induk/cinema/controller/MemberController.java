@@ -4,7 +4,6 @@ import com.induk.cinema.domain.Member;
 import com.induk.cinema.dto.HistoryUrl;
 import com.induk.cinema.service.MemberService;
 import com.induk.cinema.util.FileStore;
-import jdk.internal.org.jline.reader.History;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.UrlResource;

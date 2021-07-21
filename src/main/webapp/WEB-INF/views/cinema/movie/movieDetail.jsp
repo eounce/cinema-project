@@ -26,7 +26,7 @@
     </style>
 </head>
 
-<body onload="appraisalsList(${movie.id})">
+<body onload="appraisalsList(${movieDetail.id}, 3)">
 
 <c:import url="../main/nav.jsp"/>
 
@@ -35,32 +35,36 @@
     <div class="container">
         <div class="details-banner-wrapper">
             <div class="details-banner-thumb">
-                <img src="/csmovie/movies/images/${movie.poster}" alt="movie">
-                <a href="${movie.trailer}" class="video-popup">
-                    <img src="/cinema/assets/images/movie/video-button.png" alt="movie">
-                </a>
+                <img src="/csmovie/movies/images/${movieDetail.poster}" alt="movie">
+                <c:forEach var="movieAd" items="${movieDetail.movieAdList}">
+                    <c:if test="${movieAd.kind == 'video'}">
+                        <a href="${movieAd.file}" class="video-popup">
+                            <img src="/cinema/assets/images/movie/video-button.png" alt="movie">
+                        </a>
+                    </c:if>
+                </c:forEach>
             </div>
             <div class="details-banner-content offset-lg-3">
-                <h3 class="title">${movie.title}</h3>
+                <h3 class="title">${movieDetail.title}</h3>
                 <div class="tags">
-                    <a>${movie.language}</a>
+                    <a>${movieDetail.language}</a>
                 </div>
-                <a class="button">${movie.genre.name}</a>
+                <a class="button">${movieDetail.genreName}</a>
                 <div class="social-and-duration">
                     <div class="duration-area">
                         <div class="item">
-                            <i class="fas fa-calendar-alt"></i><span>${movie.releaseDate}</span>
+                            <i class="fas fa-calendar-alt"></i><span>${movieDetail.releaseDate}</span>
                         </div>
                         <div class="item">
-                            <i class="far fa-clock"></i><span>${movie.showTimes}분</span>
+                            <i class="far fa-clock"></i><span>${movieDetail.showTimes}분</span>
                         </div>
                     </div>
                     <ul class="social-share">
-                        <li><a href="#0"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-pinterest-p"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#0"><i class="fab fa-google-plus-g"></i></a></li>
+                        <li><a href="https://ko-kr.facebook.com/enespanol/"><i class="fab fa-facebook-f"></i></a></li>
+                        <li><a href="https://twitter.com/?lang=ko"><i class="fab fa-twitter"></i></a></li>
+                        <li><a href="https://www.pinterest.co.kr/"><i class="fab fa-pinterest-p"></i></a></li>
+                        <li><a href="https://www.instagram.com/"><i class="fab fa-linkedin-in"></i></a></li>
+                        <li><a href="https://www.google.co.kr/"><i class="fab fa-google-plus-g"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -124,7 +128,7 @@
             <div class="col-lg-3 col-sm-10 col-md-6 mb-50">
                 <div class="widget-1 widget-tags">
                     <ul>
-                        <c:forEach var="format" items="${formats}">
+                        <c:forEach var="format" items="${movieDetail.formatList}">
                             <li><a>${format}</a></li>
                         </c:forEach>
                     </ul>
@@ -174,12 +178,14 @@
                 <div class="movie-details">
                     <h3 class="title">photos</h3>
                     <div class="details-photos owl-carousel">
-                        <c:forEach var="image" items="${images}">
-                            <div class="thumb">
-                                <a href="/csmovie/movies/images/${image.storeFilename}/movieAd" class="img-pop">
-                                    <img src="/csmovie/movies/images/${image.storeFilename}/movieAd" alt="movie">
-                                </a>
-                            </div>
+                        <c:forEach var="movieAd" items="${movieDetail.movieAdList}">
+                            <c:if test="${movieAd.kind == 'image'}">
+                                <div class="thumb">
+                                    <a href="/csmovie/movies/images/${movieAd.file}/movieAd" class="img-pop">
+                                        <img src="/csmovie/movies/images/${movieAd.file}/movieAd" alt="movie">
+                                    </a>
+                                </div>
+                            </c:if>
                         </c:forEach>
                     </div>
                     <div class="tab summery-review">
@@ -195,7 +201,7 @@
                             <div class="tab-item active">
                                 <div class="item">
                                     <h5 class="sub-title">내용</h5>
-                                    <p>${movie.summary}</p>
+                                    <p>${movieDetail.summary}</p>
                                 </div>
                                 <div class="item">
                                     <div class="header">
@@ -209,26 +215,26 @@
                                         <div class="cast-item">
                                             <div class="cast-thumb">
                                                 <a>
-                                                    <img src="/csmovie/movies/images/${movie.director.storeFilename}/director" alt="cast" style="height: 110px; width: 110px">
+                                                    <img src="/csmovie/movies/images/${movieDetail.directorImage}/director" alt="cast" style="height: 110px; width: 110px">
                                                 </a>
                                             </div>
                                             <div class="cast-content">
-                                                <h6 class="cast-title"><a>${movie.director.name}</a></h6>
+                                                <h6 class="cast-title"><a>${movieDetail.directorName}</a></h6>
                                                 <span class="cate">감독</span>
                                             </div>
                                         </div>
 
-                                        <c:forEach var="movieActor" items="${movieActors}">
+                                        <c:forEach var="actor" items="${movieDetail.actorList}">
                                             <div class="cast-item">
                                                 <div class="cast-thumb">
                                                     <a>
-                                                        <img src="/csmovie/movies/images/${movieActor.actor.storeFilename}/actor" alt="cast" style="height: 110px; width: 110px">
+                                                        <img src="/csmovie/movies/images/${actor.image}/actor" alt="cast" style="height: 110px; width: 110px">
                                                     </a>
                                                 </div>
                                                 <div class="cast-content">
-                                                    <h6 class="cast-title"><a href="#0">${movieActor.actor.name}</a></h6>
+                                                    <h6 class="cast-title"><a href="#0">${actor.name}</a></h6>
                                                     <span class="cate">배우</span>
-                                                    <p>${movieActor.role}</p>
+                                                    <p>${actor.role}</p>
                                                 </div>
                                             </div>
                                         </c:forEach>
@@ -283,7 +289,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td width="100%">
-                                                            <input type="hidden" id="movieId" name="movieId" value="${movie.id}">
+                                                            <input type="hidden" id="movieId" name="movieId" value="${movieDetail.id}">
                                                             <input type="hidden" id="memberId" name="memberId" value="${sessionScope.member.id}">
                                                             <input type="hidden" id="grade" name="grade" value="1">
                                                             <input type="button" id="submit" class="btn btn-sm btn-primary"  value="저장" />
@@ -339,7 +345,7 @@
                                                 <tr>
                                                     <td width="100%">
                                                         <input type="hidden" id="id2" name="id">
-                                                        <input type="hidden" id="movieId2" name="movieId" value="${movie.id}">
+                                                        <input type="hidden" id="movieId2" name="movieId" value="${movieDetail.id}">
                                                         <input type="hidden" id="grade2" name="grade" value="1">
                                                         <input type="button" id="update" class="btn btn-sm btn-primary"  value="수정" />
                                                     </td>
@@ -353,7 +359,7 @@
                                 <c:choose>
                                     <c:when test="${empty sessionScope.member}">
                                         <div class="load-more text-center">
-                                            <a class="custom-button transparent">내 평가 작성</a>
+                                            <a href="#0" onclick="loginCheck();" class="custom-button transparent">내 평가 작성</a>
                                         </div>
                                     </c:when>
                                     <c:otherwise>
@@ -364,7 +370,7 @@
                                 </c:choose>
 
                                 <div class="load-more text-center">
-                                    <a href="#0" class="custom-button transparent">load more</a>
+                                    <a href="#0" onclick="paging(${movieDetail.id});" id="loadMore" data-rate="3" class="custom-button transparent">load more</a>
                                 </div>
 
                             </div>
@@ -381,6 +387,16 @@
 <c:import url="../main/footer.jsp"/>
 
 <script>
+    // 평가 작성 버튼 클릭시 로그인 페이지로 리다이렉트
+    function loginCheck() {
+        var check = confirm("로그인이 필요한 서비스입니다. \n로그인 페이지로 이동하시겠습니까?");
+        if (check == true) {
+            window.location.href = '/csmovie/members/login?historyUrl=' + window.location.pathname;
+        } else if (check == false) {
+            return 0;
+        }
+    }
+
     // validation
     var markingErrorField = function (response) {
         const errorFields = response.responseJSON.errors;
@@ -416,6 +432,40 @@
         return diff;
     }
 
+    function like(count, movieId, id) {
+        $(function() {
+           $.ajax({
+               type: "post",
+               url: "/csmovie/appraisals/like",
+               data: {
+                   count: count,
+                   id: id
+               },
+               success: function () {
+                   var page = $('#loadMore').attr('data-rate');
+                   appraisalsList(movieId, page);
+               }
+           });
+        });
+    }
+
+    function hate(count, movieId, id) {
+        $(function() {
+            $.ajax({
+                type: "post",
+                url: "/csmovie/appraisals/hate",
+                data: {
+                    count: count,
+                    id: id
+                },
+                success: function () {
+                    var page = $('#loadMore').attr('data-rate');
+                    appraisalsList(movieId, page);
+                }
+            });
+        });
+    }
+
     // 평점 삭제
     function appraisalsDelete(id) {
         console.log(id);
@@ -430,7 +480,8 @@
                         id: id
                     },
                     success: function (data) {
-                        appraisalsList(data);
+                        var page = $('#loadMore').attr('data-rate');
+                        appraisalsList(data, page);
                     }
                 });
             });
@@ -474,7 +525,9 @@
                 dataType: 'json',
                 success: function (data) {
                     $("#appraisalUpdateToggle").toggle();
-                    appraisalsList(data);
+
+                    var page = $('#loadMore').attr('data-rate');
+                    appraisalsList(data, page);
                 },
                 error: function (response) {
                     markingErrorField(response);
@@ -484,7 +537,7 @@
     });
 
     // 평점 목록
-    function appraisalsList(movieId) {
+    function appraisalsList(movieId, page) {
         console.log(movieId);
         $(function() {
             $.ajax({
@@ -495,6 +548,7 @@
                 },
                 success: function (data) {
                     console.log(data);
+                    console.log(page);
 
                     let res = "";
                     var grade = 0;
@@ -504,10 +558,15 @@
 
                         var diff = dateDiff(data[i].reportingDate, new Date());
                         var date = diff == 0 ? "오늘" : diff + "일 전";
+                        if(i < page) {
+                            res += "<div class=\"movie-review-item\">\n";
+                        }
+                        else {
+                            res += "<div class=\"movie-review-item\" style='display: none'>\n";
+                        }
                         var memberId = ${sessionScope.member.id}
 
-                        res += "<div class=\"movie-review-item\">\n" +
-                            "                                    <div class=\"author\">\n" +
+                        res += "                                    <div class=\"author\">\n" +
                             "                                        <div class=\"thumb\">\n" +
                             "                                            <a href=\"#0\">\n" +
                             "                                                <img src=\"/csmovie/appraisals/images/" + data[i].memberImage + "\" alt=\"cast\" style=\"height: 54px;width: 54px\">\n" +
@@ -530,10 +589,10 @@
                             "                                        <h6 class=\"cont-title\">" + data[i].title + "</h6>\n" +
                             "                                        <p>" + data[i].content + "</p>\n" +
                             "                                        <div class=\"review-meta\">\n" +
-                            "                                            <a href=\"#0\">\n" +
+                            "                                            <a href=\"#0\" onclick=\"like(" + data[i].likeCount + "," + data[i].movieId + "," + data[i].id + ")\">\n" +
                             "                                                <i class=\"flaticon-hand\"></i><span>" + data[i].likeCount + "</span>\n" +
                             "                                            </a>\n" +
-                            "                                            <a href=\"#0\" class=\"dislike\">\n" +
+                            "                                            <a href=\"#0\" class=\"dislike\" onclick=\"hate(" + data[i].hateCount + "," + data[i].movieId + "," + data[i].id + ")\">\n" +
                             "                                                <i class=\"flaticon-dont-like-symbol\"></i><span>" + data[i].hateCount + "</span>\n" +
                             "                                            </a>\n";
                             if(memberId == data[i].memberId) {
@@ -620,7 +679,8 @@
                    $('.make_heart i').css({color:'#222529'});
                    $('.make_heart i:nth-child(1)').css({color:'#f1481f'});
 
-                   appraisalsList(data);
+                   var page = $('#loadMore').attr('data-rate');
+                   appraisalsList(data, page);
                },
                error: function (response) {
                    markingErrorField(response);
@@ -628,6 +688,13 @@
            });
        });
     });
+
+    function paging(movieId) {
+        var page = $('#loadMore').attr("data-rate");
+        $('#loadMore').attr("data-rate", Number(page)+3);
+
+        appraisalsList(movieId, Number(page)+3);
+    }
 </script>
 
 </body>

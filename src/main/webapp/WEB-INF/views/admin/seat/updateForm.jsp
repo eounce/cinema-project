@@ -85,20 +85,40 @@
                         </tr>
                         <tr>
                             <spring:bind path="seat.status">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Status${seat.status}<font color="red">*</font></th>
+                                <th scope="row" width="20%" style="vertical-align:middle;">Status<font color="red">*</font></th>
                                 <td width="80%">
                                     <c:if test="${seat.status == 1}">
-                                        <input type="text" class="form-control" value="예약석" name="${status.expression }"
+                                        <input type="text" class="form-control" value="1" name="${status.expression }"
                                                id="${status.expression }" placeholder="좌석 예약 상태(0, 1)를 입력해주세요">
                                     </c:if>
                                     <c:if test="${seat.status == 0}">
-                                        <input type="text" class="form-control" value="빈좌석" name="${status.expression }"
+                                        <input type="text" class="form-control" value="0" name="${status.expression }"
                                                id="${status.expression }" placeholder="좌석 예약 상태(0, 1)를 입력해주세요">
                                     </c:if>
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                         ${status.errorMessage }
                                 </td>
                             </spring:bind>
+                        </tr>
+                        <!--
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Reservation
+                            <td width="80%">
+                                <select name="reservation_id" id="reservation_id" class="form-control">
+                                    <option value="" selected>예매번호를 선택해주세요</option>
+                                    <c:forEach var="reservation" items="${reservations}">
+                                        <option value="${reservation.id}">${reservation.id}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        -->
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Reservation</th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="reservation_id"
+                                       id="reservation_id" placeholder="예매번호를 입력해주세요">
+                            </td>
                         </tr>
                         </tbody>
                     </table>

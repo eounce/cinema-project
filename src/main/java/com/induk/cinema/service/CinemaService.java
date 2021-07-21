@@ -1,7 +1,6 @@
 package com.induk.cinema.service;
 
-import com.induk.cinema.domain.Cinema;
-import com.induk.cinema.domain.City;
+import com.induk.cinema.domain.*;
 import com.induk.cinema.dto.CinemaCity;
 import com.induk.cinema.repository.CinemaRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,8 +18,24 @@ public class CinemaService {
         return cinemaRepository.findAll();
     }
 
+    public List<Cinema> findCinemaByText(String searchText) {
+        return cinemaRepository.findCinemaByText(searchText);
+    }
+
     public Cinema findCinema(Long id) {
         return cinemaRepository.findById(id);
+    }
+
+    public List<Schedule> findByTheater(Long id, String date) {
+        return cinemaRepository.findByTheater(id, date);
+    }
+
+    public List<Schedule> findMovie(Long id, String date) {
+        return cinemaRepository.findMovie(id, date);
+    }
+
+    public List<Schedule> findSceduleByCinema(Long id) {
+        return cinemaRepository.findSceduleByCinema(id);
     }
 
     public List<Cinema> findCinemaListByCityId(Long id) {
@@ -48,6 +63,8 @@ public class CinemaService {
         return cinemaRepository.findCity();
     }
 
-
+    public List<Schedule> findScheduleForAjax(String date, Long cinemaId) {
+        return cinemaRepository.findScheduleForAjax(date, cinemaId);
+    }
 
 }
