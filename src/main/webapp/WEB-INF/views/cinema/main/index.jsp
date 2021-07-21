@@ -364,13 +364,18 @@
                                                         ${review.title}
                                                     </a>
                                                 </h4>
+                                                <div style="color: #ffffff">영화:
+                                                    <a href="/csmovie/movies/${review.movieId}" style="color: #dbe2fb">
+                                                            ${review.movie.title}
+                                                    </a>
+                                                </div>
                                             </div>
                                             <div class="entry-content" style="padding-top: 10px;">
                                                 <div class="left">
                                                     <span class="date"  >${review.reportingDate}  BY</span>
                                                     <div class="authors">
                                                         <div class="thumb">
-                                                            <a><img src="/csmovie/members/images/${review.member.image}" alt="#0"></a>
+                                                            <a><img src="/csmovie/members/images/${review.member.image}" alt="#0" style="height: 30px;"></a>
                                                         </div>
                                                         <h6 class="title"><a >${review.member.name}</a></h6>
                                                     </div>
@@ -405,13 +410,18 @@
                                                             ${review.title}
                                                     </a>
                                                 </h4>
+                                                <div style="color: #ffffff">영화:
+                                                    <a href="/csmovie/movies/${review.movieId}" style="color: #dbe2fb">
+                                                            ${review.movie.title}
+                                                    </a>
+                                                </div>
                                             </div>
                                             <div class="entry-content" style="padding-top: 10px;">
                                                 <div class="left">
                                                     <span class="date"  >${review.reportingDate}  BY</span>
                                                     <div class="authors">
                                                         <div class="thumb">
-                                                            <a><img src="/csmovie/members/images/${review.member.image}" alt="#0"></a>
+                                                            <a><img src="/csmovie/members/images/${review.member.image}" alt="#0" style="height: 30px;"></a>
                                                         </div>
                                                         <h6 class="title"><a >${review.member.name}</a></h6>
                                                     </div>

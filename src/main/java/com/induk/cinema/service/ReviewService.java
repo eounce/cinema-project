@@ -59,20 +59,21 @@ public class ReviewService {
     }
 
     public List<Review> reviewBySortType(SortType sortType){
-        //인기있는 리뷰 10개를 가져오기 위한 초기화
+        //인기있는/최신 리뷰 5개를 가져오기 위한 초기화
         Review review = new Review();
         review.setSearchText("");
         review.setSortType(sortType.getCode());
         review.setSearchMovieId(0);
         review.setPaginationInfo(new PaginationInfo(new CurrentPage()));
         review.getPaginationInfo().setFirstRecordIndex(0);
-        review.setRecordsPerPage(10);
+        review.setRecordsPerPage(5);
 
         List<Review> reviewList = reviewRepository.findAllByKeyword(review);
 
         for(Review r : reviewList){
             //출력에 맞는 데이터 초기화
             if(r.getCommentCount() == null)r.setCommentCount(0);
+            r.setReportingDate( r.getReportingDate().substring(0, 10)); //시간 제거
         }
 
         return reviewList;

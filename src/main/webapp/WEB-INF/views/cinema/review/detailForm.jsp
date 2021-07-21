@@ -142,7 +142,7 @@
                                         <div class="tags">
                                             <span>영화: </span>
                                             <div class="tags-item">
-                                                <a href="/csmovie/reviews?searchMovieId=${review.movieId}"> ${review.movie.title}</a>
+                                                <a href="/csmovie/movies/${review.movieId}">&nbsp;${review.movie.title}</a>
                                                 
                                                 
                                             </div>
