@@ -15,4 +15,6 @@ public class EventForm {
     private Date start_date;
     private Date end_date;
     private Date reporting_date;
+    private int view_count;
+    private MultipartFile thum_imageFile;
 }

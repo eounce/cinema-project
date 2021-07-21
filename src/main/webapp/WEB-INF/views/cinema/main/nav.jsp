@@ -70,24 +70,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="#0">events</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="events.html">Events</a>
-                        </li>
-                        <li>
-                            <a href="event-details.html">Event Details</a>
-                        </li>
-                        <li>
-                            <a href="event-speaker.html">Event Speaker</a>
-                        </li>
-                        <li>
-                            <a href="event-ticket.html">Event Ticket</a>
-                        </li>
-                        <li>
-                            <a href="event-checkout.html">Event Checkout</a>
-                        </li>
-                    </ul>
+                    <a href="/csmovie/events">이벤트</a>
                 </li>
                 <li>
                     <a href="#0">sports</a>

@@ -4,6 +4,7 @@ import com.induk.cinema.domain.Event;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface EventRepository {
@@ -13,4 +14,7 @@ public interface EventRepository {
     Long save(Event event);
     void update(Event event);
     void delete(Long id);
+
+    List<Event> findByTitleSort(Map<String, Object> map);
+    void updateViewCount(Long id);
 }

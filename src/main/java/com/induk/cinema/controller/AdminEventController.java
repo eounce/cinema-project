@@ -51,6 +51,10 @@ public class AdminEventController {
             bindingResult.addError(new FieldError("eventForm", "imageFile", "사진을 등록해주세요"));
             return "admin/event/addForm";
         }
+        if(eventForm.getThum_imageFile().isEmpty()) {
+            bindingResult.addError(new FieldError("eventForm", "thum_imageFile", "사진을 등록해주세요"));
+            return "admin/event/addForm";
+        }
 
         if(bindingResult.hasErrors()) {
             return "admin/event/addForm";
@@ -63,7 +67,7 @@ public class AdminEventController {
     }
 
     @GetMapping("/{id}")
-    public String DetailForm(@PathVariable Long id, Model model) {
+    public String detailForm(@PathVariable Long id, Model model) {
         model.addAttribute("event", eventService.findEvent(id));
         return "admin/event/detailForm";
     }
@@ -81,15 +85,14 @@ public class AdminEventController {
     }
 
     @PostMapping("/{id}/edit")
-    public String updateEvent(@PathVariable Long id,
-                              @RequestParam MultipartFile imageFile,
+    public String updateEvent(@RequestParam MultipartFile imageFile,
+                              @RequestParam MultipartFile thum_imageFile,
                               @Valid Event event,
                               BindingResult bindingResult) throws IOException {
         if(bindingResult.hasErrors()) {
             return "admin/event/updateForm";
         }
-
-        eventService.updateEvent(event, imageFile);
+        eventService.updateEvent(event, imageFile, thum_imageFile);
 
         return "redirect:/csmovie/admin/events/{id}";
     }

@@ -12,17 +12,49 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Event">
-        insert into event(store_filename, upload_filename, path, title, content, start_date, end_date, reporting_date)
-        values (#{storeFilename}, #{uploadFilename}, #{path}, #{title}, #{content}, #{startDate}, #{endDate}, #{reportingDate})
+        insert into event(store_filename, upload_filename, path, title, content, start_date, end_date, reporting_date, thum_store_filename, thum_upload_filename, thum_path, view_count)
+        values (#{storeFilename}, #{uploadFilename}, #{path}, #{title}, #{content}, #{startDate}, #{endDate}, #{reportingDate}, #{thumStoreFilename}, #{thumUploadFilename}, #{thumPath}, 0)
     </insert>
 
     <update id="update" parameterType="Event">
         update event
-        set store_filename=#{storeFilename}, upload_filename=#{uploadFilename}, path=#{path}, title=#{title}, content=#{content}, start_date=#{startDate}, end_date=#{endDate}, reporting_date=#{reportingDate}
+        set store_filename=#{storeFilename}, upload_filename=#{uploadFilename}, path=#{path}, title=#{title}, content=#{content}, start_date=#{startDate}, end_date=#{endDate},
+            thum_store_filename=#{thumStoreFilename}, thum_upload_filename=#{thumUploadFilename}, thum_path=#{thumPath}
         where id=#{id}
     </update>
 
     <delete id="delete" parameterType="Long">
         delete from event where id=#{id}
     </delete>
+
+    <select id="findByTitleSort" parameterType="HashMap" resultType="Event">
+        select * from event
+        where title like concat('%', #{searchWord}, '%')
+        <choose>
+            <when test="status == 1">
+                <![CDATA[and start_date <= now() and now() <= end_date]]>
+            </when>
+            <when test="status == 2">
+                <![CDATA[and end_date < now()]]>
+            </when>
+            <when test="status == 3">
+                <![CDATA[and start_date > now()]]>
+            </when>
+        </choose>
+        <choose>
+            <when test="sort == 1"> /*인기순*/
+                order by view_count desc
+            </when>
+            <when test="sort == 2"> /*최신순*/
+                order by reporting_date desc
+            </when>
+        </choose>
+    </select>
+
+    <!--조회수 증가-->
+    <update id="updateViewCount" parameterType="Long">
+        update event
+        set view_count = view_count + 1
+        where id = #{id}
+    </update>
 </mapper>
