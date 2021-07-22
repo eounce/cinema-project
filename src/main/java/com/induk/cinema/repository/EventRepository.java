@@ -17,4 +17,6 @@ public interface EventRepository {
 
     List<Event> findByTitleSort(Map<String, Object> map);
     void updateViewCount(Long id);
+
+    List<Event> findAllSortReportingDate();
 }

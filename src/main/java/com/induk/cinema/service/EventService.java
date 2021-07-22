@@ -78,6 +78,10 @@ public class EventService {
         eventRepository.delete(id);
     }
 
+    public List<Event> reportingDateEventList() {
+        return eventRepository.findAllSortReportingDate();
+    }
+
     public List<Event> searchEvent(String searchWord, int status, int sort){
 
         HashMap<String, Object> map = new HashMap<>(); // key, value
