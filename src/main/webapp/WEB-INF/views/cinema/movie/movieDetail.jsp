@@ -18,12 +18,6 @@
     <c:import url="../main/header.jsp"/>
 
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
-
-    <style>
-        /*.rating i:nth-child(1) {
-            color: #f1481f;
-        }*/
-    </style>
 </head>
 
 <body onload="appraisalsList(${movieDetail.id}, 3)">
@@ -134,43 +128,20 @@
                     </ul>
                 </div>
                 <div class="widget-1 widget-offer">
-                    <h3 class="title">Applicable offer</h3>
+                    <h3 class="title">Event</h3>
                     <div class="offer-body">
-                        <div class="offer-item">
-                            <div class="thumb">
-                                <img src="/cinema/assets/images/sidebar/offer01.png" alt="sidebar">
+                        <c:forEach var="event" items="${events}">
+                            <div class="offer-item">
+                                <div class="thumb">
+                                    <img src="/csmovie/movies/images/${event.thumStoreFilename}/event" style="width: 100%;" alt="sidebar">
+                                </div>
+                                <div class="content">
+                                    <h6>
+                                        <a href="/csmovie/events/${event.id}">${event.title}</a>
+                                    </h6>
+                                </div>
                             </div>
-                            <div class="content">
-                                <h6>
-                                    <a href="#0">Amazon Pay Cashback Offer</a>
-                                </h6>
-                                <p>Win Cashback Upto Rs 300*</p>
-                            </div>
-                        </div>
-                        <div class="offer-item">
-                            <div class="thumb">
-                                <img src="/cinema/assets/images/sidebar/offer02.png" alt="sidebar">
-                            </div>
-                            <div class="content">
-                                <h6>
-                                    <a href="#0">PayPal Offer</a>
-                                </h6>
-                                <p>Transact first time with Paypal and
-                                    get 100% cashback up to Rs. 500</p>
-                            </div>
-                        </div>
-                        <div class="offer-item">
-                            <div class="thumb">
-                                <img src="/cinema/assets/images/sidebar/offer03.png" alt="sidebar">
-                            </div>
-                            <div class="content">
-                                <h6>
-                                    <a href="#0">HDFC Bank Offer</a>
-                                </h6>
-                                <p>Get 15% discount up to INR 100*
-                                    and INR 50* off on F&B T&C apply</p>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>

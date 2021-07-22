@@ -7,6 +7,10 @@
         select * from event
     </select>
 
+    <select id="findAllSortReportingDate" resultType="Event">
+        select * from event order by reporting_date desc limit 0, 3
+    </select>
+
     <select id="findById" parameterType="Long" resultType="Event">
         select * from event where id=#{id}
     </select>

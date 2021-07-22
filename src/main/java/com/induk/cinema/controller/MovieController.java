@@ -1,5 +1,6 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.domain.Event;
 import com.induk.cinema.domain.Movie;
 import com.induk.cinema.dto.Format;
 import com.induk.cinema.dto.MoviePage;
@@ -28,6 +29,7 @@ public class MovieController {
 
     private final GenreService genreService;
     private final MovieService movieService;
+    private final EventService eventService;
     private final FileStore fileStore;
 
 
@@ -64,15 +66,14 @@ public class MovieController {
     @GetMapping("/{id}")
     public String movieDetail(@PathVariable Long id, Model model) {
         HashMap<String, Object> movieDetail = movieService.findMovieDetail(id);
+        List<Event> events = eventService.reportingDateEventList();
+
         String screeningFormat = movieDetail.get("screeningFormat").toString();
         List<String> formatList = Arrays.asList(screeningFormat.split(","));
         movieDetail.put("formatList", formatList);
 
-        log.info("movieDetail : {}", movieDetail);
-        log.info("movieActor : {}", movieDetail.get("actorList"));
-        log.info("movieAd : {}", movieDetail.get("movieAdList"));
-
         model.addAttribute("movieDetail", movieDetail);
+        model.addAttribute("events", events);
 
         return "cinema/movie/movieDetail";
     }
@@ -99,5 +100,11 @@ public class MovieController {
     @GetMapping("/images/{filename}/actor")
     public Resource movieActor(@PathVariable String filename) throws MalformedURLException {
         return new UrlResource("file:" + fileStore.getFullPath("actor", filename));
+    }
+
+    @ResponseBody
+    @GetMapping("/images/{filename}/event")
+    public Resource movieEvent(@PathVariable String filename) throws MalformedURLException {
+        return new UrlResource("file:" + fileStore.getFullPath("event", filename));
     }
 }
