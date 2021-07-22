@@ -13,6 +13,7 @@ public interface MovieRepository {
 
     List<Movie> findAll();
     List<Movie> findByOption(Map<String, Object> map);
+    List<Movie> findHighRank();
     HashMap<String, Object> findByIdMovieDetail(Long id);
     int countAll(Map<String, Object> map);
     Movie findById(Long id);

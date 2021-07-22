@@ -72,7 +72,25 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
                         <td width="80%">
-                            <img src="/csmovie/admin/events/images/${event.storeFilename}">
+                            <img src="/csmovie/admin/events/images/${event.storeFilename}" height="600">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Thumbnail_filename</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="thum_filename" id="thum_filename" value="${event.thumUploadFilename}" readonly>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Thumbnail_image</th>
+                        <td width="80%">
+                            <img src="/csmovie/admin/events/images/${event.thumStoreFilename}" height="240">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">View_count</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="viewCount" id="viewCount" value="${event.viewCount}" readonly>
                         </td>
                     </tr>
                     <tr>
@@ -81,6 +99,7 @@
                             <textarea rows="5" class="form-control" name="content" id="content" readonly>${event.content}</textarea>
                         </td>
                     </tr>
+
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Start_date</th>
                         <td width="80%">

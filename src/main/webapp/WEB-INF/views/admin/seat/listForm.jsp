@@ -44,17 +44,19 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="30%">Theater</th>
-                            <th width="30%">Seat_Number</th>
+                            <th width="20%">Theater</th>
+                            <th width="20%">Seat_Number</th>
                             <th width="20%">Status</th>
+                            <th width="20%">Reservation_Id</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="30%">Theater</th>
-                            <th width="30%">Seat_Number</th>
+                            <th width="20%">Theater</th>
+                            <th width="20%">Seat_Number</th>
                             <th width="20%">Status</th>
+                            <th width="20%">Reservation_Id</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -62,14 +64,15 @@
                         <c:forEach var="seat" items="${seats}">
                         <tr>
                             <th width="20%"><a href="/csmovie/admin/seats/${seat.id}" >${seat.id}</a></th>
-                            <th width="30%">${seat.seatTheater.theaterName}</th>
-                            <th width="30%">${seat.number}</th>
+                            <th width="20%">${seat.seatTheater.theaterName}</th>
+                            <th width="20%">${seat.number}</th>
                             <c:if test="${seat.status == 1}">
                                 <th width="20%">예약석</th>
                             </c:if>
                             <c:if test="${seat.status == 0}">
                                 <th width="20%">빈좌석</th>
                             </c:if>
+                            <th width="20%">${seat.reservation_id}</th>
                         </tr>
                         </c:forEach>
                         </tbody>

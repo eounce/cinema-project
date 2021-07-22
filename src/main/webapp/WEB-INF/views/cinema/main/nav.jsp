@@ -41,98 +41,28 @@
                         <li>
                             <a href="/csmovie/movies">전체영화</a>
                         </li>
-                        <li>
-                            <a href="/csmovie/schedules">시간표</a>
-                        </li>
-                        <li>
-                            <a href="movie-ticket-plan.html">Movie Ticket Plan</a>
-                        </li>
-                        <li>
-                            <a href="movie-seat-plan.html">Movie Seat Plan</a>
-                        </li>
-                        <li>
-                            <a href="movie-checkout.html">Movie Checkout</a>
-                        </li>
-                        <li>
-                            <a href="popcorn.html">Movie Food</a>
-                        </li>
-                        <li>
-                            <a href="/csmovie/cinemas">상영관</a>
-                        </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#0">events</a>
+                    <a href="/csmovie/cinemas">극장</a>
+                </li>
+                <li>
+                    <a href="#0">예매</a>
                     <ul class="submenu">
                         <li>
-                            <a href="events.html">Events</a>
+                            <a href="/#0">빠른예매</a>
                         </li>
                         <li>
-                            <a href="event-details.html">Event Details</a>
-                        </li>
-                        <li>
-                            <a href="event-speaker.html">Event Speaker</a>
-                        </li>
-                        <li>
-                            <a href="event-ticket.html">Event Ticket</a>
-                        </li>
-                        <li>
-                            <a href="event-checkout.html">Event Checkout</a>
+                            <a href="/csmovie/schedules?title=">시간표</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="#0">sports</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="sports.html">Sports</a>
-                        </li>
-                        <li>
-                            <a href="sport-details.html">Sport Details</a>
-                        </li>
-                        <li>
-                            <a href="sports-ticket.html">Sport Ticket</a>
-                        </li>
-                        <li>
-                            <a href="sports-checkout.html">Sport Checkout</a>
-                        </li>
-                    </ul>
+                    <a href="/csmovie/events">이벤트</a>
                 </li>
                 <li>
-                    <a href="#0">pages</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="about.html">About Us</a>
-                        </li>
-                        <li>
-                            <a href="apps-download.html">Apps Download</a>
-                        </li>
-                        <li>
-                            <a href="sign-in.html">Sign In</a>
-                        </li>
-                        <li>
-                            <a href="sign-up.html">Sign Up</a>
-                        </li>
-                        <li>
-                            <a href="404.html">404</a>
-                        </li>
-                    </ul>
-                </li>
-                <c:if test="${not empty sessionScope.member}">
-                    <li>
-                        <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/members"))?"active":"" %>">내정보</a>
-                       <ul class="submenu">
-                            <li>
-                                <a href="/csmovie/members/edit">내정보수정</a>
-                            </li>
-                            <li>
-                                <a href="/csmovie/members/reservationList">예매목록</a>
-                            </li>
-                        </ul>
-                    </li>
-                </c:if>
-                <li>
-                    <a href="/csmovie/reviews" class="<%= (request.getRequestURL().toString().contains("/cinema/review"))?"active":"" %>">리뷰</a>
+                    <% String urlActive = (request.getRequestURL().toString().contains("/cinema/review"))?"active":""; %>
+                    <a href="/csmovie/reviews" class="<%=urlActive%>">리뷰</a>
                 </li>
                 <c:choose>
                     <c:when test="${empty sessionScope.member}">

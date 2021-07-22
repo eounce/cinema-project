@@ -26,10 +26,11 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @RequestMapping
-    public String home(Model model) {
+    public String home(@RequestParam String title, Model model) {
 
         List<City> citys = cityService.cityList();
         model.addAttribute("citys", citys);
+        model.addAttribute("title", title);
 
         return "cinema/schedule/listForm";
     }

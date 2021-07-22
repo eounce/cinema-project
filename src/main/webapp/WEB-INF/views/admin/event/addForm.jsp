@@ -75,6 +75,17 @@
                             </spring:bind>
                         </tr>
                         <tr>
+                            <spring:bind path="eventForm.thum_imageFile">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Thumbnail_image <font color="red">*</font></th>
+                                <td width="80%">
+                                    <input type="file" class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="${status.expression }" value="${status.value}">
+                                    <c:if test="${status.error}">
+                                        <div class="field-error">${status.errorMessage}</div>
+                                    </c:if>
+                                </td>
+                            </spring:bind>
+                        </tr>
+                        <tr>
                             <spring:bind path="eventForm.content">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
                                 <td width="80%">

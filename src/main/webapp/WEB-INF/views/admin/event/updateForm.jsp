@@ -73,14 +73,23 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <th scope="row" width="20%" style="vertical-align:middle;">Image</th>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Image <font color="red">*</font></th>
                             <td width="80%">
                                 <input type="file" class="form-control" name="imageFile" id="imageFile">
                             </td>
                         </tr>
-                                <input type="hidden" name="storeFilename" id="storeFilename" value="${event.storeFilename}"/>
-                                <input type="hidden" name="uploadFilename" id="uploadFilename" value="${event.uploadFilename}"/>
-                                <input type="hidden" name="path" id="path" value="${event.path}"/>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Thumbnail_image <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="file" class="form-control" name="thum_imageFile" id="thum_imageFile">
+                            </td>
+                        </tr>
+                        <input type="hidden" name="storeFilename" id="storeFilename" value="${event.storeFilename}"/>
+                        <input type="hidden" name="uploadFilename" id="uploadFilename" value="${event.uploadFilename}"/>
+                        <input type="hidden" name="path" id="path" value="${event.path}"/>
+                        <input type="hidden" name="ThumStoreFilename" id="ThumStoreFilename" value="${event.thumStoreFilename}"/>
+                        <input type="hidden" name="ThumUploadFilename" id="ThumUploadFilename" value="${event.thumUploadFilename}"/>
+                        <input type="hidden" name="ThumPath" id="ThumPath" value="${event.thumPath}"/>
                         <tr>
                             <spring:bind path="event.content">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Content <font color="red">*</font></th>
@@ -92,6 +101,12 @@
                                     </c:if>
                                 </td>
                             </spring:bind>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">View_count <font color="red">*</font></th>
+                            <td width="80%">
+                                <input type="text" class="form-control" name="viewCount" id="viewCount" value="${event.viewCount}" readonly>
+                            </td>
                         </tr>
                         <tr>
                             <spring:bind path="event.startDate">
@@ -121,7 +136,7 @@
                             <spring:bind path="event.reportingDate">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Reporting_date <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reportingDate}" readonly >
+                                    <input type="text" class="form-control" name="reporting_date" id="reporting_date" value="${event.reportingDate}" readonly>
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>
                                     </c:if>

@@ -83,6 +83,12 @@
                             </c:if>
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Reservation_Id</th>
+                        <td width="80%">
+                            <input type="text" class="form-control" name="number" value="${seat.reservation_id}" disabled>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

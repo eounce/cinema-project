@@ -84,7 +84,8 @@
 <script src="/cinema/assets/js/viewport.jquery.js"></script>
 <script src="/cinema/assets/js/nice-select.js"></script>
 <script src="/cinema/assets/js/contact.js"></script>
-<script src="/cinema/assets/js/main.js"></script>
+<% String urlActive = (request.getRequestURL().toString().contains("/schedule/listForm"))?"main_del.js":"main.js"; %>
+    <script src="/cinema/assets/js/<%=urlActive%>"></script>
 
 
 
@@ -94,14 +95,6 @@
 <!-- select2 javascript cdn -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/js/select2.min.js"></script>
 <script>
-    function formatState(state) {
-        if (!state.id) {
-            return state.text;
-        }
-        return $(
-            '<div style="' + $(state.element).data('style') + '"> ' + state.text + '</div>'
-        );
-    };
     $(document).ready(function () {
         $("#select2").select2({
             theme: "bootstrap",

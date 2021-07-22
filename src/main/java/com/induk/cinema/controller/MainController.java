@@ -1,7 +1,6 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Movie;
-import com.induk.cinema.dto.SortType;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReviewService;
 import com.induk.cinema.util.FileStore;
@@ -31,14 +30,25 @@ public class MainController {
 
     @RequestMapping
     public String home(Model model) {
+        // movie List
         List<Movie> movies = movieService.movieList();
         List<List<String>> formats = new ArrayList<>();
         for (Movie movie : movies) {
             formats.add(Arrays.asList(movie.getScreeningFormat().split(",")));
         }
 
+        // movie top4
+        List<Movie> top4 = movieService.movieListHighRank();
+        List<List<String>> top4Formats = new ArrayList<>();
+        for (Movie movie : top4) {
+            top4Formats.add(Arrays.asList(movie.getScreeningFormat().split(",")));
+        }
+
         model.addAttribute("movies", movies);
         model.addAttribute("formats", formats);
+
+        model.addAttribute("top4", top4);
+        model.addAttribute("top4Formats", top4Formats);
         model.addAttribute("popularReviews", reviewService.reviewBySortType(SortType.Popularity));
         model.addAttribute("recentReviews", reviewService.reviewBySortType(SortType.Recent));
         return "cinema/main/index";

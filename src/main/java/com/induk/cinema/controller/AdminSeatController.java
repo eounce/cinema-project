@@ -19,6 +19,7 @@ import javax.validation.Valid;
 public class AdminSeatController {
 
     private final SeatService seatService;
+    //private final ReservationService reservationService;
 
     @GetMapping
     public String seats(Model model) {
@@ -66,7 +67,9 @@ public class AdminSeatController {
 
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
+
         model.addAttribute("theaters", seatService.findTheater());
+        //model.addAttribute("reservations", reservationService.findReservation());
         model.addAttribute("seat", seatService.findSeat(id));
         return "admin/seat/updateForm";
     }
@@ -80,10 +83,12 @@ public class AdminSeatController {
 
         if(bindingResult.hasErrors()) {
             model.addAttribute("theaters", seatService.findTheater());
+            //model.addAttribute("reservations", reservationService.findReservation());
             return "admin/seat/updateForm";
         }
 
         seatService.updateSeat(seat);
+        model.addAttribute("seat", seat);
 
         return "redirect:/csmovie/admin/seats/{id}";
     }

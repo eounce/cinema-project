@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Slf4j
@@ -32,6 +34,7 @@ public class EventService {
     public Long saveEvent(EventForm eventForm) throws IOException {
 
         UploadFile uploadFile = fileStore.storeFile(eventForm.getImageFile(), "event");
+        UploadFile thum_uploadFile = fileStore.storeFile(eventForm.getThum_imageFile(), "event");
 
         Event event = new Event();
         event.setTitle(eventForm.getTitle());
@@ -42,13 +45,16 @@ public class EventService {
         event.setStartDate(eventForm.getStart_date());
         event.setEndDate(eventForm.getEnd_date());
         event.setReportingDate(eventForm.getReporting_date());
+        event.setThumUploadFilename(thum_uploadFile.getUploadFilename());
+        event.setThumStoreFilename(thum_uploadFile.getStoreFilename());
+        event.setThumPath(thum_uploadFile.getPath());
 
         eventRepository.save(event);
 
         return event.getId();
     }
 
-    public void updateEvent(Event event, MultipartFile file) throws IOException  {
+    public void updateEvent(Event event, MultipartFile file, MultipartFile file2) throws IOException  {
 
         if(!file.isEmpty()) {
             UploadFile uploadFile = fileStore.storeFile(file, "event");
@@ -57,6 +63,13 @@ public class EventService {
             event.setUploadFilename(uploadFile.getUploadFilename());
             event.setPath(uploadFile.getPath());
         }
+        if(!file2.isEmpty()) {
+            UploadFile uploadFile = fileStore.storeFile(file2, "event");
+
+            event.setThumStoreFilename(uploadFile.getStoreFilename());
+            event.setThumUploadFilename(uploadFile.getUploadFilename());
+            event.setThumPath(uploadFile.getPath());
+        }
 
         eventRepository.update(event);
     }
@@ -64,4 +77,33 @@ public class EventService {
     public void deleteEvent(Long id) {
         eventRepository.delete(id);
     }
+
+    public List<Event> searchEvent(String searchWord, int status, int sort){
+
+        HashMap<String, Object> map = new HashMap<>(); // key, value
+
+        map.put("searchWord", searchWord);
+        map.put("status", status);
+        map.put("sort", sort);
+
+        return eventRepository.findByTitleSort(map);
+    }
+
+    public void plusViewCount(Long id){
+        eventRepository.updateViewCount(id);
+    }
+
+    public List<Event> pagination(int nowPage, List<Event> eventList){
+
+        int recordNumPerPage = 6; // 한 페이지에 보일 레코드 개수
+        List<Event> list = new ArrayList<>();
+
+        for(int i = 0; i < eventList.size(); i++){
+            if (i >= (nowPage - 1) * recordNumPerPage && i < nowPage * recordNumPerPage){
+                list.add(eventList.get(i));
+            }
+        }
+        return list;
+    }
+
 }

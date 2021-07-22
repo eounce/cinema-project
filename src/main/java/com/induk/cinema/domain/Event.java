@@ -24,4 +24,8 @@ public class Event {
     private Date startDate;
     private Date endDate;
     private Date reportingDate;
+    private int viewCount;
+    private String thumStoreFilename;
+    private String thumUploadFilename;
+    private String thumPath;
 }

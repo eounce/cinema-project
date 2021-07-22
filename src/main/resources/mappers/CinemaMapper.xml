@@ -78,7 +78,8 @@
     </select>
 
     <select id="findCinemaByText" parameterType="String" resultMap="resultCinema">
-        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id where cinema.name like concat('%', #{searchText}, '%');
+        select cinema.*, city.name as cityName from cinema left join city on cinema.city_id = city.id
+        where cinema.name like concat('%', #{searchText}, '%') order by cinema.city_id asc
     </select>
 
     <select id="findCity" resultType="com.induk.cinema.domain.City">
