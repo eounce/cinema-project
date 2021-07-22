@@ -35,8 +35,8 @@
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"> Seat DataTables</i>
-                <a href='#' class="btn btn-primary float-right" onclick="history.go(-1);"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats" style="text-decoration:none"> Seat DataTables</a></i>
+                <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats'"><i class="fas fa-undo"></i></a>
                 <span class="float-right">&nbsp;</span>
                 <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/add'">추가</button></h4>
             </div>
