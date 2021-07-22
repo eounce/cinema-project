@@ -49,8 +49,7 @@ public class CinemaController {
         if(searchText.equals(" "))
             searchText="";
         List<Cinema> cinemas =cinemaService.findCinemaByText(searchText);
-        for(int i=0;i<cinemas.size();i++)
-            System.out.println("i : " + cinemas.get(i).getCinemaCity().getCityName());
+
         return cinemas;
     }
 

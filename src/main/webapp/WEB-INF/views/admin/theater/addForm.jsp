@@ -61,7 +61,7 @@
                             <spring:bind path="theater.cinema_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Cinema <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2">
                                         <option value="" selected>극장명을 선택해주세요</option>
                                         <c:forEach var="cinema" items="${cinemas}">
                                             <option value="${cinema.id}">${cinema.name}</option>

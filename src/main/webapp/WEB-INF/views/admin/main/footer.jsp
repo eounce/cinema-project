@@ -94,5 +94,15 @@
             theme: "bootstrap",
             width: null
         });
+
+        $("#select2_1").select2({
+            theme: "bootstrap",
+            width: null
+        });
+
+        $("#select2_2").select2({
+            theme: "bootstrap",
+            width: null
+        });
     });
 </script>

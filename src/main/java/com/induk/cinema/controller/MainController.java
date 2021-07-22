@@ -1,6 +1,7 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Movie;
+import com.induk.cinema.dto.SortType;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReviewService;
 import com.induk.cinema.util.FileStore;

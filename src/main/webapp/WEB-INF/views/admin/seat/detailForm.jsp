@@ -42,7 +42,7 @@
             </form>
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats" style="text-decoration:none"> Seat</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats'"><i class="fas fa-undo"></i></a>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/theaters/${seat.theater_id}'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>

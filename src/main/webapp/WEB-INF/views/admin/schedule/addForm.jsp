@@ -50,7 +50,7 @@
                             <spring:bind path="schedule.movie_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Movie <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2_1">
                                         <option value="" selected>영화명을 선택해주세요</option>
                                         <c:forEach var="movie" items="${movies}">
                                             <option value="${movie.id}">${movie.title}</option>
@@ -67,7 +67,7 @@
                             <spring:bind path="schedule.theater_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Theater <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2_2">
                                         <option value="" selected>상영관명을 선택해주세요</option>
                                         <c:forEach var="theater" items="${theaters}">
                                             <option value="${theater.id}">${theater.theaterCinema.cinemaName}/${theater.name}</option>
@@ -132,7 +132,7 @@
                                 <th scope="row" width="20%" style="vertical-align:middle;">Screening_Format <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="form-control" name="${status.expression }"
-                                           id="${status.expression }" placeholder="장르를 입력해주세요">
+                                           id="${status.expression }" placeholder="상영종류를 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     <c:if test="${status.error}">
                                         <div class="field-error">${status.errorMessage}</div>

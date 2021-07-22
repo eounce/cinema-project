@@ -14,11 +14,11 @@
 </resultMap>
 
     <select id="findAll" resultMap="resultTheater">
-        select theater.*, cinema.name as cinemaName from theater left join cinema on theater.cinema_id = cinema.id order by cinemaName desc, theater.name asc
+        select theater.*, cinema.name as cinemaName from theater left join cinema on theater.cinema_id = cinema.id order by cinema.city_id asc, cinemaName desc, theater.name asc
     </select>
 
     <select id="findCinema" resultType="com.induk.cinema.domain.Cinema">
-        select * from cinema
+        select * from cinema order by city_id asc
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Theater">

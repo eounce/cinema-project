@@ -16,5 +16,8 @@ public interface SeatRepository {
     void delete(Long id);
 
     String findByTheaterId(Long id);
+
+    List<Theater> findTheaterById(Long id);
+    List<Seat> findSeatByTheaterId(Long id);
     List<Theater> findTheater();
 }

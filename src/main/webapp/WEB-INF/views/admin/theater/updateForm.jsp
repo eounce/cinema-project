@@ -67,7 +67,7 @@
                             <spring:bind path="theater.cinema_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">City <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2">
                                         <option value="">영화관을 선택해주세요</option>
                                         <c:forEach var="cinema" items="${cinemas}">
                                             <c:if test="${cinema.id == theater.cinema_id}">

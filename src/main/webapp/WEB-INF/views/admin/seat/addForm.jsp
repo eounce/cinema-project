@@ -37,8 +37,8 @@
         <div class="card shadow mb-4">
             <form method="post" action="/csmovie/admin/seats/add">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats" style="text-decoration:none"> Seat</a></i>
-                        <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats'"><i class="fas fa-undo"></i></a>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats/" style="text-decoration:none"> Seat</a></i>
+                        <a href='#' class="btn btn-primary float-right" onclick="history.go(-1);"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
                     </h4>
@@ -50,10 +50,10 @@
                             <spring:bind path="seat.theater_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Theater <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2">
                                         <option value="" selected>상영관을 선택해주세요</option>
                                         <c:forEach var="theater" items="${theaters}">
-                                            <option value="${theater.id}">${theater.name}</option>
+                                            <option value="${theater.id}">${theater.theaterCinema.cinemaName}/${theater.name}</option>
                                         </c:forEach>
                                     </select>
                                     <!-- 해당 속성의 오류 message를 출력 -->

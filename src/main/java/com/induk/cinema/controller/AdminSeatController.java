@@ -22,8 +22,14 @@ public class AdminSeatController {
     //private final ReservationService reservationService;
 
     @GetMapping
-    public String seats(Model model) {
-        model.addAttribute("seats", seatService.seatList());
+    public String theaters(Model model) {
+        model.addAttribute("theaters", seatService.findTheater());
+        return "admin/seat/listForm_theater";
+    }
+
+    @GetMapping("/theaters/{id}")
+    public String seats(@PathVariable Long id, Model model) {
+        model.addAttribute("seats", seatService.findSeatByTheaterId(id));
         return "admin/seat/listForm";
     }
 

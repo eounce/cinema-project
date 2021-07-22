@@ -36,9 +36,7 @@
         <div class="card shadow mb-4">
             <div class="card-header py-3">
                 <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"> Seat DataTables</i>
-                <a href='#' class="btn btn-primary float-right" onclick="history.go(-1);"><i class="fas fa-undo"></i></a>
-                <span class="float-right">&nbsp;</span>
-                <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/add'">추가</button></h4>
+                    <button type="submit" class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/add'">추가</button></h4>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -46,36 +44,22 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="30%">Theater</th>
-                            <th width="20%">Seat_Number</th>
-                            <th width="10%">Status</th>
                             <th width="20%">Reservation_Id</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="30%">Theater</th>
-                            <th width="20%">Seat_Number</th>
-                            <th width="10%">Status</th>
                             <th width="20%">Reservation_Id</th>
                         </tr>
                         </tfoot>
                         <tbody>
 
-                        <c:forEach var="seat" items="${seats}">
-                        <tr>
-                            <th width="20%"><a href="/csmovie/admin/seats/${seat.id}" >${seat.id}</a></th>
-                            <th width="30%">${seat.seatTheater.cinemaName}/${seat.seatTheater.theaterName}</th>
-                            <th width="20%">${seat.number}</th>
-                            <c:if test="${seat.status == 1}">
-                                <th width="10%">예약석</th>
-                            </c:if>
-                            <c:if test="${seat.status == 0}">
-                                <th width="10%">빈좌석</th>
-                            </c:if>
-                            <th width="20%">${seat.reservation_id}</th>
-                        </tr>
+                        <c:forEach var="theater" items="${theaters}">
+                            <tr>
+                                <th width="20%"><a href="/csmovie/admin/seats/theaters/${theater.id}">${theater.id}</a></th>
+                                <th width="20%">${theater.theaterCinema.cinemaName}/${theater.name}</th>
+                            </tr>
                         </c:forEach>
                         </tbody>
                     </table>

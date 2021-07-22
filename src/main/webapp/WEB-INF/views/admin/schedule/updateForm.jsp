@@ -51,7 +51,7 @@
                             <spring:bind path="schedule.movie_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Movie <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2_1">
                                         <option value="">영화명을 선택해주세요</option>
                                         <c:forEach var="movie" items="${movies}">
                                             <c:if test="${movie.id == schedule.movie_id}">
@@ -73,7 +73,7 @@
                             <spring:bind path="schedule.theater_id">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Theater <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
+                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2_2">
                                         <option value="">상영관명을 선택해주세요</option>
                                         <c:forEach var="theater" items="${theaters}">
                                             <c:if test="${theater.id == schedule.theater_id}">

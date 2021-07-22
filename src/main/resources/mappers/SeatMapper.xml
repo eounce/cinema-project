@@ -11,15 +11,29 @@
     <result property="reservation_id" column="reservation_id"/>
     <association property="seatTheater" javaType="com.induk.cinema.dto.SeatTheater">
         <result property="theaterName" column="theaterName"/>
+        <result property="cinemaName" column="cinemaName"/>
     </association>
 </resultMap>
-
+    <resultMap id="resultTheater" type="com.induk.cinema.domain.Theater">
+        <id property="id" column="id"/>
+        <result property="cinema_id" column="cinema_id"/>
+        <result property="name" column="name"/>
+        <result property="seat_count" column="seat_count"/>
+        <association property="theaterCinema" javaType="com.induk.cinema.dto.TheaterCinema">
+            <result property="cinemaName" column="cinemaName"/>
+        </association>
+    </resultMap>
     <select id="findAll" resultMap="resultSeat">
         select seat.*, theater.name as theaterName from seat left join theater on seat.theater_id = theater.id
     </select>
 
-    <select id="findTheater" resultType="com.induk.cinema.domain.Theater">
-        select * from theater
+    <select id="findTheater" resultMap="resultTheater">
+        select theater.*, cinema.name as cinemaName from theater left join cinema on cinema.id = theater.cinema_id
+    </select>
+
+    <select id="findSeatByTheaterId" resultMap="resultSeat">
+        select seat.*, theater.name as theaterName, cinema.name as cinemaName from seat left join theater on seat.theater_id = theater.id left join cinema on cinema.id = theater.cinema_id
+         where seat.theater_id = #{id}
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Seat">

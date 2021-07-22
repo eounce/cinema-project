@@ -38,7 +38,7 @@ public class Schedule {
     @Pattern(regexp = "^\\d{4}-\\d{2}-\\d{2}$", message = "날짜형식에 맞게 입력해주세요.")
     private String screening_date;
 
-    @NotBlank(message = "장르는 필수 입력입니다.")
+    @NotBlank(message = "상영종류는 필수 입력입니다.")
     private String screening_format;
 
     @NotBlank(message = "가격은 필수 입력입니다.")

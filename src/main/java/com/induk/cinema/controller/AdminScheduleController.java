@@ -2,6 +2,7 @@ package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.City;
 import com.induk.cinema.domain.Schedule;
+import com.induk.cinema.service.GenreService;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ScheduleService;
 import com.induk.cinema.service.TheaterService;
@@ -22,6 +23,7 @@ public class AdminScheduleController {
     private final ScheduleService scheduleService;
     private final MovieService movieService;
     private final TheaterService theaterService;
+    private final GenreService genreService;
 
     @GetMapping
     public String schedules(Model model) {

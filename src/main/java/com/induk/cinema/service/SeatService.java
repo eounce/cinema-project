@@ -20,6 +20,10 @@ public class SeatService {
         return seatRepository.findAll();
     }
 
+    public List<Seat> findSeatByTheaterId(Long id) {
+        return seatRepository.findSeatByTheaterId(id);
+    }
+
     public Seat findSeat(Long id) {
         return seatRepository.findById(id);
     }
@@ -44,5 +48,10 @@ public class SeatService {
     public List<Theater> findTheater() {
         return seatRepository.findTheater();
     }
+
+    public List<Theater> findTheaterById(Long id) {
+        return seatRepository.findTheaterById(id);
+    }
+
 
 }
