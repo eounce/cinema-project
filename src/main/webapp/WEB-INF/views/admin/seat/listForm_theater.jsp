@@ -44,13 +44,13 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="20%">Reservation_Id</th>
+                            <th width="20%">Theater</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="20%">Reservation_Id</th>
+                            <th width="20%">Theater</th>
                         </tr>
                         </tfoot>
                         <tbody>
