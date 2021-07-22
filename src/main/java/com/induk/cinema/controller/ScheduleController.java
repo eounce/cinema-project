@@ -26,7 +26,8 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @RequestMapping
-    public String home(@RequestParam String title, @RequestParam String cityId, @RequestParam String cinemaId, @RequestParam String date, Model model) {
+    public String home(@RequestParam(required=false) String title, @RequestParam(required=false) String cityId,
+                       @RequestParam(required=false) String cinemaId, @RequestParam(required=false) String date, Model model) {
 
         List<City> citys = cityService.cityList();
         model.addAttribute("citys", citys);
@@ -88,17 +89,4 @@ public class ScheduleController {
 
         return schedules;
     }
-
-    @GetMapping("/{movietitle}")
-    @ResponseBody
-    public List<Schedule> mainSchedule(@RequestParam String movieTitle){
-        List<Schedule> cinemas =scheduleService.findScheduleToMovieTitle(movieTitle);
-
-        for(int i=0; i<cinemas.size(); i++){
-            System.out.println(cinemas.get(i).getMovie_id());
-        }
-
-        return null;
-    }
-
 }

@@ -50,7 +50,7 @@
                     <a href="#0">예매</a>
                     <ul class="submenu">
                         <li>
-                            <a href="/csmovie/schedules?title=">시간표</a>
+                            <a href="/csmovie/schedules?title=&cityId=&cinemaId=&date=">시간표</a>
                         </li>
                     </ul>
                 </li>
