@@ -1,6 +1,7 @@
 package com.induk.cinema.service;
 
 import com.induk.cinema.domain.City;
+import com.induk.cinema.domain.Reservation;
 import com.induk.cinema.repository.CityRepository;
 import com.induk.cinema.repository.ReservationRepository;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,7 @@ public class ReservationService {
         return reservationRepository.findAll();
     }
 
-    public City findReservation(Long id) {
+    public Reservation findReservation(Long id) {
         return reservationRepository.findById(id);
     }
 
