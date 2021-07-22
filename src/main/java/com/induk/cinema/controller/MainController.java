@@ -1,7 +1,9 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.domain.City;
 import com.induk.cinema.domain.Movie;
 import com.induk.cinema.dto.SortType;
+import com.induk.cinema.service.CityService;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReviewService;
 import com.induk.cinema.util.FileStore;
@@ -28,6 +30,7 @@ public class MainController {
     private final MovieService movieService;
     private final FileStore fileStore;
     private final ReviewService reviewService;
+    private final CityService cityService;
 
     @RequestMapping
     public String home(Model model) {
@@ -44,6 +47,9 @@ public class MainController {
         for (Movie movie : top4) {
             top4Formats.add(Arrays.asList(movie.getScreeningFormat().split(",")));
         }
+
+        List<City> citys = cityService.cityList();
+        model.addAttribute("citys", citys);
 
         model.addAttribute("movies", movies);
         model.addAttribute("formats", formats);

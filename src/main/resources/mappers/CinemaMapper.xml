@@ -97,8 +97,8 @@
     </select>
 
     <select id="findByTheater" resultMap="resultScedule">
-        select distinct schedule.movie_id, theater.id as theater_id, theater.name as theater_name, theater.seat_count as theater_seat, schedule.movie_id from schedule
-        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{id} and schedule.screening_date = #{date}
+        select distinct schedule.movie_id, schedule.screening_format, theater.id as theater_id, theater.name as theater_name, theater.seat_count as theater_seat, schedule.movie_id
+         from schedule left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{id} and schedule.screening_date = #{date}
     </select>
 
     <select id="findMovie" resultMap="resultScedule">
@@ -136,4 +136,14 @@
         left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{cinemaId} and  schedule.screening_date = #{date} order by theater_name asc
     </select>
 
+
+    <select id="findByTheaterToSchedule" resultMap="resultScedule">
+        select distinct schedule.movie_id, schedule.screening_format, theater.id as theater_id, theater.name as theater_name, theater.seat_count as theater_seat, schedule.movie_id
+         from schedule left join theater on schedule.theater_id = theater.id left join movie on schedule.movie_id = movie.id where theater.cinema_id = #{id} and schedule.screening_date = #{date} and movie.title like concat('%', #{title}, '%')
+    </select>
+
+    <select id="findMovieToSchedule" resultMap="resultScedule">
+        select distinct movie.id as movie_id, movie.title as movie_title, movie.screening_format as screening_format, movie.rating as movie_rating, movie.show_times as movie_showtimes, theater.cinema_id as cinema_id from schedule left join movie on schedule.movie_id = movie.id
+        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{id} and schedule.screening_date = #{date} and movie.title like concat('%', #{title}, '%')
+    </select>
 </mapper>

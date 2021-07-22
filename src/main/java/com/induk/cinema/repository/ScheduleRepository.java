@@ -16,4 +16,5 @@ public interface ScheduleRepository {
     void delete(Long id);
 
     List<Schedule> findScheduleForAjax(String movieTitle, String date, Long cinemaId);
+    List<Schedule> findScheduleToMovieTitle(String movieTitle);
 }

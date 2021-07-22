@@ -84,10 +84,16 @@
 <script src="/cinema/assets/js/viewport.jquery.js"></script>
 <script src="/cinema/assets/js/nice-select.js"></script>
 <script src="/cinema/assets/js/contact.js"></script>
-<% String urlActive = (request.getRequestURL().toString().contains("/schedule/listForm"))?"main_del.js":"main.js"; %>
-    <script src="/cinema/assets/js/<%=urlActive%>"></script>
-
-
+<% String urlActive1 = (request.getRequestURL().toString().contains("/schedule/listForm"))?"main_del.js":"main.js"; %>
+<% String urlActive2 = (request.getRequestURL().toString().contains("/main/index"))?"main_del.js":"main.js"; %>
+<% String active = "";
+    if(!urlActive1.equals("main.js") || !urlActive2.equals("main.js")) {
+        active = "main_del.js";
+    } else {
+        active = "main.js";
+    }
+%>
+    <script src="/cinema/assets/js/<%=active%>"></script>
 
 <!-- select2 css cdn -->
 <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.9/css/select2.min.css" rel="stylesheet" />

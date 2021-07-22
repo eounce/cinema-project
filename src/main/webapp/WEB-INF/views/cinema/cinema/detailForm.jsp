@@ -268,12 +268,12 @@
                                                                 <h5>${theater.scheduleForm.theater_name}</h5>총${theater.scheduleForm.theater_seat}석
                                                             </div>
                                                             <div>
-                                                                ${movie.screening_format}
+                                                                ${theater.screening_format}
                                                             </div>
                                                         </div>
                                                         <div class="movie-schedule">
                                                             <c:forEach var="schedulestest" items="${schedulestests}">
-                                                                <c:if test="${schedulestest.theater_id == theater.theater_id and schedulestest.movie_id == theater.movie_id}">
+                                                                <c:if test="${schedulestest.theater_id == theater.theater_id and schedulestest.movie_id == theater.movie_id and schedulestest.screening_format == theater.screening_format}">
                                                                     <div class="item">
                                                                             ${schedulestest.start_time}
                                                                     </div>
@@ -561,7 +561,6 @@
                         array_rating.push(schedules[i].scheduleForm.movie_rating);
                     }
                 }
-                console.log("1.length : " + array_name.length);
 
                 var array_theater = [];
                 var array_theater_id = [];
@@ -575,7 +574,18 @@
                     array_format.push(schedules[i].screening_format);
                     array_movie.push(schedules[i].scheduleForm.movie_title);
                 }
-                console.log("2.length : " + array_name.length);
+
+                var array_test1 = [];
+                var array_test2 = [];
+                for(var i=0;i<schedules.length;i++) {
+                    if(array_test1.indexOf(schedules[i].scheduleForm.movie_title) == -1 || array_test2.indexOf(schedules[i].screening_format) == -1){
+                        array_test1.push(schedules[i].scheduleForm.movie_title);
+                        array_test2.push(schedules[i].screening_format);
+                        console.log(array_test1[i]);
+                        console.log(array_test2[i]);
+
+                    }
+                }
 
                 var item = "";
                 for(var a=0;a<array_name.length;a++){
@@ -596,32 +606,37 @@
                         "                                                </ul>\n" +
                         "                                        </div>";
                     var temp = [];
-                    for(var b=0;b<array_theater_id.length;b++) {
-                        if(array_movie[b] == array_name[a] && temp.indexOf(array_theater_id[b]) == -1) {
-                            item += "<ul class=\"seat-plan-wrapper bg-five\">\n" +
-                                "                        <li>\n" +
-                                "                            <div class=\"movie-name\">\n" +
-                                "                               <div>\n" +
-                                "                                   <h5>" + array_theater[b] + "</h5>총" + array_seat[b] + "석\n" +
-                                "                               </div>\n" +
-                                "                               <div>\n" +
-                                "                                  " + array_format[b] + "\n" +
-                                "                               </div>"+
-                                "                            </div>\n" +
-                                "                            <div class=\"movie-schedule\">\n";
-                            temp.push(array_theater_id[b]);
-                            for (var c = 0; c < schedules.length; c++) {
-                                if (array_name[a] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id) {
+
+                    for(var x=0;x<array_test1.length;x++) {
+                        if(array_test1[x] == array_name[a]) {
+                            for (var b = 0; b < array_theater_id.length; b++) {
+                                if (array_movie[b] == array_test1[x] && array_format[b] == array_test2[x] && temp != array_test2[x]) {
+                                    item += "<ul class=\"seat-plan-wrapper bg-five\">\n" +
+                                        "                        <li>\n" +
+                                        "                            <div class=\"movie-name\">\n" +
+                                        "                               <div>\n" +
+                                        "                                   <h5>" + array_theater[b] + "</h5>총" + array_seat[b] + "석\n" +
+                                        "                               </div>\n" +
+                                        "                               <div>\n" +
+                                        "                                  " + array_format[b] + "\n" +
+                                        "                               </div>" +
+                                        "                            </div>\n" +
+                                        "                            <div class=\"movie-schedule\">\n";
+                                    temp.push(array_format[b]);
+                                    for (var c = 0; c < schedules.length; c++) {
+                                        if (array_test1[x] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id && schedules[c].screening_format == array_test2[x]) {
+                                            item +=
+                                                "                                <div class=\"item\">\n" +
+                                                "                                    " + schedules[c].start_time + "\n" +
+                                                "                                </div>\n";
+                                        }
+                                    }
                                     item +=
-                                        "                                <div class=\"item\">\n" +
-                                        "                                    " + schedules[c].start_time + "\n" +
-                                        "                                </div>\n";
+                                        "                            </div>\n" +
+                                        "                        </li>";
+                                    "      </ul>";
                                 }
                             }
-                            item +=
-                                "                            </div>\n" +
-                                "                        </li>";
-                            "      </ul>";
                         }
                     }
                     item += "</div>";

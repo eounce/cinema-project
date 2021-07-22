@@ -22,4 +22,6 @@ public interface CinemaRepository {
     List<City> findCity();
 
     List<Schedule> findScheduleForAjax(String date, Long cinemaId);
+    List<Schedule> findByTheaterToSchedule(String title, Long id, String date);
+    List<Schedule> findMovieToSchedule(String title, Long id, String date);
 }
