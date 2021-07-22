@@ -50,9 +50,6 @@
                     <a href="#0">예매</a>
                     <ul class="submenu">
                         <li>
-                            <a href="/#0">빠른예매</a>
-                        </li>
-                        <li>
                             <a href="/csmovie/schedules?title=">시간표</a>
                         </li>
                     </ul>

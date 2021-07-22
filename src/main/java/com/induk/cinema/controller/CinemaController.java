@@ -84,8 +84,6 @@ public class CinemaController {
 
         List<Schedule> schedules = cinemaService.findScheduleForAjax(date, cinemaId);
 
-
-
         return schedules;
     }
 
