@@ -33,7 +33,7 @@ public class Reservation {
     private Long youth;
 
     @NotBlank(message = "날짜는 필수 입력사항입니다.")
-    private String data;
+    private String date;
 
     @NotBlank(message = "상태는 숫자만 입력가능합니다.")
     @Pattern(regexp = "^[0-1]$", message = "상태는 숫자만 입력가능합니다.")

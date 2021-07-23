@@ -105,4 +105,10 @@
             width: null
         });
     });
+    $(document).ready(function () {
+        $("#select3").select2({
+            theme: "bootstrap",
+            width: null
+        });
+    });
 </script>
