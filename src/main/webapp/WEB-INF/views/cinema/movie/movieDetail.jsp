@@ -109,7 +109,7 @@
                     <p>관람객 평점</p>
                 </div>
             </div>
-            <a href="/csmovie/schedules?title=${movieDetail.title}" class="custom-button">book tickets</a>
+            <a href="/csmovie/schedules?title=${movieDetail.title}&cityId=&cinemaId=&date=" class="custom-button">예매</a>
         </div>
     </div>
 </section>

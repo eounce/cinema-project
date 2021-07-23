@@ -38,7 +38,6 @@
 <!-- Page level custom scripts -->
 <%--<script src="/csmovie/admin/js/demo/chart-area-demo.js"></script>--%>
 <%--<script src="/csmovie/admin/js/demo/chart-pie-demo.js"></script>--%>
-<script src="/admin/js/demo/chart-area-demo.js"></script>
 <script src="/admin/js/demo/chart-pie-demo.js"></script>
 
 <!-- Date Picker -->
@@ -85,6 +84,13 @@
 <script>
     $('#datePicker').datepicker({
         format : "yyyy-mm-dd",
+        language : "kr",
+        todayHighlight : true
+    });
+
+    $('#datePicker2').datepicker({
+        minViewMode: 'years',
+        format : "yyyy",
         language : "kr",
         todayHighlight : true
     });

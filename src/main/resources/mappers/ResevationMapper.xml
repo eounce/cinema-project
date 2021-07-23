@@ -55,4 +55,14 @@
     <select id="countAll" resultType="int">
         select count(*) from reservation
     </select>
+
+    <select id="findBySales" resultType="com.induk.cinema.dto.Sales" parameterType="java.util.HashMap">
+        SELECT SUM(p.price) price, DATE_FORMAT(r.date, '%Y-%m') date
+        FROM reservation r
+        INNER JOIN schedule s ON s.id = r.schedule_id
+        INNER JOIN movie m ON m.id = s.movie_id
+        INNER JOIN payment p ON p.id = r.payment_id
+        where m.id = #{movieId} and DATE_FORMAT(r.date, '%Y') = #{year}
+        GROUP BY date
+    </select>
 </mapper>
