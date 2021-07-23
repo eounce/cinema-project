@@ -173,9 +173,7 @@
                                     </h5><br><br>
                                     <div class="widget-1 widget-tags">
                                         <ul>
-                                            <c:forEach var="format" items="${top4Formats.get(status.index)}">
-                                                <li><a>${format}</a></li>
-                                            </c:forEach>
+                                           <li><a>예매율: &nbsp;${ratio.get(status.index)}%</a></li>
                                         </ul>
                                     </div>
                                 </div>

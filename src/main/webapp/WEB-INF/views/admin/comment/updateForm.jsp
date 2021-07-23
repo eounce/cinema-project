@@ -53,7 +53,7 @@
                             <spring:bind path="comment.reviewId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Review_id <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                    <select name="${status.expression}" id="select2" class="form-control">
                                         <c:forEach var="review" items="${reviews}">
                                             <c:choose>
                                                 <c:when test="${review.id == comment.reviewId}">
@@ -74,7 +74,7 @@
                             <spring:bind path="comment.memberId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                    <select name="${status.expression}" id="select3" class="form-control">
                                         <c:forEach var="member" items="${members}">
                                             <c:choose>
                                                 <c:when test="${member.id == comment.memberId}">

@@ -3,6 +3,8 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.induk.cinema.repository.ReservationRepository">
+
+
     <select id="findAll" resultType="com.induk.cinema.domain.Reservation">
         select * from reservation
     </select>
@@ -26,4 +28,31 @@
     <delete id="delete" parameterType="Long">
         delete from reservation where id = #{id}
     </delete>
+
+    <select id="findReservationByStatus" resultType="com.induk.cinema.domain.Reservation">
+        SELECT reservation.*, movie.title as movie_title, genre.name as genre_name ,group_concat(seat.number) as seat_numbers ,
+               theater.name as theater_name, cinema.name as cinema_name, schedule.start_time as schedule_start_time,
+               schedule.end_time as schedule_end_time
+            FROM reservation
+            inner join schedule on reservation.schedule_id = schedule.id
+            inner join movie on schedule.movie_id = movie.id
+            inner join theater on schedule.theater_id = theater.id
+            inner join cinema on theater.cinema_id = cinema.id
+            inner join seat on theater.id = seat.theater_id
+            inner join genre on movie.genre_id = genre.id
+        where reservation.member_id = 56 and seat.reservation_id = reservation.id
+        <if test="sort == 1">
+            and schedule.end_time > #{searchDate} and reservation.status <![CDATA[<]]>= 1
+            order by reservation.status desc, schedule.start_time asc
+        </if>
+        <if test="sort == 2">
+            and schedule.end_time <![CDATA[<]]>= #{searchDate} and reservation.status == 1
+            order by reservation.date desc
+        </if>
+        group by reservation.id
+    </select>
+
+    <select id="countAll" resultType="int">
+        select count(*) from reservation
+    </select>
 </mapper>
