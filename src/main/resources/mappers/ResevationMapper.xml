@@ -32,7 +32,7 @@
     <select id="findReservationByStatus" resultType="com.induk.cinema.domain.Reservation">
         SELECT reservation.*, movie.title as movie_title, genre.name as genre_name ,group_concat(seat.number) as seat_numbers ,
                theater.name as theater_name, cinema.name as cinema_name, schedule.start_time as schedule_start_time,
-               schedule.end_time as schedule_end_time
+               schedule.end_time as schedule_end_time, payment.method as payment_method, payment.price as payment_price
             FROM reservation
             inner join schedule on reservation.schedule_id = schedule.id
             inner join movie on schedule.movie_id = movie.id
@@ -40,16 +40,18 @@
             inner join cinema on theater.cinema_id = cinema.id
             inner join seat on theater.id = seat.theater_id
             inner join genre on movie.genre_id = genre.id
-        where reservation.member_id = 56 and seat.reservation_id = reservation.id
+            inner join payment on reservation.payment_id = payment.id
+        where reservation.member_id = #{memberId} and seat.reservation_id = reservation.id
         <if test="sort == 1">
             and schedule.end_time > #{searchDate} and reservation.status <![CDATA[<]]>= 1
+            group by reservation.id
             order by reservation.status desc, schedule.start_time asc
         </if>
         <if test="sort == 2">
             and schedule.end_time <![CDATA[<]]>= #{searchDate} and reservation.status == 1
+            group by reservation.id
             order by reservation.date desc
         </if>
-        group by reservation.id
     </select>
 
 </mapper>
