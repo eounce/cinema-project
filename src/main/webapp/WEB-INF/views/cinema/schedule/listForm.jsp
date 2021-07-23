@@ -589,7 +589,7 @@
                                     for (var c = 0; c < schedules.length; c++) {
                                         if (array_test1[x] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id && schedules[c].screening_format == array_test2[x]) {
                                             item +=
-                                                "                                <div class=\"item\">\n" +
+                                                "                                <div class=\"item\" onclick=\"move(" + schedules[c].id + ")\">\n" +
                                                 "                                    " + schedules[c].start_time + "\n" +
                                                 "                                </div>\n";
                                         }
