@@ -207,11 +207,11 @@
                         "            <div class=\"book-area\">\n" +
                         "                <div class=\"book-ticket\">\n" +
                         "                    <div class=\"react-item mr-auto\">\n" +
-                        "                        <a href=\"/csmovie/schedules?title=" + movies[i].title + "\">\n" +
+                        "                        <a href=\"/csmovie/schedules?title=" + movies[i].title + "&cityId=&cinemaId=&date=\">\n" +
                         "                            <div class=\"thumb\">\n" +
                         "                                <img src=\"/cinema/assets/images/icons/book.png\" alt=\"icons\">\n" +
                         "                            </div>\n" +
-                        "                            <span>book ticket</span>\n" +
+                        "                            <span>예매</span>\n" +
                         "                        </a>\n" +
                         "                    </div>\n" +
                         "                    <div class=\"react-item\">\n" +
@@ -219,7 +219,7 @@
                         "                            <div class=\"thumb\">\n" +
                         "                                <img src=\"/cinema/assets/images/icons/play-button.png\" alt=\"icons\">\n" +
                         "                            </div>\n" +
-                        "                            <span>watch trailer</span>\n" +
+                        "                            <span>트레일러</span>\n" +
                         "                        </a>\n" +
                         "                    </div>\n" +
                         "                </div>\n" +
