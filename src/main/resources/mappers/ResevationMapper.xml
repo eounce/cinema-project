@@ -12,14 +12,14 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Reservation">
-        insert into reservation(member_id, schedule_id, payment_id, adult, youth, data, status)
-        values (#{member_id}, #{schedule_id}, #{payment_id}, #{adult}, #{youth}, #{data}, #{status})
+        insert into reservation(member_id, schedule_id, payment_id, adult, youth, date, status)
+        values (#{member_id}, #{schedule_id}, #{payment_id}, #{adult}, #{youth}, #{date}, #{status})
     </insert>
 
     <update id="update" parameterType="Reservation">
         update reservation
         set member_id=#{member_id}, schedule_id=#{schedule_id}, payment_id=#{payment_id},
-         adult=#{adult}, youth=#{youth}, data=#{data}, status=#{status},
+         adult=#{adult}, youth=#{youth}, date=#{date}, status=#{status},
         where id=#{id}
     </update>
 
