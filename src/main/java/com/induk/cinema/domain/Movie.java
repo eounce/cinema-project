@@ -27,4 +27,5 @@ public class Movie {
     private Genre genre;
 
     private String trailer;
+    private Integer count;
 }

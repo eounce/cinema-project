@@ -76,24 +76,24 @@
                 <div class="item">
                     <div class="item-header">
                         <div class="thumb">
-                            <img src="/cinema/assets/images/movie/tomato2.png" alt="movie">
+                            <i class="fas fa-ticket-alt"></i>
                         </div>
                         <div class="counter-area">
-                            <span class="counter-item odometer" data-odometer-final="88">0</span>
+                            <span class="counter-item odometer" data-odometer-final="${movieDetailRank.ratio}">0</span>
                         </div>
                     </div>
-                    <p>tomatometer</p>
+                    <p>예매율</p>
                 </div>
                 <div class="item">
                     <div class="item-header">
                         <div class="thumb">
-                            <img src="/cinema/assets/images/movie/cake2.png" alt="movie">
+                            <i class="fas fa-user-friends"></i>
                         </div>
                         <div class="counter-area">
-                            <span class="counter-item odometer" data-odometer-final="88">0</span>
+                            <span class="counter-item odometer people" data-odometer-final="${movieDetailRank.audience}">0</span>
                         </div>
                     </div>
-                    <p>audience Score</p>
+                    <p>누적관객수</p>
                 </div>
                 <div class="item">
                     <div class="item-header">
@@ -106,10 +106,10 @@
                             <i class="fas fa-heart"></i>
                         </div>
                     </div>
-                    <p>Users Rating</p>
+                    <p>관람객 평점</p>
                 </div>
             </div>
-            <a href="#0" class="custom-button">book tickets</a>
+            <a href="/csmovie/schedules?title=${movieDetail.title}" class="custom-button">book tickets</a>
         </div>
     </div>
 </section>

@@ -408,10 +408,10 @@
                                             </div>
                                         </div>
                                         <div class="movie-schedule">
-                                            <c:forEach var="schedules" items="${schedules}">
-                                                <c:if test="${schedules.theater_id == theater.theater_id and schedules.movie_id == theater.movie_id and schedules.screening_format == theater.screening_format}">
-                                                    <div class="item">
-                                                            ${schedules.start_time}
+                                            <c:forEach var="schedule" items="${schedules}">
+                                                <c:if test="${schedule.theater_id == theater.theater_id and schedule.movie_id == theater.movie_id and schedule.screening_format == theater.screening_format}">
+                                                    <div class="item" onclick="move(${schedule.id})">
+                                                        ${schedule.start_time}
                                                     </div>
                                                 </c:if>
                                             </c:forEach>
@@ -502,9 +502,6 @@
                 cinemaId: cinemaId
             },
             success: function (schedules) {
-                $("#cityErr").children().remove();
-                $("#cinemaErr").children().remove();
-
                 $("#scheduleForm").children().remove();
 
                 var array_name = [];
@@ -534,41 +531,49 @@
 
                 var array_test1 = [];
                 var array_test2 = [];
-                for(var i=0;i<schedules.length;i++) {
-                    if(array_test1.indexOf(schedules[i].scheduleForm.movie_title) == -1 || array_test2.indexOf(schedules[i].screening_format) == -1){
+                array_test1.push(schedules[0].scheduleForm.movie_title);
+                array_test2.push(schedules[0].screening_format);
+
+                for(var i=1;i<schedules.length;i++) {
+                    var x= array_test1.length;
+                    var check = 0;
+                    for(var j=0;j<x;j++) {
+                        if (array_test1[j] == schedules[i].scheduleForm.movie_title && array_test2[j] == schedules[i].screening_format) {
+                            check = 1;
+                            break;
+                        }
+                    }
+
+                    if(check != 1){
                         array_test1.push(schedules[i].scheduleForm.movie_title);
                         array_test2.push(schedules[i].screening_format);
-                        console.log(array_test1[i]);
-                        console.log(array_test2[i]);
-
                     }
                 }
 
                 var item = "";
                 for(var a=0;a<array_name.length;a++){
-                item += "<div class=\"details-banner-content\" style=\"margin-bottom:30px;\">\n" +
-                    "                                            <div class=\"social-and-duration\">\n" +
-                    "                                                <div class=\"duration-area\" >\n" +
-                    "                                                    <div class=\"item\">\n" +
-                    "                                                        <span>" + array_name[a] + "/" + array_rating[a] + "</span>\n" +
-                    "                                                    </div>\n" +
-                    "                                                    <!--\n" +
-                    "                                                    <div class=\"item\">\n" +
-                    "                                                        <i class=\"far fa-clock\"></i><span>2 hrs 50 mins</span>\n" +
-                    "                                                    </div>\n" +
-                    "                                                    -->\n" +
-                    "                                                </div>\n" +
-                    "                                                <ul class=\"social-share\" style=\"padding-right: 10px;\">\n" +
-                    "                                                    <span>상영중/상영시간 " + array_time[a] + "분</span>\n" +
-                    "                                                </ul>\n" +
-                    "                                        </div>";
-                    var temp = [];
-
+                    item += "<div class=\"details-banner-content\" style=\"margin-bottom:30px;\">\n" +
+                        "                                            <div class=\"social-and-duration\">\n" +
+                        "                                                <div class=\"duration-area\" >\n" +
+                        "                                                    <div class=\"item\">\n" +
+                        "                                                        <span>" + array_name[a] + "/" + array_rating[a] + "</span>\n" +
+                        "                                                    </div>\n" +
+                        "                                                    <!--\n" +
+                        "                                                    <div class=\"item\">\n" +
+                        "                                                        <i class=\"far fa-clock\"></i><span>2 hrs 50 mins</span>\n" +
+                        "                                                    </div>\n" +
+                        "                                                    -->\n" +
+                        "                                                </div>\n" +
+                        "                                                <ul class=\"social-share\" style=\"padding-right: 10px;\">\n" +
+                        "                                                    <span>상영중/상영시간 " + array_time[a] + "분</span>\n" +
+                        "                                                </ul>\n" +
+                        "                                        </div>";
+                    var temp = [""];
 
                     for(var x=0;x<array_test1.length;x++) {
                         if(array_test1[x] == array_name[a]) {
                             for (var b = 0; b < array_theater_id.length; b++) {
-                                if (array_movie[b] == array_test1[x] && array_format[b] == array_test2[x] && temp != array_test2[x]) {
+                                if (array_movie[b] == array_test1[x] && array_format[b] == array_test2[x] && temp.indexOf(array_test1[x]+array_test2[x]) == -1) {
                                     item += "<ul class=\"seat-plan-wrapper bg-five\">\n" +
                                         "                        <li>\n" +
                                         "                            <div class=\"movie-name\">\n" +
@@ -580,7 +585,7 @@
                                         "                               </div>" +
                                         "                            </div>\n" +
                                         "                            <div class=\"movie-schedule\">\n";
-                                    temp.push(array_format[b]);
+                                    temp.push(array_test1[x]+array_test2[x]);
                                     for (var c = 0; c < schedules.length; c++) {
                                         if (array_test1[x] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id && schedules[c].screening_format == array_test2[x]) {
                                             item +=
@@ -593,6 +598,8 @@
                                         "                            </div>\n" +
                                         "                        </li>";
                                     "      </ul>";
+                                } else {
+                                    temp.push("");
                                 }
                             }
                         }
@@ -604,6 +611,9 @@
         });
     }
 
+    function move(scheduleId){
+        location.href='/csmovie/reservations?scheduleId='+scheduleId;
+    }
 
 </script>
 

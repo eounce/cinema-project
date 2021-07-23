@@ -15,6 +15,8 @@ public class ReservationService {
 
     private final ReservationRepository reservationRepository;
 
+    public int countAll() { return reservationRepository.countAll(); }
+
     public List<Reservation> reservationList() {
         return reservationRepository.findAll();
     }

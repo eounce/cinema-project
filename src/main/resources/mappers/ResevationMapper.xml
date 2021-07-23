@@ -54,4 +54,7 @@
         </if>
     </select>
 
+    <select id="countAll" resultType="int">
+        select count(*) from reservation
+    </select>
 </mapper>
