@@ -49,7 +49,7 @@
                             <spring:bind path="comment.reviewId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Reivew_id <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                    <select name="${status.expression}" id="select2" class="form-control">
                                         <option value="" selected>리뷰를 선택해주세요</option>
                                         <c:forEach var="review" items="${reviews}">
                                             <option value="${review.id}">(${review.id}) ${review.title}</option>
@@ -66,7 +66,7 @@
                             <spring:bind path="comment.memberId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
                                 <td width="80%">
-                                    <select name="${status.expression}" id="${status.expression}" class="form-control">
+                                    <select name="${status.expression}" id="select3" class="form-control">
                                         <option value="" selected>작성자를 선택해주세요</option>
                                         <c:forEach var="member" items="${members}">
                                             <option value="${member.id}">(${member.id}) ${member.name}</option>
