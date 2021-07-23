@@ -1973,6 +1973,10 @@ input[type="submit"] {
   content: "%";
 }
 
+.book-wrapper .left-side .item .item-header .counter-item.odometer.people::after {
+  content: "명";
+}
+
 .book-wrapper .left-side .item .item-header .title {
   margin: 0;
 }

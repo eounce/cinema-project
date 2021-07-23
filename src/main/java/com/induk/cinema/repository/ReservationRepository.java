@@ -9,6 +9,7 @@ import java.util.List;
 @Mapper
 public interface ReservationRepository {
 
+    int countAll();
     List<Reservation> findAll();
     Reservation findById(Long id);
     Long save(Reservation reservation);
