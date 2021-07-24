@@ -20,6 +20,9 @@
             color: white;
             -webkit-transition: all 0.3s ease;
         }
+        #viewEye{
+            color: #31d7a9;
+        }
     </style>
 </head>
 
@@ -45,16 +48,16 @@
                     <div class="widget widget-search">
                         <h5 class="title">검색</h5>
                         <div class="search-form">
-                            <input type="text" name="searchWord" id="searchWord" value="" placeholder="검색어를 입력해주세요">
+                            <input type="text" name="searchWord" id="searchWord" value="" placeholder="검색어를 입력해주세요" onkeydown="if(window.event.keyCode===13){createEventList(1, 1)}">
                             <button class="custom-button" id="searchButton" onclick="createEventList(1, 1)"><i class="flaticon-loupe"></i>Search</button>
                         </div>
                     </div>
                 <br>
                 <div class="widget-1 widget-check">
                     <div class="widget-header">
-                        <h5 class="m-title">필터</h5>
+                        <h5 class="m-title">Filter</h5>
                     </div>
-                    <div class="widget-1-body">
+                    <div class="widget-1-body" >
                         <div class="check-area">
                             <div class="form-group">
                                 <input type="radio" onchange="createEventList(1, 1);" class="event_status" name="event_status" id="check1" value="1" checked><label for="check1">진행중인 이벤트</label>
@@ -65,6 +68,32 @@
                             <div class="form-group">
                                 <input type="radio" onchange="createEventList(1, 1);" class="event_status" name="event_status" id="check3" value="3"><label for="check3">예정 이벤트</label>
                             </div>
+                        </div>
+                        <div class="add-check-area" style="border-top: 0px;" >
+                            <div id="slide" style="display: none;" id="checkArea">
+                                <h6 class="subtitle" style="padding-top: 10px; border-bottom: 0px;">이벤트 코드</h6>
+                                <div class="check-area" style="padding-bottom: 35px">
+                                    <div class="form-group">
+                                        <input type="radio" onchange="createEventList(1, 1);" name="event_code_status" id="check6" value="1" checked><label for="check6">모두</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" onchange="createEventList(1, 1);" name="event_code_status" id="check7" value="2"><label for="check7">있음</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="radio" onchange="createEventList(1, 1);" name="event_code_status" id="check8" value="3"><label for="check8">없음</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <a type="button" onclick="if(this.parentNode.getElementsByTagName('div')[0].style.display !== '')
+                                            {$('#slide').slideToggle();
+                                            this.parentNode.getElementsByTagName('div')[0].style.display = '';
+                                            document.getElementById('word1').style.display = 'none';
+                                            document.getElementById('word2').style.display = '';}
+                                        else
+                                            {$('#slide').slideUp();
+                                            document.getElementById('word1').style.display = '';
+                                            document.getElementById('word2').style.display = 'none';} ">
+                                <div id="word1">더보기<i class="plus"></i></div><div id="word2" style="display: none;">숨기기</div></a>
                         </div>
                     </div>
                 </div>
@@ -115,7 +144,8 @@
                 status: $("input[name='event_status']:checked").val(),
                 sort: $("#sort option:selected").val(),
                 nowPage: nowPage,
-                nowBlock: nowBlock
+                nowBlock: nowBlock,
+                code_status: $("input[name='event_code_status']:checked").val()
             },
             type: "POST",
             success: function(map) { // 성공
@@ -141,7 +171,7 @@
                                     '</div>\n' +
                                     '<div class="movie-content bg-one">\n' +
                                         '<div style="padding-top: 1.5em">\n' +
-                                            '<a style="margin-right: 1.0em"><i class="flaticon-view"></i> &nbsp;' + map.eventList[i].viewCount + '&nbsp;view</a>' +
+                                            '<a style="margin-right: 1.0em"><i class="flaticon-view" id="viewEye"></i> &nbsp;' + map.eventList[i].viewCount + '&nbsp;view</a>' +
                                         '</div>\n' +
                                         '<h5 class="title m-0" style="height: 4em; padding-top: 0.5em;">\n' +
                                             '<a style="overflow: hidden; display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical; " href="/csmovie/events/' + map.eventList[i].id + '">' + map.eventList[i].title + '</a>\n' +

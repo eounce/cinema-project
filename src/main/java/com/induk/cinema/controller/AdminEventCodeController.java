@@ -5,6 +5,7 @@ import com.induk.cinema.domain.Review;
 import com.induk.cinema.dto.EventCodeForm;
 import com.induk.cinema.service.EventCodeService;
 import com.induk.cinema.service.EventService;
+import com.induk.cinema.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.Resource;
@@ -31,6 +32,7 @@ public class AdminEventCodeController {
 
     private final EventCodeService eventCodeService;
     private final EventService eventService;
+    private final MemberService memberService;
 
     @GetMapping
     public String eventCode(Model model) {
@@ -69,6 +71,10 @@ public class AdminEventCodeController {
         EventCode eventCode = eventCodeService.findEventCode(id);
         model.addAttribute("events", eventService.eventList());
         model.addAttribute("eventCode", eventCode);
+        if(eventCode.getMemberId() != 0){
+            model.addAttribute("memberName", memberService.findMember(eventCode.getMemberId()).getName());
+        }
+
         return "admin/eventCode/detailForm";
     }
 

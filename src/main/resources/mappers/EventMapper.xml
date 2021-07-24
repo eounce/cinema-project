@@ -32,25 +32,37 @@
     </delete>
 
     <select id="findByTitleSort" parameterType="HashMap" resultType="Event">
-        select * from event
-        where title like concat('%', #{searchWord}, '%')
+        select DISTINCT event.*
+        from event, eventCode
+        where event.title like concat('%', #{searchWord}, '%')
         <choose>
             <when test="status == 1">
-                <![CDATA[and start_date <= now() and now() <= end_date]]>
+                <![CDATA[and event.start_date <= now() and now() <= event.end_date]]>
             </when>
             <when test="status == 2">
-                <![CDATA[and end_date < now()]]>
+                <![CDATA[and event.end_date < now()]]>
             </when>
             <when test="status == 3">
-                <![CDATA[and start_date > now()]]>
+                <![CDATA[and event.start_date > now()]]>
+            </when>
+        </choose>
+        <choose>
+            <when test="code_status == 1">
+                <![CDATA[and (event.id not in (select eventCode.event_id from eventCode) or event.id = eventCode.event_id)]]>
+            </when>
+            <when test="code_status == 2">
+                <![CDATA[and event.id = eventCode.event_id]]>
+            </when>
+            <when test="code_status == 3">
+                <![CDATA[and event.id not in (select eventCode.event_id from eventCode)]]>
             </when>
         </choose>
         <choose>
             <when test="sort == 1"> /*인기순*/
-                order by view_count desc
+                order by event.view_count desc
             </when>
             <when test="sort == 2"> /*최신순*/
-                order by reporting_date desc
+                order by event.reporting_date desc
             </when>
         </choose>
     </select>

@@ -19,6 +19,8 @@ public class EventCode {
     private Date issueDate;
     private Date codeLimit;
     private int discountRate;
+    private Long status;
+    private Long memberId;
 
     private Event event;
 }
