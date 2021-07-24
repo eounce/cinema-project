@@ -312,11 +312,11 @@
                                 <option value="<%=date.plusDays(3)%>" style="color:#000000"><%=date.plusDays(3)%></option>
                                 <option value="<%=date.plusDays(4)%>" style="color:#000000"><%=date.plusDays(4)%></option>
                                 --%>
-                                    <option value="2021-07-13" style="color:#000000">2021-07-13</option>
-                                    <option value="2021-07-14" style="color:#000000">2021-07-14</option>
-                                    <option value="2021-07-15" style="color:#000000">2021-07-15</option>
-                                    <option value="2021-07-16" style="color:#000000">2021-07-16</option>
-                                    <option value="2021-07-17" style="color:#000000">2021-07-17</option>
+                                    <option value="2021-07-13" style="color:#000000" <c:if test="${date == '2021-07-13'}>">selected</c:if>>2021-07-13</option>
+                                    <option value="2021-07-14" style="color:#000000" <c:if test="${date == '2021-07-14'}>">selected</c:if>>2021-07-14</option>
+                                    <option value="2021-07-15" style="color:#000000" <c:if test="${date == '2021-07-15'}>">selected</c:if>>2021-07-15</option>
+                                    <option value="2021-07-16" style="color:#000000" <c:if test="${date == '2021-07-16'}>">selected</c:if>>2021-07-16</option>
+                                    <option value="2021-07-17" style="color:#000000" <c:if test="${date == '2021-07-17'}>">selected</c:if>>2021-07-17</option>
                             </select>
                         </div>
                         <div class="form-group col-lg-3">
@@ -327,7 +327,12 @@
                             <select class="select-bar form-control-sm" id="cityId" onchange="callCinema()" style="background: none; border-width: 0px;">
                                 <option value="" style="color:#000000">지역 선택</option>
                                 <c:forEach var="city" items="${citys}">
-                                    <option value="${city.id}" style="color:#000000">${city.name}</option>
+                                    <c:if test="${cityId == city.id}">
+                                        <option value="${city.id}" style="color:#000000" selected>${city.name}</option>
+                                    </c:if>
+                                    <c:if test="${cityId != city.id}">
+                                        <option value="${city.id}" style="color:#000000">${city.name}</option>
+                                    </c:if>
                                 </c:forEach>
                             </select>
                         </div>
@@ -338,6 +343,14 @@
                             <span class="type">영화관</span>
                             <select class="select-bar form-control-sm" id="cinemaId" onchange="findSchedule()" style="background: none; border-width: 0px;">
                                 <option value="">영화관 선택</option>
+                                <c:forEach var="cinema" items="${cinemas}">
+                                    <c:if test="${cinemaId == cinema.id}">
+                                        <option value="${cinema.id}" style="color:#000000" selected>${cinema.name}</option>
+                                    </c:if>
+                                    <c:if test="${cinemaId != cinema.id}">
+                                        <option value="${cinema.id}" style="color:#000000">${cinema.name}</option>
+                                    </c:if>
+                                </c:forEach>
                             </select>
                         </div>
                     </form>
@@ -370,7 +383,45 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-12 mb-5 mb-lg-0" id="scheduleForm">
-
+                <c:forEach var="movie" items="${movies}">
+                    <div class="details-banner-content" style="margin-bottom:30px;">
+                        <div class="social-and-duration">
+                            <div class="duration-area" >
+                                <div class="item">
+                                    <span>${movie.scheduleForm.movie_title}/${movie.scheduleForm.movie_rating}</span>
+                                </div>
+                            </div>
+                            <ul class="social-share" style="padding-right: 10px;">
+                                <span>상영중/상영시간${movie.scheduleForm.movie_showtimes}분</span>
+                            </ul>
+                        </div>
+                        <ul class="seat-plan-wrapper bg-five">
+                            <c:forEach var="theater" items="${theaters}">
+                                <c:if test="${theater.movie_id == movie.movie_id}">
+                                    <li>
+                                        <div class="movie-name">
+                                            <div>
+                                                <h5>${theater.scheduleForm.theater_name}</h5>총${theater.scheduleForm.theater_seat}석
+                                            </div>
+                                            <div>
+                                                    ${theater.screening_format}
+                                            </div>
+                                        </div>
+                                        <div class="movie-schedule">
+                                            <c:forEach var="schedule" items="${schedules}">
+                                                <c:if test="${schedule.theater_id == theater.theater_id and schedule.movie_id == theater.movie_id and schedule.screening_format == theater.screening_format}">
+                                                    <div class="item" onclick="move(${schedule.id})">
+                                                        ${schedule.start_time}
+                                                    </div>
+                                                </c:if>
+                                            </c:forEach>
+                                        </div>
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
+                    </div>
+                </c:forEach>
             </div>
         </div>
     </div>
@@ -451,9 +502,6 @@
                 cinemaId: cinemaId
             },
             success: function (schedules) {
-                $("#cityErr").children().remove();
-                $("#cinemaErr").children().remove();
-
                 $("#scheduleForm").children().remove();
 
                 var array_name = [];
@@ -481,51 +529,79 @@
                     array_movie.push(schedules[i].scheduleForm.movie_title);
                 }
 
+                var array_test1 = [];
+                var array_test2 = [];
+                array_test1.push(schedules[0].scheduleForm.movie_title);
+                array_test2.push(schedules[0].screening_format);
+
+                for(var i=1;i<schedules.length;i++) {
+                    var x= array_test1.length;
+                    var check = 0;
+                    for(var j=0;j<x;j++) {
+                        if (array_test1[j] == schedules[i].scheduleForm.movie_title && array_test2[j] == schedules[i].screening_format) {
+                            check = 1;
+                            break;
+                        }
+                    }
+
+                    if(check != 1){
+                        array_test1.push(schedules[i].scheduleForm.movie_title);
+                        array_test2.push(schedules[i].screening_format);
+                    }
+                }
+
                 var item = "";
                 for(var a=0;a<array_name.length;a++){
-                item += "<div class=\"details-banner-content\" style=\"margin-bottom:30px;\">\n" +
-                    "                                            <div class=\"social-and-duration\">\n" +
-                    "                                                <div class=\"duration-area\" >\n" +
-                    "                                                    <div class=\"item\">\n" +
-                    "                                                        <span>" + array_name[a] + "/" + array_rating[a] + "</span>\n" +
-                    "                                                    </div>\n" +
-                    "                                                    <!--\n" +
-                    "                                                    <div class=\"item\">\n" +
-                    "                                                        <i class=\"far fa-clock\"></i><span>2 hrs 50 mins</span>\n" +
-                    "                                                    </div>\n" +
-                    "                                                    -->\n" +
-                    "                                                </div>\n" +
-                    "                                                <ul class=\"social-share\" style=\"padding-right: 10px;\">\n" +
-                    "                                                    <span>상영중/상영시간 " + array_time[a] + "분</span>\n" +
-                    "                                                </ul>\n" +
-                    "                                        </div>";
-                    var temp = [];
-                    for(var b=0;b<array_theater_id.length;b++) {
-                        if(array_movie[b] == array_name[a] && temp.indexOf(array_theater_id[b]) == -1) {
-                            item += "<ul class=\"seat-plan-wrapper bg-five\">\n" +
-                                "                        <li>\n" +
-                                "                            <div class=\"movie-name\">\n" +
-                                "                               <div>\n" +
-                                "                                   <h5>" + array_theater[b] + "</h5>총" + array_seat[b] + "석\n" +
-                                "                               </div>\n" +
-                                "                               <div>\n" +
-                                "                                  " + array_format[b] + "\n" +
-                                "                               </div>"+
-                                "                            </div>\n" +
-                                "                            <div class=\"movie-schedule\">\n";
-                            temp.push(array_theater_id[b]);
-                            for (var c = 0; c < schedules.length; c++) {
-                                if (array_name[a] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id) {
+                    item += "<div class=\"details-banner-content\" style=\"margin-bottom:30px;\">\n" +
+                        "                                            <div class=\"social-and-duration\">\n" +
+                        "                                                <div class=\"duration-area\" >\n" +
+                        "                                                    <div class=\"item\">\n" +
+                        "                                                        <span>" + array_name[a] + "/" + array_rating[a] + "</span>\n" +
+                        "                                                    </div>\n" +
+                        "                                                    <!--\n" +
+                        "                                                    <div class=\"item\">\n" +
+                        "                                                        <i class=\"far fa-clock\"></i><span>2 hrs 50 mins</span>\n" +
+                        "                                                    </div>\n" +
+                        "                                                    -->\n" +
+                        "                                                </div>\n" +
+                        "                                                <ul class=\"social-share\" style=\"padding-right: 10px;\">\n" +
+                        "                                                    <span>상영중/상영시간 " + array_time[a] + "분</span>\n" +
+                        "                                                </ul>\n" +
+                        "                                        </div>";
+                    var temp = [""];
+
+                    for(var x=0;x<array_test1.length;x++) {
+                        if(array_test1[x] == array_name[a]) {
+                            for (var b = 0; b < array_theater_id.length; b++) {
+                                if (array_movie[b] == array_test1[x] && array_format[b] == array_test2[x] && temp.indexOf(array_test1[x]+array_test2[x]) == -1) {
+                                    item += "<ul class=\"seat-plan-wrapper bg-five\">\n" +
+                                        "                        <li>\n" +
+                                        "                            <div class=\"movie-name\">\n" +
+                                        "                               <div>\n" +
+                                        "                                   <h5>" + array_theater[b] + "</h5>총" + array_seat[b] + "석\n" +
+                                        "                               </div>\n" +
+                                        "                               <div>\n" +
+                                        "                                  " + array_format[b] + "\n" +
+                                        "                               </div>" +
+                                        "                            </div>\n" +
+                                        "                            <div class=\"movie-schedule\">\n";
+                                    temp.push(array_test1[x]+array_test2[x]);
+                                    for (var c = 0; c < schedules.length; c++) {
+                                        if (array_test1[x] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id && schedules[c].screening_format == array_test2[x]) {
+                                            item +=
+                                                "                                <div class=\"item\">\n" +
+                                                "                                    " + schedules[c].start_time + "\n" +
+                                                "                                </div>\n";
+                                        }
+                                    }
                                     item +=
-                                        "                                <div class=\"item\">\n" +
-                                        "                                    " + schedules[c].start_time + "\n" +
-                                        "                                </div>\n";
+                                        "                            </div>\n" +
+                                        "                        </li>";
+                                    "      </ul>";
+                                } else {
+                                    temp.push("");
                                 }
                             }
-                            item +=
-                                "                            </div>\n" +
-                                "                        </li>";
-                            "      </ul>";
                         }
                     }
                     item += "</div>";
@@ -535,6 +611,9 @@
         });
     }
 
+    function move(scheduleId){
+        location.href='/csmovie/reservations?scheduleId='+scheduleId;
+    }
 
 </script>
 

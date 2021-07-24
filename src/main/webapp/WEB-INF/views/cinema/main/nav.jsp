@@ -50,7 +50,7 @@
                     <a href="#0">예매</a>
                     <ul class="submenu">
                         <li>
-                            <a href="/csmovie/schedules?title=">시간표</a>
+                            <a href="/csmovie/schedules?title=&cityId=&cinemaId=&date=">시간표</a>
                         </li>
                     </ul>
                 </li>
@@ -58,9 +58,21 @@
                     <a href="/csmovie/events">이벤트</a>
                 </li>
                 <li>
-                    <% String urlActive = (request.getRequestURL().toString().contains("/cinema/review"))?"active":""; %>
-                    <a href="/csmovie/reviews" class="<%=urlActive%>">리뷰</a>
+                    <a href="/csmovie/reviews" class="<%= (request.getRequestURL().toString().contains("/cinema/review"))?"active":"" %>">리뷰</a>
                 </li>
+                <c:if test="${not empty sessionScope.member}">
+                    <li>
+                        <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/members"))?"active":"" %>">내정보</a>
+                        <ul class="submenu">
+                            <li>
+                                <a href="/csmovie/members/edit">내정보수정</a>
+                            </li>
+                            <li>
+                                <a href="/csmovie/members/reservationList">예매목록</a>
+                            </li>
+                        </ul>
+                    </li>
+                </c:if>
                 <c:choose>
                     <c:when test="${empty sessionScope.member}">
                         <li class="header-button pr-0">

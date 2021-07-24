@@ -67,4 +67,11 @@ public class CinemaService {
         return cinemaRepository.findScheduleForAjax(date, cinemaId);
     }
 
+    public List<Schedule> findByTheaterToSchedule(String title, Long id, String date) {
+        return cinemaRepository.findByTheaterToSchedule(title, id, date);
+    }
+
+    public List<Schedule> findMovieToSchedule(String title, Long id, String date) {
+        return cinemaRepository.findMovieToSchedule(title, id, date);
+    }
 }

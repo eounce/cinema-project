@@ -55,7 +55,7 @@
     <select id="findScheduleForAjax" resultMap="resultScedule">
         select schedule.*, movie.title as movie_title, movie.rating as movie_rating, movie.show_times as movie_showtimes, theater.name as theater_name,
          theater.seat_count as theater_seat, theater.cinema_id as cinema_id from schedule left join movie on schedule.movie_id = movie.id
-        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{cinemaId} and  schedule.screening_date = #{date}
+        left join theater on schedule.theater_id = theater.id where theater.cinema_id = #{cinemaId} and  schedule.screening_date = #{date} order by theater_name asc, movie_title asc, start_time asc
         <if test="movieTitle != ''">
         and movie.title like concat('%', #{movieTitle}, '%')
         </if>

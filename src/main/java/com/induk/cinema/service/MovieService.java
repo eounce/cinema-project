@@ -1,6 +1,7 @@
 package com.induk.cinema.service;
 
 import com.induk.cinema.domain.Movie;
+import com.induk.cinema.dto.MovieDetailRank;
 import com.induk.cinema.dto.MovieForm;
 import com.induk.cinema.dto.UploadFile;
 import com.induk.cinema.repository.MovieRepository;
@@ -75,6 +76,8 @@ public class MovieService {
 
     // 사용자 페이지 활용
     public HashMap<String, Object> findMovieDetail(Long id) { return movieRepository.findByIdMovieDetail(id); }
+
+    public MovieDetailRank findMovieDetailRank(Long id) { return movieRepository.findByIdMovieDetailRank(id); }
 
     public Long saveMovie(MovieForm movieForm, MultipartFile multipartFile) throws IOException {
         UploadFile uploadFile = fileStore.storeFile(multipartFile, "movie");

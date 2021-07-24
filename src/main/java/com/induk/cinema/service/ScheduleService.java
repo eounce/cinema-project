@@ -39,4 +39,8 @@ public class ScheduleService {
     public List<Schedule> findScheduleForAjax(String movieTitle, String date, Long cinemaId) {
         return scheduleRepository.findScheduleForAjax(movieTitle, date, cinemaId);
     }
+
+    public List<Schedule> findScheduleToMovieTitle(String movieTitle) {
+        return scheduleRepository.findScheduleToMovieTitle(movieTitle);
+    }
 }

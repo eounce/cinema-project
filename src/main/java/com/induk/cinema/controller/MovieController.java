@@ -3,6 +3,7 @@ package com.induk.cinema.controller;
 import com.induk.cinema.domain.Event;
 import com.induk.cinema.domain.Movie;
 import com.induk.cinema.dto.Format;
+import com.induk.cinema.dto.MovieDetailRank;
 import com.induk.cinema.dto.MoviePage;
 import com.induk.cinema.service.*;
 import com.induk.cinema.util.Criteria;
@@ -30,6 +31,7 @@ public class MovieController {
     private final GenreService genreService;
     private final MovieService movieService;
     private final EventService eventService;
+    private final ReservationService reservationService;
     private final FileStore fileStore;
 
 
@@ -66,7 +68,11 @@ public class MovieController {
     @GetMapping("/{id}")
     public String movieDetail(@PathVariable Long id, Model model) {
         HashMap<String, Object> movieDetail = movieService.findMovieDetail(id);
+        MovieDetailRank movieDetailRank = movieService.findMovieDetailRank(id);
         List<Event> events = eventService.reportingDateEventList();
+
+        int totalCount = reservationService.countAll();
+        movieDetailRank.setRatio(String.format("%.1f", (double) movieDetailRank.getCount() / totalCount * 100));
 
         String screeningFormat = movieDetail.get("screeningFormat").toString();
         List<String> formatList = Arrays.asList(screeningFormat.split(","));
@@ -74,6 +80,7 @@ public class MovieController {
 
         model.addAttribute("movieDetail", movieDetail);
         model.addAttribute("events", events);
+        model.addAttribute("movieDetailRank", movieDetailRank);
 
         return "cinema/movie/movieDetail";
     }

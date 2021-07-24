@@ -77,6 +77,8 @@ public class CinemaController {
         return "cinema/cinema/detailForm";
     }
 
+
+
     @PostMapping("/scheduleAjax")
     @ResponseBody
     public List<Schedule> scheduleAjax(@RequestParam(value = "date") String date,
@@ -86,6 +88,4 @@ public class CinemaController {
 
         return schedules;
     }
-
-
 }

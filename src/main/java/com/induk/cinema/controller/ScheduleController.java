@@ -26,10 +26,44 @@ public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @RequestMapping
-    public String home(@RequestParam String title, Model model) {
+    public String home(@RequestParam(required=false) String title, @RequestParam(required=false) String cityId,
+                       @RequestParam(required=false) String cinemaId, @RequestParam(required=false) String date, Model model) {
 
         List<City> citys = cityService.cityList();
         model.addAttribute("citys", citys);
+
+        if(!cityId.equals("")) {
+            Long id = Long.parseLong(cityId);
+            List<Cinema> cinemas = cinemaService.findCinemaListByCityId(id);
+            model.addAttribute("cinemas", cinemas);
+        }
+
+        if(!cinemaId.equals("")) {
+            if(!title.equals("")){
+                List<Schedule> schedules = scheduleService.findScheduleForAjax(title, date, Long.parseLong(cinemaId));
+                model.addAttribute("schedules", schedules);
+
+                List<Schedule> movies = cinemaService.findMovieToSchedule(title, Long.parseLong(cinemaId), date);
+                model.addAttribute("movies", movies);
+
+                List<Schedule> theaters = cinemaService.findByTheaterToSchedule(title, Long.parseLong(cinemaId), date);
+                model.addAttribute("theaters", theaters);
+
+            } else {
+                List<Schedule> movies = cinemaService.findMovie(Long.parseLong(cinemaId), date);
+                model.addAttribute("movies", movies);
+
+                List<Schedule> theaters = cinemaService.findByTheater(Long.parseLong(cinemaId), date);
+                model.addAttribute("theaters", theaters);
+
+                List<Schedule> schedules = cinemaService.findScheduleForAjax(date, Long.parseLong(cinemaId));
+                model.addAttribute("schedules", schedules);
+            }
+        }
+
+        model.addAttribute("date", date);
+        model.addAttribute("cityId", cityId);
+        model.addAttribute("cinemaId", cinemaId);
         model.addAttribute("title", title);
 
         return "cinema/schedule/listForm";
@@ -55,5 +89,4 @@ public class ScheduleController {
 
         return schedules;
     }
-
 }

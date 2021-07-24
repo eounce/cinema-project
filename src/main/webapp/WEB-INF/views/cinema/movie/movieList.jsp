@@ -29,8 +29,8 @@
     <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner02.jpg"></div>
     <div class="container">
         <div class="banner-content">
-            <h1 class="title bold"> latest<span class="color-theme"> movies</span></h1>
-            <p>search for movies</p>
+            <h1 class="title bold"> <span class="color-theme"> 영화</span></h1>
+            <h5 id="homeBanner" style="padding-top: 20px; "><a href="/csmovie">홈</a>&nbsp;&nbsp;>&nbsp;&nbsp;전체 영화</h5>
         </div>
     </div>
 </section>
@@ -207,11 +207,11 @@
                         "            <div class=\"book-area\">\n" +
                         "                <div class=\"book-ticket\">\n" +
                         "                    <div class=\"react-item mr-auto\">\n" +
-                        "                        <a href=\"/csmovie/schedules?title=" + movies[i].title + "\">\n" +
+                        "                        <a href=\"/csmovie/schedules?title=" + movies[i].title + "&cityId=&cinemaId=&date=\">\n" +
                         "                            <div class=\"thumb\">\n" +
                         "                                <img src=\"/cinema/assets/images/icons/book.png\" alt=\"icons\">\n" +
                         "                            </div>\n" +
-                        "                            <span>book ticket</span>\n" +
+                        "                            <span>예매</span>\n" +
                         "                        </a>\n" +
                         "                    </div>\n" +
                         "                    <div class=\"react-item\">\n" +
@@ -219,7 +219,7 @@
                         "                            <div class=\"thumb\">\n" +
                         "                                <img src=\"/cinema/assets/images/icons/play-button.png\" alt=\"icons\">\n" +
                         "                            </div>\n" +
-                        "                            <span>watch trailer</span>\n" +
+                        "                            <span>트레일러</span>\n" +
                         "                        </a>\n" +
                         "                    </div>\n" +
                         "                </div>\n" +

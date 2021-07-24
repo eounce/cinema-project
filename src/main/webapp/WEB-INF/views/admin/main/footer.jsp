@@ -38,8 +38,6 @@
 <!-- Page level custom scripts -->
 <%--<script src="/csmovie/admin/js/demo/chart-area-demo.js"></script>--%>
 <%--<script src="/csmovie/admin/js/demo/chart-pie-demo.js"></script>--%>
-<script src="/admin/js/demo/chart-area-demo.js"></script>
-<script src="/admin/js/demo/chart-pie-demo.js"></script>
 
 <!-- Date Picker -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.min.css">
@@ -89,6 +87,27 @@
         todayHighlight : true
     });
 
+    $('#datePicker2').datepicker({
+        minViewMode: 'years',
+        format : "yyyy",
+        language : "kr",
+        todayHighlight : true
+    });
+
+    $('#datePicker3_1').datepicker({
+        minViewMode: 'months',
+        format : "yyyy-mm",
+        language : "kr",
+        todayHighlight : true
+    });
+
+    $('#datePicker3_2').datepicker({
+        minViewMode: 'months',
+        format : "yyyy-mm",
+        language : "kr",
+        todayHighlight : true
+    });
+
     $(document).ready(function () {
         $("#select2").select2({
             theme: "bootstrap",
@@ -101,6 +120,12 @@
         });
 
         $("#select2_2").select2({
+            theme: "bootstrap",
+            width: null
+        });
+    });
+    $(document).ready(function () {
+        $("#select3").select2({
             theme: "bootstrap",
             width: null
         });

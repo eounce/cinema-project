@@ -14,6 +14,7 @@
         <result property="rating" column="rating" />
         <result property="screeningFormat" column="screening_format" />
         <result property="trailer" column="trailer" />
+        <result property="count" column="count" />
         <association property="director" column="director_id" resultMap="directorMap" />
         <association property="genre" column="genre_id" resultMap="genreMap" />
     </resultMap>
@@ -59,7 +60,6 @@
         <result property="kind" column="kind" />
     </resultMap>
 
-
     <select id="findAll" resultMap="resultMovie">
         select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId
         from movie m
@@ -69,12 +69,14 @@
     </select>
 
     <select id="findHighRank" resultMap="resultMovie">
-        select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId, sum(r.adult+r.youth) as count
+        select m.*, d.name as directorName, g.name as genreName, d.id as directorId, g.id as genreId, count(*) as count
         from reservation r
+        inner join payment p on r.payment_id = p.id
         inner join schedule s on r.schedule_id = s.id
         inner join movie m on s.movie_id = m.id
         inner join director d on m.director_id = d.id
         inner join genre g on m.genre_id = g.id
+        where r.status = 1
         group by m.title
         order by count desc
         limit 0, 4
@@ -156,6 +158,14 @@
         INNER JOIN movie_actor mat ON mat.movie_id = m.id
         INNER JOIN actor a ON mat.actor_id = a.id
         WHERE m.id = #{id}
+    </select>
+
+    <select id="findByIdMovieDetailRank" resultType="com.induk.cinema.dto.MovieDetailRank" parameterType="Long">
+        SELECT SUM(r.adult+r.youth) audience, COUNT(*) count
+        FROM movie m
+        INNER JOIN schedule s ON m.id = s.movie_id
+        INNER JOIN reservation r on s.id = r.schedule_id
+        WHERE m.id = #{id} and r.status = 1
     </select>
 
     <update id="update" parameterType="com.induk.cinema.dto.MovieForm">
