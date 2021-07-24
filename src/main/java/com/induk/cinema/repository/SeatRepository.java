@@ -20,4 +20,6 @@ public interface SeatRepository {
     List<Theater> findTheaterById(Long id);
     List<Seat> findSeatByTheaterId(Long id);
     List<Theater> findTheater();
+
+    List<Seat> findBySchedule(Long id);
 }

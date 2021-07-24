@@ -31,10 +31,10 @@
     <div class="container">
         <div class="details-banner-wrapper">
             <div class="details-banner-content style-two">
-                <h3 class="title">Venus${scheduleId}</h3>
+                <h3 class="title">${schedule.scheduleForm.movie_title}</h3>
                 <div class="tags">
-                    <a href="#0">City Walk</a>
-                    <a href="#0">English - 2D</a>
+                    <a href="#0">${schedule.scheduleForm.cinema_name} / ${schedule.scheduleForm.theater_name} </a>
+                    <a href="#0"> ${schedule.screening_format}</a>
                 </div>
             </div>
         </div>
@@ -46,23 +46,16 @@
 <section class="page-title bg-one">
     <div class="container">
         <div class="page-title-area">
-            <div class="item md-order-1">
+            <div class=" md-order-1 col-lg-2">
                 <a href="movie-ticket-plan.html" class="custom-button back-button">
-                    <i class="flaticon-double-right-arrows-angles"></i>back
+                    <i class="flaticon-double-right-arrows-angles"></i>뒤로가기
                 </a>
             </div>
-            <div class="item date-item">
-                <span class="date">MON, SEP 09 2020</span>
-                <select class="select-bar">
-                    <option value="sc1">09:40</option>
-                    <option value="sc2">13:45</option>
-                    <option value="sc3">15:45</option>
-                    <option value="sc4">19:50</option>
-                </select>
+            <div class="col-lg-8 text-center">
+
             </div>
-            <div class="item">
-                <h5 class="title">05:00</h5>
-                <p>Mins Left</p>
+            <div class="col-lg-2 text-right">
+                <span class="date">${schedule.screening_date}</span> / <span class="date" id="start_time">${schedule.start_time}</span>
             </div>
         </div>
     </div>
@@ -77,134 +70,118 @@
             <div class="screen-thumb">
                 <img src="/cinema/assets/images/movie/screen-thumb.png" alt="movie">
             </div>
-            <h5 class="subtitle">silver plus</h5>
+
+            <h5 class="subtitle">
+            </h5>
+
+            <c:forEach var="i" begin="${schedule.scheduleForm.theater_seat/14}" end="${schedule.scheduleForm.theater_seat/14}">
+                <%
+                int term = (int)pageContext.getAttribute("i") / 2;
+                pageContext.setAttribute("term", term) ;
+                %>
+            </c:forEach>
+
             <div class="screen-wrapper">
                 <ul class="seat-area">
-                    <li class="seat-line">
-                        <span>G</span>
-                        <ul class="seat--area">
-                            <li class="front-seat">
-                                <ul>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="front-seat">
-                                <ul>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="front-seat">
-                                <ul>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <span>G</span>
-                    </li>
-                    <li class="seat-line">
-                        <span>f</span>
-                        <ul class="seat--area">
-                            <li class="front-seat">
-                                <ul>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="front-seat">
-                                <ul>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f7</span>
-                                    </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f8</span>
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="front-seat">
-                                <ul>
-                                    <li class="single-seat seat-free">
-                                        <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f9</span>
-                                    </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f10</span>
-                                    </li>
-                                    <li class="single-seat seat-free">
-                                        <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat">
-                                        <span class="sit-num">f11</span>
-                                    </li>
-                                    <li class="single-seat">
-                                        <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                        <span>f</span>
-                    </li>
+                    <c:forEach var="i" begin="1" end="${schedule.scheduleForm.theater_seat/14}">
+                        <%
+                            char x = 'A';
+                            String reservation = "";
+                            char seatChar = (char)((int)x+(int)pageContext.getAttribute("i")-1);
+                            pageContext.setAttribute("seatChar", seatChar) ;
+                        %>
+
+                        <li class="seat-line">
+                            <span>${seatChar}</span>
+                            <ul class="seat--area">
+                                <li class="front-seat">
+                                    <ul>
+                                        <c:forEach var="a" begin="1" end="4">
+                                            <%
+                                                reservation = String.valueOf(seatChar) + pageContext.getAttribute("a");
+                                                pageContext.setAttribute("reservation", reservation) ;
+                                            %>
+                                            <c:set var="check" value="0"/>
+                                            <c:forEach var="seat" items="${seats}">
+                                                <c:if test="${seat.number == reservation}">
+                                                    <c:set var="check" value="1"/>
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:if test="${check == 1}">
+                                                <li class="single-seat seat-free">
+                                                    <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${check != 1}">
+                                                <li class="single-seat seat-free">
+                                                    <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat" id="${seatChar}${a}">
+                                                    <span class="sit-num" id="${seatChar}${a}">${seatChar}${a}</span>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
+                                <li class="front-seat">
+                                    <ul>
+                                        <c:forEach var="b" begin="5" end="10">
+                                            <%
+                                                reservation = String.valueOf(seatChar) + pageContext.getAttribute("b");
+                                                pageContext.setAttribute("reservation", reservation) ;
+                                            %>
+                                            <c:set var="check" value="0"/>
+                                            <c:forEach var="seat" items="${seats}">
+                                                <c:if test="${seat.number == reservation}">
+                                                    <c:set var="check" value="1"/>
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:if test="${check == 1}">
+                                                <li class="single-seat seat-free">
+                                                    <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${check != 1}">
+                                                <li class="single-seat seat-free">
+                                                    <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat" id="${seatChar}${b}">
+                                                    <span class="sit-num" id="${seatChar}${b}">${seatChar}${b}</span>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
+                                <li class="front-seat">
+                                    <ul>
+                                        <c:forEach var="c" begin="11" end="14">
+                                            <%
+                                                reservation = String.valueOf(seatChar) + pageContext.getAttribute("c");
+                                                pageContext.setAttribute("reservation", reservation) ;
+                                            %>
+                                            <c:set var="check" value="0"/>
+                                            <c:forEach var="seat" items="${seats}">
+                                                <c:if test="${seat.number == reservation}">
+                                                    <c:set var="check" value="1"/>
+                                                </c:if>
+                                            </c:forEach>
+                                            <c:if test="${check == 1}">
+                                                <li class="single-seat seat-free">
+                                                    <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
+                                                </li>
+                                            </c:if>
+                                            <c:if test="${check != 1}">
+                                                <li class="single-seat seat-free">
+                                                    <img src="/cinema/assets/images/movie/seat01-free.png" alt="seat" id="${seatChar}${c}">
+                                                    <span class="sit-num">${seatChar}${c}</span>
+                                                </li>
+                                            </c:if>
+                                        </c:forEach>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <span>${seatChar}</span>
+                        </li>
+                    <c:if test="${term == i}">
+                        <div style="margin-bottom:20px;"></div>
+                    </c:if>
+                    </c:forEach>
                 </ul>
             </div>
 
@@ -213,17 +190,22 @@
             <div class="proceed-to-book">
                 <div class="book-item">
                     <span>You have Choosed Seat</span>
-                    <h3 class="title">d9, d10</h3>
+                    <h3 class="title" id="totalSeat">좌석을 선택해주세요.</h3>
                 </div>
                 <div class="book-item">
                     <span>total price</span>
-                    <h3 class="title">$150</h3>
+                    <h3 class="title" id="totalPrice">0 원</h3>
                 </div>
                 <div class="book-item">
-                    <a href="movie-checkout.html" class="custom-button">proceed</a>
+                    <a href="#" class="custom-button" onclick="javascript:document.reservationForm.submit();">다음</a>
                 </div>
             </div>
         </div>
+        <form name="reservationForm" action="/csmovie/reservations/payment/" method="GET">
+            <input type="hidden" name="seat" id="seat" value=" " >
+            <input type="hidden" name="price" id="price" value=" ">
+            <input type="hidden" name="baseprice" id="baseprice" value="${schedule.price}">
+        </form>
     </div>
 </div>
 <!-- ==========Movie-Section========== -->
@@ -235,6 +217,9 @@
 <script>
     var book = 0;
     var count = 1;
+
+    var save = [];
+
     $(".seat-free img").on('click', function(e) {
         console.log();
 
@@ -242,18 +227,54 @@
             $(this).attr("src","/cinema/assets/images/movie/seat01-free.png");
             book = 0;
             count -= 1;
+            for(let i = 0; i < save.length; i++) {
+                if(save[i] === $(this).attr("id"))  {
+                    save.splice(i, 1);
+                    i--;
+                }
+            }
         }
         else if($(this).attr("src")=="/cinema/assets/images/movie/seat01-free.png" && count < 3) {
             $(this).attr("src","/cinema/assets/images/movie/seat01-booked.png");
             book = 1;
             count += 1;
+            save.push($(this).attr("id"));
         }
         else if(count == 3) {
-            alert("인원수");
+            alert("인원수를 조절해 주세요");
         }
-        console.log("book" + book);
-        console.log("count" + count);
+
+        var temp = "";
+
+        for(var i=0;i<save.length;i++){
+            temp += save[i] + " ";
+        }
+
+        if(temp == ""){
+            temp = "좌석을 선택해주세요.";
+        }
+
+        var element = document.getElementById("totalSeat");
+        element.innerText = temp;
+
+        document.getElementById("seat").value = temp;
+
+        var start_time = document.getElementById("start_time");
+        if(start_time.innerText < "10:00" && start_time.innerText > "06:00"){
+            document.getElementById("totalPrice").innerText = numberWithCommas(30000)+" 원";
+            document.getElementById("price").value = 30000;
+        }
+        else {
+            document.getElementById("totalPrice").innerText = numberWithCommas(45000)+" 원";
+            document.getElementById("price").value = 45000;
+        }
     });
+
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
 </script>
+
+
 
 </html>
