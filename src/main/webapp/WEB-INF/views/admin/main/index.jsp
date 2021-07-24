@@ -366,6 +366,8 @@
 
 <!-- Footer -->
 <c:import url="footer.jsp" />
+<script src="/admin/js/demo/chart-area-demo.js"></script>
+<script src="/admin/js/demo/chart-pie-demo.js"></script>
 
 </div>
 <!-- End of Content Wrapper -->

@@ -65,4 +65,16 @@
         where m.id = #{movieId} and DATE_FORMAT(r.date, '%Y') = #{year}
         GROUP BY date
     </select>
+
+    <select id="findByMoviesSale" resultType="com.induk.cinema.dto.MoviesSale" parameterType="java.util.HashMap">
+        SELECT SUM(p.price) price, m.title
+        FROM reservation r
+        INNER JOIN schedule s ON s.id = r.schedule_id
+        INNER JOIN movie m ON m.id = s.movie_id
+        INNER JOIN payment p ON p.id = r.payment_id
+        <![CDATA[
+        where DATE_FORMAT(r.date, '%Y-%m') >= #{date1} and DATE_FORMAT(r.date, '%Y-%m') <= #{date2}
+        ]]>
+        GROUP BY m.title
+    </select>
 </mapper>

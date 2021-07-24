@@ -1,6 +1,7 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Movie;
+import com.induk.cinema.dto.MoviesSale;
 import com.induk.cinema.dto.Sales;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReservationService;
@@ -10,10 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -25,11 +23,16 @@ public class AdminChartController {
     private final ReservationService reservationService;
     private final MovieService movieService;
 
-    @GetMapping
-    public String chart(Model model) {
+    @GetMapping("/movie")
+    public String movie(Model model) {
         List<Movie> movies = movieService.movieList();
         model.addAttribute("movies", movies);
         return "admin/chart/movieChart";
+    }
+
+    @GetMapping("/movies")
+    public String movies() {
+        return "admin/chart/moviesChart";
     }
 
     @ResponseBody
@@ -50,5 +53,25 @@ public class AdminChartController {
         }
 
         return map.values().stream().collect(Collectors.toList());
+    }
+
+    @ResponseBody
+    @PostMapping("/movies")
+    public HashMap<String, Object> moviesChart(@RequestParam(value = "date1") String date1,
+                                               @RequestParam(value = "date2") String date2) {
+        List<MoviesSale> moviesSales = reservationService.movieListSale(date1, date2);
+
+        List<String> titles = new ArrayList<>();
+        List<Integer> prices = new ArrayList<>();
+        for (MoviesSale moviesSale : moviesSales) {
+            titles.add(moviesSale.getTitle());
+            prices.add(moviesSale.getPrice());
+        }
+
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("titles", titles);
+        map.put("prices", prices);
+
+        return map;
     }
 }

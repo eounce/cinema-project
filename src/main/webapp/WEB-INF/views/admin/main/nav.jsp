@@ -47,7 +47,8 @@
         <div id="collapseChart" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">영화:</h6>
-                <a class="collapse-item" href="/csmovie/admin/chart">월별 매출</a>
+                <a class="collapse-item" href="/csmovie/admin/chart/movie">월별 매출</a>
+                <a class="collapse-item" href="/csmovie/admin/chart/movies">영화별 매출</a>
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">극장:</h6>
                 <a class="collapse-item" href="#0">월별 매출</a>
