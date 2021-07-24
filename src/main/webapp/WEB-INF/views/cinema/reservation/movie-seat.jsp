@@ -16,10 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <c:import url="../main/header.jsp"/>
-
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
-
-
 </head>
 
 <body>
@@ -42,26 +39,88 @@
 </section>
 <!-- ==========Banner-Section========== -->
 
+<!-- FontAwesome core CSS -->
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous">
+<!-- Custom styles for this template -->
 <!-- ==========Page-Title========== -->
 <section class="page-title bg-one">
     <div class="container">
         <div class="page-title-area">
-            <div class=" md-order-1 col-lg-2">
+            <div class="item col-lg-2">
                 <a href="movie-ticket-plan.html" class="custom-button back-button">
                     <i class="flaticon-double-right-arrows-angles"></i>뒤로가기
                 </a>
             </div>
-            <div class="col-lg-8 text-center">
-
+            <div class="item col-lg-3 text-center" style="display: flex; justify-content: center;">
+                <div class="col-lg-4" style="display: flex;
+    align-items: center;
+    justify-content: center;"> 어른 </div>
+                <div class="input-counter input-group col-lg-8">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn-add btn btn-primary">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control counter text-center" data-min="0" data-max="6" data-default="0" style="height:50px;">
+                    <div class="input-group-append">
+                        <button type="button" class="btn-subtract btn btn-primary">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="col-lg-2 text-right">
+            <div class="item col-lg-3 text-center" style="display: flex; justify-content: center;">
+                <div class="col-lg-4" style="display: flex;
+    align-items: center;
+    justify-content: center;"> 청소년 </div>
+                <div class="input-counter input-group col-lg-8">
+                    <div class="input-group-prepend">
+                        <button type="button" class="btn-add btn btn-primary">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                    </div>
+                    <input type="text" class="form-control counter text-center" data-min="0" data-max="6" data-default="0" style="height:50px;">
+                    <div class="input-group-append">
+                        <button type="button" class="btn-subtract btn btn-primary">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="item col-lg-2 text-right">
                 <span class="date">${schedule.screening_date}</span> / <span class="date" id="start_time">${schedule.start_time}</span>
             </div>
         </div>
     </div>
 </section>
 <!-- ==========Page-Title========== -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write('<script src="/cinema/assets/js/jquery-slim.min.js"><\/script>')
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/cinema/assets/js/jquery.input-counter.js"></script>
 
+<script>
+    var options = {
+        selectors: {
+            addButtonSelector: '.btn-add',
+            subtractButtonSelector: '.btn-subtract',
+            inputSelector: '.counter',
+        },
+        settings: {
+            checkValue: true,
+            isReadOnly: false,
+        },
+    };
+
+    $(".input-counter").inputCounter(options);
+</script>
+<script>
+
+</script>
 <!-- ==========Movie-Section========== -->
 <div class="seat-plan-section padding-bottom padding-top">
     <div class="container">
@@ -274,7 +333,5 @@
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }
 </script>
-
-
 
 </html>
