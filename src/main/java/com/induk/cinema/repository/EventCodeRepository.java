@@ -12,4 +12,7 @@ public interface EventCodeRepository {
     Long save(EventCode eventCode);
     void update(EventCode eventCode);
     void delete(Long id);
+
+    List<EventCode> findEventCodeByEventId(Long id);
+    void updateMemberIdOfEventCode(Long eventCodeId, Long memberId);
 }

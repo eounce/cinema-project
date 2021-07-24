@@ -16,8 +16,8 @@
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="EventCode">
-        insert into eventCode(event_id, code, issue_date, code_limit, discount_rate)
-        values (#{eventId}, #{code}, #{issueDate}, #{codeLimit}, #{discountRate})
+        insert into eventCode(event_id, code, issue_date, code_limit, discount_rate, status, member_id)
+        values (#{eventId}, #{code}, #{issueDate}, #{codeLimit}, #{discountRate}, 0, 0)
     </insert>
 
     <update id="update" parameterType="EventCode">
@@ -29,4 +29,14 @@
     <delete id="delete" parameterType="Long">
         delete from eventCode where id=#{id}
     </delete>
+
+    <select id="findEventCodeByEventId" parameterType="Long" resultType="EventCode">
+        select * from eventCode where event_id=#{id}
+    </select>
+
+    <update id="updateMemberIdOfEventCode" parameterType="Long">
+    update eventCode
+    set member_id=#{memberId}
+    where id=#{eventCodeId}
+    </update>
 </mapper>
