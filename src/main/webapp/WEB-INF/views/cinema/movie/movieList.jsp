@@ -29,8 +29,8 @@
     <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner02.jpg"></div>
     <div class="container">
         <div class="banner-content">
-            <h1 class="title bold"> latest<span class="color-theme"> movies</span></h1>
-            <p>search for movies</p>
+            <h1 class="title bold"> <span class="color-theme"> 영화</span></h1>
+            <h5 id="homeBanner" style="padding-top: 20px; "><a href="/csmovie">홈</a>&nbsp;&nbsp;>&nbsp;&nbsp;전체 영화</h5>
         </div>
     </div>
 </section>
