@@ -51,8 +51,10 @@ jQuery.fn.inputCounter = function (options) {
         onSubtractButtonClicked: function (element) {
             var me = this;
             var input = $($(element).find(settings.selectors.inputSelector)[0]);
+            var newValue = (parseInt(input.val()));
 
-            var newValue = (parseInt(input.val()) + 1);
+            if((tempa*1 + tempy*1) <= 6)
+                newValue = (parseInt(input.val()) + 1);
 
             me.setValue(element, parseInt(input.val()), newValue);
         },

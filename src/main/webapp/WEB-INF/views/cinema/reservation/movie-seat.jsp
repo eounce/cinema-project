@@ -16,6 +16,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     <c:import url="../main/header.jsp"/>
+    <!-- FontAwesome core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
 </head>
 
@@ -39,10 +42,6 @@
 </section>
 <!-- ==========Banner-Section========== -->
 
-<!-- FontAwesome core CSS -->
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous">
-<!-- Custom styles for this template -->
 <!-- ==========Page-Title========== -->
 <section class="page-title bg-one">
     <div class="container">
@@ -53,36 +52,34 @@
                 </a>
             </div>
             <div class="item col-lg-3 text-center" style="display: flex; justify-content: center;">
-                <div class="col-lg-4" style="display: flex;
-    align-items: center;
-    justify-content: center;"> 어른 </div>
+                <div class="col-lg-4" style="display: flex; align-items: center; justify-content: center;"> 어른 </div>
                 <div class="input-counter input-group col-lg-8">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn-add btn btn-primary">
+                        <button type="button" class="btn-add btn btn-primary" id="da" onclick="disPeople(this.id)">
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control counter text-center" data-min="0" data-max="6" data-default="0" style="height:50px;">
+                    <input type="text" class="form-control counter text-center" id="adult"
+                           data-min="0" data-max="6" data-default="0" style="height:50px;">
                     <div class="input-group-append">
-                        <button type="button" class="btn-subtract btn btn-primary">
+                        <button type="button" class="btn-subtract btn btn-primary" id="a" onclick="numPeople(this.id)">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
                 </div>
             </div>
             <div class="item col-lg-3 text-center" style="display: flex; justify-content: center;">
-                <div class="col-lg-4" style="display: flex;
-    align-items: center;
-    justify-content: center;"> 청소년 </div>
+                <div class="col-lg-4" style="display: flex; align-items: center; justify-content: center;"> 청소년 </div>
                 <div class="input-counter input-group col-lg-8">
                     <div class="input-group-prepend">
-                        <button type="button" class="btn-add btn btn-primary">
+                        <button type="button" class="btn-add btn btn-primary" id="dy" onclick="disPeople(this.id)">
                             <i class="fa fa-minus"></i>
                         </button>
                     </div>
-                    <input type="text" class="form-control counter text-center" data-min="0" data-max="6" data-default="0" style="height:50px;">
+                    <input type="text" class="form-control counter text-center" id="youth"
+                           data-min="0" data-max="6" data-default="0" style="height:50px;">
                     <div class="input-group-append">
-                        <button type="button" class="btn-subtract btn btn-primary">
+                        <button type="button" class="btn-subtract btn btn-primary" id="y" onclick="numPeople(this.id)">
                             <i class="fa fa-plus"></i>
                         </button>
                     </div>
@@ -95,32 +92,7 @@
     </div>
 </section>
 <!-- ==========Page-Title========== -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-<script>
-    window.jQuery || document.write('<script src="/cinema/assets/js/jquery-slim.min.js"><\/script>')
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-<script src="/cinema/assets/js/jquery.input-counter.js"></script>
 
-<script>
-    var options = {
-        selectors: {
-            addButtonSelector: '.btn-add',
-            subtractButtonSelector: '.btn-subtract',
-            inputSelector: '.counter',
-        },
-        settings: {
-            checkValue: true,
-            isReadOnly: false,
-        },
-    };
-
-    $(".input-counter").inputCounter(options);
-</script>
-<script>
-
-</script>
 <!-- ==========Movie-Section========== -->
 <div class="seat-plan-section padding-bottom padding-top">
     <div class="container">
@@ -264,25 +236,51 @@
             <input type="hidden" name="seat" id="seat" value=" " >
             <input type="hidden" name="price" id="price" value=" ">
             <input type="hidden" name="baseprice" id="baseprice" value="${schedule.price}">
+            <input type="hidden" name="format" id="format" value="${schedule.screening_format}">
         </form>
     </div>
 </div>
 <!-- ==========Movie-Section========== -->
 
 <c:import url="../main/footer.jsp"/>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
+<script>
+    window.jQuery || document.write('<script src="/cinema/assets/js/jquery-slim.min.js"><\/script>')
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
+<script src="/cinema/assets/js/jquery.input-counter.js"></script>
 
+<script>
+    var options = {
+        selectors: {
+            addButtonSelector: '.btn-add',
+            subtractButtonSelector: '.btn-subtract',
+            inputSelector: '.counter',
+        },
+        settings: {
+            checkValue: true,
+            isReadOnly: false,
+        },
+    };
+
+    $(".input-counter").inputCounter(options);
+</script>
 </body>
 
 <script>
     var book = 0;
-    var count = 1;
+    var count = 0;
 
     var save = [];
 
-    $(".seat-free img").on('click', function(e) {
-        console.log();
+    var adult = 0;
+    var youth = 0;
+    var tempa = 0;
+    var tempy = 0;
 
-        if($(this).attr("src")=="/cinema/assets/images/movie/seat01-booked.png"  && count <= 3) {
+    $(".seat-free img").on('click', function(e) {
+        if($(this).attr("src")=="/cinema/assets/images/movie/seat01-booked.png") {
             $(this).attr("src","/cinema/assets/images/movie/seat01-free.png");
             book = 0;
             count -= 1;
@@ -293,13 +291,13 @@
                 }
             }
         }
-        else if($(this).attr("src")=="/cinema/assets/images/movie/seat01-free.png" && count < 3) {
+        else if($(this).attr("src")=="/cinema/assets/images/movie/seat01-free.png" && count < (adult*1 + youth*1)) {
             $(this).attr("src","/cinema/assets/images/movie/seat01-booked.png");
             book = 1;
             count += 1;
             save.push($(this).attr("id"));
         }
-        else if(count == 3) {
+        else if(count == (adult*1 + youth*1)) {
             alert("인원수를 조절해 주세요");
         }
 
@@ -308,29 +306,96 @@
         for(var i=0;i<save.length;i++){
             temp += save[i] + " ";
         }
-
         if(temp == ""){
             temp = "좌석을 선택해주세요.";
         }
-
-        var element = document.getElementById("totalSeat");
-        element.innerText = temp;
-
+        document.getElementById("totalSeat").innerText = temp;
         document.getElementById("seat").value = temp;
-
-        var start_time = document.getElementById("start_time");
-        if(start_time.innerText < "10:00" && start_time.innerText > "06:00"){
-            document.getElementById("totalPrice").innerText = numberWithCommas(30000)+" 원";
-            document.getElementById("price").value = 30000;
-        }
-        else {
-            document.getElementById("totalPrice").innerText = numberWithCommas(45000)+" 원";
-            document.getElementById("price").value = 45000;
-        }
     });
 
     function numberWithCommas(x) {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function numPeople(id) {
+
+        if(id == "a") {
+            tempa = $("#adult").val()*1 + 1;
+            tempy = $("#youth").val();
+        }
+        else {
+            tempa = $("#adult").val();
+            tempy = $("#youth").val()*1 + 1;
+        }
+
+        var x = tempa + tempy;
+        if((tempa*1 + tempy*1) > 6) {
+            alert("최대 6인까지 예약 가능합니다.");
+            document.getElementById("adult").value = adult;
+            document.getElementById("youth").value = youth;
+        } else {
+            adult = tempa;
+            youth = tempy;
+        }
+        cal();
+    }
+
+    function disPeople(id) {
+
+        var x = adult;
+        var y = youth;
+
+        if(id == "da"){
+            if(x != 0){
+                adult = adult -1;
+            }
+        }
+        else {
+            if(y !=0) {
+                youth = youth -1;
+            }
+        }
+        cal();
+    }
+
+    function cal() {
+        var start_time = document.getElementById("start_time").innerText;
+        var format = document.getElementById("format").value;
+        var tip = 0;
+        if(format == "3D") {
+            console.log("afasfd");
+            tip = 5000;
+        } else if(format == "4DX" || format == "IMAX") {
+            console.log("afasfdafasdfasfsadf");
+            tip = 10000;
+        }
+
+        var adiscount = 0;
+        var ydiscount = 0;
+        if(start_time < "10:00" && start_time > "06:00"){
+            if(format == "2D"){
+                adiscount = 4000;
+                ydiscount = 6000;
+            } else {
+                adiscount = 4000;
+                ydiscount = 7000;
+            }
+        } else {
+            ydiscount = 3000;
+        }
+
+        if(start_time < "10:00" && start_time > "06:00"){
+            var base = document.getElementById("baseprice").value;
+            var total = (adult*1) * (base*1-(adiscount*1)+(tip*1)) + (youth*1) * (base*1-(ydiscount*1)+(tip*1))
+            document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
+            document.getElementById("price").value = total*1;
+        }
+        else {
+            var base = document.getElementById("baseprice").value;
+            var total = (adult*1) * (base*1+(tip*1)) + (youth*1) * (base*1-(ydiscount*1)+(tip*1))
+            document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
+            document.getElementById("price").value = total*1;
+        }
     }
 </script>
 
