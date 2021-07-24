@@ -76,6 +76,7 @@
         inner join movie m on s.movie_id = m.id
         inner join director d on m.director_id = d.id
         inner join genre g on m.genre_id = g.id
+        where r.status = 1
         group by m.title
         order by count desc
         limit 0, 4
@@ -164,7 +165,7 @@
         FROM movie m
         INNER JOIN schedule s ON m.id = s.movie_id
         INNER JOIN reservation r on s.id = r.schedule_id
-        WHERE m.id = #{id}
+        WHERE m.id = #{id} and r.status = 1
     </select>
 
     <update id="update" parameterType="com.induk.cinema.dto.MovieForm">

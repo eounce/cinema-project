@@ -55,16 +55,16 @@
     </select>
 
     <select id="countAll" resultType="int">
-        select count(*) from reservation
+        select count(*) from reservation where status = 1
     </select>
 
     <select id="findBySales" resultType="com.induk.cinema.dto.Sales" parameterType="java.util.HashMap">
-        SELECT SUM(p.price) price, DATE_FORMAT(r.date, '%Y-%m') date
+        SELECT SUM(p.price) price, DATE_FORMAT(r.date, '%Y-%m') date, sum(r.adult) adult, sum(r.youth) youth
         FROM reservation r
         INNER JOIN schedule s ON s.id = r.schedule_id
         INNER JOIN movie m ON m.id = s.movie_id
         INNER JOIN payment p ON p.id = r.payment_id
-        where m.id = #{movieId} and DATE_FORMAT(r.date, '%Y') = #{year}
+        where m.id = #{movieId} and DATE_FORMAT(r.date, '%Y') = #{year} and r.status = 1
         GROUP BY date
     </select>
 
@@ -75,8 +75,21 @@
         INNER JOIN movie m ON m.id = s.movie_id
         INNER JOIN payment p ON p.id = r.payment_id
         <![CDATA[
-        where DATE_FORMAT(r.date, '%Y-%m') >= #{date1} and DATE_FORMAT(r.date, '%Y-%m') <= #{date2}
+        where DATE_FORMAT(r.date, '%Y-%m') >= #{date1} and DATE_FORMAT(r.date, '%Y-%m') <= #{date2} and r.status = 1
         ]]>
         GROUP BY m.title
+    </select>
+
+    <select id="findByCinemaSale" resultType="com.induk.cinema.dto.CinemasSale" parameterType="java.util.HashMap">
+        select c.name, sum(p.price) price
+        from reservation r
+        inner join payment p on r.payment_id = p.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        <![CDATA[
+        where r.status = 1 and DATE_FORMAT(r.date, '%Y-%m') >= #{date1} and DATE_FORMAT(r.date, '%Y-%m') <= #{date2}
+        ]]>
+        group by c.name
     </select>
 </mapper>

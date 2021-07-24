@@ -52,6 +52,7 @@
                 <div class="collapse-divider"></div>
                 <h6 class="collapse-header">극장:</h6>
                 <a class="collapse-item" href="#0">월별 매출</a>
+                <a class="collapse-item" href="/csmovie/admin/chart/cinemas">극장별 매출</a>
             </div>
         </div>
     </li>
