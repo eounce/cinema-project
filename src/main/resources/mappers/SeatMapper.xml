@@ -65,7 +65,7 @@
     <delete id="deleteByReservationId" parameterType="Long">
         delete from seat where reservation_id = #{id}
     </delete>
-    
+
     <select id="findBySchedule" resultType="Seat">
         select * from seat where schedule_id = #{id}
     </select>
