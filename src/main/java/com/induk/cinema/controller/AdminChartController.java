@@ -1,9 +1,11 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.domain.Cinema;
 import com.induk.cinema.domain.Movie;
 import com.induk.cinema.dto.CinemasSale;
 import com.induk.cinema.dto.MoviesSale;
 import com.induk.cinema.dto.Sales;
+import com.induk.cinema.service.CinemaService;
 import com.induk.cinema.service.MovieService;
 import com.induk.cinema.service.ReservationService;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,7 @@ public class AdminChartController {
 
     private final ReservationService reservationService;
     private final MovieService movieService;
+    private final CinemaService cinemaService;
 
     @GetMapping("/movie")
     public String movie(Model model) {
@@ -92,6 +95,27 @@ public class AdminChartController {
         map.put("prices", prices);
 
         return map;
+    }
+
+    @GetMapping("/cinema")
+    public String cinema(Model model) {
+        List<Cinema> cinemas = cinemaService.cinemaList();
+        model.addAttribute("cinemas", cinemas);
+        return "admin/chart/cinemaChart";
+    }
+
+    @ResponseBody
+    @PostMapping("/cinema")
+    public List<Integer> cinemaChart(@RequestParam(value = "cinemaId") Long cinemaId,
+                                     @RequestParam(value = "year") String year) {
+        Map<String, Integer> dateMap = getDateMap(year);
+        List<Sales> sales = reservationService.cinemaSales(cinemaId, year);
+
+        for (Sales sale : sales) {
+            dateMap.replace(sale.getDate(), sale.getPrice());
+        }
+
+        return dateMap.values().stream().collect(Collectors.toList());
     }
 
     @GetMapping("/cinemas")
