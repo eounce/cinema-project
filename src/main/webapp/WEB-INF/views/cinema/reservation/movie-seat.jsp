@@ -85,8 +85,14 @@
                     </div>
                 </div>
             </div>
+            <c:set var="start_time" value="${schedule.start_time}"/>
+            <%
+                String start_time = (String)pageContext.getAttribute("start_time");
+                start_time = start_time.substring(0,5);
+                pageContext.setAttribute("start_time", start_time) ;
+            %>
             <div class="item col-lg-2 text-right">
-                <span class="date">${schedule.screening_date}</span> / <span class="date" id="start_time">${schedule.start_time}</span>
+                <span class="date">${schedule.screening_date}</span> / <span class="date" id="start_time">${start_time}</span>
             </div>
         </div>
     </div>
@@ -407,6 +413,8 @@
         } else {
             ydiscount = 3000;
         }
+
+        console.log(start_time);
 
         if(start_time < "10:00" && start_time > "06:00"){
             var base = document.getElementById("baseprice").value;
