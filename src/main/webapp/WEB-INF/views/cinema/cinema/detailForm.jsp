@@ -272,10 +272,16 @@
                                                             </div>
                                                         </div>
                                                         <div class="movie-schedule">
-                                                            <c:forEach var="schedulestest" items="${schedulestests}">
-                                                                <c:if test="${schedulestest.theater_id == theater.theater_id and schedulestest.movie_id == theater.movie_id and schedulestest.screening_format == theater.screening_format}">
-                                                                    <div class="item">
-                                                                            ${schedulestest.start_time}
+                                                            <c:forEach var="schedule" items="${schedulestests}">
+                                                                <c:if test="${schedule.theater_id == theater.theater_id and schedule.movie_id == theater.movie_id and schedule.screening_format == theater.screening_format}">
+                                                                    <div class="item" onclick="move(${schedule.id})">
+                                                                        <c:set var="start_time" value="${schedule.start_time}"/>
+                                                                        <%
+                                                                            String start_time = (String)pageContext.getAttribute("start_time");
+                                                                            start_time = start_time.substring(0,5);
+                                                                            pageContext.setAttribute("start_time", start_time) ;
+                                                                        %>
+                                                                        ${start_time}
                                                                     </div>
                                                                 </c:if>
                                                             </c:forEach>
@@ -635,8 +641,8 @@
                                     for (var c = 0; c < schedules.length; c++) {
                                         if (array_test1[x] == schedules[c].scheduleForm.movie_title && array_theater_id[b] == schedules[c].theater_id && schedules[c].screening_format == array_test2[x]) {
                                             item +=
-                                                "                                <div class=\"item\">\n" +
-                                                "                                    " + schedules[c].start_time + "\n" +
+                                                "                                <div class=\"item\" onclick=\"move(" + schedules[c].id + ")\">\n" +
+                                                "                                    " + schedules[c].start_time.substring(0,5) + "\n" +
                                                 "                                </div>\n";
                                         }
                                     }
@@ -653,10 +659,17 @@
                     item += "</div>";
                 }
                 $("#scheduleForm").html(item);
+
+                console.log(window.sessionStorage.getItem("member"));
             }
         });
     }
 
+    function move(scheduleId){
+
+        location.href='/csmovie/reservations?scheduleId='+scheduleId;
+
+    }
 
 </script>
 

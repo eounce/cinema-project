@@ -86,8 +86,9 @@
 <script src="/cinema/assets/js/contact.js"></script>
 <% String urlActive1 = (request.getRequestURL().toString().contains("/schedule/listForm"))?"main_del.js":"main.js"; %>
 <% String urlActive2 = (request.getRequestURL().toString().contains("/main/index"))?"main_del.js":"main.js"; %>
+<% String urlActive3 = (request.getRequestURL().toString().contains("/reservation/movie-seat"))?"main_del.js":"main.js"; %>
 <% String active = "";
-    if(!urlActive1.equals("main.js") || !urlActive2.equals("main.js")) {
+    if(!urlActive1.equals("main.js") || !urlActive2.equals("main.js") || !urlActive3.equals("main.js")) {
         active = "main_del.js";
     } else {
         active = "main.js";

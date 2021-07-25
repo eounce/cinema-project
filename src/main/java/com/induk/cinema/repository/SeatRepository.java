@@ -14,10 +14,12 @@ public interface SeatRepository {
     Long save(Seat seat);
     void update(Seat seat);
     void delete(Long id);
-
+    void deleteByReservationId(Long id);
     String findByTheaterId(Long id);
 
     List<Theater> findTheaterById(Long id);
     List<Seat> findSeatByTheaterId(Long id);
     List<Theater> findTheater();
+
+    List<Seat> findBySchedule(Long id);
 }

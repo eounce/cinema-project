@@ -25,9 +25,12 @@ public class Seat {
     @NotBlank(message = "좌석번호는 필수 입력입니다.")
     private String number;
 
-    @NotBlank(message = "좌석 상태는 0, 1만 입력가능합니다.")
-    @Pattern(regexp = "^[0-1]$", message = "좌석 상태는 0, 1만 입력가능합니다.(0:빈좌석, 1:예약석)")
-    private String status;
+    @NotNull(message = "스케줄은 필수 입력입니다.")
+    private Long schedule_id;
+
+//    @NotBlank(message = "좌석 상태는 0, 1만 입력가능합니다.")
+//    @Pattern(regexp = "^[0-1]$", message = "좌석 상태는 0, 1만 입력가능합니다.(0:빈좌석, 1:예약석)")
+//    private String status;
 
     private Long reservation_id;
 

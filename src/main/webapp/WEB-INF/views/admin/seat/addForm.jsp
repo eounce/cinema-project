@@ -73,11 +73,11 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="seat.status">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Status <font color="red">*</font></th>
+                            <spring:bind path="seat.schedule_id">
+                                <th scope="row" width="20%" style="vertical-align:middle;">Schedule_Id <font color="red">*</font></th>
                                 <td width="80%">
                                     <input type="text" class="form-control" name="${status.expression }"
-                                           id="${status.expression }" placeholder="좌석의 예매 여부(0, 1)를 입력해주세요">
+                                           id="${status.expression }" placeholder="스케줄번호를 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                         ${status.errorMessage }
                                 </td>

@@ -6,4 +6,5 @@ import lombok.Data;
 public class SeatTheater {
     private String theaterName;
     private String cinemaName;
+    private Long theater_id;
 }

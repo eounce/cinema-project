@@ -46,19 +46,19 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="30%">Theater</th>
+                            <th width="40%">Theater</th>
                             <th width="20%">Seat_Number</th>
-                            <th width="10%">Status</th>
-                            <th width="20%">Reservation_Id</th>
+                            <th width="10%">Schedule_Id</th>
+                            <th width="10%">Reservation_Id</th>
                         </tr>
                         </thead>
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="30%">Theater</th>
+                            <th width="40%">Theater</th>
                             <th width="20%">Seat_Number</th>
-                            <th width="10%">Status</th>
-                            <th width="20%">Reservation_Id</th>
+                            <th width="10%">Schedule_Id</th>
+                            <th width="10%">Reservation_Id</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -66,15 +66,10 @@
                         <c:forEach var="seat" items="${seats}">
                         <tr>
                             <th width="20%"><a href="/csmovie/admin/seats/${seat.id}" >${seat.id}</a></th>
-                            <th width="30%">${seat.seatTheater.cinemaName}/${seat.seatTheater.theaterName}</th>
+                            <th width="40%">${seat.seatTheater.cinemaName}/${seat.seatTheater.theaterName}</th>
                             <th width="20%">${seat.number}</th>
-                            <c:if test="${seat.status == 1}">
-                                <th width="10%">예약석</th>
-                            </c:if>
-                            <c:if test="${seat.status == 0}">
-                                <th width="10%">빈좌석</th>
-                            </c:if>
-                            <th width="20%">${seat.reservation_id}</th>
+                            <th width="10%">${seat.schedule_id}</th>
+                            <th width="10%">${seat.reservation_id}</th>
                         </tr>
                         </c:forEach>
                         </tbody>

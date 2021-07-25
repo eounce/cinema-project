@@ -5,13 +5,13 @@
 <mapper namespace="com.induk.cinema.repository.SeatRepository">
 <resultMap id="resultSeat" type="com.induk.cinema.domain.Seat">
     <id property="id" column="id"/>
-    <result property="theater_id" column="theater_id"/>
     <result property="number" column="number"/>
-    <result property="status" column="status"/>
+    <result property="schedule_id" column="schedule_id"/>
     <result property="reservation_id" column="reservation_id"/>
     <association property="seatTheater" javaType="com.induk.cinema.dto.SeatTheater">
         <result property="theaterName" column="theaterName"/>
         <result property="cinemaName" column="cinemaName"/>
+        <result property="theater_id" column="theater_id"/>
     </association>
 </resultMap>
     <resultMap id="resultTheater" type="com.induk.cinema.domain.Theater">
@@ -32,17 +32,20 @@
     </select>
 
     <select id="findSeatByTheaterId" resultMap="resultSeat">
-        select seat.*, theater.name as theaterName, cinema.name as cinemaName from seat left join theater on seat.theater_id = theater.id left join cinema on cinema.id = theater.cinema_id
-         where seat.theater_id = #{id}
+        select seat.*, theater.name as theaterName, cinema.name as cinemaName from seat
+        left join schedule on schedule.id = seat.schedule_id left join theater on schedule.theater_id = theater.id left join cinema on cinema.id = theater.cinema_id
+         where schedule.theater_id = #{id}
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Seat">
-        insert into seat(theater_id, number, status, reservation_id)
-        values (#{theater_id}, #{number}, #{status}, #{reservation_id})
+        insert into seat(number, schedule_id, reservation_id)
+        values (#{number}, #{schedule_id}, #{reservation_id})
     </insert>
 
     <select id="findById" parameterType="Long" resultMap="resultSeat">
-        select seat.*, theater.name as theaterName from seat left join theater on seat.theater_id = theater.id where seat.id = #{id}
+        select seat.*, theater.name as theaterName, theater.id as theater_id, cinema.name as cinemaName from seat
+        left join schedule on schedule.id = seat.schedule_id left join theater on schedule.theater_id = theater.id left join cinema on cinema.id = theater.cinema_id
+         where seat.id = #{id}
     </select>
 
     <select id="findByTheaterId" parameterType="Long" resultType="String">
@@ -51,11 +54,20 @@
 
     <update id="update" parameterType="Seat">
         update seat
-        set theater_id=#{theater_id}, number=#{number}, status=#{status}, reservation_id=#{reservation_id}
+        set number=#{number}, schedule_id=#{schedule_id}, reservation_id=#{reservation_id}
         where id=#{id}
     </update>
 
     <delete id="delete" parameterType="Long">
         delete from seat where id = #{id}
     </delete>
+
+    <delete id="deleteByReservationId" parameterType="Long">
+        delete from seat where reservation_id = #{id}
+    </delete>
+
+    <select id="findBySchedule" resultType="Seat">
+        select * from seat where schedule_id = #{id}
+    </select>
+
 </mapper>

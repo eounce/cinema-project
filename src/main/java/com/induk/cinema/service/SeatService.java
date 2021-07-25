@@ -53,5 +53,8 @@ public class SeatService {
         return seatRepository.findTheaterById(id);
     }
 
+    public List<Seat> findBySchedule(Long id) {
+        return seatRepository.findBySchedule(id);
+    }
 
 }
