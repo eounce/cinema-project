@@ -58,4 +58,8 @@
     <delete id="delete" parameterType="Long">
         delete from seat where id = #{id}
     </delete>
+
+    <delete id="deleteByReservationId" parameterType="Long">
+        delete from seat where reservation_id = #{id}
+    </delete>
 </mapper>

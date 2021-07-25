@@ -29,30 +29,106 @@
         delete from reservation where id = #{id}
     </delete>
 
-    <select id="findReservationByStatus" resultType="com.induk.cinema.domain.Reservation">
-        SELECT reservation.*, movie.title as movie_title, genre.name as genre_name ,group_concat(seat.number) as seat_numbers ,
-               theater.name as theater_name, cinema.name as cinema_name, schedule.start_time as schedule_start_time,
-               schedule.end_time as schedule_end_time, payment.method as payment_method, payment.price as payment_price
+
+    <resultMap id="reservationList" type="com.induk.cinema.dto.ReservationListForm">
+        <id property="id" column="id" />
+        <result property="memberId" column="member_id" />
+        <result property="scheduleId" column="schedule_id" />
+        <result property="paymentId" column="payment_id" />
+        <result property="adult" column="adult" />
+        <result property="youth" column="youth" />
+        <result property="date" column="date" />
+        <result property="status" column="status" />
+        <result property="seatNumbers" column="seat_numbers" />
+        <association property="schedule" column="schedule_id" javaType="com.induk.cinema.domain.Schedule">
+            <id property="id" column="schedule_id" />
+            <result property="movie_id" column="movie_id" />
+            <result property="theater_id" column="theater_id" />
+            <result property="start_time" column="schedule_start_time" />
+            <result property="end_time" column="schedule_end_time" />
+            <result property="screening_date" column="schedule_screening_date" />
+            <result property="screening_format" column="schedule_screening_format" />
+        </association>
+        <association property="movie" column="movie_id" javaType="com.induk.cinema.domain.Movie">
+            <id property="id" column="movie_id" />
+            <result property="poster" column="movie_poster" />
+            <result property="title" column="movie_title" />
+            <result property="showTimes" column="movie_show_times" />
+            <association property="genre" column="genre_id" javaType="com.induk.cinema.domain.Genre">
+                <id property="id" column="genre_id" />
+                <result property="name" column="genre_name" />
+            </association>
+        </association>
+        <association property="theater" column="theater_id" javaType="com.induk.cinema.domain.Theater">
+            <id property="id" column="theater_id" />
+            <result property="name" column="theater_name" />
+        </association>
+        <association property="cinema" column="cinema_id" javaType="com.induk.cinema.domain.Cinema">
+            <id property="id" column="cinema_id" />
+            <result property="name" column="cinema_name" />
+        </association>
+        <association property="payment" column="payment_id" javaType="com.induk.cinema.domain.Payment">
+            <id property="id" column="payment_id" />
+            <result property="method" column="payment_method" />
+            <result property="price" column="payment_price" />
+        </association>
+    </resultMap>
+
+
+
+    <select id="findReservationByStatus" parameterType="java.util.HashMap" resultType="com.induk.cinema.domain.Reservation" resultMap="reservationList">
+        SELECT reservation.*, movie.id as movie_id, movie.title as movie_title, movie.poster as movie_poster,
+               movie.title as movie_title, movie.show_times as movie_show_times, genre.name as genre_name,
+               group_concat(seat.number, " " order by seat.number) as seat_numbers, genre.id as genre_id,
+               theater.id as theater_id, theater.name as theater_name, cinema.id as cinema_id, cinema.name as cinema_name,
+               schedule.start_time as schedule_start_time, schedule.end_time as schedule_end_time,
+               schedule.screening_format as schedule_screening_format, schedule.screening_date as schedule_screening_date,
+               payment.id as payment_id, payment.method as payment_method, payment.price as payment_price
             FROM reservation
             inner join schedule on reservation.schedule_id = schedule.id
             inner join movie on schedule.movie_id = movie.id
             inner join theater on schedule.theater_id = theater.id
             inner join cinema on theater.cinema_id = cinema.id
-            inner join seat on theater.id = seat.theater_id
-            inner join genre on movie.genre_id = genre.id
+            left join seat on schedule.id = seat.schedule_id and reservation.id = seat.reservation_id
+        inner join genre on movie.genre_id = genre.id
             inner join payment on reservation.payment_id = payment.id
-        where reservation.member_id = #{memberId} and seat.reservation_id = reservation.id
+        where reservation.member_id = #{memberId}
         <if test="sort == 1">
-            and schedule.end_time > #{searchDate} and reservation.status <![CDATA[<]]>= 1
+            and ((concat(schedule.screening_date, ' ',schedule.end_time) > #{basehDate} and reservation.status <![CDATA[<=]]> 1) or reservation.status = 0)
             group by reservation.id
             order by reservation.status desc, schedule.start_time asc
         </if>
         <if test="sort == 2">
-            and schedule.end_time <![CDATA[<]]>= #{searchDate} and reservation.status == 1
+            and concat(schedule.screening_date, ' ',schedule.end_time) <![CDATA[<=]]> #{basehDate} and reservation.status = 1
             group by reservation.id
             order by reservation.date desc
         </if>
+        limit #{firstRecordIndex}, #{recordsPerPage}
     </select>
+
+    <select id="findReservationByStatusCount" parameterType="java.util.HashMap" resultType="int" >
+        SELECT count(*)
+        FROM reservation
+        inner join schedule on reservation.schedule_id = schedule.id
+        inner join movie on schedule.movie_id = movie.id
+        inner join theater on schedule.theater_id = theater.id
+        inner join cinema on theater.cinema_id = cinema.id
+        inner join genre on movie.genre_id = genre.id
+        inner join payment on reservation.payment_id = payment.id
+        where reservation.member_id = #{memberId}
+        <if test="sort == 1">
+            and ((concat(schedule.screening_date, ' ',schedule.end_time) > #{basehDate} and reservation.status <![CDATA[<=]]> 1) or reservation.status = 0)
+        </if>
+        <if test="sort == 2">
+            and concat(schedule.screening_date, ' ',schedule.end_time) <![CDATA[<=]]> #{basehDate} and reservation.status = 1
+        </if>
+    </select>
+
+    <update id="cancelReservation" parameterType="Long">
+        update reservation
+            set status=0
+            where id=#{id}
+    </update>
 
     <select id="countAll" resultType="int">
         select count(*) from reservation where status = 1
