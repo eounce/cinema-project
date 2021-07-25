@@ -279,7 +279,12 @@
     var tempa = 0;
     var tempy = 0;
 
+    var dis_check = 0;
+    var refresh_num = 0;
+
     $(".seat-free img").on('click', function(e) {
+        dis_check = 0;
+        refresh_num = 0;
         if($(this).attr("src")=="/cinema/assets/images/movie/seat01-booked.png") {
             $(this).attr("src","/cinema/assets/images/movie/seat01-free.png");
             book = 0;
@@ -297,9 +302,15 @@
             count += 1;
             save.push($(this).attr("id"));
         }
-        else if(count == (adult*1 + youth*1)) {
-            alert("인원수를 조절해 주세요");
+        else if(count == 0) {
+            alert("관람하실 인원을 먼저 선택해주세요");
         }
+        else if(count == (adult*1 + youth*1)) {
+            alert("좌석 선택이 완료되었습니다.");
+        }
+
+        console.log(adult*1+youth*1);
+        console.log(count);
 
         var temp = "";
 
@@ -318,7 +329,8 @@
     }
 
     function numPeople(id) {
-
+        dis_check = 0;
+        refresh_num = 0;
         if(id == "a") {
             tempa = $("#adult").val()*1 + 1;
             tempy = $("#youth").val();
@@ -341,32 +353,44 @@
     }
 
     function disPeople(id) {
-
+        dis_check = 0;
+        refresh_num = 0;
         var x = adult;
         var y = youth;
 
         if(id == "da"){
             if(x != 0){
-                adult = adult -1;
+                x -= 1;
             }
         }
         else {
             if(y !=0) {
-                youth = youth -1;
+                y -= 1;
             }
+        }
+
+        if(count >= (adult*1+youth*1) && (adult*1+youth*1) != 0) {
+            refresh();
+            return 0;
+        }
+
+        if((adult*1+youth*1) != 0) {
+            adult = x;
+            youth = y;
         }
         cal();
     }
 
     function cal() {
+        dis_check = 0;
+        refresh_num = 0;
+
         var start_time = document.getElementById("start_time").innerText;
         var format = document.getElementById("format").value;
         var tip = 0;
         if(format == "3D") {
-            console.log("afasfd");
             tip = 5000;
         } else if(format == "4DX" || format == "IMAX") {
-            console.log("afasfdafasdfasfsadf");
             tip = 10000;
         }
 
@@ -395,6 +419,35 @@
             var total = (adult*1) * (base*1+(tip*1)) + (youth*1) * (base*1-(ydiscount*1)+(tip*1))
             document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
             document.getElementById("price").value = total*1;
+        }
+    }
+
+    function refresh() {
+        if (confirm("선택하신 좌석을 모두 취소하고 다시 선택하시겠습니까?") == true) {
+            for(var i=0;i<save.length;i++){
+                var t = document.getElementById(save[i]);
+                t.src = "/cinema/assets/images/movie/seat01-free.png";
+            }
+            refresh_num = 1;
+            document.getElementById("totalPrice").innerText = "0 원";
+            document.getElementById("price").value = 0;
+            document.getElementById("totalSeat").innerText = "좌석을 선택해주세요.";
+            document.getElementById("seat").value = " ";
+            save = [];
+            book = 0;
+            count = 0;
+
+            adult = 0;
+            youth = 0;
+            tempa = 0;
+            tempy = 0;
+
+            document.getElementById("adult").value = 0;
+            document.getElementById("youth").value = 0;
+        }else{   //취소
+            dis_check = 1;
+            return false;
+
         }
     }
 </script>

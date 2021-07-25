@@ -56,14 +56,23 @@ jQuery.fn.inputCounter = function (options) {
             if((tempa*1 + tempy*1) <= 6)
                 newValue = (parseInt(input.val()) + 1);
 
+            if(refresh_num == 1)
+                newValue = 0;
+
             me.setValue(element, parseInt(input.val()), newValue);
         },
 
         onAddButtonClicked: function (element) {
             var me = this;
             var input = $($(element).find(settings.selectors.inputSelector)[0]);
+            var newValue = (parseInt(input.val()));
 
-            var newValue = (parseInt(input.val()) - 1);
+            if(dis_check != 1)
+                newValue = (parseInt(input.val()) - 1);
+
+            if(refresh_num == 1) {
+                newValue = 0;
+            }
 
             me.setValue(element, parseInt(input.val()), newValue);
         },

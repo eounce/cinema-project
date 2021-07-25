@@ -61,8 +61,4 @@
     <delete id="delete" parameterType="Long">
         delete from seat where id = #{id}
     </delete>
-
-    <select id="findBySchedule" resultType="Seat">
-        select * from seat where schedule_id = #{id}
-    </select>
 </mapper>

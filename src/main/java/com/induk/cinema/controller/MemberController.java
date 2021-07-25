@@ -1,8 +1,13 @@
 package com.induk.cinema.controller;
 
+import com.induk.cinema.domain.Comment;
 import com.induk.cinema.domain.Member;
+import com.induk.cinema.domain.Review;
 import com.induk.cinema.dto.HistoryUrl;
+import com.induk.cinema.dto.ReservationListForm;
+import com.induk.cinema.dto.ReservationListPage;
 import com.induk.cinema.service.MemberService;
+import com.induk.cinema.service.ReservationService;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.Resource;
@@ -25,6 +30,8 @@ import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -32,6 +39,7 @@ import java.net.URLEncoder;
 public class MemberController {
     private final MemberService memberService;
     private final FileStore fileStore;
+    private final ReservationService reservationService;
     @GetMapping("/login")
     public String login(Model model, @ModelAttribute("historyUrl") HistoryUrl historyUrl){
         model.addAttribute("member", new Member());
@@ -141,9 +149,31 @@ public class MemberController {
     @GetMapping("/reservationList")
     public String reservationListForm(HttpSession session, Model model){
         Member m = (Member)session.getAttribute("member");
-        model.addAttribute("member", memberService.findMember(m.getId()));
+
+        ReservationListPage rlp1 = new ReservationListPage();
+        rlp1.setMemberId(m.getId());
+        rlp1.setSort(1);
+        ReservationListPage rlp2 = new ReservationListPage();
+        rlp2.setMemberId(m.getId());
+        rlp2.setSort(2);
+
+        model.addAttribute("reserveMovies", reservationService.reservationListBySort(rlp1));
+        model.addAttribute("seenMovies", reservationService.reservationListBySort(rlp2));
         return "/cinema/member/reservationListForm";
     }
+
+    @PostMapping("/reservationListAjax")
+    @ResponseBody
+    public ReservationListPage reservationListAjax(@RequestBody ReservationListPage rlp){
+        return reservationService.reservationListBySort(rlp);
+    }
+
+    @PostMapping("/reservationCancelAjax")
+    @ResponseBody
+    public Integer delAjax(@RequestBody ReservationListForm rlf){
+        return reservationService.cancelReservation(rlf.getId());
+    }
+
 
     @ResponseBody
     @GetMapping("/images/{filename}")

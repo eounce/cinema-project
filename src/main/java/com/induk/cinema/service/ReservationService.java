@@ -2,14 +2,17 @@ package com.induk.cinema.service;
 
 import com.induk.cinema.domain.City;
 import com.induk.cinema.domain.Reservation;
-import com.induk.cinema.dto.CinemasSale;
-import com.induk.cinema.dto.MoviesSale;
-import com.induk.cinema.dto.Sales;
+import com.induk.cinema.domain.Review;
+import com.induk.cinema.dto.*;
 import com.induk.cinema.repository.CityRepository;
 import com.induk.cinema.repository.ReservationRepository;
+import com.induk.cinema.repository.ScheduleRepository;
+import com.induk.cinema.repository.SeatRepository;
+import com.induk.cinema.util.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,6 +21,7 @@ import java.util.List;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
+    private final SeatRepository seatRepository;
 
     public int countAll() { return reservationRepository.countAll(); }
 
@@ -43,6 +47,39 @@ public class ReservationService {
         map.put("date2", date2);
 
         return reservationRepository.findByCinemaSale(map);
+    }
+
+    public ReservationListPage reservationListBySort(ReservationListPage rlp)  {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("memberId", rlp.getMemberId());
+        map.put("basehDate", "2021-07-15 13:00:00");
+        map.put("sort", rlp.getSort());
+
+
+        int reservationTotalCount = reservationRepository.findReservationByStatusCount(map);
+
+        rlp.setRecordsPerPage(3); //한페이지당 데이터 갯수
+        rlp.setPageSize(5); //페이지의 갯수
+        PaginationInfo paginationInfo = new PaginationInfo(rlp);
+        paginationInfo.setTotalRecordCount(reservationTotalCount);
+
+        rlp.setPaginationInfo(paginationInfo);
+        if (reservationTotalCount > 0) {
+            map.put("firstRecordIndex", rlp.getPaginationInfo().getFirstRecordIndex());
+            map.put("recordsPerPage", rlp.getRecordsPerPage());
+            rlp.setReservationListForms(reservationRepository.findReservationByStatus(map));
+            for(ReservationListForm rlf : rlp.getReservationListForms()){
+                if(rlf.getSeatNumbers() == null) rlf.setSeatNumbers("");
+            }
+        }
+
+        return rlp;
+    }
+
+    public int cancelReservation(Long id){
+        int result = reservationRepository.cancelReservation(id);
+        seatRepository.deleteByReservationId(id);
+        return result;
     }
 
     public List<Reservation> reservationList() {
