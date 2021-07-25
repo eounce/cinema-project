@@ -35,7 +35,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">월별 매출</h1>
+        <h1 class="h3 mb-2 text-gray-800">영화 월별 매출</h1>
 
         <!-- Content Row -->
         <div class="row">

@@ -156,6 +156,17 @@
         GROUP BY m.title
     </select>
 
+    <select id="findByCSales" resultType="com.induk.cinema.dto.Sales" parameterType="java.util.HashMap">
+        select sum(p.price) price, DATE_FORMAT(r.date, '%Y-%m') date
+        from reservation r
+        inner join payment p on r.payment_id = p.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        where c.id = #{cinemaId} and DATE_FORMAT(r.date, '%Y') = #{year} and r.status = 1
+        group by date
+    </select>
+
     <select id="findByCinemaSale" resultType="com.induk.cinema.dto.CinemasSale" parameterType="java.util.HashMap">
         select c.name, sum(p.price) price
         from reservation r

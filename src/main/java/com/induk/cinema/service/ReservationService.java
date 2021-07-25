@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -39,6 +40,14 @@ public class ReservationService {
         map.put("date2", date2);
 
         return reservationRepository.findByMoviesSale(map);
+    }
+
+    public List<Sales> cinemaSales(Long cinemaId, String year) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("cinemaId", cinemaId);
+        map.put("year", year);
+
+        return reservationRepository.findByCSales(map);
     }
 
     public List<CinemasSale> cinemaListSale(String date1, String date2) {
