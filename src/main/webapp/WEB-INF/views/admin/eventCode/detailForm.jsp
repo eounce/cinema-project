@@ -91,6 +91,32 @@
                             <input type="text" class="form-control" name="discount_rate" value="${eventCode.discountRate}" readonly>
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Status</th>
+                        <td width="80%">
+                            <c:choose>
+                                <c:when test="${eventCode.status == 0}">
+                                    <input type="text" class="form-control" value="사용 가능" readonly>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" class="form-control" value="사용 불가능" readonly>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row" width="20%" style="vertical-align:middle;">Member_id</th>
+                        <td width="80%">
+                            <c:choose>
+                                <c:when test="${eventCode.memberId == 0}">
+                                    <input type="text" class="form-control" value="-" readonly>
+                                </c:when>
+                                <c:otherwise>
+                                    <input type="text" class="form-control" value="[${eventCode.memberId}]${memberName}" readonly>
+                                </c:otherwise>
+                            </c:choose>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

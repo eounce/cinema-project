@@ -1,8 +1,10 @@
 package com.induk.cinema.service;
 
 import com.induk.cinema.domain.Event;
+import com.induk.cinema.domain.EventCode;
 import com.induk.cinema.dto.EventForm;
 import com.induk.cinema.dto.UploadFile;
+import com.induk.cinema.repository.EventCodeRepository;
 import com.induk.cinema.repository.EventRepository;
 import com.induk.cinema.util.FileStore;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +23,7 @@ import java.util.List;
 public class EventService {
 
     private final EventRepository eventRepository;
+    private final EventCodeRepository eventCodeRepository;
     private final FileStore fileStore;
 
     public List<Event> eventList() {
@@ -82,13 +85,14 @@ public class EventService {
         return eventRepository.findAllSortReportingDate();
     }
 
-    public List<Event> searchEvent(String searchWord, int status, int sort){
+    public List<Event> searchEvent(String searchWord, int status, int sort, int code_status){
 
         HashMap<String, Object> map = new HashMap<>(); // key, value
 
         map.put("searchWord", searchWord);
         map.put("status", status);
         map.put("sort", sort);
+        map.put("code_status", code_status);
 
         return eventRepository.findByTitleSort(map);
     }
@@ -110,4 +114,11 @@ public class EventService {
         return list;
     }
 
+    public List<EventCode> findEventCodeByEventId(Long id){
+        return eventCodeRepository.findEventCodeByEventId(id);
+    }
+
+    public void updateMemberIdOfEventCode(Long eventCodeId, Long memberId){
+        eventCodeRepository.updateMemberIdOfEventCode(eventCodeId, memberId);
+    }
 }

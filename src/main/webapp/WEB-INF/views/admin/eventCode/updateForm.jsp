@@ -127,6 +127,38 @@
                                 </td>
                             </spring:bind>
                         </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Status <font color="red">*</font></th>
+                            <td width="80%">
+                                <c:choose>
+                                    <c:when test="${eventCode.status == 0}">
+                                        <input type="text" class="form-control" value="사용 가능" readonly>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="text" class="form-control" value="사용 불가능" readonly>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:if test="${status.error}">
+                                    <div class="field-error">${status.errorMessage}</div>
+                                </c:if>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" width="20%" style="vertical-align:middle;">Member_id <font color="red">*</font></th>
+                            <td width="80%">
+                                <c:choose>
+                                    <c:when test="${eventCode.memberId == 0}">
+                                        <input type="text" class="form-control" value="-" readonly>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input type="text" class="form-control" value="${eventCode.memberId}" readonly>
+                                    </c:otherwise>
+                                </c:choose>
+                                <c:if test="${status.error}">
+                                    <div class="field-error">${status.errorMessage}</div>
+                                </c:if>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
