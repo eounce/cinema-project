@@ -393,12 +393,6 @@
 
         var start_time = document.getElementById("start_time").innerText;
         var format = document.getElementById("format").value;
-        var tip = 0;
-        if(format == "3D") {
-            tip = 5000;
-        } else if(format == "4DX" || format == "IMAX") {
-            tip = 10000;
-        }
 
         var adiscount = 0;
         var ydiscount = 0;
@@ -418,13 +412,13 @@
 
         if(start_time < "10:00" && start_time > "06:00"){
             var base = document.getElementById("baseprice").value;
-            var total = (adult*1) * (base*1-(adiscount*1)+(tip*1)) + (youth*1) * (base*1-(ydiscount*1)+(tip*1))
+            var total = (adult*1) * (base*1-(adiscount*1)) + (youth*1) * (base*1-(ydiscount*1))
             document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
             document.getElementById("price").value = total*1;
         }
         else {
             var base = document.getElementById("baseprice").value;
-            var total = (adult*1) * (base*1+(tip*1)) + (youth*1) * (base*1-(ydiscount*1)+(tip*1))
+            var total = (adult*1) * (base*1) + (youth*1) * (base*1-(ydiscount*1))
             document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
             document.getElementById("price").value = total*1;
         }
