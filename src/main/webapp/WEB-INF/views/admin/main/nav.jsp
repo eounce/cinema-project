@@ -139,6 +139,12 @@
     </li>
 
     <li class="nav-item">
+        <a class="nav-link" href="/csmovie/admin/reservations">
+            <i class="fas fa-fw fa-folder"></i>
+            <span>예매</span></a>
+    </li>
+
+    <li class="nav-item">
         <a class="nav-link" href="/csmovie/admin/members">
             <i class="fas fa-user-friends"></i>
             <span>사용자</span></a>

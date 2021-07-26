@@ -21,4 +21,6 @@ public class CheckoutData {
     private Long adult;
     private Long youth;
     private String seat;
+
+    private String useCode;
 }
