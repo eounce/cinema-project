@@ -106,12 +106,6 @@
                                       rows="9" disabled>${cinema.mapAddress}</textarea>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Sales</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="sales" value="<fmt:formatNumber type="number" maxFractionDigits="3" value="${cinema.sales}"/>원" disabled>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </div>

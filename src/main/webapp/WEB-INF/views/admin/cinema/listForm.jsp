@@ -48,8 +48,7 @@
                             <th width="20%">ID</th>
                             <th width="20%">City</th>
                             <th width="20%">Name</th>
-                            <th width="20%">Facility</th>
-                            <th width="20%">Sales</th>
+                            <th width="40%">Facility</th>
                         </tr>
                         </thead>
                         <tfoot>
@@ -57,8 +56,7 @@
                             <th width="20%">ID</th>
                             <th width="20%">City</th>
                             <th width="20%">Name</th>
-                            <th width="20%">Facility</th>
-                            <th width="20%">Sales</th>
+                            <th width="40%">Facility</th>
                         </tr>
                         </tfoot>
                         <tbody>
@@ -68,8 +66,7 @@
                             <th width="20%"><a href="/csmovie/admin/cinemas/${cinema.id}" >${cinema.id}</a></th>
                             <th width="20%">${cinema.cinemaCity.cityName}</th>
                             <th width="20%">${cinema.name}</th>
-                            <th width="20%">${cinema.facility}</th>
-                            <th width="20%"><fmt:formatNumber type="number" maxFractionDigits="3" value="${cinema.sales}"/>원</th>
+                            <th width="40%">${cinema.facility}</th>
                         </tr>
                         </c:forEach>
 

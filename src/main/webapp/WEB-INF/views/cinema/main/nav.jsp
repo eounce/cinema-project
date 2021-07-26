@@ -150,6 +150,11 @@
                             </li>
                         </ul>
                     </li>
+                    <c:if test="${sessionScope.member.admin == 1}">
+                        <li>
+                            <a href="/csmovie/admin">Admin</a>
+                        </li>
+                    </c:if>
                 </c:if>
                 <c:choose>
                     <c:when test="${empty sessionScope.member}">
