@@ -91,11 +91,11 @@ public class ReservationService {
         return result;
     }
 
-    public List<Reservation> reservationList() {
+    public List<ReservationForm> reservationList() {
         return reservationRepository.findAll();
     }
 
-    public Reservation findReservation(Long id) {
+    public HashMap<String, Object> findReservation(Long id) {
         return reservationRepository.findById(id);
     }
 
@@ -104,8 +104,12 @@ public class ReservationService {
         return reservation.getId();
     }
 
-    public void updateReservation(Reservation reservation) {
-        reservationRepository.update(reservation);
+    public void updateReservation(Long id, int status) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("status", status);
+
+        reservationRepository.update(map);
     }
 
     public void deleteReservation(Long id) {
