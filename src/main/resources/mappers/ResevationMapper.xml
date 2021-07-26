@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.induk.cinema.repository.ReservationRepository">
 
+<resultMap id="eventCodeResult" type="eventCode">
+    <id property="id" column="id" />
+    <result property="eventId" column="event_id" />
+    <result property="code" column="code" />
+    <result property="issueDate" column="issue_date" />
+    <result property="codeLimit" column="code_limit" />
+    <result property="discountRate" column="discount_rate" />
+    <result property="status" column="status" />
+    <result property="memberId" column="member_id" />
+    <association property="event" column="event_id" javaType="com.induk.cinema.domain.Event">
+        <id property="id" column="event_id" />
+        <result property="title" column="event_title" />
+    </association>
+</resultMap>
+
     <resultMap id="resultReservationDetail" type="java.util.HashMap">
         <id property="id" column="id" />
         <result property="memberId" column="member_id" />
@@ -73,6 +88,12 @@
         left join seat s on s.reservation_id = r.id
         where r.id = #{id}
     </delete>
+
+    <select id="findByCodeForEventCode" resultMap="eventCodeResult">
+        select eventCode.*, event.title as event_title
+        from eventCode inner join event on eventCode.event_id=event.id
+        where eventCode.code = #{code} and eventCode.member_id = #{member_id} and eventCode.status = 0
+    </select>
 
 
     <resultMap id="reservationList" type="com.induk.cinema.dto.ReservationListForm">
