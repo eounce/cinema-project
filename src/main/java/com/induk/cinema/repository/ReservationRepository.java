@@ -2,6 +2,7 @@ package com.induk.cinema.repository;
 
 import com.induk.cinema.domain.City;
 import com.induk.cinema.domain.EventCode;
+import com.induk.cinema.domain.Payment;
 import com.induk.cinema.domain.Reservation;
 import com.induk.cinema.dto.*;
 import org.apache.ibatis.annotations.Mapper;
@@ -28,4 +29,5 @@ public interface ReservationRepository {
 
     EventCode findByCodeForEventCode(String code, Long member_id);
 
+    Long savePayment(Payment payment);
 }

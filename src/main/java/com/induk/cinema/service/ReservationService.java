@@ -1,9 +1,6 @@
 package com.induk.cinema.service;
 
-import com.induk.cinema.domain.City;
-import com.induk.cinema.domain.EventCode;
-import com.induk.cinema.domain.Reservation;
-import com.induk.cinema.domain.Review;
+import com.induk.cinema.domain.*;
 import com.induk.cinema.dto.*;
 import com.induk.cinema.repository.CityRepository;
 import com.induk.cinema.repository.ReservationRepository;
@@ -116,6 +113,11 @@ public class ReservationService {
 
     public EventCode findByCodeForEventCode(String code, Long member_id) {
         return reservationRepository.findByCodeForEventCode(code, member_id);
+    }
+
+    public Long savePayment(Payment payment) {
+        reservationRepository.savePayment(payment);
+        return payment.getId();
     }
 
 }

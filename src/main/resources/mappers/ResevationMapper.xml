@@ -76,6 +76,11 @@
         values (#{member_id}, #{schedule_id}, #{payment_id}, #{adult}, #{youth}, #{date}, #{status})
     </insert>
 
+    <insert id="savePayment" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Payment">
+        insert into payment(method, price, date)
+        values (#{method}, #{price}, #{date})
+    </insert>
+
     <update id="update" parameterType="java.util.HashMap">
         update reservation
         set status=#{status}

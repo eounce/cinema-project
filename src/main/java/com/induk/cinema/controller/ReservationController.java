@@ -5,7 +5,6 @@ import com.induk.cinema.dto.CheckoutData;
 import com.induk.cinema.service.ReservationService;
 import com.induk.cinema.service.ScheduleService;
 import com.induk.cinema.service.SeatService;
-import com.sun.tools.javac.comp.Check;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 @Controller
 @RequestMapping("/csmovie/reservations")
@@ -72,19 +72,35 @@ public class ReservationController {
 
         System.out.println(checkoutData.getMember_id());
         System.out.println(checkoutData.getSchedule_id());
+
         System.out.println(checkoutData.getPayment());
         System.out.println(checkoutData.getCardNum());
         System.out.println(checkoutData.getCardCom());
         System.out.println(checkoutData.getCardDate());
         System.out.println(checkoutData.getCVC());
         System.out.println(checkoutData.getPrice());
+
         System.out.println(checkoutData.getAdult());
         System.out.println(checkoutData.getYouth());
+
         System.out.println(checkoutData.getSeat());
+
+
         if(checkoutData.getUseCode() != " " || checkoutData.getUseCode() != "")
             System.out.println(checkoutData.getUseCode());
-        else
-            System.out.println("adfadfs");
+
+
+        Payment payment = new Payment();
+        payment.setMethod(checkoutData.getPayment());
+        payment.setPrice(checkoutData.getPrice());
+        Date date_now = new Date(System.currentTimeMillis()); // 현재시간을 가져와 Date형으로 저장한다
+        SimpleDateFormat fourteen_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        payment.setDate(fourteen_format.format(date_now));
+
+        Long payment_id = reservationService.savePayment(payment);
+
+
+
 
         return null;
     }
