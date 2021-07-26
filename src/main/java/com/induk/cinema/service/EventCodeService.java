@@ -53,5 +53,9 @@ public class EventCodeService {
     public void deleteEventCode(Long id) {
         eventCodeRepository.delete(id);
     }
+
+    public void changeStatus(EventCode eventCode) {
+        eventCodeRepository.changeStatus(eventCode);
+    }
 }
 

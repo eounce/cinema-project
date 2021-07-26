@@ -16,4 +16,6 @@ public interface EventCodeRepository {
     List<EventCode> findEventCodeByEventId(Long id);
     List<EventCode> findByMemberId(Long memberId);
     void updateMemberIdOfEventCode(Long eventCodeId, Long memberId);
+
+    void changeStatus(EventCode eventCode);
 }

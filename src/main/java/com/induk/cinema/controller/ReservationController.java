@@ -2,6 +2,7 @@ package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.*;
 import com.induk.cinema.dto.CheckoutData;
+import com.induk.cinema.service.EventCodeService;
 import com.induk.cinema.service.ReservationService;
 import com.induk.cinema.service.ScheduleService;
 import com.induk.cinema.service.SeatService;
@@ -23,6 +24,7 @@ public class ReservationController {
     private final ReservationService reservationService;
     private final ScheduleService scheduleService;
     private final SeatService seatService;
+    private final EventCodeService eventCodeService;
 
     @GetMapping
     public String home(@RequestParam(required=false) Long scheduleId, Model model) {
@@ -99,10 +101,37 @@ public class ReservationController {
 
         Long payment_id = reservationService.savePayment(payment);
 
+        Reservation reservation = new Reservation();
+        reservation.setMember_id(checkoutData.getMember_id());
+        reservation.setSchedule_id(checkoutData.getSchedule_id());
+        reservation.setPayment_id(payment_id);
+        reservation.setAdult(checkoutData.getAdult());
+        reservation.setYouth(checkoutData.getYouth());
+        reservation.setDate(fourteen_format.format(date_now));
+        reservation.setStatus("1");
 
+        Long reservation_id = reservationService.save(reservation);
 
+        String temp = checkoutData.getSeat();
 
-        return null;
+        String[] seatArray = temp.split(" ");
+
+        for(int i=0;i<seatArray.length;i++){
+            Seat seat = new Seat();
+            seat.setNumber(seatArray[i]);
+            seat.setSchedule_id(checkoutData.getSchedule_id());
+            seat.setReservation_id(reservation_id);
+            seatService.saveSeat(seat);
+        }
+
+        if(checkoutData.getUseCode() != " " || checkoutData.getUseCode() != "") {
+            EventCode eventCode = new EventCode();
+            eventCode.setCode(checkoutData.getUseCode());
+            eventCode.setStatus(Long.parseLong("1"));
+            eventCodeService.changeStatus(eventCode);
+        }
+
+        return "cinema/reservation/end-reservation";
     }
 
 

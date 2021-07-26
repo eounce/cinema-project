@@ -115,6 +115,11 @@ public class ReservationService {
         return reservationRepository.findByCodeForEventCode(code, member_id);
     }
 
+    public Long save(Reservation reservation) {
+        reservationRepository.save(reservation);
+        return reservation.getId();
+    }
+
     public Long savePayment(Payment payment) {
         reservationRepository.savePayment(payment);
         return payment.getId();

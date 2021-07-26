@@ -62,4 +62,10 @@
         order by eventCode.status asc
     </select>
 
+    <update id="changeStatus" parameterType="EventCode">
+        update eventCode
+        set status = #{status}
+        where code=#{code}
+    </update>
+
 </mapper>
