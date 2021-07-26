@@ -1,6 +1,7 @@
 package com.induk.cinema.repository;
 
 import com.induk.cinema.domain.City;
+import com.induk.cinema.domain.EventCode;
 import com.induk.cinema.domain.Reservation;
 import com.induk.cinema.dto.CinemasSale;
 import com.induk.cinema.dto.MoviesSale;
@@ -27,5 +28,7 @@ public interface ReservationRepository {
     Long save(Reservation reservation);
     void update(Reservation reservation);
     void delete(Long id);
+
+    EventCode findByCodeForEventCode(String code, Long member_id);
 
 }
