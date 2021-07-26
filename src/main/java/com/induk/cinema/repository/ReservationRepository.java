@@ -16,6 +16,8 @@ public interface ReservationRepository {
     List<MoviesSale> findByMoviesSale(HashMap<String, String> map);
     List<Sales> findByCSales(HashMap<String, Object> map);
     List<CinemasSale> findByCinemaSale(HashMap<String, String> map);
+    List<MainSales> findByAllSales();
+    List<MainSales> findByYearSales(String year);
     List<ReservationForm> findAll();
     List<ReservationListForm> findReservationByStatus(HashMap<String, Object> map);
     Integer findReservationByStatusCount(HashMap<String, Object> map);

@@ -24,6 +24,14 @@ public class ReservationService {
 
     public int countAll() { return reservationRepository.countAll(); }
 
+    public List<MainSales> allSales() {
+        return reservationRepository.findByAllSales();
+    }
+
+    public List<MainSales> findByYearSales(String year) {
+        return reservationRepository.findByYearSales(year);
+    }
+
     public List<Sales> movieSales(Long movieId, String year) {
         HashMap<String, Object> map = new HashMap<String, Object>();
         map.put("movieId", movieId);
