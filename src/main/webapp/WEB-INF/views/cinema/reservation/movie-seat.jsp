@@ -33,8 +33,8 @@
             <div class="details-banner-content style-two">
                 <h3 class="title">${schedule.scheduleForm.movie_title}</h3>
                 <div class="tags">
-                    <a href="#0">${schedule.scheduleForm.cinema_name} / ${schedule.scheduleForm.theater_name} </a>
-                    <a href="#0"> ${schedule.screening_format}</a>
+                    <span>${schedule.scheduleForm.cinema_name} / ${schedule.scheduleForm.theater_name} </span>
+                    <span>${schedule.screening_format}</span>
                 </div>
             </div>
         </div>
@@ -47,7 +47,7 @@
     <div class="container">
         <div class="page-title-area">
             <div class="item col-lg-2">
-                <a href="movie-ticket-plan.html" class="custom-button back-button">
+                <a href="#" class="custom-button back-button" onclick="history.back();">
                     <i class="flaticon-double-right-arrows-angles"></i>뒤로가기
                 </a>
             </div>
@@ -234,15 +234,18 @@
                     <h3 class="title" id="totalPrice">0 원</h3>
                 </div>
                 <div class="book-item">
-                    <a href="#" class="custom-button" onclick="javascript:document.reservationForm.submit();">다음</a>
+                    <a href="#" class="custom-button" onclick="checkout();">다음</a>
                 </div>
             </div>
         </div>
-        <form name="reservationForm" action="/csmovie/reservations/payment/" method="GET">
+        <form name="reservationForm" action="/csmovie/reservations/checkout/" method="GET">
             <input type="hidden" name="seat" id="seat" value=" " >
             <input type="hidden" name="price" id="price" value=" ">
             <input type="hidden" name="baseprice" id="baseprice" value="${schedule.price}">
             <input type="hidden" name="format" id="format" value="${schedule.screening_format}">
+            <input type="hidden" name="scheduleId" id="scheduleId" value="${schedule.id}">
+            <input type="hidden" name="adult" id="adultnum" value=" ">
+            <input type="hidden" name="youth" id="youthnum" value=" ">
         </form>
     </div>
 </div>
@@ -415,12 +418,16 @@
             var total = (adult*1) * (base*1-(adiscount*1)) + (youth*1) * (base*1-(ydiscount*1))
             document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
             document.getElementById("price").value = total*1;
+            document.getElementById("adultnum").value = adult;
+            document.getElementById("youthnum").value = youth;
         }
         else {
             var base = document.getElementById("baseprice").value;
             var total = (adult*1) * (base*1) + (youth*1) * (base*1-(ydiscount*1))
             document.getElementById("totalPrice").innerText = numberWithCommas(total*1)+" 원";
             document.getElementById("price").value = total*1;
+            document.getElementById("adultnum").value = adult;
+            document.getElementById("youthnum").value = youth;
         }
     }
 
@@ -435,6 +442,8 @@
             document.getElementById("price").value = 0;
             document.getElementById("totalSeat").innerText = "좌석을 선택해주세요.";
             document.getElementById("seat").value = " ";
+            document.getElementById("adultnum").value = 0;
+            document.getElementById("youthnum").value = 0;
             save = [];
             book = 0;
             count = 0;
@@ -452,6 +461,16 @@
 
         }
     }
+
+    function checkout() {
+        if(count < (adult * 1 + youth * 1)) {
+            alert("좌석을 인원수에 맞게 선택해주세요.");
+            return 0;
+        } else {
+            javascript:document.reservationForm.submit()
+        }
+    }
+
 </script>
 
 </html>
