@@ -43,10 +43,6 @@ public class Cinema {
     @NotBlank(message = "구글맵 주소는 필수 입력입니다.")
     private String mapAddress;
 
-    @NotBlank(message = "매출은 숫자만 입력가능합니다.")
-    @Pattern(regexp = "^[0-9]*$", message = "매출은 숫자만 입력가능합니다.")
-    private String sales;
-
     private CinemaCity cinemaCity;
     private City city;
 }

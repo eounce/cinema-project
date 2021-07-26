@@ -13,6 +13,12 @@
 
     <c:import url="../main/header.jsp" />
 
+    <style>
+        .goHome:hover{
+            color: #84c7a9!important;
+        }
+    </style>
+
     <link rel="shortcut icon" href="assets/images/favicon.png" type="image/x-icon">
     <title>Boleto  - Online Ticket Booking Website HTML Template</title>
 
@@ -37,8 +43,8 @@
             <div class="padding-top padding-bottom">
                 <div class="account-area">
                     <div class="section-header-3">
-                        <span class="cate">hello</span>
-                        <h2 class="title">welcome back</h2>
+                        <span class="cate"><a class="goHome" href="/csmovie" style="color: #888cbb">induk cinema</a></span>
+                        <h2 class="title">로그인</h2>
                     </div>
                     <% HistoryUrl historyUrl = (HistoryUrl)request.getAttribute("historyUrl");%>
                     <form class="account-form" action="/csmovie/members/login?<%=historyUrl.getParam()%>" method="post">

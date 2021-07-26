@@ -111,12 +111,20 @@
     $('#seenPage').on('click', 'a', function () {
         getRList(${seenMovies.memberId}, ${seenMovies.sort}, $(this).attr('id') );
     });
-    function cancelReservation(id){
-        if(confirm('예매 취소하시겠습니까?') == 0)return;
+    function cancelReservation(id,state){
+        if(state == 1 && confirm('예매 취소하시겠습니까?') == 0) return;
+        else if(state == 0 && confirm('취소신청을 철회하시겠습니까?') == 0) return;
+
 
         if(cancelReservationAjax(id) != 0){
+            if(state == 1) alert('예약 취소 신청되었습니다.');
+            else if(state ==0) alert('철회 되었습니다.');
+
             location.reload();
-            //getRList(${reserveMovies.memberId}, ${reserveMovies.sort}, ${reserveMovies.currentPageNo} );
+        }
+        else {
+            alert('오류가 발생하였습니다. 다시 취소해주세요.');
+            return ;
         }
     };
 
@@ -203,7 +211,7 @@
                                     "<a>액션</a>" +
                                 "</div>" +
                                 "<div class=\"release\" style=\"margin-bottom: 5px;\">" +
-                                    "<span>상영일시 : </span> <a >" +rList[i].schedule.screening_date+ " " +rList[i].schedule.start_time+ " ~ " +rList[i].schedule.end_time+ "</a>" +
+                                    "<span>상영일시 : </span> <a >" +rList[i].schedule.screening_date+ " " +(rList[i].schedule.start_time).substr(0,5)+ " ~ " +(rList[i].schedule.end_time).substr(0,5)+ "</a>" +
                                 "</div>" +
                                 "<div class=\"release\" style=\"margin-bottom: 5px;\">" +
                                     "<span>극장 : </span> <a >" +rList[i].cinema.name+ ", " +rList[i].theater.name+ "</a>" +
@@ -231,8 +239,8 @@
                                 "<div class=\"book-area\">" +
                                     "<div class=\"book-ticket\" style=\"text-align: center\">";
                                         if(rlp.sort == 1){
-                                            if(rList[i].status == 0) rHtml += "<a type=\"button\" class=\"custom-button\" style=\"width: 100%;background: #5e6890\">취소 처리중</a>";
-                                            else rHtml += "<a type=\"button\" class=\"custom-button cancelReservation\" style=\"width: 100%\" onclick=\"cancelReservation(" + rList[i].id +")\">예매 취소</a>";
+                                            if(rList[i].status == 0) rHtml += "<a type=\"button\" class=\"custom-button\" style=\"width: 100%;background: #5e6890\" onclick=\"cancelReservation(" +rList[i].id+ ", 0"+  ")\">취소 처리중</a>";
+                                            else rHtml += "<a type=\"button\" class=\"custom-button cancelReservation\" style=\"width: 100%\" onclick=\"cancelReservation(" + rList[i].id + ", 1"+ ")\">예매 취소</a>";
                                         }
                                         else{
                                             rHtml += "<a class=\"custom-button\" style=\"width: 100%\">시청 완료</a>";
@@ -262,11 +270,8 @@
                 alert("오류 발생");
             },
             success: function (result) {
-                if(result >0) alert('예약 취소 신청되었습니다.');
-                else {
-                    alert('오류가 발생하였습니다. 다시 취소해주세요.');
-                    return 0;
-                }
+                if(result >0) return 1;
+                else return 0;
             }
         });
     }
