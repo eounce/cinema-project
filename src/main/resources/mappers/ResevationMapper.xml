@@ -251,4 +251,29 @@
         group by c.name
     </select>
 
+    <select id="findByAllSales" resultType="com.induk.cinema.dto.MainSales">
+        select sum(p.price) price, count(*) reservation_count, sum(r.adult+r.youth) people_count, DATE_FORMAT(r.date, '%Y-%m') date
+        from reservation r
+        inner join payment p on r.payment_id = p.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        <![CDATA[
+        where r.status = 1
+        ]]>
+        group by date
+    </select>
+
+    <select id="findByYearSales" resultType="com.induk.cinema.dto.MainSales" parameterType="String">
+        select sum(p.price) price, DATE_FORMAT(r.date, '%Y-%m') date
+        from reservation r
+        inner join payment p on r.payment_id = p.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        <![CDATA[
+        where r.status = 1 and DATE_FORMAT(r.date, '%Y') = #{year}
+        ]]>
+        group by date
+    </select>
 </mapper>
