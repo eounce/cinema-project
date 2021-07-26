@@ -7,7 +7,6 @@ import com.induk.cinema.dto.*;
 import com.induk.cinema.repository.CityRepository;
 import com.induk.cinema.repository.ReservationRepository;
 import com.induk.cinema.repository.ScheduleRepository;
-import com.induk.cinema.repository.SeatRepository;
 import com.induk.cinema.util.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,7 +21,6 @@ import java.util.Map;
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
-    private final SeatRepository seatRepository;
 
     public int countAll() { return reservationRepository.countAll(); }
 
@@ -61,7 +59,7 @@ public class ReservationService {
     public ReservationListPage reservationListBySort(ReservationListPage rlp)  {
         HashMap<String, Object> map = new HashMap<>();
         map.put("memberId", rlp.getMemberId());
-        map.put("basehDate", "2021-07-15 13:00:00");
+        map.put("basehDate", "2021-07-13 00:00:00");
         map.put("sort", rlp.getSort());
 
 
@@ -87,7 +85,6 @@ public class ReservationService {
 
     public int cancelReservation(Long id){
         int result = reservationRepository.cancelReservation(id);
-        seatRepository.deleteByReservationId(id);
         return result;
     }
 

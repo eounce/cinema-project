@@ -121,7 +121,7 @@
 
 
 
-    <select id="findReservationByStatus" parameterType="java.util.HashMap" resultType="com.induk.cinema.domain.Reservation" resultMap="reservationList">
+    <select id="findReservationByStatus" parameterType="java.util.HashMap" resultMap="reservationList">
         SELECT reservation.*, movie.id as movie_id, movie.title as movie_title, movie.poster as movie_poster,
                movie.title as movie_title, movie.show_times as movie_show_times, genre.name as genre_name,
                group_concat(seat.number, " " order by seat.number) as seat_numbers, genre.id as genre_id,
@@ -171,7 +171,7 @@
 
     <update id="cancelReservation" parameterType="Long">
         update reservation
-            set status=0
+            set status= if(status = 0, 1, 0)
             where id=#{id}
     </update>
 
