@@ -14,5 +14,6 @@ public interface EventCodeRepository {
     void delete(Long id);
 
     List<EventCode> findEventCodeByEventId(Long id);
+    List<EventCode> findByMemberId(Long memberId);
     void updateMemberIdOfEventCode(Long eventCodeId, Long memberId);
 }

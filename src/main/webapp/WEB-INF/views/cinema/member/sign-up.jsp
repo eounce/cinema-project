@@ -107,6 +107,9 @@
         background-color: #4068ba;
         border-color: #4c588f78;
     }
+     .goHome:hover{
+         color: #84c7a9!important;
+     }
 </style>
 
 </head>
@@ -129,8 +132,8 @@
             <div class="padding-top padding-bottom">
                 <div class="account-area">
                     <div class="section-header-3">
-                        <span class="cate">welcome</span>
-                        <h2 class="title">to Boleto </h2>
+                        <span class="cate"><a class="goHome" href="/csmovie" style="color: #888cbb">induk cinema</a></span>
+                        <h2 class="title">회원 가입</h2>
                     </div>
                     <form id="form1" class="account-form" method="post" action="/csmovie/members/signup"  enctype="multipart/form-data">
                         <div class="form-group">

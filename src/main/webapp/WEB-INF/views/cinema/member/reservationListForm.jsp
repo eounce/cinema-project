@@ -203,7 +203,7 @@
                                     "<a>액션</a>" +
                                 "</div>" +
                                 "<div class=\"release\" style=\"margin-bottom: 5px;\">" +
-                                    "<span>상영일시 : </span> <a >" +rList[i].schedule.screening_date+ " " +rList[i].schedule.start_time+ " ~ " +rList[i].schedule.end_time+ "</a>" +
+                                    "<span>상영일시 : </span> <a >" +rList[i].schedule.screening_date+ " " +(rList[i].schedule.start_time).substr(0,5)+ " ~ " +(rList[i].schedule.end_time).substr(0,5)+ "</a>" +
                                 "</div>" +
                                 "<div class=\"release\" style=\"margin-bottom: 5px;\">" +
                                     "<span>극장 : </span> <a >" +rList[i].cinema.name+ ", " +rList[i].theater.name+ "</a>" +

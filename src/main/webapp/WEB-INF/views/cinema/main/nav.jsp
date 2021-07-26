@@ -7,6 +7,81 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" language="java" %>
+<style>
+    .pop-layer .pop-container {
+        padding: 20px 25px;
+    }
+
+    .pop-layer p.ctxt {
+        color: #666;
+        line-height: 25px;
+    }
+
+    .pop-layer .btn-r {
+        width: 100%;
+        margin: 10px 0 20px;
+        padding-top: 10px;
+        border-top: 1px solid #DDD;
+        text-align: right;
+    }
+
+    .pop-layer {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-width: 700px;
+        width: 80%;
+        height: auto;
+        background-color: #032055;
+        border: 5px solid #3571B5;
+        border-radius: 20px;
+        z-index: 10;
+    }
+
+    .dim-layer {
+        display: none;
+        position: fixed;
+        _position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
+
+    .dim-layer .dimBg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: .5;
+        filter: alpha(opacity=50);
+    }
+
+    .dim-layer .pop-layer {
+        display: block;
+    }
+
+    a.btn-layerClose {
+        display: inline-block;
+        height: 25px;
+        padding: 0 14px 0;
+        border: 1px solid #304a8a;
+        background-color: #3f5a9d;
+        font-size: 13px;
+        color: #fff;
+        line-height: 25px;
+    }
+
+    a.btn-layerClose:hover {
+        border: 1px solid #091940;
+        background-color: #1f326a;
+        color: #fff;
+    }
+</style>
 
 <!-- ==========Preloader========== -->
 <div class="preloader">
@@ -70,6 +145,9 @@
                             <li>
                                 <a href="/csmovie/members/reservationList">예매목록</a>
                             </li>
+                            <li>
+                                <a href="#layer2" class="btn-example" id="couponListBtn">내 쿠폰함</a>
+                            </li>
                         </ul>
                     </li>
                 </c:if>
@@ -95,4 +173,37 @@
         </div>
     </div>
 </header>
+
+
+
 <!-- ==========Header-Section========== -->
+<div class="dim-layer">
+    <div class="dimBg"></div>
+    <div id="layer2" class="pop-layer">
+        <div class="pop-container">
+            <div class="pop-conts">
+                <!--content //-->
+                <span>내 쿠폰함</span>
+                <hr>
+
+                <table style="width: 100%;text-align: center">
+                    <thead>
+                        <tr>
+                            <td width="35%">이벤트명</td>
+                            <td width="25%">쿠폰번호</td>
+                            <td width="25%">사용기간</td>
+                            <td width="15%">사용여부</td>
+                        </tr>
+                    </thead>
+                    <tbody id="couponList">
+                    </tbody>
+                </table>
+
+                <div class="btn-r">
+                    <a href="#" class="btn-layerClose">확인</a>
+                </div>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
