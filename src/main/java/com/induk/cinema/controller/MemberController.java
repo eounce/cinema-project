@@ -120,12 +120,12 @@ public class MemberController {
         Member sessionMember = (Member)session.getAttribute("member");
         Member m = memberService.findMember(sessionMember.getId());
 
+        member.setEmail(m.getEmail());
         member.setImage(m.getImage());
         member.setId(m.getId());
         member.setAdmin(m.getAdmin());
         //형식 검사
-        if(bindingResult.hasFieldErrors("email") || bindingResult.hasFieldErrors("address") ||
-                bindingResult.hasFieldErrors("name")) {
+        if(bindingResult.hasFieldErrors("address") || bindingResult.hasFieldErrors("name")) {
             return "cinema/member/updateForm";
         }
         if(member.getPassword() == null || member.getPassword().equals("")) member.setPassword(m.getPassword());
