@@ -183,6 +183,12 @@ public class MemberController {
         return eventCodeService.eventCodeListByMemberId(memberId);
     }
 
+    @PostMapping("/checkEmailAjax")
+    @ResponseBody
+    public int checkDuplicateEmail(@RequestParam("email") String email){
+        return memberService.checkDuplicateEmail(email);
+    }
+
 
     @ResponseBody
     @GetMapping("/images/{filename}")
