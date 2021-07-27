@@ -250,13 +250,12 @@
 <c:import url="../main/nav.jsp"/>
 
 <!-- ==========Banner-Section========== -->
-<section class="details-banner hero-area bg_img" data-background="/cinema/assets/images/banner/banner03.jpg">
+<section class="banner-section" style="padding-bottom: 50px;">
+    <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner02.jpg"></div>
     <div class="container">
-        <div class="details-banner-wrapper">
-            <div class="details-banner-content">
-                <h3 class="title">상영 시간표</h3>
-                <h5 id="homeBanner" style="padding-top: 20px; "><a href="/csmovie">홈</a>&nbsp;&nbsp;>&nbsp;&nbsp;시간표</h5>
-            </div>
+        <div class="banner-content">
+            <h1 class="title bold"><span class="color-theme">상영 시간표</span></h1>
+            <h5 id="homeBanner" style="padding-top: 20px; "><a href="/csmovie">홈</a>&nbsp;&nbsp;>&nbsp;&nbsp;시간표</h5>
         </div>
     </div>
 </section>
