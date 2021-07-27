@@ -54,6 +54,10 @@ public class MemberService {
         return memberRepository.update(member);
     }
 
+    public int checkDuplicateEmail(String email){
+        return memberRepository.countByEmail(email);
+    }
+
     public void deleteMember(Long id) {
         memberRepository.delete(id);
     }
