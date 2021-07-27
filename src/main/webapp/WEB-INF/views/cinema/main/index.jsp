@@ -204,7 +204,7 @@
                     <div class="owl-carousel owl-theme tab-slider">
                         <c:set var="now" value="<%=LocalDate.now()%>"/>
                         <c:forEach var="movie" items="${movies}" varStatus="status">
-                            <c:if test="${movie.releaseDate <= now}">
+                            <c:if test="${movie.releaseDate <= '2021-07-13'}">
                                 <div class="item">
                                     <div class="movie-grid">
                                         <div class="movie-thumb c-thumb">
@@ -234,7 +234,7 @@
                     <div class="owl-carousel owl-theme tab-slider">
                         <c:set var="now" value="<%=LocalDate.now()%>"/>
                         <c:forEach var="movie" items="${movies}" varStatus="status">
-                            <c:if test="${movie.releaseDate > now}">
+                            <c:if test="${movie.releaseDate > '2021-07-13'}">
                                 <div class="item">
                                     <div class="movie-grid">
                                         <div class="movie-thumb c-thumb">
