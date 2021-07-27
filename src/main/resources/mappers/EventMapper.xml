@@ -37,13 +37,13 @@
         where event.title like concat('%', #{searchWord}, '%')
         <choose>
             <when test="status == 1">
-                <![CDATA[and event.start_date <= now() and now() <= event.end_date]]>
+                <![CDATA[and event.start_date <= '2021-07-13' and '2021-07-13' <= event.end_date]]>
             </when>
             <when test="status == 2">
-                <![CDATA[and event.end_date < now()]]>
+                <![CDATA[and event.end_date < '2021-07-13']]>
             </when>
             <when test="status == 3">
-                <![CDATA[and event.start_date > now()]]>
+                <![CDATA[and event.start_date > '2021-07-13']]>
             </when>
         </choose>
         <choose>

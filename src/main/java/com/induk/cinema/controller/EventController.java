@@ -91,11 +91,11 @@ public class EventController {
         }
 
         List<EventCode> eventCodes = eventService.findEventCodeByEventId(id);
-        if (eventCodes != null){
-            model.addAttribute("event_codes", eventCodes);
+        if (eventCodes.isEmpty()){
+            model.addAttribute("event_codes", "none");
         }
         else{
-            model.addAttribute("event_codes", "none");
+            model.addAttribute("event_codes", eventCodes);
         }
 
         return "cinema/event/detailForm";
