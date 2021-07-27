@@ -181,7 +181,7 @@
                         <div class="form-group w-100">
                             <spring:bind path="member.email">
                                 <label for="${status.expression}"> 이메일<span style="color: #e03232"> *</span></label>
-                                <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" class="custom-focus" style="border:1px solid #2d4186;" required>
+                                <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" class="custom-focus" style="border:1px solid #2d4186;" required disabled>
                                 <span style="color: red">${status.errorMessage }</span>
                             </spring:bind>
                         </div>
