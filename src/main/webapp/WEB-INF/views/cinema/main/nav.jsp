@@ -111,12 +111,7 @@
             </div>
             <ul class="menu">
                 <li>
-                    <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/movie"))?"active":"" %>">영화</a>
-                    <ul class="submenu">
-                        <li>
-                            <a href="/csmovie/movies">전체영화</a>
-                        </li>
-                    </ul>
+                    <a href="/csmovie/movies" class="<%= (request.getRequestURL().toString().contains("/cinema/movie"))?"active":"" %>">영화</a>
                 </li>
                 <li>
                     <a href="/csmovie/cinemas" class="<%= (request.getRequestURL().toString().contains("/cinema/cinema"))?"active":"" %>">극장</a>

@@ -44,10 +44,10 @@
 
                 <div class="widget-1 widget-check">
                     <div class="widget-header">
-                        <h5 class="m-title">Filter By</h5> <a href="#0" class="clear-check" id="clear">Clear All</a>
+                        <h5 class="m-title">필터</h5> <a href="#0" class="clear-check" id="clear">초기화</a>
                     </div>
                     <div class="widget-1-body">
-                        <h6 class="subtitle">experience</h6>
+                        <h6 class="subtitle">포멧</h6>
                         <div class="check-area">
                             <c:forEach var="format" items="${formats}" varStatus="status">
                                 <div class="form-group">
@@ -60,7 +60,7 @@
                 </div>
                 <div class="widget-1 widget-check">
                     <div class="widget-1-body">
-                        <h6 class="subtitle">genre</h6>
+                        <h6 class="subtitle">장르</h6>
                         <div class="check-area">
                             <c:forEach var="genre" items="${genres}" varStatus="status">
                                 <div class="form-group">
@@ -78,7 +78,7 @@
                         <div class="filter-main">
                             <div class="left">
                                 <div class="item">
-                                    <span class="show">Sort By :</span>
+                                    <span class="show">정렬 :</span>
                                     <select class="select-bar" id="sort" name="sort" onchange="createTable(1);">
                                         <option value="1" selected>현재 상영작</option>
                                         <option value="2">개봉 예정작</option>

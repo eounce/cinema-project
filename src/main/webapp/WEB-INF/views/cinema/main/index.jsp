@@ -155,8 +155,8 @@
         <div class="col-lg-12">
             <div class="article-section padding-bottom">
                 <div class="section-header-1">
-                    <h2 class="title">movie top4</h2>
-                    <a class="view-all" href="/csmovie/movies">View All</a>
+                    <h2 class="title">무비차트</h2>
+                    <a class="view-all" href="/csmovie/movies">전체 보기</a>
                 </div>
                 <div class="row mb-30-none justify-content-center">
                     <c:forEach var="movie" items="${top4}" varStatus="status">
@@ -187,15 +187,14 @@
         <div class="tab">
             <div class="section-header-2">
                 <div class="left">
-                    <h2 class="title">movies</h2>
-                    <p>Be sure not to miss these Movies today.</p>
+                    <h2 class="title">영화</h2>
                 </div>
                 <ul class="tab-menu">
                     <li class="active">
-                        now showing
+                        현재 상영작
                     </li>
                     <li>
-                        coming soon
+                        개봉 예정작
                     </li>
                 </ul>
             </div>
@@ -272,15 +271,14 @@
         <div class="tab">
             <div class="section-header-2">
                 <div class="left">
-                    <h2 class="title">reviews</h2>
-                    <p>How about watching movie reviews?</p>
+                    <h2 class="title">리뷰</h2>
                 </div>
                 <ul class="tab-menu">
                     <li class="active">
-                        popularity
+                        인기순
                     </li>
                     <li>
-                        recently
+                        최신순
                     </li>
                 </ul>
             </div>
