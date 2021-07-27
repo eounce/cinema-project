@@ -89,7 +89,7 @@
                             <span class="info"><span id="eventCodeSpan"></span></span>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="Verify" class="custom-button" onclick="checkCode()">
+                            <input type="submit" value="확인하기" class="custom-button" onclick="checkCode()">
                         </div>
                     </form>
                 </div>

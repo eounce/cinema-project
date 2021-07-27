@@ -226,11 +226,11 @@
         <div class="proceed-book bg_img" data-background="/cinema/assets/images/movie/movie-bg-proceed.jpg">
             <div class="proceed-to-book">
                 <div class="book-item">
-                    <span>You have Choosed Seat</span>
+                    <span>선택된 좌석</span>
                     <h3 class="title" id="totalSeat">좌석을 선택해주세요.</h3>
                 </div>
                 <div class="book-item">
-                    <span>total price</span>
+                    <span>총 가격</span>
                     <h3 class="title" id="totalPrice">0 원</h3>
                 </div>
                 <div class="book-item">
@@ -463,7 +463,7 @@
     }
 
     function checkout() {
-        if(count < (adult * 1 + youth * 1)) {
+        if(count < (adult * 1 + youth * 1) || count == 0) {
             alert("좌석을 인원수에 맞게 선택해주세요.");
             return 0;
         } else {
