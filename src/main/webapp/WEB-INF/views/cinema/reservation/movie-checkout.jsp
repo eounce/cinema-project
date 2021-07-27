@@ -229,7 +229,7 @@
         var memberId = document.getElementById("member_id").value;
 
         // var date = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0"+date.getDate()).slice(-2);
-        var date = "2021-07-13";
+        var date = "2021-08-13";
 
         $.ajax({
             type: "post",
@@ -239,31 +239,40 @@
                 memberId: memberId,
                 date : date
             },
-            error: function(){
-                count = 0;
-                document.getElementById("eventCodeSpan").innerText = "유효하지 않은 코드입니다.";
+            error:function(request, error) {
+                // error 발생 이유를 알려준다.
+                alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
 
-                document.getElementById("useCode").value = "";
-                document.getElementById("eventTitle").innerText = "";
-                var discount = 0;
-                document.getElementById("event").innerText = numberWithCommas(discount) + " 원";
-                document.getElementById("discount").innerText = numberWithCommas(discount) + " 원";
-                var total = $('#ticketPrice').attr('value');
-                document.getElementById("form-price").value = total;
-                document.getElementById("total").innerText = numberWithCommas(total) + " 원";
             },
             success: function (eventCode) {
-                if(eventCode.event.title != null && count == 0) {
-                    count = 1;
-                    document.getElementById("eventCodeSpan").innerText = eventCode.event.title;
-                    document.getElementById("useCode").value = eventCode.code;
-                    document.getElementById("eventTitle").innerText = eventCode.event.title;
-                    var discount = (document.getElementById("form-price").value * 1) / (eventCode.discountRate * 1);
-                    document.getElementById("event").innerText = numberWithCommas(discount) + " 원";
-                    document.getElementById("discount").innerText = numberWithCommas(discount) + " 원";
-                    var total = document.getElementById("form-price").value * 1 - discount * 1;
-                    document.getElementById("form-price").value = total;
-                    document.getElementById("total").innerText = numberWithCommas(total) + " 원";
+
+                if(eventCode != "") {
+                    if(count == 0) {
+                        count = 1;
+                        document.getElementById("eventCodeSpan").innerText = eventCode.event.title;
+                        document.getElementById("useCode").value = eventCode.code;
+                        document.getElementById("eventTitle").innerText = eventCode.event.title;
+                        var discount = (document.getElementById("form-price").value * 1) * (eventCode.discountRate * 1) / 100;
+                        document.getElementById("event").innerText = numberWithCommas(discount) + " 원";
+                        document.getElementById("discount").innerText = numberWithCommas(discount) + " 원";
+                        var total = document.getElementById("form-price").value * 1 - discount * 1;
+                        document.getElementById("form-price").value = total;
+                        document.getElementById("total").innerText = numberWithCommas(total) + " 원";
+                    }
+                } else {
+                    if(count == 1) {
+                        count = 0;
+                        document.getElementById("eventCodeSpan").innerText = "유효하지 않은 코드입니다.";
+
+                        document.getElementById("useCode").value = "";
+                        document.getElementById("eventTitle").innerText = "";
+                        var discount = 0;
+                        document.getElementById("event").innerText = numberWithCommas(discount) + " 원";
+                        document.getElementById("discount").innerText = numberWithCommas(discount) + " 원";
+                        var total = $('#ticketPrice').attr('value');
+                        document.getElementById("form-price").value = total;
+                        document.getElementById("total").innerText = numberWithCommas(total) + " 원";
+                    }
                 }
             }
         });
@@ -286,7 +295,7 @@
        } else if(cardCom == " " || !isNaN(cardCom)) {
            alert("카드사를 확인해주세요.");
            return 0;
-       } else if(cardDate == " " || !isNaN(cardCom)) {
+       } else if(cardDate == " " || !isNaN(cardDate)) {
            alert("카드유효기간을 확인해주세요.");
            return 0;
        } else if(CVC == " " || isNaN(CVC)) {
