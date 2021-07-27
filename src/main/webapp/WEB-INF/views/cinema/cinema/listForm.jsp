@@ -31,7 +31,8 @@
     <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner02.jpg"></div>
     <div class="container">
         <div class="banner-content">
-            <h1 class="title bold">당신 주변의 <span class="color-theme">영화관</span>을 찾아보세요!</h1>
+            <h1 class="title bold"><span class="color-theme">영화관</span></h1>
+            <h5 id="homeBanner" style="padding-top: 20px; "><a href="/csmovie">홈</a>&nbsp;&nbsp;>&nbsp;&nbsp;영화관</h5>
         </div>
     </div>
 </section>

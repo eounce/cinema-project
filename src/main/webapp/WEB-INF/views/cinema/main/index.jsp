@@ -54,7 +54,7 @@
             <div class="row align-items-center mb--20">
                 <div class="col-lg-6 mb-20">
                     <div class="search-ticket-header">
-                        <h6 class="category">IndukCinema에 오신걸 환영합니다. </h6>
+                        <h6 class="category">Induk Cinema에 오신걸 환영합니다. </h6>
                         <h3 class="title">보고싶은 영화를 찾아보세요!</h3>
                     </div>
                 </div>

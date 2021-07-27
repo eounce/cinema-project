@@ -3,6 +3,7 @@ package com.induk.cinema.controller;
 import com.induk.cinema.domain.*;
 import com.induk.cinema.service.CinemaService;
 import com.induk.cinema.service.CityService;
+import com.induk.cinema.service.EventService;
 import com.induk.cinema.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -22,6 +23,7 @@ public class CinemaController {
     private final CityService cityService;
     private final CinemaService cinemaService;
     private final ScheduleService scheduleService;
+    private final EventService eventService;
 
     @GetMapping
     public String home(Model model) {
@@ -73,6 +75,9 @@ public class CinemaController {
 
         List<Schedule> schedulestest = scheduleService.findScheduleForAjax("", date, id);
         model.addAttribute("schedulestests", schedulestest);
+
+        List<Event> events = eventService.reportingDateEventList();
+        model.addAttribute("events", events);
 
         return "cinema/cinema/detailForm";
     }
