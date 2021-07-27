@@ -81,7 +81,7 @@
                         </div>
                     </form>
                     <div class="option">
-                        Don't have an account? <a href="/csmovie/members/signup">sign up now</a>
+                        계정이 없으시다면? <a href="/csmovie/members/signup">회원 가입</a>
                     </div>
                 </div>
             </div>

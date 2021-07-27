@@ -62,7 +62,7 @@
                             <spring:bind path="member.email">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Email <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" name="${status.expression}" id="${status.expression}" value="${status.value}" class="form-control" placeholder="이메일을 입력해주세요">
+                                    <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" class="form-control" placeholder="이메일을 입력해주세요">
                                         ${status.errorMessage }
                                 </td>
                             </spring:bind>

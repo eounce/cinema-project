@@ -9,6 +9,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -53,7 +54,9 @@ public class AdminMemberController {
     public String addMember(@Valid Member member,
                            BindingResult bindingResult) throws IOException {
 
-        if(bindingResult.hasErrors()) {
+        if(bindingResult.hasErrors() || memberService.checkDuplicateEmail(member.getEmail())>0) {
+            if(memberService.checkDuplicateEmail(member.getEmail())>0)
+                bindingResult.addError(new FieldError("member", "email", "중복되는 이메일입니다."));
             return "admin/member/addForm";
         }
 
@@ -79,7 +82,9 @@ public class AdminMemberController {
         member.setImage(beforMember.getImage());
 
         //형식 검사
-        if(bindingResult.hasErrors()) {
+        if(bindingResult.hasErrors() || (memberService.checkDuplicateEmail(member.getEmail())>0 && !beforMember.getEmail().equals(member.getEmail()))) {
+            if(memberService.checkDuplicateEmail(member.getEmail())>0 && !beforMember.getEmail().equals(member.getEmail()))
+                bindingResult.addError(new FieldError("member", "email", "중복되는 이메일입니다."));
             return "admin/member/updateForm";
         }
 
