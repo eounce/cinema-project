@@ -168,8 +168,8 @@
             },
             success: function (coupons) {
                 var date = new Date();
-                var today = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0"+date.getDate()).slice(-2);
-                //today = '2021-08-20';
+                var today = '2021-07-13'
+                    //today = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0"+date.getDate()).slice(-2);
 
                 var coupon = "";
                 for(var i=0; i<coupons.length;i++){

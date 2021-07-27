@@ -111,7 +111,7 @@
             </div>
             <ul class="menu">
                 <li>
-                    <a href="#0">영화</a>
+                    <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/movie"))?"active":"" %>">영화</a>
                     <ul class="submenu">
                         <li>
                             <a href="/csmovie/movies">전체영화</a>
@@ -119,10 +119,11 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/csmovie/cinemas">극장</a>
+                    <a href="/csmovie/cinemas" class="<%= (request.getRequestURL().toString().contains("/cinema/cinema"))?"active":"" %>">극장</a>
                 </li>
                 <li>
-                    <a href="#0">예매</a>
+                    <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/schedule") ||
+                    request.getRequestURL().toString().contains("/cinema/reservation"))?"active":"" %>">예매</a>
                     <ul class="submenu">
                         <li>
                             <a href="/csmovie/schedules?title=&cityId=&cinemaId=&date=">시간표</a>
@@ -130,14 +131,14 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="/csmovie/events">이벤트</a>
+                    <a href="/csmovie/events" class="<%= (request.getRequestURL().toString().contains("/cinema/event"))?"active":"" %>">이벤트</a>
                 </li>
                 <li>
                     <a href="/csmovie/reviews" class="<%= (request.getRequestURL().toString().contains("/cinema/review"))?"active":"" %>">리뷰</a>
                 </li>
                 <c:if test="${not empty sessionScope.member}">
                     <li>
-                        <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/members"))?"active":"" %>">내정보</a>
+                        <a href="#0" class="<%= (request.getRequestURL().toString().contains("/cinema/member"))?"active":"" %>">내정보</a>
                         <ul class="submenu">
                             <li>
                                 <a href="/csmovie/members/edit">내정보수정</a>
@@ -152,7 +153,7 @@
                     </li>
                     <c:if test="${sessionScope.member.admin == 1}">
                         <li>
-                            <a href="/csmovie/admin">Admin</a>
+                            <a href="/csmovie/admin">관리자</a>
                         </li>
                     </c:if>
                 </c:if>

@@ -9,10 +9,7 @@ import com.induk.cinema.util.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -85,6 +82,7 @@ public class ReservationService {
                 if(rlf.getSeatNumbers() == null) rlf.setSeatNumbers("");
             }
         }
+        else rlp.setReservationListForms(new ArrayList<ReservationListForm>());
 
         return rlp;
     }

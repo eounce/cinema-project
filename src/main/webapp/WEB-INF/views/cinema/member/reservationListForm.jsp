@@ -188,6 +188,11 @@
                 else reservationId = $('#seenList');
                 reservationId.children().remove();
                 var rHtml = "";
+                //데이터가 하나도 없으면
+                if(rlp.paginationInfo.totalRecordCount == 0){
+                    if(rlp.sort == 1) rHtml += "<span>예매하신 영화가 없습니다.</span>";
+                    else rHtml += "<span>시청하신 영화가 없습니다.</span>";
+                }
 
                 for(var i=0; i<rList.length;i++){
                     rHtml+=
