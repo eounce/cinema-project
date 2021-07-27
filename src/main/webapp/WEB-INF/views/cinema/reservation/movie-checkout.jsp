@@ -205,6 +205,8 @@
 </body>
 
 <script>
+    var count = 0;
+
     function changeActive(me) {
         $('li.active').removeClass('active');
         me.addClass('active');
@@ -226,16 +228,19 @@
         }
         var memberId = document.getElementById("member_id").value;
 
-        console.log(code);
-        console.log(memberId);
+        // var date = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0"+date.getDate()).slice(-2);
+        var date = "2021-07-13";
+
         $.ajax({
             type: "post",
             url: "/csmovie/reservations/eventCodeAjax",
             data: {
                 code: code,
-                memberId: memberId
+                memberId: memberId,
+                date : date
             },
             error: function(){
+                count = 0;
                 document.getElementById("eventCodeSpan").innerText = "유효하지 않은 코드입니다.";
 
                 document.getElementById("useCode").value = "";
@@ -248,7 +253,8 @@
                 document.getElementById("total").innerText = numberWithCommas(total) + " 원";
             },
             success: function (eventCode) {
-                if(eventCode.event.title != null) {
+                if(eventCode.event.title != null && count == 0) {
+                    count = 1;
                     document.getElementById("eventCodeSpan").innerText = eventCode.event.title;
                     document.getElementById("useCode").value = eventCode.code;
                     document.getElementById("eventTitle").innerText = eventCode.event.title;
@@ -274,9 +280,18 @@
         var CVC = document.getElementById('form-CVC').value;
         var price = document.getElementById('form-price').value;
 
-       if(cardNum == " " || cardCom == " " || cardDate == " " || CVC == " " || price == " ") {
-            alert("카드 정보를 확인해주세요.");
-            return 0;
+       if(cardNum == " " || isNaN(cardNum)) {
+           alert("카드 번호를 확인해주세요.");
+           return 0;
+       } else if(cardCom == " " || !isNaN(cardCom)) {
+           alert("카드사를 확인해주세요.");
+           return 0;
+       } else if(cardDate == " " || !isNaN(cardCom)) {
+           alert("카드유효기간을 확인해주세요.");
+           return 0;
+       } else if(CVC == " " || isNaN(CVC)) {
+           alert("CVC를 확인해주세요.");
+           return 0;
        } else {
             javascript:document.reservationForm.submit();
        }

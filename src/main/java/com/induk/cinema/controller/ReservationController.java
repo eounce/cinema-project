@@ -60,37 +60,16 @@ public class ReservationController {
     @PostMapping("/eventCodeAjax")
     @ResponseBody
     public EventCode scheduleAjax(@RequestParam(value = "code") String code,
-                                        @RequestParam(value = "memberId") Long member_id){
+                                  @RequestParam(value = "memberId") Long member_id,
+                                  @RequestParam(value = "date") String date){
 
-        EventCode eventCode = reservationService.findByCodeForEventCode(code, member_id);
-
-        System.out.println(eventCode.getEvent().getTitle());
+        EventCode eventCode = reservationService.findByCodeForEventCode(code, member_id, date);
 
         return eventCode;
     }
 
     @PostMapping("/checkout")
     public String checkout(@ModelAttribute("checkoutData") CheckoutData checkoutData, Model model) {
-
-        System.out.println(checkoutData.getMember_id());
-        System.out.println(checkoutData.getSchedule_id());
-
-        System.out.println(checkoutData.getPayment());
-        System.out.println(checkoutData.getCardNum());
-        System.out.println(checkoutData.getCardCom());
-        System.out.println(checkoutData.getCardDate());
-        System.out.println(checkoutData.getCVC());
-        System.out.println(checkoutData.getPrice());
-
-        System.out.println(checkoutData.getAdult());
-        System.out.println(checkoutData.getYouth());
-
-        System.out.println(checkoutData.getSeat());
-
-
-        if(checkoutData.getUseCode() != " " || checkoutData.getUseCode() != "")
-            System.out.println(checkoutData.getUseCode());
-
 
         Payment payment = new Payment();
         payment.setMethod(checkoutData.getPayment());
@@ -131,7 +110,7 @@ public class ReservationController {
             eventCodeService.changeStatus(eventCode);
         }
 
-        return "cinema/reservation/end-reservation";
+        return  "redirect:/csmovie/members/reservationList";
     }
 
 

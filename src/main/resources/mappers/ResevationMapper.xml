@@ -97,7 +97,7 @@
     <select id="findByCodeForEventCode" resultMap="eventCodeResult">
         select eventCode.*, event.title as event_title
         from eventCode inner join event on eventCode.event_id=event.id
-        where eventCode.code = #{code} and eventCode.member_id = #{member_id} and eventCode.status = 0
+        where eventCode.code = #{code} and eventCode.member_id = #{member_id} and eventCode.status = 0 and eventCode.code_limit > #{date}
     </select>
 
 

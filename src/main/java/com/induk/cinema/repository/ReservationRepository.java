@@ -29,7 +29,7 @@ public interface ReservationRepository {
     void update(HashMap<String, Object> map);
     void delete(Long id);
 
-    EventCode findByCodeForEventCode(String code, Long member_id);
+    EventCode findByCodeForEventCode(String code, Long member_id, String date);
 
     Long savePayment(Payment payment);
 }

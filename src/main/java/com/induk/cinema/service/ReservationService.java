@@ -119,8 +119,8 @@ public class ReservationService {
         reservationRepository.delete(id);
     }
 
-    public EventCode findByCodeForEventCode(String code, Long member_id) {
-        return reservationRepository.findByCodeForEventCode(code, member_id);
+    public EventCode findByCodeForEventCode(String code, Long member_id, String date) {
+        return reservationRepository.findByCodeForEventCode(code, member_id, date);
     }
 
     public Long save(Reservation reservation) {
