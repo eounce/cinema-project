@@ -229,7 +229,7 @@
         var memberId = document.getElementById("member_id").value;
 
         // var date = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0"+date.getDate()).slice(-2);
-        var date = "2021-08-13";
+        var date = "2021-07-13";
 
         $.ajax({
             type: "post",
