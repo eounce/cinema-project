@@ -85,7 +85,7 @@
                     <h5 class="title">할인 코드 </h5>
                     <form class="checkout-contact-form">
                         <div class="form-group">
-                            <input type="text" placeholder="프로모션 코드를 입력해주세요." id="eventCode">
+                            <input type="text" placeholder="프로모션 코드를 입력해주세요." id="eventCode" onkeydown="if(event.keyCode==13)checkCode()">
                             <span class="info"><span id="eventCodeSpan"></span></span>
                         </div>
                         <div class="form-group">
@@ -245,7 +245,7 @@
 
             },
             success: function (eventCode) {
-
+                console.log(eventCode);
                 if(eventCode != "") {
                     if(count == 0) {
                         count = 1;
@@ -260,19 +260,17 @@
                         document.getElementById("total").innerText = numberWithCommas(total) + " 원";
                     }
                 } else {
-                    if(count == 1) {
-                        count = 0;
-                        document.getElementById("eventCodeSpan").innerText = "유효하지 않은 코드입니다.";
+                    count = 0;
+                    document.getElementById("eventCodeSpan").innerText = "유효하지 않은 코드입니다.";
 
-                        document.getElementById("useCode").value = "";
-                        document.getElementById("eventTitle").innerText = "";
-                        var discount = 0;
-                        document.getElementById("event").innerText = numberWithCommas(discount) + " 원";
-                        document.getElementById("discount").innerText = numberWithCommas(discount) + " 원";
-                        var total = $('#ticketPrice').attr('value');
-                        document.getElementById("form-price").value = total;
-                        document.getElementById("total").innerText = numberWithCommas(total) + " 원";
-                    }
+                    document.getElementById("useCode").value = "";
+                    document.getElementById("eventTitle").innerText = "";
+                    var discount = 0;
+                    document.getElementById("event").innerText = numberWithCommas(discount) + " 원";
+                    document.getElementById("discount").innerText = numberWithCommas(discount) + " 원";
+                    var total = $('#ticketPrice').attr('value');
+                    document.getElementById("form-price").value = total;
+                    document.getElementById("total").innerText = numberWithCommas(total) + " 원";
                 }
             }
         });
