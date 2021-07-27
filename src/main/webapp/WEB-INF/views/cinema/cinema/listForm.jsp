@@ -31,8 +31,7 @@
     <div class="banner-bg bg_img bg-fixed" data-background="/cinema/assets/images/banner/banner02.jpg"></div>
     <div class="container">
         <div class="banner-content">
-            <h1 class="title bold">Find <span class="color-theme">Cinema</span> near you</h1>
-            <p>Find Cinema in your town, find movie times and much more</p>
+            <h1 class="title bold">당신 주변의 <span class="color-theme">영화관</span>을 찾아보세요!</h1>
         </div>
     </div>
 </section>

@@ -107,6 +107,38 @@
         background-color: #4068ba;
         border-color: #4c588f78;
     }
+     .goHome:hover{
+         color: #84c7a9!important;
+     }
+     .submit-button{
+         background-image: -webkit-linear-gradient(
+                 169deg
+                 , #5560ff 17%, #aa52a1 63%, #ff4343 100%);
+         -webkit-transition: all ease 0.3s;
+         transition: all ease 0.3s;
+         border-radius: 30px;
+         width: auto;
+         padding: 0 50px;
+         height: 50px;
+         text-transform: uppercase;
+         margin: 0 auto;
+     }
+     .duplicate-check-btn{
+         background-color: #4068BA;
+         width: auto;
+         border-radius: 20px;
+         padding: 4px 10px;
+     }
+    .duplicate-check-btn:hover{
+        background-color: #2f5199;
+
+    }
+    .duplicate-checked-btn{
+        background-color: #277b5e;
+        width: auto;
+        border-radius: 20px;
+        padding: 4px 10px;
+    }
 </style>
 
 </head>
@@ -129,8 +161,8 @@
             <div class="padding-top padding-bottom">
                 <div class="account-area">
                     <div class="section-header-3">
-                        <span class="cate">welcome</span>
-                        <h2 class="title">to Boleto </h2>
+                        <span class="cate"><a class="goHome" href="/csmovie" style="color: #888cbb">induk cinema</a></span>
+                        <h2 class="title">회원 가입</h2>
                     </div>
                     <form id="form1" class="account-form" method="post" action="/csmovie/members/signup"  enctype="multipart/form-data">
                         <div class="form-group">
@@ -143,6 +175,7 @@
                         <div class="form-group">
                             <spring:bind path="member.email">
                                 <label for="${status.expression}">이메일<span> *</span></label>
+                                &ensp;<div style="float: right;"><a type="button" class="duplicate-check-btn" id="duplicateCheckBtn" onclick="checkDulplicateEmail();">중복체크</a></div>
                                 <input type="text" name="${status.expression}" value="${status.value}" id="${status.expression}" placeholder="이메일을 입력해주세요" required>
                                 <span style="color: red">${status.errorMessage }</span>
                             </spring:bind>
@@ -176,7 +209,7 @@
                             <label for="terms">개인정보 수집 및 이용 약관에 동의합니다. <span style="color: #31d7a9"> (필수)</span></label>
                         </div>
                         <div class="form-group text-center">
-                            <input type="submit" value="회원 가입" onclick="checkTerms();">
+                            <button type="button" class="custom-button" value="회원 가입" onclick="checkSeveral();" style="width: auto;padding: 0px 50px;">회원가입</button>
                         </div>
                     </form>
                     <div class="option">
@@ -188,6 +221,70 @@
     </section>
     <!-- ==========Sign-In-Section========== -->
     <c:import url="../main/login_footer.jsp" />
+    <script>
+        var checkDulplicateEmailV = 0;     //이메일 중복체크 여부
+
+        //폼 유효성검사 함수
+        function checkSeveral() {
+            var isCheckedTerms = document.getElementById('terms').checked;
+            if(checkDulplicateEmailV == 0){
+                alert('이메일 중복을 체크해주세요.');
+                return;
+            }
+            if(!isCheckedTerms){
+                alert('약관에 동의해야 합니다.');
+                return;
+            }
+            $('#form1').submit();
+        }
+
+        //Email 중복체크 함수
+        function checkDulplicateEmail(){
+            var email = $('#email').val();
+            if(email.length == 0){
+                alert('이메일을 입력해주세요');
+                return;
+            }
+            if(checkEmail(email) == false){
+                alert('이메일 형식을 확인해주세요.');
+                return;
+            }
+
+            var data = {
+                email:email,
+            }
+            $.ajax({
+                url: "/csmovie/members/checkEmailAjax",
+                data: data,
+                type: "POST",
+                error: function () {
+                    alert("오류 발생");
+                },
+                success: function (result) {
+                    if(result > 0){
+                        alert('중복되거나 사용 불가능한 이메일입니다.');
+                    }
+                    else {
+                        alert('사용가능한 이메일입니다.');
+                        checkDulplicateEmailV = 1;
+                        $('#duplicateCheckBtn').attr('onclick', '');
+                        $('#duplicateCheckBtn').attr('class', 'duplicate-checked-btn');
+                        $('#duplicateCheckBtn').text('체크완료');
+                    }
+                }
+            });
+        }
+        //이메일 형식체크
+        function checkEmail(myValue) {
+            var email = myValue;
+            var exptext = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+            if(exptext.test(email)==false){
+                //이메일 형식이 알파벳+숫자@알파벳+숫자.알파벳+숫자 형식이 아닐경우
+                return false;
+            };
+            return true;
+        };
+    </script>
     <script>
         $(document).ready(function(){
             var fileTarget = $('.filebox .upload-hidden');
@@ -257,15 +354,6 @@
                     return;
                 }
             }
-        }
-    </script>
-    <script>
-        function checkTerms() {
-            var isCheckedTerms = document.getElementById('terms').checked;
-            if(!isCheckedTerms){
-                alert('약관에 동의해야 합니다.');
-            }
-            return
         }
     </script>
 </body>

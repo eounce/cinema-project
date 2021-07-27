@@ -11,16 +11,10 @@
 <footer class="footer-section">
     <div class="newslater-section padding-bottom">
         <div class="container">
-            <div class="newslater-container bg_img" data-background="/cinema/assets/images/newslater/newslater-bg01.jpg">
-                <div class="newslater-wrapper">
-                    <h5 class="cate">subscribe to Boleto </h5>
-                    <h3 class="title">to get exclusive benifits</h3>
-                    <form class="newslater-form">
-                        <input type="text" placeholder="Your Email Address">
-                        <button type="submit">subscribe</button>
-                    </form>
-                    <p>We respect your privacy, so we never share your info</p>
-                </div>
+            <div style="position:relative" id="footerImageDiv">
+                <a href="#" class="footerImageHref" style="width:100%">
+                    <img class="footerImage" src="/cinema/assets/images/footer/widow.png" width="100%">
+                </a>
             </div>
         </div>
     </div>
@@ -42,7 +36,12 @@
         <div class="footer-bottom">
             <div class="footer-bottom-area">
                 <div class="left">
-                    <p>Copyright © 2020.All Rights Reserved By <a href="#0">Boleto </a></p>
+                    <p style="color: #ffffff8c">
+                        <i class="fas fa-users"></i> 17김재균 · 17유효범 · 17김준우 · 20김소영
+                        <br><i class="fas fa-map-marker-alt"></i> 서울특별시 노원구 초안산로 12 인덕대학교 컴소과
+                        &ensp; <i class="fas fa-phone"></i> 02-950-7000
+                        <br>Copyright © 2020.All Rights Reserved By <a href="#0">Boleto </a>
+                    </p>
                 </div>
                 <ul class="links">
                     <!--
@@ -108,4 +107,97 @@
             width: null
         });
     });
+</script>
+<script>
+    $('.btn-example').click(function(){
+        var $href = $(this).attr('href');
+        layer_popup($href);
+    });
+    function layer_popup(el){
+
+        var $el = $(el);    //레이어의 id를 $el 변수에 저장
+        var isDim = $el.prev().hasClass('dimBg'); //dimmed 레이어를 감지하기 위한 boolean 변수
+
+        isDim ? $('.dim-layer').fadeIn() : $el.fadeIn();
+
+        var $elWidth = ~~($el.outerWidth()),
+            $elHeight = ~~($el.outerHeight()),
+            docWidth = $(document).width(),
+            docHeight = $(document).height();
+
+        // 화면의 중앙에 레이어를 띄운다.
+        if ($elHeight < docHeight || $elWidth < docWidth) {
+            $el.css({
+                marginTop: -$elHeight /2,
+                marginLeft: -$elWidth/2
+            })
+        } else {
+            $el.css({top: 0, left: 0});
+        }
+
+        $el.find('a.btn-layerClose').click(function(){
+            isDim ? $('.dim-layer').fadeOut() : $el.fadeOut(); // 닫기 버튼을 클릭하면 레이어가 닫힌다.
+            return false;
+        });
+
+        $('.layer .dimBg').click(function(){
+            $('.dim-layer').fadeOut();
+            return false;
+        });
+    }
+</script>
+<script>
+    $('#couponListBtn').on('click', function(){
+        if(${empty sessionScope.member}) {
+            if (confirm('로그인 하러 가시겠습니까?'))
+                location.href = "/csmovie/members/login?historyUrl=" + window.location.pathname;
+            return;
+        }
+        couponListAjax(${sessionScope.member.id});
+    });
+    function couponListAjax(memberId) {
+        var data = {
+            memberId:memberId,
+        }
+        $.ajax({
+            url: "/csmovie/members/couponListAjax",
+            data: data,
+            type: "POST",
+            error: function () {
+                alert("오류 발생");
+            },
+            success: function (coupons) {
+                var date = new Date();
+                var today = '2021-07-13'
+                    //today = date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0"+date.getDate()).slice(-2);
+
+                var coupon = "";
+                for(var i=0; i<coupons.length;i++){
+                    coupon +=
+                        "<tr>" +
+                            "<td>" +coupons[i].event.title+ "</td>" +
+                            "<td>" +coupons[i].code+ "</td>" +
+                            "<td>" +coupons[i].issueDate+ " ~ <br>" +coupons[i].codeLimit+ "</td>";
+                    if(coupons[i].codeLimit < today) coupon += "<td style='color: #ec5a5a'>기한만료</td>";
+                    else if(coupons[i].issueDate > today) coupon += "<td style='color: #ec5a5a'>사용불가</td>";
+                    else if(coupons[i].status == 1) coupon += "<td>사용완료</td>";
+                    else coupon += "<td style='color: #7f87e8'>미사용</td>";
+                    coupon +=
+                            "</tr>";
+                    $('#couponList').children().remove();
+                    $('#couponList').html(coupon);
+                }
+            }
+        });
+    }
+</script>
+<script>
+    $(function(){
+        let footerImages = ["widow.png", "Moga.jpg", "kill.png"];
+        let footerImageHrefs = ["/csmovie/events/32", "/csmovie/movies/8", "/csmovie/movies/11"];
+        let rand = Math.floor(Math.random()*3);
+
+        $('#footerImageDiv').children('.footerImageHref').attr('href', footerImageHrefs[rand]);
+        $('#footerImageDiv').children('.footerImageHref').children('.footerImage').attr('src', '/cinema/assets/images/footer/' +footerImages[rand]);
+    })
 </script>

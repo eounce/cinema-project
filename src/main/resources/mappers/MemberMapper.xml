@@ -40,4 +40,8 @@
     <select id="login" resultType="Member" resultMap="memberResult">
         select * from member where email = #{email} and password = #{password}
     </select>
+
+    <select id="countByEmail" resultType="int">
+        select count(*) from member where email = #{email}
+    </select>
 </mapper>

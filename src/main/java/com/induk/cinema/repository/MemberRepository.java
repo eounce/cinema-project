@@ -13,4 +13,5 @@ public interface MemberRepository {
     int update(Member member);
     void delete(Long id);
     Member login(Member member);
+    int countByEmail(String email);
 }

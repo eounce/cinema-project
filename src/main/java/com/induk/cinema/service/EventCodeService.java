@@ -27,6 +27,10 @@ public class EventCodeService {
         return eventCodeRepository.findAll();
     }
 
+    public List<EventCode> eventCodeListByMemberId(Long memberId) {
+        return eventCodeRepository.findByMemberId(memberId);
+    }
+
     public EventCode findEventCode(Long id) {
         return eventCodeRepository.findById(id);
     }
@@ -48,6 +52,10 @@ public class EventCodeService {
 
     public void deleteEventCode(Long id) {
         eventCodeRepository.delete(id);
+    }
+
+    public void changeStatus(EventCode eventCode) {
+        eventCodeRepository.changeStatus(eventCode);
     }
 }
 

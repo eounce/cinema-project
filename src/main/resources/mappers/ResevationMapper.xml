@@ -4,13 +4,71 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.induk.cinema.repository.ReservationRepository">
 
+<resultMap id="eventCodeResult" type="eventCode">
+    <id property="id" column="id" />
+    <result property="eventId" column="event_id" />
+    <result property="code" column="code" />
+    <result property="issueDate" column="issue_date" />
+    <result property="codeLimit" column="code_limit" />
+    <result property="discountRate" column="discount_rate" />
+    <result property="status" column="status" />
+    <result property="memberId" column="member_id" />
+    <association property="event" column="event_id" javaType="com.induk.cinema.domain.Event">
+        <id property="id" column="event_id" />
+        <result property="title" column="event_title" />
+    </association>
+</resultMap>
 
-    <select id="findAll" resultType="com.induk.cinema.domain.Reservation">
-        select * from reservation
+    <resultMap id="resultReservationDetail" type="java.util.HashMap">
+        <id property="id" column="id" />
+        <result property="memberId" column="member_id" />
+        <result property="scheduleId" column="schedule_id" />
+        <result property="paymentId" column="payment_id" />
+        <result property="adult" column="adult" />
+        <result property="youth" column="youth" />
+        <result property="date" column="date" javaType="java.time.LocalDate"/>
+        <result property="status" column="status" />
+        <result property="method" column="method" />
+        <result property="price" column="price" />
+        <result property="cinemaName" column="cinema_name" />
+        <result property="theaterName" column="theater_name" />
+        <result property="startTime" column="start_time" />
+        <result property="endTime" column="end_time" />
+        <result property="screeningDate" column="screening_date" />
+        <result property="screeningFormat" column="screening_format" />
+        <result property="movieTitle" column="movie_title" />
+        <result property="memberName" column="member_name" />
+        <collection property="seatList" javaType="java.util.ArrayList" resultMap="seatMap" />
+    </resultMap>
+
+    <resultMap id="seatMap" type="java.util.HashMap">
+        <id property="id" column="seatId" />
+        <result property="number" column="number" />
+    </resultMap>
+
+    <select id="findAll" resultType="com.induk.cinema.dto.ReservationForm">
+        select r.*, c.name cinema_name, t.name theater_name, m.title movie_title, me.name member_name
+        from reservation r
+        inner join member me on r.member_id = me.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join movie m on s.movie_id = m.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
     </select>
 
-    <select id="findById" parameterType="Long" resultType="com.induk.cinema.domain.Reservation">
-        select * from reservation where id = #{id}
+    <select id="findById" parameterType="Long" resultMap="resultReservationDetail">
+        select r.*, p.method, p.price, c.name cinema_name, t.name theater_name,
+                s.start_time, s.end_time, s.screening_date, s.screening_format,
+                m.title movie_title, me.name member_name, seat.id seatId, seat.number
+        from reservation r
+        left join payment p on r.payment_id = p.id
+        inner join member me on r.member_id = me.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join movie m on s.movie_id = m.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        left join seat on r.id = seat.reservation_id
+        where r.id = #{id}
     </select>
 
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="Reservation">
@@ -18,16 +76,30 @@
         values (#{member_id}, #{schedule_id}, #{payment_id}, #{adult}, #{youth}, #{date}, #{status})
     </insert>
 
-    <update id="update" parameterType="Reservation">
+    <insert id="savePayment" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Payment">
+        insert into payment(method, price, date)
+        values (#{method}, #{price}, #{date})
+    </insert>
+
+    <update id="update" parameterType="java.util.HashMap">
         update reservation
-        set member_id=#{member_id}, schedule_id=#{schedule_id}, payment_id=#{payment_id},
-         adult=#{adult}, youth=#{youth}, date=#{date}, status=#{status},
+        set status=#{status}
         where id=#{id}
     </update>
 
     <delete id="delete" parameterType="Long">
-        delete from reservation where id = #{id}
+        delete r, p, s from reservation r
+        left join payment p on r.payment_id = p.id
+        left join seat s on s.reservation_id = r.id
+        where r.id = #{id}
     </delete>
+
+    <select id="findByCodeForEventCode" resultMap="eventCodeResult">
+        select eventCode.*, event.title as event_title
+        from eventCode inner join event on eventCode.event_id=event.id
+        where eventCode.code = #{code} and eventCode.member_id = #{member_id} and eventCode.status = 0
+        and eventCode.code_limit <![CDATA[>]]> #{date} and eventCode.issue_date <![CDATA[<]]> #{date}
+    </select>
 
 
     <resultMap id="reservationList" type="com.induk.cinema.dto.ReservationListForm">
@@ -76,7 +148,7 @@
 
 
 
-    <select id="findReservationByStatus" parameterType="java.util.HashMap" resultType="com.induk.cinema.domain.Reservation" resultMap="reservationList">
+    <select id="findReservationByStatus" parameterType="java.util.HashMap" resultMap="reservationList">
         SELECT reservation.*, movie.id as movie_id, movie.title as movie_title, movie.poster as movie_poster,
                movie.title as movie_title, movie.show_times as movie_show_times, genre.name as genre_name,
                group_concat(seat.number, " " order by seat.number) as seat_numbers, genre.id as genre_id,
@@ -126,7 +198,7 @@
 
     <update id="cancelReservation" parameterType="Long">
         update reservation
-            set status=0
+            set status= if(status = 0, 1, 0)
             where id=#{id}
     </update>
 
@@ -178,5 +250,31 @@
         where r.status = 1 and DATE_FORMAT(r.date, '%Y-%m') >= #{date1} and DATE_FORMAT(r.date, '%Y-%m') <= #{date2}
         ]]>
         group by c.name
+    </select>
+
+    <select id="findByAllSales" resultType="com.induk.cinema.dto.MainSales">
+        select sum(p.price) price, count(*) reservation_count, sum(r.adult+r.youth) people_count, DATE_FORMAT(r.date, '%Y-%m') date
+        from reservation r
+        inner join payment p on r.payment_id = p.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        <![CDATA[
+        where r.status = 1
+        ]]>
+        group by date
+    </select>
+
+    <select id="findByYearSales" resultType="com.induk.cinema.dto.MainSales" parameterType="String">
+        select sum(p.price) price, DATE_FORMAT(r.date, '%Y-%m') date
+        from reservation r
+        inner join payment p on r.payment_id = p.id
+        inner join schedule s on r.schedule_id = s.id
+        inner join theater t on s.theater_id = t.id
+        inner join cinema c on t.cinema_id = c.id
+        <![CDATA[
+        where r.status = 1 and DATE_FORMAT(r.date, '%Y') = #{year}
+        ]]>
+        group by date
     </select>
 </mapper>

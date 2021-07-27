@@ -1,30 +1,31 @@
 package com.induk.cinema.service;
 
-import com.induk.cinema.domain.City;
-import com.induk.cinema.domain.Reservation;
-import com.induk.cinema.domain.Review;
+import com.induk.cinema.domain.*;
 import com.induk.cinema.dto.*;
 import com.induk.cinema.repository.CityRepository;
 import com.induk.cinema.repository.ReservationRepository;
 import com.induk.cinema.repository.ScheduleRepository;
-import com.induk.cinema.repository.SeatRepository;
 import com.induk.cinema.util.PaginationInfo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
 public class ReservationService {
 
     private final ReservationRepository reservationRepository;
-    private final SeatRepository seatRepository;
 
     public int countAll() { return reservationRepository.countAll(); }
+
+    public List<MainSales> allSales() {
+        return reservationRepository.findByAllSales();
+    }
+
+    public List<MainSales> findByYearSales(String year) {
+        return reservationRepository.findByYearSales(year);
+    }
 
     public List<Sales> movieSales(Long movieId, String year) {
         HashMap<String, Object> map = new HashMap<String, Object>();
@@ -61,7 +62,7 @@ public class ReservationService {
     public ReservationListPage reservationListBySort(ReservationListPage rlp)  {
         HashMap<String, Object> map = new HashMap<>();
         map.put("memberId", rlp.getMemberId());
-        map.put("basehDate", "2021-07-15 13:00:00");
+        map.put("basehDate", "2021-07-13 00:00:00");
         map.put("sort", rlp.getSort());
 
 
@@ -81,21 +82,21 @@ public class ReservationService {
                 if(rlf.getSeatNumbers() == null) rlf.setSeatNumbers("");
             }
         }
+        else rlp.setReservationListForms(new ArrayList<ReservationListForm>());
 
         return rlp;
     }
 
     public int cancelReservation(Long id){
         int result = reservationRepository.cancelReservation(id);
-        seatRepository.deleteByReservationId(id);
         return result;
     }
 
-    public List<Reservation> reservationList() {
+    public List<ReservationForm> reservationList() {
         return reservationRepository.findAll();
     }
 
-    public Reservation findReservation(Long id) {
+    public HashMap<String, Object> findReservation(Long id) {
         return reservationRepository.findById(id);
     }
 
@@ -104,12 +105,30 @@ public class ReservationService {
         return reservation.getId();
     }
 
-    public void updateReservation(Reservation reservation) {
-        reservationRepository.update(reservation);
+    public void updateReservation(Long id, int status) {
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("id", id);
+        map.put("status", status);
+
+        reservationRepository.update(map);
     }
 
     public void deleteReservation(Long id) {
         reservationRepository.delete(id);
+    }
+
+    public EventCode findByCodeForEventCode(String code, Long member_id, String date) {
+        return reservationRepository.findByCodeForEventCode(code, member_id, date);
+    }
+
+    public Long save(Reservation reservation) {
+        reservationRepository.save(reservation);
+        return reservation.getId();
+    }
+
+    public Long savePayment(Payment payment) {
+        reservationRepository.savePayment(payment);
+        return payment.getId();
     }
 
 }

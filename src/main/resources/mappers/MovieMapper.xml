@@ -99,13 +99,13 @@
         <choose>
             <when test="sort == 1">
                 <![CDATA[
-                    and m.release_date <= now()
+                    and m.release_date <= '2021-07-13'
                 ]]>
                 order by m.release_date desc
             </when>
             <otherwise>
                 <![CDATA[
-                    and m.release_date > now()
+                    and m.release_date > '2021-07-13'
                 ]]>
                 order by m.release_date
             </otherwise>
@@ -126,12 +126,12 @@
         <choose>
             <when test="sort == 1">
                 <![CDATA[
-                    and m.release_date <= now()
+                    and m.release_date <= '2021-07-13'
                 ]]>
             </when>
             <otherwise>
                 <![CDATA[
-                    and m.release_date > now()
+                    and m.release_date > '2021-07-13'
                 ]]>
             </otherwise>
         </choose>

@@ -1,11 +1,13 @@
 package com.induk.cinema.controller;
 
 import com.induk.cinema.domain.Comment;
+import com.induk.cinema.domain.EventCode;
 import com.induk.cinema.domain.Member;
 import com.induk.cinema.domain.Review;
 import com.induk.cinema.dto.HistoryUrl;
 import com.induk.cinema.dto.ReservationListForm;
 import com.induk.cinema.dto.ReservationListPage;
+import com.induk.cinema.service.EventCodeService;
 import com.induk.cinema.service.MemberService;
 import com.induk.cinema.service.ReservationService;
 import com.induk.cinema.util.FileStore;
@@ -40,6 +42,7 @@ public class MemberController {
     private final MemberService memberService;
     private final FileStore fileStore;
     private final ReservationService reservationService;
+    private final EventCodeService eventCodeService;
     @GetMapping("/login")
     public String login(Model model, @ModelAttribute("historyUrl") HistoryUrl historyUrl){
         model.addAttribute("member", new Member());
@@ -172,6 +175,18 @@ public class MemberController {
     @ResponseBody
     public Integer delAjax(@RequestBody ReservationListForm rlf){
         return reservationService.cancelReservation(rlf.getId());
+    }
+
+    @PostMapping("/couponListAjax")
+    @ResponseBody
+    public List<EventCode> couponListAjax(@RequestParam("memberId") long memberId){
+        return eventCodeService.eventCodeListByMemberId(memberId);
+    }
+
+    @PostMapping("/checkEmailAjax")
+    @ResponseBody
+    public int checkDuplicateEmail(@RequestParam("email") String email){
+        return memberService.checkDuplicateEmail(email);
     }
 
 

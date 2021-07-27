@@ -35,7 +35,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">영화 월별 매출</h1>
+        <h1 class="h3 mb-2 text-gray-800">월간 매출 (영화)</h1>
 
         <!-- Content Row -->
         <div class="row">
@@ -71,7 +71,7 @@
                 <!-- Area Chart -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">월별 매출 (그래프)</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">월간 매출 (그래프)</h6>
                     </div>
                     <div class="card-body">
                         <div class="chart-area">
@@ -83,7 +83,7 @@
                 <!-- Bar Chart1 -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">월멸 매출 (막대)</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">월간 매출 (막대)</h6>
                     </div>
                     <div class="card-body">
                         <div class="chart-bar">
