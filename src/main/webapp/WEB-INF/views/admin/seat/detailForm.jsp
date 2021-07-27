@@ -41,8 +41,8 @@
                 <input type="hidden" name="_method" value="delete" />
             </form>
             <div class="card-header py-3">
-                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats/theaters/${seat.seatTheater.theater_id}" style="text-decoration:none"> Seat</a></i>
-                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/theaters/${seat.seatTheater.theater_id}'"><i class="fas fa-undo"></i></a>
+                <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats/" style="text-decoration:none"> Seat</a></i>
+                    <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/'"><i class="fas fa-undo"></i></a>
                     <span class="float-right">&nbsp;</span>
                     <a class="btn btn-primary float-right" href="#"
                        onclick="javascript:del();"><i class="fas fa-trash-alt"></i></a>
@@ -61,12 +61,6 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row" width="20%" style="vertical-align:middle;">Theater</th>
-                        <td width="80%">
-                            <input type="text" class="form-control" name="theater_name" value="${seat.seatTheater.cinemaName}/${seat.seatTheater.theaterName}" disabled>
-                        </td>
-                    </tr>
-                    <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Seat_Number</th>
                         <td width="80%">
                             <input type="text" class="form-control" name="seat_number" value="${seat.number}" disabled>
@@ -75,13 +69,13 @@
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Schedule_Id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="schedule_id" value="${seat.schedule_id}" disabled>
+                            <input type="text" class="form-control" name="schedule_id" value="${seat.scheduleId}" disabled>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Reservation_Id</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="reservation_id" value="${seat.reservation_id}" disabled>
+                            <input type="text" class="form-control" name="reservation_id" value="${seat.reservationId}" disabled>
                         </td>
                     </tr>
                     </tbody>

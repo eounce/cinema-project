@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/csmovie/admin/seats")
@@ -22,22 +23,16 @@ public class AdminSeatController {
     //private final ReservationService reservationService;
 
     @GetMapping
-    public String theaters(Model model) {
-        model.addAttribute("theaters", seatService.findTheater());
-        return "admin/seat/listForm_theater";
-    }
+    public String home(Model model) {
+        List<Seat> seat = seatService.seatList();
+        model.addAttribute("seats", seatService.seatList());
 
-    @GetMapping("/theaters/{id}")
-    public String seats(@PathVariable Long id, Model model) {
-        model.addAttribute("seats", seatService.findSeatByTheaterId(id));
         return "admin/seat/listForm";
     }
-
 
     @GetMapping("/add")
     public String addForm(Model model) {
         //비어있는 객체를 넘겨야 오류가 발생하지 않음
-        model.addAttribute("theaters", seatService.findTheater());
         model.addAttribute("seat", new Seat());
         return "admin/seat/addForm";
     }
@@ -49,7 +44,6 @@ public class AdminSeatController {
                              Model model) {
 
         if(bindingResult.hasErrors()) {
-            model.addAttribute("theaters", seatService.findTheater());
             return "admin/seat/addForm";
         }
 
@@ -74,7 +68,6 @@ public class AdminSeatController {
     @GetMapping("/update/{id}")
     public String updateForm(@PathVariable Long id, Model model) {
 
-        model.addAttribute("theaters", seatService.findTheater());
         //model.addAttribute("reservations", reservationService.findReservation());
         model.addAttribute("seat", seatService.findSeat(id));
         return "admin/seat/updateForm";
@@ -88,7 +81,6 @@ public class AdminSeatController {
                                 @PathVariable("id") Long id) {
 
         if(bindingResult.hasErrors()) {
-            model.addAttribute("theaters", seatService.findTheater());
             //model.addAttribute("reservations", reservationService.findReservation());
             return "admin/seat/updateForm";
         }

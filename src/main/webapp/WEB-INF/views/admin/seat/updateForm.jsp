@@ -37,7 +37,7 @@
         <div class="card shadow mb-4">
             <form method="post" action="/csmovie/admin/seats/update/${seat.id}">
                 <div class="card-header py-3">
-                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats/theaters/${seat.seatTheater.theater_id}" style="text-decoration:none"> Seat</a></i>
+                    <h4 class="m-0 font-weight-bold text-primary"><i class="fas fa-couch"><a href="/csmovie/admin/seats/" style="text-decoration:none"> Seat</a></i>
                         <a href='#' class="btn btn-primary float-right" onclick="location.href='/csmovie/admin/seats/${seat.id}'"><i class="fas fa-undo"></i></a>
                         <span class="float-right">&nbsp;</span>
                         <button class="btn btn-primary float-right"><i class="fas fa-check"></i></button>
@@ -53,26 +53,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <spring:bind path="seat.theater_id">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Theater <font color="red">*</font></th>
-                                <td width="80%">
-                                    <select name="${status.expression }" id="${status.expression }" class="form-control">
-                                        <option value="">상영관을 선택해주세요</option>
-                                        <c:forEach var="theater" items="${theaters}">
-                                            <c:if test="${theater.id == seat.seatTheater.theater_id}">
-                                                <option value="${theater.id}" selected>${theater.theaterCinema.cinemaName}/${theater.name}</option>
-                                            </c:if>
-                                            <c:if test="${theater.id != seat.theater_id}">
-                                                <option value="${theater.id}">${theater.theaterCinema.cinemaName}/${theater.name}</option>
-                                            </c:if>
-                                        </c:forEach>
-                                    </select>
-                                    <!-- 해당 속성의 오류 message를 출력 -->
-                                    ${status.errorMessage }
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
                             <spring:bind path="seat.number">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Seat_Number <font color="red">*</font></th>
                                 <td width="80%">
@@ -84,10 +64,10 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="seat.schedule_id">
+                            <spring:bind path="seat.scheduleId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Schedule_Id <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="${status.expression }" value="${seat.schedule_id}"
+                                    <input type="number" class="form-control" name="${status.expression }" value="${seat.scheduleId}"
                                            id="${status.expression }" placeholder="스케줄번호를 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                         ${status.errorMessage }
@@ -110,8 +90,8 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Reservation</th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="reservation_id" value="${seat.reservation_id}"
-                                       id="reservation_id" placeholder="예매번호를 입력해주세요">
+                                <input type="number" class="form-control" name="reservationId" value="${seat.reservationId}"
+                                       id="reservationId" placeholder="예매번호를 입력해주세요">
                             </td>
                         </tr>
                         </tbody>

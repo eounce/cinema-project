@@ -46,7 +46,6 @@
                         <thead>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="40%">Theater</th>
                             <th width="20%">Seat_Number</th>
                             <th width="10%">Schedule_Id</th>
                             <th width="10%">Reservation_Id</th>
@@ -55,7 +54,6 @@
                         <tfoot>
                         <tr>
                             <th width="20%">ID</th>
-                            <th width="40%">Theater</th>
                             <th width="20%">Seat_Number</th>
                             <th width="10%">Schedule_Id</th>
                             <th width="10%">Reservation_Id</th>
@@ -66,10 +64,9 @@
                         <c:forEach var="seat" items="${seats}">
                         <tr>
                             <th width="20%"><a href="/csmovie/admin/seats/${seat.id}" >${seat.id}</a></th>
-                            <th width="40%">${seat.seatTheater.cinemaName}/${seat.seatTheater.theaterName}</th>
                             <th width="20%">${seat.number}</th>
-                            <th width="10%">${seat.schedule_id}</th>
-                            <th width="10%">${seat.reservation_id}</th>
+                            <th width="10%">${seat.scheduleId}</th>
+                            <th width="10%">${seat.reservationId}</th>
                         </tr>
                         </c:forEach>
                         </tbody>

@@ -23,29 +23,22 @@
             <result property="cinemaName" column="cinemaName"/>
         </association>
     </resultMap>
-    <select id="findAll" resultMap="resultSeat">
-        select seat.*, theater.name as theaterName from seat left join theater on seat.theater_id = theater.id
+
+    <select id="findAll" resultType="com.induk.cinema.domain.Seat">
+        select * from seat
     </select>
 
     <select id="findTheater" resultMap="resultTheater">
         select theater.*, cinema.name as cinemaName from theater left join cinema on cinema.id = theater.cinema_id
     </select>
 
-    <select id="findSeatByTheaterId" resultMap="resultSeat">
-        select seat.*, theater.name as theaterName, cinema.name as cinemaName from seat
-        left join schedule on schedule.id = seat.schedule_id left join theater on schedule.theater_id = theater.id left join cinema on cinema.id = theater.cinema_id
-         where schedule.theater_id = #{id}
-    </select>
-
     <insert id="save" useGeneratedKeys="true" keyProperty="id" parameterType="com.induk.cinema.domain.Seat">
         insert into seat(number, schedule_id, reservation_id)
-        values (#{number}, #{schedule_id}, #{reservation_id})
+        values (#{number}, #{scheduleId}, #{reservationId})
     </insert>
 
-    <select id="findById" parameterType="Long" resultMap="resultSeat">
-        select seat.*, theater.name as theaterName, theater.id as theater_id, cinema.name as cinemaName from seat
-        left join schedule on schedule.id = seat.schedule_id left join theater on schedule.theater_id = theater.id left join cinema on cinema.id = theater.cinema_id
-         where seat.id = #{id}
+    <select id="findById" parameterType="Long" resultType="com.induk.cinema.domain.Seat">
+        select * from seat where id = #{id}
     </select>
 
     <select id="findByTheaterId" parameterType="Long" resultType="String">
@@ -54,7 +47,7 @@
 
     <update id="update" parameterType="Seat">
         update seat
-        set number=#{number}, schedule_id=#{schedule_id}, reservation_id=#{reservation_id}
+        set number=#{number}, schedule_id=#{scheduleId}, reservation_id=#{reservationId}
         where id=#{id}
     </update>
 

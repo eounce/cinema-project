@@ -47,21 +47,6 @@
                     <table class="table table-bordered table-striped">
                         <tbody>
                         <tr>
-                            <spring:bind path="seat.theater_id">
-                                <th scope="row" width="20%" style="vertical-align:middle;">Theater <font color="red">*</font></th>
-                                <td width="80%">
-                                    <select class="${status.error ? "form-control field-error" : "form-control"}" name="${status.expression}" id="select2">
-                                        <option value="" selected>상영관을 선택해주세요</option>
-                                        <c:forEach var="theater" items="${theaters}">
-                                            <option value="${theater.id}">${theater.theaterCinema.cinemaName}/${theater.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                    <!-- 해당 속성의 오류 message를 출력 -->
-                                        ${status.errorMessage }
-                                </td>
-                            </spring:bind>
-                        </tr>
-                        <tr>
                             <spring:bind path="seat.number">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Seat_Number <font color="red">*</font></th>
                                 <td width="80%">
@@ -73,10 +58,10 @@
                             </spring:bind>
                         </tr>
                         <tr>
-                            <spring:bind path="seat.schedule_id">
+                            <spring:bind path="seat.scheduleId">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Schedule_Id <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="${status.expression }"
+                                    <input type="number" class="form-control" name="${status.expression }"
                                            id="${status.expression }" placeholder="스케줄번호를 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                         ${status.errorMessage }
@@ -99,8 +84,8 @@
                         <tr>
                             <th scope="row" width="20%" style="vertical-align:middle;">Reservation</th>
                             <td width="80%">
-                                <input type="text" class="form-control" name="reservation_id"
-                                       id="reservation_id" placeholder="예매번호를 입력해주세요">
+                                <input type="number" class="form-control" name="reservationId"
+                                       id="reservationId" placeholder="예매번호를 입력해주세요">
                             </td>
                         </tr>
                         </tbody>

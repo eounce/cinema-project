@@ -144,7 +144,7 @@
                             <spring:bind path="schedule.price">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Price <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="${status.expression }"
+                                    <input type="number" class="form-control" name="${status.expression }"
                                            id="${status.expression }" placeholder="가격을 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     <c:if test="${status.error}">

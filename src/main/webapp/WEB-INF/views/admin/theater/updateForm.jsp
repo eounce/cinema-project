@@ -87,8 +87,8 @@
                             <spring:bind path="theater.seat_count">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Seat_Count <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" value="${theater.seat_count}" name="${status.expression }"
-                                           id="${status.expression }" placeholder="주소를 입력해주세요">
+                                    <input type="number" class="form-control" value="${theater.seat_count}" name="${status.expression }"
+                                           id="${status.expression }" placeholder="좌석수를 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     ${status.errorMessage }
                                 </td>

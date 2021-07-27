@@ -69,7 +69,13 @@
                             <th width="10%"><a href="/csmovie/admin/schedules/${schedule.id}" >${schedule.id}</a></th>
                             <th width="20%">${schedule.scheduleForm.movie_title}</th>
                             <th width="20%">${schedule.scheduleForm.cinema_name}/${schedule.scheduleForm.theater_name}</th>
-                            <th width="10%">${schedule.start_time}</th>
+                            <c:set var="start_time" value="${schedule.start_time}"/>
+                            <%
+                                String start_time = (String)pageContext.getAttribute("start_time");
+                                start_time = start_time.substring(0,5);
+                                pageContext.setAttribute("start_time", start_time) ;
+                            %>
+                            <th width="10%">${start_time}</th>
                             <th width="20%">${schedule.screening_date}</th>
                             <th width="20%"><fmt:formatNumber type="number" maxFractionDigits="3" value="${schedule.price}"/>원</th>
                         </tr>

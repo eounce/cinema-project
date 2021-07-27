@@ -73,16 +73,28 @@
                             <input type="text" class="form-control" name="theater" value="${schedule.scheduleForm.cinema_name}/${schedule.scheduleForm.theater_name}" disabled>
                         </td>
                     </tr>
+                    <c:set var="start_time" value="${schedule.start_time}"/>
+                    <%
+                        String start_time = (String)pageContext.getAttribute("start_time");
+                        start_time = start_time.substring(0,5);
+                        pageContext.setAttribute("start_time", start_time) ;
+                    %>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">Start_Time</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="start_time" value="${schedule.start_time}" disabled>
+                            <input type="text" class="form-control" name="start_time" value="${start_time}" disabled>
                         </td>
                     </tr>
+                    <c:set var="end_time" value="${schedule.end_time}"/>
+                    <%
+                        String end_time = (String)pageContext.getAttribute("end_time");
+                        end_time = end_time.substring(0,5);
+                        pageContext.setAttribute("end_time", end_time) ;
+                    %>
                     <tr>
                         <th scope="row" width="20%" style="vertical-align:middle;">End_Time</th>
                         <td width="80%">
-                            <input type="text" class="form-control" name="end_time" value="${schedule.end_time}" disabled>
+                            <input type="text" class="form-control" name="end_time" value="${end_time}" disabled>
                         </td>
                     </tr>
                     <tr>

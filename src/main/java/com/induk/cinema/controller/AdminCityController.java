@@ -38,8 +38,6 @@ public class AdminCityController {
                           BindingResult bindingResult,
                           RedirectAttributes redirectAttributes) {
 
-        System.out.println(city.getName());
-
         if(bindingResult.hasErrors()) {
             return "admin/city/addForm";
         }

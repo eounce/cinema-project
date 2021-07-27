@@ -98,8 +98,8 @@ public class ReservationController {
         for(int i=0;i<seatArray.length;i++){
             Seat seat = new Seat();
             seat.setNumber(seatArray[i]);
-            seat.setSchedule_id(checkoutData.getSchedule_id());
-            seat.setReservation_id(reservation_id);
+            seat.setScheduleId(checkoutData.getSchedule_id());
+            seat.setReservationId(reservation_id);
             seatService.saveSeat(seat);
         }
 

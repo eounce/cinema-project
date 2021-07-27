@@ -91,12 +91,18 @@
                                 </td>
                             </spring:bind>
                         </tr>
+                        <c:set var="start_time" value="${schedule.start_time}"/>
+                        <%
+                            String start_time = (String)pageContext.getAttribute("start_time");
+                            start_time = start_time.substring(0,5);
+                            pageContext.setAttribute("start_time", start_time) ;
+                        %>
                         <tr>
                             <spring:bind path="schedule.start_time">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Start_Time <font color="red">*</font></th>
                                 <td width="80%">
                                     <div class="input-group clockpicker">
-                                        <input type="text" class="form-control" name="${status.expression }" value="${schedule.start_time}"
+                                        <input type="text" class="form-control" name="${status.expression }" value="${start_time}"
                                                id="${status.expression }" placeholder="상영 시작시간을 입력해주세요">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
@@ -108,12 +114,18 @@
                                 </td>
                             </spring:bind>
                         </tr>
+                        <c:set var="end_time" value="${schedule.end_time}"/>
+                        <%
+                            String end_time = (String)pageContext.getAttribute("end_time");
+                            end_time = end_time.substring(0,5);
+                            pageContext.setAttribute("end_time", end_time) ;
+                        %>
                         <tr>
                             <spring:bind path="schedule.end_time">
                                 <th scope="row" width="20%" style="vertical-align:middle;">End_Time <font color="red">*</font></th>
                                 <td width="80%">
                                     <div class="input-group clockpicker">
-                                        <input type="text" class="form-control" name="${status.expression }" value="${schedule.end_time}"
+                                        <input type="text" class="form-control" name="${status.expression }" value="${end_time}"
                                                id="${status.expression }" placeholder="상영 종료시간을 입력해주세요">
                                         <span class="input-group-addon">
                                             <span class="glyphicon glyphicon-time"></span>
@@ -155,7 +167,7 @@
                             <spring:bind path="schedule.price">
                                 <th scope="row" width="20%" style="vertical-align:middle;">Price <font color="red">*</font></th>
                                 <td width="80%">
-                                    <input type="text" class="form-control" name="${status.expression }" value="${schedule.price}"
+                                    <input type="number" class="form-control" name="${status.expression }" value="${schedule.price}"
                                            id="${status.expression }" placeholder="가격을 입력해주세요">
                                     <!-- 해당 속성의 오류 message를 출력 -->
                                     <c:if test="${status.error}">
