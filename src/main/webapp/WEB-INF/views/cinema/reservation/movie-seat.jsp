@@ -87,7 +87,6 @@
                 </div>
             </div>
             </c:if>
-            <c:set var="start_time" value="${schedule.start_time}"/>
             <c:if test="${schedule.scheduleForm.movie_rating == '청소년 관람불가'}">
                 <div class="item col-lg-3 text-center" style="display: none; justify-content: center;" >
                     <div class="col-lg-4" style="display: flex; align-items: center; justify-content: center;"> 청소년 </div>
