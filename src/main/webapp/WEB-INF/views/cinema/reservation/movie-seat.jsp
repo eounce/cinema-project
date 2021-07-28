@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </div>
+            <c:if test="${schedule.scheduleForm.movie_rating != '청소년 관람불가'}">
             <div class="item col-lg-3 text-center" style="display: flex; justify-content: center;">
                 <div class="col-lg-4" style="display: flex; align-items: center; justify-content: center;"> 청소년 </div>
                 <div class="input-counter input-group col-lg-8">
@@ -85,6 +86,27 @@
                     </div>
                 </div>
             </div>
+            </c:if>
+            <c:set var="start_time" value="${schedule.start_time}"/>
+            <c:if test="${schedule.scheduleForm.movie_rating == '청소년 관람불가'}">
+                <div class="item col-lg-3 text-center" style="display: none; justify-content: center;" >
+                    <div class="col-lg-4" style="display: flex; align-items: center; justify-content: center;"> 청소년 </div>
+                    <div class="input-counter input-group col-lg-8">
+                        <div class="input-group-prepend">
+                            <button type="button" class="btn-add btn btn-primary" id="dy" onclick="disPeople(this.id)">
+                                <i class="fa fa-minus"></i>
+                            </button>
+                        </div>
+                        <input type="text" class="form-control counter text-center" id="youth"
+                               data-min="0" data-max="6" data-default="0" style="height:50px;">
+                        <div class="input-group-append">
+                            <button type="button" class="btn-subtract btn btn-primary" id="y" onclick="numPeople(this.id)">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
             <c:set var="start_time" value="${schedule.start_time}"/>
             <%
                 String start_time = (String)pageContext.getAttribute("start_time");
