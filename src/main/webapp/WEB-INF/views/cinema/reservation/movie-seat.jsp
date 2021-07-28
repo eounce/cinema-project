@@ -145,7 +145,7 @@
                                                 </c:if>
                                             </c:forEach>
                                             <c:if test="${check == 1}">
-                                                <li class="single-seat seat-free">
+                                                <li class="single-seat">
                                                     <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
                                                 </li>
                                             </c:if>
@@ -172,7 +172,7 @@
                                                 </c:if>
                                             </c:forEach>
                                             <c:if test="${check == 1}">
-                                                <li class="single-seat seat-free">
+                                                <li class="single-seat">
                                                     <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
                                                 </li>
                                             </c:if>
@@ -199,7 +199,7 @@
                                                 </c:if>
                                             </c:forEach>
                                             <c:if test="${check == 1}">
-                                                <li class="single-seat seat-free">
+                                                <li class="single-seat">
                                                     <img src="/cinema/assets/images/movie/seat01.png" alt="seat">
                                                 </li>
                                             </c:if>
